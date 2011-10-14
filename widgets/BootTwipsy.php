@@ -12,7 +12,7 @@ class BootTwipsy extends BootWidget
 	/**
 	 * @property string the CSS selector to use for selecting the twipsy elements.
 	 */
-	public $selector = '.twipsy';
+	public $selector = 'a[title]';
 	
 	/**
 	 * Initializes the widget.

@@ -13,7 +13,10 @@
 	 * @type Object
 	 */
 	var defaults = {
-		placement: 'above'
+		placement: 'above',
+		inEvent: 'mouseenter',
+		outEvent: 'mouseleave',
+		live: false
 	};
 
 	/**
@@ -42,11 +45,13 @@
 						visible: false
 					});
 
-					element.bind( 'mouseover', function( event ) {
+					var fn = settings.live ? 'live' : 'bind';
+
+					element.fn( settings.inEvent, function( event ) {
 						methods.show(element);
 					});
 
-					element.bind( 'mouseout', function( event ) {
+					element.fn( settings.outEvent, function( event ) {
 						methods.hide(element);
 					});
 				}
