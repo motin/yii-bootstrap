@@ -1,5 +1,5 @@
 /*!
- * Bootstrap Twipsy jQuery plugin file.
+ * Bootstrap Pop-over jQuery plugin file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright  Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -34,20 +34,21 @@
 		 */
 		init: function( options ) {
 			var settings = $.extend( defaults, options || {} ),
-				twipsy = methods.createTwipsy( settings.placement );
-			
+				popover = methods.createPopover( settings.placement );
+
 			return this.each(function() {
 				var element = $( this ),
-					title = element.attr( 'title' );
+					title = element.attr( 'title' ),
+					content = element.attr( 'data-content' );
 
-				if ( title && title.length > 0 ) {
+				if ( title && title.length > 0 && content && content.length > 0 ) {
 					var data = methods._data( element ),
 						binder = settings.live ? 'live' : 'bind';
 
 					element.removeAttr( 'title' ); // remove the title to prevent it being displayed
 					element.attr( 'data-title', title);
 
-					data.twipsy = twipsy;
+					data.popover = popover;
 					data.placement = settings.placement;
 					data.visible = false;
 
@@ -62,22 +63,22 @@
 			});
 		},
 		/**
-		 * Creates the twipsy element.
+		 * Creates the pop-over element.
 		 * We only need to create one because we re-use it over and over.
-		 * @param {String} placement The placement for the tooltip.
+		 * @param {String} placement The placement for the pop-over.
 		 */
-		createTwipsy: function( placement ) {
-			var twipsy = $( '<div class="twipsy ' + placement + '">' )
+		createPopover: function( placement ) {
+			var popover = $( '<div class="popover ' + placement + '">' )
 					.appendTo( 'body' )
 					.hide();
 
-			$( '<div class="twipsy-arrow">' )
-					.appendTo( twipsy );
+			$( '<div class="arrow">' )
+					.appendTo( popover );
 
-			$( '<div class="twipsy-inner">' )
-					.appendTo( twipsy );
+			$( '<div class="inner"><h3 class="title"></h3><div class="content"><p></p></div>' )
+					.appendTo( popover );
 
-			return twipsy;
+			return popover;
 		},
 		/**
 		 * Shows the tooltip.
@@ -88,9 +89,10 @@
 
 			if ( !data.visible ) {
 				var position;
-				data.twipsy.find( '.twipsy-inner' ).html( element.attr( 'data-title' ) );
+				data.popover.find( '.title' ).html( element.attr( 'data-title' ) );
+				data.popover.find( '.content p' ).html( element.attr( 'data-content' ) );
 				position = methods._pos( element );
-				data.twipsy.css( {
+				data.popover.css( {
 					top: position.top,
 					left: position.left
 				} ).show(); // todo: implement support for effects.
@@ -99,19 +101,19 @@
 			}
 		},
 		/**
-		 * Hides the tooltip.
+		 * Hides the pop-over.
 		 * @param {Object} element The element for which to hide the tooltip.
 		 */
 		hide: function( element ) {
 			var data = methods._data( element );
 
 			if ( data.visible ) {
-				data.twipsy.hide(); // todo: implement support for effects.
+				data.popover.hide(); // todo: implement support for effects.
 				data.visible = false;
 			}
 		},
 		/**
-		 * Returns the offset for this tooltip.
+		 * Returns the offset for this pop-over.
 		 * @param {Object} element The element for which to get the tooltip offset.
 		 * @returns {Object} The offset.
 		 */
@@ -123,23 +125,23 @@
 
 			switch ( data.placement ) {
 				case 'above':
-					top = offset.top - data.twipsy.outerHeight(),
-					left = offset.left + ( ( element.outerWidth() - data.twipsy.outerWidth() ) / 2 );
+					top = offset.top - data.popover.outerHeight(),
+					left = offset.left + ( ( element.outerWidth() - data.popover.outerWidth() ) / 2 );
 					break;
 
 				case 'right':
-					top = offset.top + ( ( element.outerHeight() - data.twipsy.outerHeight() ) / 2 );
+					top = offset.top + ( ( element.outerHeight() - data.popover.outerHeight() ) / 2 );
 					left = offset.left + element.outerWidth();
 					break;
 
 				case 'below':
 					top = offset.top + element.outerHeight(),
-					left = offset.left + ( ( element.outerWidth() - data.twipsy.outerWidth() ) / 2 );
+					left = offset.left + ( ( element.outerWidth() - data.popover.outerWidth() ) / 2 );
 					break;
 
 				case 'left':
-					top = offset.top + ( ( element.outerHeight() - data.twipsy.outerHeight() ) / 2 );
-					left = offset.left - data.twipsy.outerWidth();
+					top = offset.top + ( ( element.outerHeight() - data.popover.outerHeight() ) / 2 );
+					left = offset.left - data.popover.outerWidth();
 					break;
 			}
 
@@ -149,43 +151,32 @@
 			};
 		},
 		/**
-		 * Returns the data for the tooltip from a specific element.
+		 * Returns the data for the pop-over from a specific element.
 		 * @param {Object} element The element for which to retrieve the data.
 		 * @returns {Object} The data.
 		 */
 		_data: function( element ) {
-			var data = $.data( element, 'twipsy' );
+			var data = $.data( element, 'popover' );
 
 			if ( !data ) {
-				data = $.data( element, 'twipsy', {} );
+				data = $.data( element, 'popover', {} );
 			}
 
 			return data;
 		},
-		/**
-		 * Destructs the plugin.
-		 * Frees up all storage used and unbinds the events.
-		 */
-		destroy: function() {
-			var window = $( window );
-
-			return this.each(function() {
-				window.unbind( '.twipsy' );
-			});
-		}
 	};
 
 	/**
-	 * Bootstrap Twipsy jQuery plugin.
+	 * Bootstrap Pop-over jQuery plugin.
 	 * @param method The method to call.
 	 */
-	$.fn.boottwipsy = function( method ) {
+	$.fn.bootpopover = function( method ) {
 		if ( method instanceof String && method.indexOf( '_' ) !== 0 && methods[ method ] ) {
 			return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ) );
 		} else if ( typeof method === 'object' || ! method ) {
 			return methods.init.apply( this, arguments );
 		} else {
-			$.error( 'Method ' +  method + ' does not exist on jQuery.boottwipsy.' );
+			$.error( 'Method ' +  method + ' does not exist on jQuery.bootpopover.' );
 		}
 	};
 

@@ -2,7 +2,7 @@
  * Bootstrap Flash jQuery plugin file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright  Copyright &copy; Christoffer Niska 2011-
- * @license http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0
+ * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @see http://twitter.github.com/bootstrap
  */
 
@@ -30,19 +30,20 @@
 		 */
 		init: function( options ) {
 			var settings = $.extend( defaults, options || {} );
-			return this.each(function() {
-				var element = $( this );
-				var alerts = element.children();
 
-				for ( var i = 0, l = alerts.length; i < l; i++ ) {
+			return this.each(function() {
+				var element = $( this ),
+					alerts = element.children();
+
+				for ( var i = 0, l = alerts.length; i < l; ++i ) {
 					var alert = $( alerts[ i ] );
 
 					$( '<a class="close" href="#">x</a>' )
-							.click( function( e ) {
-								methods.close( alert, settings.fadeOutTime );
-								e.preventDefault();
-								return false;
-							}).prependTo( alert.children() );
+						.click( function( e ) {
+							methods.close( alert, settings.fadeOutTime );
+							e.preventDefault();
+							return false;
+						} ).prependTo( alert.children() );
 
 					if ( settings.fadeOutTime > 0 ) {
 						setTimeout( function() {
@@ -76,7 +77,7 @@
 	 * @param method The method to call.
 	 */
 	$.fn.bootflash = function( method ) {
-		if ( methods[ method ] ) {
+		if ( method instanceof String && method.indexOf( '_' ) !== 0 && methods[ method ] ) {
 			return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
 		} else if ( typeof method === 'object' || ! method ) {
 			return methods.init.apply( this, arguments );

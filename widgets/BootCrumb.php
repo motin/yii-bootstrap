@@ -16,15 +16,13 @@ class BootCrumb extends CBreadcrumbs
 	/**
 	 * @property string the separator between links in the breadcrumbs. Defaults to ' / '.
 	 */
-	public $separator = '<span class="divider">/</span>';
+	public $separator = '/';
 
 	/**
 	 * Renders the content of the widget.
 	 */
 	public function run()
 	{
-		echo BootHtml::openTag('ul', $this->htmlOptions);
-
 		$links = array();
 
 		if ($this->homeLink === null)
@@ -54,18 +52,25 @@ class BootCrumb extends CBreadcrumbs
 				$links[] = $this->renderItem($this->encodeLabel ? BootHtml::encode($url) : $url, true);
 		}
 
-		echo BootHtml::openTag('li');
-		echo implode($this->separator.BootHtml::tag('li'), $links);
-		echo BootHtml::closeTag('li');
-		echo CHtml::closeTag('ul');
+		echo BootHtml::openTag('ul', $this->htmlOptions);
+		echo implode('', $links);
+		echo '</ul>';
 	}
 
+	/**
+	 * Renders a single breadcrumb item.
+	 * @param string $content the content.
+	 * @param boolean $active whether the item is active.
+	 * @return string the markup.
+	 */
 	protected function renderItem($content, $active=false)
 	{
+		$separator = !$active ? '<span class="divider">'.$this->separator.'</span>' : '';
+		
 		ob_start();
 		echo BootHtml::openTag('li', $active ? array('class'=>'active') : array());
-		echo $content;
-		echo BootHtml::closeTag('li');
+		echo $content.$separator;
+		echo '</li>';
 		return ob_get_clean();
 	}
 }
