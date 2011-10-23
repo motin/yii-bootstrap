@@ -29,9 +29,10 @@
 		 * Widget options.
 		 * - backdropClose: Indicates whether clicking on the backdrop closes the modal.
 		 * - buttons: Button configurations.
-		 * - closeTime: The delay for closing the modal.
+		 * - closeTime: The duration for closing the modal.
 		 * - escapeClose: Indicates whether pressing escape closes the modal.
 		 * - open: Indicates whether to open the modal on initialization.
+		 * - openTime: The duration for opening the modal.
 		 * - title: The modal title text.
 		 * @type Object
 		 */

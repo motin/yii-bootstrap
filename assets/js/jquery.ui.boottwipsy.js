@@ -27,6 +27,10 @@
 		visible: false,
 		/**
 		 * Widget options.
+		 * - placement: The placement of the tooltip. Valid values are: "above", "right", "below" and "left".
+		 * - showEvent: The event for showing the tooltip.
+		 * - hideEvent: The event for hiding the tooltip.
+		 * - live: Indicates whether to use jQuery.live or jQuery.bind.
 		 * @type Object
 		 */
 		options: {
