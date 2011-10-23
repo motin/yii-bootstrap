@@ -1,15 +1,21 @@
 <?php
+/**
+ * BootWidget class file.
+ * @author Christoffer Niska <ChristofferNiska@gmail.com>
+ * @copyright Copyright &copy; Christoffer Niska 2011-
+ * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
+ */
 
 class BootWidget extends CWidget
 {
 	/**
 	 * @property array the initial JavaScript options that should be passed to the Bootstrap plugin.
 	 */
-	public $options=array();
+	public $options = array();
 	/**
 	 * @property array the HTML attributes that should be rendered in the HTML tag representing the Bootstrap widget.
 	 */
-	public $htmlOptions=array();
+	public $htmlOptions = array();
 
 	/**
 	 * Initializes the widget.
@@ -17,6 +23,9 @@ class BootWidget extends CWidget
 	public function init()
 	{
 		Yii::app()->clientScript->registerCoreScript('jquery');
+		Yii::app()->clientScript->registerCoreScript('jquery.ui');
+		
+		$this->registerScriptFile('jquery.ui.bootwidget.js');
 	}
 
 	/**

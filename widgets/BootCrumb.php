@@ -36,13 +36,11 @@ class BootCrumb extends CBreadcrumbs
 				$links[] = $this->renderItem(Yii::t('bootstrap', 'Home'), true);
 		}
 		else if ($this->homeLink !== false)
-		{
 			$links[] = $this->homeLink;
-		}
 
-		foreach($this->links as $label=>$url)
+		foreach ($this->links as $label=>$url)
 		{
-			if(is_string($label) || is_array($url))
+			if (is_string($label) || is_array($url))
 			{
 				$label = $this->encodeLabel ? BootHtml::encode($label) : $label;
 				$content = BootHtml::link($label, $url);

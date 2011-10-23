@@ -4,6 +4,7 @@
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
+ * @since 0.9.2
  */
 
 Yii::import('ext.bootstrap.widgets.BootWidget');
@@ -20,7 +21,8 @@ class BootPopover extends BootWidget
 	public function init()
 	{
 		parent::init();
-		$this->registerScriptFile('jquery.bootpopover.js');
+		$this->registerScriptFile('jquery.ui.boottwipsy.js');
+		$this->registerScriptFile('jquery.ui.bootpopover.js');
 	}
 
 	/**
@@ -30,6 +32,6 @@ class BootPopover extends BootWidget
 	{
 		$id = $this->getId();
 		$options = !empty($this->options) ? CJavaScript::encode($this->options) : '';
-		Yii::app()->getClientScript()->registerScript(__CLASS__.'#'.$id,"jQuery('{$this->selector}').bootpopover($options);");
+		Yii::app()->getClientScript()->registerScript(__CLASS__.'#'.$id,"jQuery('{$this->selector}').bootPopover($options);");
 	}
 }

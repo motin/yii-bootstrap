@@ -1,13 +1,13 @@
 <?php
 /**
- * BootFlash class file.
+ * BootAlert class file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright  Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
 
 Yii::import('ext.bootstrap.widgets.BootWidget');
-class BootFlash extends BootWidget
+class BootAlert extends BootWidget
 {
 	/**
 	 * @property array the keys for which to get flash messages.
@@ -20,7 +20,7 @@ class BootFlash extends BootWidget
 	/**
 	 * @property array the html options.
 	 */
-	public $htmlOptions = array('class'=>'flash');
+	public $htmlOptions = array('class'=>'alert');
 
 	/**
 	 * Initializes the widget.
@@ -28,7 +28,7 @@ class BootFlash extends BootWidget
 	public function init()
 	{
 		parent::init();
-		$this->registerScriptFile('jquery.bootflash.js');
+		$this->registerScriptFile('jquery.ui.bootalert.js');
 	}
 
 	/**
@@ -55,7 +55,10 @@ class BootFlash extends BootWidget
 		echo $markup;
 		echo '</div>';
 
-		$options = !empty($this->options) ? CJavaScript::encode($this->options) : '';
-		Yii::app()->getClientScript()->registerScript(__CLASS__.'#'.$id,"jQuery('#{$id}').bootflash({$options});");
+		$this->options['keys'] = $this->keys;
+		$this->options['template'] = $this->template;
+
+		$options = CJavaScript::encode($this->options);
+		Yii::app()->getClientScript()->registerScript(__CLASS__.'#'.$id,"jQuery('#{$id}').bootAlert({$options});");
 	}
 }

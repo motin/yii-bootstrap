@@ -19,7 +19,7 @@ class BootInputBlock extends CInputWidget
 	/**
 	 * @property string the input type.
 	 * Following types are supported: checkbox, checkboxlist, dropdownlist, filefield, passwordfield,
-	 * radiobutton, radiobuttonlist, textarea, textfield.
+	 * radiobutton, radiobuttonlist, textarea, textfield and captcha.
 	 */
 	public $type;
 	/**
@@ -89,6 +89,11 @@ class BootInputBlock extends CInputWidget
 
 			case 'textfield':
 				$input = $this->form->textField($this->model, $this->attribute, $this->htmlOptions);
+				break;
+
+			case 'captcha':
+				$input = '<div class="captcha"><div class="widget">'.$this->widget('CCaptcha', array(), true).'</div>'
+						.$this->form->textField($this->model, $this->attribute, $this->htmlOptions).'</div>';
 				break;
 
 			default:

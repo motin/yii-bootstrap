@@ -194,6 +194,19 @@ class BootActiveForm extends CActiveForm
 	}
 
 	/**
+	 * Renders a captcha block.
+	 * @param CModel $model the data model
+	 * @param string $attribute the attribute
+	 * @param array $htmlOptions additional HTML attributes
+	 * @return string the generated block
+	 * @since 0.9.3
+	 */
+	public function captchaBlock($model, $attribute, $htmlOptions = array())
+	{
+		return $this->inputBlock('captcha', $model, $attribute, null, $htmlOptions);
+	}
+
+	/**
 	 * Renders a boolean input field within a label for a model attribute.
 	 * @param string $type the input type
 	 * @param CModel $model the data model
