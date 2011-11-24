@@ -37,16 +37,8 @@
 				alerts = self.element.find( '.alert-message' );
 
 			for ( var i = 0, l = alerts.length; i < l; ++i ) {
-				var alert = $( alerts[ i ] ),
-					closeLink = self._createCloseLink( alert );
-
-				closeLink.prependTo( alert );
-
-				if ( self.options.closeTime > 0 ) {
-					setTimeout( function() {
-						self.close( alert );
-					}, self.options.displayTime );
-				}
+				var alert = $( alerts[ i ] );
+				self._initAlert( alert );
 			}
 		},
 		/**
@@ -56,25 +48,42 @@
 		 */
 		alert: function( key, message ) {
 			if ( this.options.keys.indexOf( key ) !== -1 ) {
-				var template = this.options.template;
+				var self = this,
+					template = this.options.template;
+
 				template = template.replace( '{key}', key );
 				template = template.replace( '{message}', message );
 
-				var alert = $( template )
-					.appendTo( this.element );
-
-				var closeLink = this._createCloseLink( alert );
-				closeLink.prependTo( alert );
+				var alert = $( template );
+				self._initAlert( alert );
+				alert.appendTo( self.element );
 			}
 
 			return this;
+		},
+		/**
+		 * Initializes the alert by appending the close link
+		 * and by setting a time out for the close callback.
+		 * @param {Object} alert The alert element.
+		 */
+		_initAlert: function( alert ) {
+			var self = this,
+				closeLink = self._createCloseLink( alert );
+
+			closeLink.prependTo( alert );
+
+			if ( self.options.closeTime > 0 ) {
+				setTimeout( function() {
+					self.close( alert );
+				}, self.options.displayTime );
+			}
 		},
 		/**
 		 * Closes a specific alert message.
 		 * @param {Object} alert The alert element.
 		 */
 		close: function( alert ) {
-			if (alert) {
+			if ( alert ) {
 				alert.fadeOut( this.options.closeTime, function() {
 					$( this ).html( '' );
 				});

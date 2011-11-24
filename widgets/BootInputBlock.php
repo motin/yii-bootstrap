@@ -18,7 +18,7 @@ class BootInputBlock extends CInputWidget
 	public $label;
 	/**
 	 * @property string the input type.
-	 * Following types are supported: checkbox, checkboxlist, dropdownlist, filefield, passwordfield,
+	 * Following types are supported: checkbox, checkboxlist, dropdownlist, filefield, password,
 	 * radiobutton, radiobuttonlist, textarea, textfield and captcha.
 	 */
 	public $type;
@@ -70,7 +70,7 @@ class BootInputBlock extends CInputWidget
 				$input = $this->form->fileField($this->model, $this->attribute, $this->htmlOptions);
 				break;
 
-			case 'passwordfield':
+			case 'password':
 				$input = $this->form->passwordField($this->model, $this->attribute, $this->htmlOptions);
 				break;
 

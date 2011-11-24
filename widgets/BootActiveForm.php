@@ -141,7 +141,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function passwordFieldBlock($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputBlock('passwordfield', $model, $attribute, null, $htmlOptions);
+		return $this->inputBlock('password', $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
@@ -258,7 +258,7 @@ class BootActiveForm extends CActiveForm
 	public function errorSummary($models, $header = null, $footer = null, $htmlOptions = array())
 	{
 		if (!isset($htmlOptions['class']))
-			$htmlOptions['class'] = 'alert-message error'; // Bootstrap error class as default
+			$htmlOptions['class'] = 'alert-message block-message error'; // Bootstrap error class as default
 
 		return parent::errorSummary($models, $header, $footer, $htmlOptions);
 	}
