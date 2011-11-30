@@ -31,7 +31,7 @@ class BootPager extends CLinkPager
 			$this->firstPageLabel=Yii::t('bootstrap','First');
 
 		if ($this->lastPageLabel === null)
-			$this->lastPageLabel = Yii::t('bootstrap','Last');
+			$this->lastPageLabel=Yii::t('bootstrap','Last');
 
 		if ($this->cssFile === null)
 			$this->cssFile = false; // Bootstrap has its own css

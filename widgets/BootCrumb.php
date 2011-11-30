@@ -30,7 +30,7 @@ class BootCrumb extends CBreadcrumbs
 
 		if (!empty($this->links))
 		{
-			$content = BootHtml::link($this->homeLink['label'], $this->homeLink['url']);
+			$content = CHtml::link($this->homeLink['label'], $this->homeLink['url']);
 			$links[] = $this->renderItem($content);
 		}
 		else
@@ -40,15 +40,15 @@ class BootCrumb extends CBreadcrumbs
 		{
 			if (is_string($label) || is_array($url))
 			{
-				$label = $this->encodeLabel ? BootHtml::encode($label) : $label;
-				$content = BootHtml::link($label, $url);
+				$label = $this->encodeLabel ? CHtml::encode($label) : $label;
+				$content = CHtml::link($label, $url);
 				$links[] = $this->renderItem($content);
 			}
 			else
-				$links[] = $this->renderItem($this->encodeLabel ? BootHtml::encode($url) : $url, true);
+				$links[] = $this->renderItem($this->encodeLabel ? CHtml::encode($url) : $url, true);
 		}
 
-		echo BootHtml::openTag('ul', $this->htmlOptions);
+		echo CHtml::openTag('ul', $this->htmlOptions);
 		echo implode('', $links);
 		echo '</ul>';
 	}
@@ -64,7 +64,7 @@ class BootCrumb extends CBreadcrumbs
 		$separator = !$active ? '<span class="divider">'.$this->separator.'</span>' : '';
 		
 		ob_start();
-		echo BootHtml::openTag('li', $active ? array('class'=>'active') : array());
+		echo CHtml::openTag('li', $active ? array('class'=>'active') : array());
 		echo $content.$separator;
 		echo '</li>';
 		return ob_get_clean();

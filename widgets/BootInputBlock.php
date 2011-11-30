@@ -19,7 +19,7 @@ class BootInputBlock extends CInputWidget
 	/**
 	 * @property string the input type.
 	 * Following types are supported: checkbox, checkboxlist, dropdownlist, filefield, password,
-	 * radiobutton, radiobuttonlist, textarea, textfield and captcha.
+	 * radiobutton, radiobuttonlist, textarea, textfield, captcha and uneditable.
 	 */
 	public $type;
 	/**
@@ -51,70 +51,191 @@ class BootInputBlock extends CInputWidget
 	 */
 	public function run()
 	{
+		$errorCss = $this->model->hasErrors($this->attribute) ? ' '.CHtml::$errorCss : '';
+		echo CHtml::openTag('div', array('class'=>'clearfix'.$errorCss));
+
 		switch ($this->type)
 		{
 			case 'checkbox':
-				$input = $this->form->booleanField('checkbox', $this->model, $this->attribute, $this->htmlOptions);
+				$this->checkBox();
 				break;
 
 			case 'checkboxlist':
-				// todo: implement
-				$input = $this->form->checkBoxList($this->model, $this->attribute, $this->data, $this->htmlOptions);
+				$this->checkBoxList();
 				break;
 
 			case 'dropdownlist':
-				$input = $this->form->dropDownList($this->model, $this->attribute, $this->data, $this->htmlOptions);
+				$this->dropDownList();
 				break;
 
 			case 'filefield':
-				$input = $this->form->fileField($this->model, $this->attribute, $this->htmlOptions);
+				$this->fileField();
 				break;
 
 			case 'password':
-				$input = $this->form->passwordField($this->model, $this->attribute, $this->htmlOptions);
+				$this->passwordField();
 				break;
 
 			case 'radiobutton':
-				$input = $this->form->booleanField('radio', $this->model, $this->attribute, $this->htmlOptions);
+				$this->radioButton();
 				break;
 
 			case 'radiobuttonlist':
-				// todo: implement
-				$input = $this->form->radioButtonList($this->model, $this->attribute, $this->data, $this->htmlOptions);
+				$this->radioButtonList();
 				break;
 
 			case 'textarea':
-				$input = $this->form->textArea($this->model, $this->attribute, $this->htmlOptions);
+				$this->textArea();
 				break;
 
 			case 'textfield':
-				$input = $this->form->textField($this->model, $this->attribute, $this->htmlOptions);
+				$this->textField();
 				break;
 
 			case 'captcha':
-				$input = '<div class="captcha"><div class="widget">'.$this->widget('CCaptcha', array(), true).'</div>'
-						.$this->form->textField($this->model, $this->attribute, $this->htmlOptions).'</div>';
+				$this->captcha();
+				break;
+
+			case 'uneditable':
+				$this->uneditableField();
 				break;
 
 			default:
 				throw new CException(Yii::t('bootstrap',__CLASS__.': Failed to run widget! Input type is invalid.'));
 		}
 
-		if ($this->label !== false && $this->type !== 'checkbox' && $this->type !== 'radiobutton' && $this->hasModel())
-			$label = $this->form->labelEx($this->model, $this->attribute);
+		echo '</div>';
+	}
+
+	protected function checkBox()
+	{
+		echo '<div class="input">';
+		echo '<label for="'.CHtml::getIdByName(CHtml::resolveName($this->model, $this->attribute)).'">';
+		echo $this->form->checkBox($this->model, $this->attribute, $this->htmlOptions).' ';
+		echo '<span>'.$this->model->getAttributeLabel($this->attribute).'</span>';
+		echo $this->getHint().$this->getError();
+		echo '</label></div>';
+	}
+
+	protected function checkBoxList()
+	{
+		echo $this->getLabel().'<div class="input">';
+		echo $this->form->checkBoxList($this->model, $this->attribute, $this->data, $this->htmlOptions);
+		echo $this->getHint().$this->getError();
+		echo '</div>';
+	}
+
+	protected function dropDownList()
+	{
+		echo $this->getLabel().'<div class="input">';
+		echo $this->form->dropDownList($this->model, $this->attribute, $this->data, $this->htmlOptions);
+		echo $this->getHint().$this->getError();
+		echo '</div>';
+	}
+
+	protected function fileField()
+	{
+		echo $this->getLabel().'<div class="input">';
+		echo $this->form->fileField($this->model, $this->attribute, $this->htmlOptions);
+		echo $this->getHint().$this->getError();
+		echo '</div>';
+	}
+
+	protected function passwordField()
+	{
+		echo $this->getLabel().'<div class="input">';
+		echo $this->form->passwordField($this->model, $this->attribute, $this->htmlOptions);
+		echo $this->getHint().$this->getError();
+		echo '</div>';
+	}
+
+	protected function radioButton()
+	{
+		echo '<div class="input">';
+		echo '<label for="'.CHtml::getIdByName(CHtml::resolveName($this->model, $this->attribute)).'">';
+		echo $this->form->radioButton($this->model, $this->attribute, $this->htmlOptions).' ';
+		echo '<span>'.$this->model->getAttributeLabel($this->attribute).'</span>';
+		echo $this->getHint().$this->getError();
+		echo '</label></div>';
+	}
+
+	protected function radioButtonList()
+	{
+		echo $this->getLabel().'<div class="input">';
+		echo $this->form->radioButtonList($this->model, $this->attribute, $this->data, $this->htmlOptions);
+		echo $this->getHint().$this->getError();
+		echo '</div>';
+	}
+
+	protected function textArea()
+	{
+		echo $this->getLabel().'<div class="input">';
+		echo $this->form->textArea($this->model, $this->attribute, $this->htmlOptions);
+		echo $this->getHint().$this->getError();
+		echo '</div>';
+	}
+
+	protected function textField()
+	{
+		echo $this->getLabel().'<div class="input">';
+		echo $this->form->textField($this->model, $this->attribute, $this->htmlOptions);
+		echo $this->getHint().$this->getError();
+		echo '</div>';
+	}
+
+	protected function captcha()
+	{
+		echo $this->getLabel().'<div class="input"><div class="captcha">';
+		echo '<div class="widget">'.$this->widget('CCaptcha', array(), true).'</div>';
+		echo $this->form->textField($this->model, $this->attribute, $this->htmlOptions);
+		echo $this->getHint().$this->getError();
+		echo '</div></div>';
+	}
+
+	protected function uneditableField()
+	{
+		echo $this->getLabel().'<div class="input">';
+		echo '<span class="uneditable-input">'.$this->model->{$this->attribute}.'</span>';
+		echo $this->getHint().$this->getError();
+		echo '</div>';
+	}
+
+	/**
+	 * Returns the label for this block.
+	 * @return string the label
+	 */
+	protected function getLabel()
+	{
+		if ($this->label !== false && !in_array($this->type, array('checkbox', 'radio')) && $this->hasModel())
+			return $this->form->labelEx($this->model, $this->attribute);
 		else if ($this->label !== null)
-			$label = $this->label;
+			return $this->label;
 		else
-			$label = '';
+			return '';
+	}
 
-		$error = $this->form->error($this->model, $this->attribute);
-		$errorCss = $this->model->hasErrors($this->attribute) ? ' '.BootHtml::$errorCss : '';
+	/**
+	 * Returns the hint text for this block.
+	 * @return string the hint text
+	 */
+	protected function getHint()
+	{
+		if (isset($this->htmlOptions['hint']))
+		{
+			$hint = $this->htmlOptions['hint'];
+			unset($this->htmlOptions['hint']);
+			return '<span class="help-block">'.$hint.'</span>';
+		}
+		else
+			return '';
+	}
 
-		echo BootHtml::openTag('div', array('class'=>'clearfix'.$errorCss));
-		echo $label;
-		echo BootHtml::openTag('div', array('class'=>'input'));
-		echo $input.$error;
-		echo '</div>';
-		echo '</div>';
+	/**
+	 * Returns the error text for this block.
+	 * @return string the error text
+	 */
+	protected function getError()
+	{
+		return $this->form->error($this->model, $this->attribute);
 	}
 }

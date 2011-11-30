@@ -25,7 +25,7 @@ foreach($this->tableSchema->columns as $column)
 }
 ?>
 	<div class="actions">
-		<?php echo "<?php echo BootHtml::submitButton(\$model->isNewRecord ? 'Create' : 'Save',array('class'=>'btn primary')); ?>\n"; ?>
+		<?php echo "<?php echo CHtml::submitButton(\$model->isNewRecord ? 'Create' : 'Save',array('class'=>'btn primary')); ?>\n"; ?>
 	</div>
 
 <?php echo "<?php \$this->endWidget(); ?>\n"; ?>
