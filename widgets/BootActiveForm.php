@@ -39,18 +39,18 @@ class BootActiveForm extends CActiveForm
 	}
 
 	/**
-	 * Creates an input block of a specific type.
+	 * Creates an input row of a specific type.
 	 * @param string $type the input type
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array $data the data for list inputs
 	 * @param array $htmlOptions additional HTML attributes
-	 * @return string the generated block
+	 * @return string the generated row
 	 */
-	public function inputBlock($type, $model, $attribute, $data = null, $htmlOptions = array())
+	public function inputRow($type, $model, $attribute, $data = null, $htmlOptions = array())
 	{
 		ob_start();
-		Yii::app()->controller->widget('ext.bootstrap.widgets.BootInputBlock',array(
+		Yii::app()->controller->widget('ext.bootstrap.widgets.BootInput',array(
 			'type'=>$type,
 			'form'=>$this,
 			'model'=>$model,
@@ -62,140 +62,140 @@ class BootActiveForm extends CActiveForm
 	}
 
 	/**
-	 * Renders a checkbox input block.
+	 * Renders a checkbox input row.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array $htmlOptions additional HTML attributes
-	 * @return string the generated block
+	 * @return string the generated row
 	 */
-	public function checkBoxBlock($model, $attribute, $htmlOptions = array())
+	public function checkBoxRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputBlock('checkbox', $model, $attribute, null, $htmlOptions);
+		return $this->inputRow('checkbox', $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
-	 * Renders a checkbox list input block.
+	 * Renders a checkbox list input row.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array $data the list data
 	 * @param array $htmlOptions additional HTML attributes
-	 * @return string the generated block
+	 * @return string the generated row
 	 */
-	public function checkBoxListBlock($model, $attribute, $data = array(), $htmlOptions = array())
+	public function checkBoxListRow($model, $attribute, $data = array(), $htmlOptions = array())
 	{
-		return $this->inputBlock('checkboxlist', $model, $attribute, $data, $htmlOptions);
+		return $this->inputRow('checkboxlist', $model, $attribute, $data, $htmlOptions);
 	}
 
 	/**
-	 * Renders a drop-down list input block.
+	 * Renders a drop-down list input row.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array $data the list data
 	 * @param array $htmlOptions additional HTML attributes
-	 * @return string the generated block
+	 * @return string the generated row
 	 */
-	public function dropDownListBlock($model, $attribute, $data = array(), $htmlOptions = array())
+	public function dropDownListRow($model, $attribute, $data = array(), $htmlOptions = array())
 	{
-		return $this->inputBlock('dropdownlist', $model, $attribute, $data, $htmlOptions);
+		return $this->inputRow('dropdownlist', $model, $attribute, $data, $htmlOptions);
 	}
 
 	/**
-	 * Renders a file field input block.
+	 * Renders a file field input row.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array $htmlOptions additional HTML attributes
-	 * @return string the generated block
+	 * @return string the generated row
 	 */
-	public function fileFieldBlock($model, $attribute, $htmlOptions = array())
+	public function fileFieldRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputBlock('filefield', $model, $attribute, null, $htmlOptions);
+		return $this->inputRow('filefield', $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
-	 * Renders a password field input block.
+	 * Renders a password field input row.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array $htmlOptions additional HTML attributes
-	 * @return string the generated block
+	 * @return string the generated row
 	 */
-	public function passwordFieldBlock($model, $attribute, $htmlOptions = array())
+	public function passwordFieldRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputBlock('password', $model, $attribute, null, $htmlOptions);
+		return $this->inputRow('password', $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
-	 * Renders a radio button input block.
+	 * Renders a radio button input row.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array $htmlOptions additional HTML attributes
-	 * @return string the generated block
+	 * @return string the generated row
 	 */
-	public function radioButtonBlock($model, $attribute, $htmlOptions = array())
+	public function radioButtonRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputBlock('radiobutton', $model, $attribute, null, $htmlOptions);
+		return $this->inputRow('radiobutton', $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
-	 * Renders a radio button list input block.
+	 * Renders a radio button list input row.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array $data the list data
 	 * @param array $htmlOptions additional HTML attributes
-	 * @return string the generated block
+	 * @return string the generated row
 	 */
-	public function radioButtonListBlock($model, $attribute, $data = array(), $htmlOptions = array())
+	public function radioButtonListRow($model, $attribute, $data = array(), $htmlOptions = array())
 	{
-		return $this->inputBlock('radiobuttonlist', $model, $attribute, $data, $htmlOptions);
+		return $this->inputRow('radiobuttonlist', $model, $attribute, $data, $htmlOptions);
 	}
 
 	/**
-	 * Renders a text field input block.
+	 * Renders a text field input row.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array $htmlOptions additional HTML attributes
-	 * @return string the generated block
+	 * @return string the generated row
 	 */
-	public function textFieldBlock($model, $attribute, $htmlOptions = array())
+	public function textFieldRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputBlock('textfield', $model, $attribute, null, $htmlOptions);
+		return $this->inputRow('textfield', $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
-	 * Renders a text area input block.
+	 * Renders a text area input row.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array $htmlOptions additional HTML attributes
-	 * @return string the generated block
+	 * @return string the generated row
 	 */
-	public function textAreaBlock($model, $attribute, $htmlOptions = array())
+	public function textAreaRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputBlock('textarea', $model, $attribute, null, $htmlOptions);
+		return $this->inputRow('textarea', $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
-	 * Renders a captcha block.
+	 * Renders a captcha row.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array $htmlOptions additional HTML attributes
-	 * @return string the generated block
+	 * @return string the generated row
 	 * @since 0.9.3
 	 */
-	public function captchaBlock($model, $attribute, $htmlOptions = array())
+	public function captchaRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputBlock('captcha', $model, $attribute, null, $htmlOptions);
+		return $this->inputRow('captcha', $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
-	 * Renders an uneditable text field block.
+	 * Renders an uneditable text field row.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array $htmlOptions additional HTML attributes
-	 * @return string the generated block
+	 * @return string the generated row
 	 * @since 0.9.5
 	 */
-	public function uneditableBlock($model, $attribute, $htmlOptions = array())
+	public function uneditableRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputBlock('uneditable', $model, $attribute, null, $htmlOptions);
+		return $this->inputRow('uneditable', $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
@@ -247,7 +247,7 @@ class BootActiveForm extends CActiveForm
 		CHtml::resolveNameID($model, $attribute, $htmlOptions);
 		$selection = CHtml::resolveValue($model, $attribute);
 
-		if($model->hasErrors($attribute))
+		if ($model->hasErrors($attribute))
 		{
 			if(isset($htmlOptions['class']))
 				$htmlOptions['class'] .= ' '.CHtml::$errorCss;
@@ -258,7 +258,7 @@ class BootActiveForm extends CActiveForm
 		$name = $htmlOptions['name'];
 		unset($htmlOptions['name']);
 
-		if(array_key_exists('uncheckValue', $htmlOptions))
+		if (array_key_exists('uncheckValue', $htmlOptions))
 		{
 			$uncheck = $htmlOptions['uncheckValue'];
 			unset($htmlOptions['uncheckValue']);
@@ -392,7 +392,7 @@ class BootActiveForm extends CActiveForm
 
 		if ($html === '')
 		{
-			if(isset($htmlOptions['style']))
+			if (isset($htmlOptions['style']))
 				$htmlOptions['style'] = rtrim($htmlOptions['style'], ';').';display:none';
 			else
 				$htmlOptions['style'] = 'display:none';

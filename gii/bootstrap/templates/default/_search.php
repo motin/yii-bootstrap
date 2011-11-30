@@ -15,7 +15,7 @@
 	if(strpos($field,'password')!==false)
 		continue;
 ?>
-	<?php echo "<?php echo ".$this->generateActiveBlock($this->modelClass,$column)."; ?>\n"; ?>
+	<?php echo "<?php echo ".$this->generateActiveRow($this->modelClass,$column)."; ?>\n"; ?>
 
 <?php endforeach; ?>
 	<div class="actions">

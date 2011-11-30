@@ -9,7 +9,7 @@
 Yii::import('gii.generators.crud.CrudCode');
 class BootstrapCode extendS CrudCode
 {
-	public function generateActiveBlock($modelClass, $column)
+	public function generateActiveRow($modelClass, $column)
 	{
 		if ($column->type === 'boolean')
 			return "\$form->checkBoxBlock(\$model,'{$column->name}')";
