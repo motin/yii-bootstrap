@@ -12,15 +12,15 @@ class BootstrapCode extendS CrudCode
 	public function generateActiveBlock($modelClass, $column)
 	{
 		if ($column->type === 'boolean')
-			return "\$form->checkBoxBlock(\$model,'{$column->name}')";
+			return "\$form->checkBoxRow(\$model,'{$column->name}')";
 		else if (stripos($column->dbType,'text') !== false)
-			return "\$form->textAreaBlock(\$model,'{$column->name}',array('rows'=>6, 'cols'=>50, 'class'=>'span8'))";
+			return "\$form->textAreaRow(\$model,'{$column->name}',array('rows'=>6, 'cols'=>50, 'class'=>'span8'))";
 		else
 		{
 			if (preg_match('/^(password|pass|passwd|passcode)$/i',$column->name))
-				$inputField='passwordFieldBlock';
+				$inputField='passwordFieldRow';
 			else
-				$inputField='textFieldBlock';
+				$inputField='textFieldRow';
 
 			if ($column->type!=='string' || $column->size===null)
 				return "\$form->{$inputField}(\$model,'{$column->name}',array('class'=>'span5'))";
