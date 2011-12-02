@@ -6,7 +6,7 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
  
-class BootInputBlock extends CInputWidget
+class BootInput extends CInputWidget
 {
 	/**
 	 * @property BootActiveForm the associated form widget.
