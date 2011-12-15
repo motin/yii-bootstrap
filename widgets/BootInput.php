@@ -101,7 +101,7 @@ class BootInput extends CInputWidget
 				break;
 
 			default:
-				throw new CException(Yii::t('bootstrap',__CLASS__.': Failed to run widget! Input type is invalid.'));
+				throw new CException(__CLASS__.': '.Yii::t('bootstrap','Failed to run widget! Input type is invalid.'));
 		}
 
 		echo '</div>';
@@ -109,12 +109,12 @@ class BootInput extends CInputWidget
 
 	protected function checkBox()
 	{
-		echo '<div class="input">';
+		echo '<div class="input"><div class="inputs-list">';
 		echo '<label for="'.CHtml::getIdByName(CHtml::resolveName($this->model, $this->attribute)).'">';
 		echo $this->form->checkBox($this->model, $this->attribute, $this->htmlOptions).' ';
 		echo '<span>'.$this->model->getAttributeLabel($this->attribute).'</span>';
 		echo $this->getHint().$this->getError();
-		echo '</label></div>';
+		echo '</label></div></div>';
 	}
 
 	protected function checkBoxList()
@@ -151,12 +151,12 @@ class BootInput extends CInputWidget
 
 	protected function radioButton()
 	{
-		echo '<div class="input">';
+		echo '<div class="input"><div class="inputs-list">';
 		echo '<label for="'.CHtml::getIdByName(CHtml::resolveName($this->model, $this->attribute)).'">';
 		echo $this->form->radioButton($this->model, $this->attribute, $this->htmlOptions).' ';
 		echo '<span>'.$this->model->getAttributeLabel($this->attribute).'</span>';
 		echo $this->getHint().$this->getError();
-		echo '</label></div>';
+		echo '</label></div></div>';
 	}
 
 	protected function radioButtonList()

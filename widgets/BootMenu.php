@@ -14,7 +14,7 @@ class BootMenu extends CMenu
 	 * @property string the type of menu to display.
 	 * Following types are supported: 'tabs' and 'pills'.
 	 */
-	public $type='tabs';
+	public $type = 'tabs';
 
 	/**
 	 * Initializes the menu widget.
@@ -24,9 +24,9 @@ class BootMenu extends CMenu
 	public function init()
 	{
 		if (isset($this->htmlOptions['class']))
-			$this->htmlOptions['class'].=' '.$this->type;
+			$this->htmlOptions['class'] .= ' '.$this->type;
 		else
-			$this->htmlOptions['class']=$this->type;
+			$this->htmlOptions['class'] = $this->type;
 
 		parent::init();
 	}

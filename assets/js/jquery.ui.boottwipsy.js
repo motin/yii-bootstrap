@@ -46,7 +46,7 @@
 			var self = this,
 				element = self.element,
 				options = self.options,
-				title = self.element.attr( 'title' ),
+				title = element.attr( 'title' ),
 				binder = options.live ? 'live' : 'bind';
 
 			if ( title && title.length > 0 ) {
@@ -54,12 +54,11 @@
 				element.attr( 'data-title', title );
 
 				element[ binder ]( options.showEvent, function() {
-					self.show();
-				});
-
+                    self.show();
+                });
 				element[ binder ]( options.hideEvent, function() {
-					self.hide();
-				});
+                    self.hide();
+                });
 			}
 		},
 		/**

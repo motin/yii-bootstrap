@@ -6,25 +6,64 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
 
+Yii::import('zii.widgets.grid.CDataColumn');
+
 /**
  * Thanks to Simo Jokela <rBoost@gmail.com> for writing the original version of this class.
  */
-
-Yii::import('zii.widgets.grid.CDataColumn');
 class BootDataColumn extends CDataColumn
 {
+	/**
+	 * @properties string the header color for sortable columns.
+	 * Valid values are: 'blue', 'green', 'red', 'yellow', 'orange' and 'purple'.
+	 */
+	public $color;
+
 	/**
 	 * Initializes the column.
 	 */
 	public function init()
 	{
-		if (isset($this->headerHtmlOptions['class']))
-			$this->headerHtmlOptions['class'] .= ' header';
-		else
-			$this->headerHtmlOptions['class'] = 'header';
+		if ($this->grid->enableSorting && $this->sortable && $this->name !== null)
+		{
+			$colorCss = $this->color !== null ? ' '.$this->color : '';
+			$class = 'header'.$colorCss;
+
+			if (isset($this->headerHtmlOptions['class']))
+				$this->headerHtmlOptions['class'] .= $class;
+			else
+				$this->headerHtmlOptions['class'] = $class;
+		}
+
+		/*
+		$matches = array();
+		preg_match('/href\="(.*)"/i', $this->grid->dataProvider->sort->link($this->name), $matches);
+
+		if (isset($matches[1]))
+			$url = $matches[1];
+
+		*/
 
 		parent::init();
 	}
+
+	/**
+	 * Renders the header cell content.
+	 */
+	/*
+	protected function renderHeaderCellContent()
+	{
+		if($this->name!==null && $this->header===null)
+		{
+			if($this->grid->dataProvider instanceof CActiveDataProvider)
+				echo CHtml::encode($this->grid->dataProvider->model->getAttributeLabel($this->name));
+			else
+				echo CHtml::encode($this->name);
+		}
+		else
+			echo trim($this->header) !== '' ? $this->header : $this->grid->blankDisplay;
+	}
+	*/
 
 	/**
 	 * Renders the header cell.
@@ -33,11 +72,11 @@ class BootDataColumn extends CDataColumn
 	{
 		if ($this->grid->enableSorting && $this->sortable && $this->name !== null)
 		{
-			$sortDir = $this->grid->dataProvider->getSort()->getDirection($this->name);
+			$direction = $this->grid->dataProvider->sort->getDirection($this->name);
 
-			if ($sortDir !== null)
+			if ($direction !== null)
 			{
-				$sortCssClass = $sortDir ? 'headerSortDown' : 'headerSortUp';
+				$sortCssClass = $direction ? 'headerSortDown' : 'headerSortUp';
 				$this->headerHtmlOptions['class'] .= ' '.$sortCssClass;
 			}
 		}

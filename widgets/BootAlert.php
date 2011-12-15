@@ -58,7 +58,7 @@ class BootAlert extends BootWidget
 		$this->options['keys'] = $this->keys;
 		$this->options['template'] = $this->template;
 
-		$options = CJavaScript::encode($this->options);
+        $options = !empty($this->options) ? CJavaScript::encode($this->options) : '';
 		Yii::app()->getClientScript()->registerScript(__CLASS__.'#'.$id,"jQuery('#{$id}').bootAlert({$options});");
 	}
 }
