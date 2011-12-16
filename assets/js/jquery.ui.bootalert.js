@@ -98,7 +98,7 @@
 		_createCloseLink: function( alert ) {
 			var self = this;
 
-			return $( '<a class="close" href="#">x</a>' )
+			return $( '<a class="close" href="#">×</a>' )
 				.bind( 'click', function( event ) {
 					self.close( alert );
 					event.preventDefault();
