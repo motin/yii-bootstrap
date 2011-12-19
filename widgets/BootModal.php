@@ -30,7 +30,7 @@ class BootModal extends BootWidget
 			$this->htmlOptions['id'] = $id;
 
 		$options = !empty($this->options) ? CJavaScript::encode($this->options) : '';
-		Yii::app()->getClientScript()->registerScript(__CLASS__.'#'.$id,"jQuery('#{$id}').bootModal($options);");
+        $this->registerScript(__CLASS__.'#'.$id,"jQuery('#{$id}').bootModal($options);");
 
 		echo CHtml::openTag($this->tagName, $this->htmlOptions).PHP_EOL;
 	}

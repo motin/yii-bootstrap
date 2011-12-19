@@ -16,6 +16,7 @@ class BootDataColumn extends CDataColumn
 	/**
 	 * @properties string the header color for sortable columns.
 	 * Valid values are: 'blue', 'green', 'red', 'yellow', 'orange' and 'purple'.
+	 * @since 0.9.6
 	 */
 	public $color;
 
@@ -35,35 +36,8 @@ class BootDataColumn extends CDataColumn
 				$this->headerHtmlOptions['class'] = $class;
 		}
 
-		/*
-		$matches = array();
-		preg_match('/href\="(.*)"/i', $this->grid->dataProvider->sort->link($this->name), $matches);
-
-		if (isset($matches[1]))
-			$url = $matches[1];
-
-		*/
-
 		parent::init();
 	}
-
-	/**
-	 * Renders the header cell content.
-	 */
-	/*
-	protected function renderHeaderCellContent()
-	{
-		if($this->name!==null && $this->header===null)
-		{
-			if($this->grid->dataProvider instanceof CActiveDataProvider)
-				echo CHtml::encode($this->grid->dataProvider->model->getAttributeLabel($this->name));
-			else
-				echo CHtml::encode($this->name);
-		}
-		else
-			echo trim($this->header) !== '' ? $this->header : $this->grid->blankDisplay;
-	}
-	*/
 
 	/**
 	 * Renders the header cell.

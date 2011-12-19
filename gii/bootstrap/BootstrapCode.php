@@ -12,9 +12,9 @@ class BootstrapCode extendS CrudCode
 	public function generateActiveRow($modelClass, $column)
 	{
 		if ($column->type === 'boolean')
-			return "\$form->checkBoxBlock(\$model,'{$column->name}')";
+			return "\$form->checkBoxRow(\$model,'{$column->name}')";
 		else if (stripos($column->dbType,'text') !== false)
-			return "\$form->textAreaBlock(\$model,'{$column->name}',array('rows'=>6, 'cols'=>50, 'class'=>'span8'))";
+			return "\$form->textAreaRow(\$model,'{$column->name}',array('rows'=>6, 'cols'=>50, 'class'=>'span8'))";
 		else
 		{
 			if (preg_match('/^(password|pass|passwd|passcode)$/i',$column->name))

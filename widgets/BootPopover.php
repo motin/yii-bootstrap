@@ -32,6 +32,6 @@ class BootPopover extends BootWidget
 	{
 		$id = $this->getId();
 		$options = !empty($this->options) ? CJavaScript::encode($this->options) : '';
-		Yii::app()->getClientScript()->registerScript(__CLASS__.'#'.$id,"jQuery('{$this->selector}').bootPopover($options);");
+        $this->registerScript(__CLASS__.'#'.$id,"jQuery('{$this->selector}').bootPopover($options);");
 	}
 }

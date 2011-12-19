@@ -29,13 +29,23 @@ class BootWidget extends CWidget
 	}
 
 	/**
-	 * Registers a JavaScript file under {@link scriptUrl}.
-	 * Note that by default, the script file will be rendered at the end of a page to improve page loading speed.
-	 * @param string $fileName JavaScript file name
-	 * @param integer $position the position of the JavaScript file. Valid values include the following:
+	 * Registers a JavaScript file under Bootstrap.
+	 * @param string $fileName the name of the JavaScript file
+	 * @param integer $position the position of the JavaScript file
 	 */
-	protected function registerScriptFile($fileName, $position=CClientScript::POS_END)
+	protected function registerScriptFile($fileName, $position=CClientScript::POS_HEAD)
 	{
 		Yii::app()->bootstrap->registerScriptFile($fileName, $position);
 	}
+
+    /**
+     * Registers a piece of javascript code.
+     * @param string $id ID that uniquely identifies this piece of JavaScript code
+     * @param string $script the javascript code
+     * @param integer $position the position of the JavaScript code
+     */
+    protected function registerScript($id, $script, $position=CClientScript::POS_END)
+    {
+        Yii::app()->clientScript->registerScript($id, $script, $position);
+    }
 }
