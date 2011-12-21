@@ -7,33 +7,32 @@
  * @since 0.9.6
  */
 
-Yii::import('ext.bootstrap.widgets.BootWidget');
-
+Yii::import('bootstrap.widgets.BootWidget');
 class BootTabs extends BootWidget
 {
 	/**
-	 * @property string the type of tabs to display. Defaults to 'tabs'.
+	 * @var string the type of tabs to display. Defaults to 'tabs'.
 	 * Valid values are 'tabs' and 'pills'.
 	 */
     public $type = 'tabs';
 	/**
-	 * @property array the tab configuration.
+	 * @var array the tab configuration.
 	 */
     public $tabs = array();
 	/**
-	 * @property string the name of the container element that contains all panels. Defaults to 'div'.
+	 * @var string the name of the container element that contains all panels. Defaults to 'div'.
 	 */
     public $tagName = 'div';
 	/**
-	 * @property string the template to use for displaying the header.
+	 * @var string the template to use for displaying the header.
 	 */
     public $headerTemplate = '<li class="{class}"><a href="{url}">{title}</a></li>';
 	/**
-	 * @property string the template to use for displaying the content.
+	 * @var string the template to use for displaying the content.
 	 */
     public $contentTemplate = '<div class="tab-pane {class}" id="{id}">{content}</div>';
 	/**
-	 * @property string the CSS selector to use for selecting the tabs elements.
+	 * @var string the CSS selector to use for selecting the tabs elements.
 	 */
     public $selector = '.tabs li > a, .pills > li > a';
 

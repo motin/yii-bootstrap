@@ -9,11 +9,11 @@
 class BootWidget extends CWidget
 {
 	/**
-	 * @property array the initial JavaScript options that should be passed to the Bootstrap plugin.
+	 * @var array the initial JavaScript options that should be passed to the Bootstrap plugin.
 	 */
 	public $options = array();
 	/**
-	 * @property array the HTML attributes that should be rendered in the HTML tag representing the Bootstrap widget.
+	 * @var array the HTML attributes that should be rendered in the HTML tag representing the Bootstrap widget.
 	 */
 	public $htmlOptions = array();
 

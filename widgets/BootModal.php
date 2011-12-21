@@ -7,11 +7,11 @@
  * @since 0.9.3
  */
 
-Yii::import('ext.bootstrap.widgets.BootWidget');
+Yii::import('bootstrap.widgets.BootWidget');
 class BootModal extends BootWidget
 {
 	/**
-	 * @property string the name of the container element. Defaults to 'div'.
+	 * @var string the name of the container element. Defaults to 'div'.
 	 */
 	public $tagName = 'div';
 

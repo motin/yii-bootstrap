@@ -9,11 +9,11 @@
 class BootActiveForm extends CActiveForm
 {
 	/**
-	 * @property string the error message type. Valid types are 'inline' and 'block'.
+	 * @var string the error message type. Valid types are 'inline' and 'block'.
 	 */
 	public $errorMessageType = 'inline';
 	/**
-	 * @property boolean whether this is a stacked form.
+	 * @var boolean whether this is a stacked form.
 	 */
 	public $stacked = false;
 

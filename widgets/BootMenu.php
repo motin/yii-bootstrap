@@ -11,7 +11,7 @@ Yii::import('zii.widgets.CMenu');
 class BootMenu extends CMenu
 {
 	/**
-	 * @property string the type of menu to display.
+	 * @var string the type of menu to display.
 	 * Following types are supported: 'tabs' and 'pills'.
 	 */
 	public $type = 'tabs';

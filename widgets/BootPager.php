@@ -9,7 +9,7 @@
 class BootPager extends CLinkPager
 {
 	/**
-	 * @property boolean whether to display the first and last items.
+	 * @var boolean whether to display the first and last items.
 	 */
 	public $displayFirstAndLast = false;
 

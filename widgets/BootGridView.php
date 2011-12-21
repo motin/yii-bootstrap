@@ -7,27 +7,24 @@
  */
 
 Yii::import('zii.widgets.grid.CGridView');
-Yii::import('ext.bootstrap.widgets.BootDataColumn');
-
+Yii::import('bootstrap.widgets.BootDataColumn');
 class BootGridView extends CGridView
 {
 	/**
-	 * @property string the CSS class name for the container table.
+	 * @var string the CSS class name for the container table.
 	 * Defaults to 'zebra-striped'.
 	 */
 	public $itemsCssClass = 'zebra-striped';
-
 	/**
-	 * @property string the CSS class name for the pager container.
+	 * @var string the CSS class name for the pager container.
 	 * Defaults to 'pagination'.
 	 */
 	public $pagerCssClass = 'pagination';
-
 	/**
-	 * @property array the configuration for the pager.
+	 * @var array the configuration for the pager.
 	 * Defaults to <code>array('class'=>'ext.bootstrap.widgets.BootPager')</code>.
 	 */
-	public $pager = array('class'=>'ext.bootstrap.widgets.BootPager');
+	public $pager = array('class'=>'bootstrap.widgets.BootPager');
 
 	/**
 	 * Creates column objects and initializes them.

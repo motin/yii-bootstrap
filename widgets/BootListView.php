@@ -10,13 +10,12 @@ Yii::import('zii.widgets.CListView');
 class BootListView extends CListView
 {
 	/**
-	 * @property string the CSS class name for the pager container. Defaults to 'pagination'.
+	 * @var string the CSS class name for the pager container. Defaults to 'pagination'.
 	 */
 	public $pagerCssClass = 'pagination';
-
 	/**
-	 * @property array the configuration for the pager. Defaults to <code>array('class'=>'BootPager')</code>.
+	 * @var array the configuration for the pager. Defaults to <code>array('class'=>'BootPager')</code>.
 	 * @see enablePagination
 	 */
-	public $pager = array('class'=>'ext.bootstrap.widgets.BootPager');
+	public $pager = array('class'=>'bootstrap.widgets.BootPager');
 }

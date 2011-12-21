@@ -6,16 +6,16 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
 
-Yii::import('ext.bootstrap.widgets.BootListView');
+Yii::import('bootstrap.widgets.BootListView');
 class BootMediaGrid extends BootListView
 {
 	/**
-	 * @property string the tag name for the view container. Defaults to 'div'.
+	 * @var string the tag name for the view container. Defaults to 'div'.
 	 */
 	public $tagName = 'div';
 
 	/**
-	 * @property array the images to display in the media grid.
+	 * @var array the images to display in the media grid.
 	 */
 	public $images = array();
 

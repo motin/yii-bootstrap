@@ -10,12 +10,11 @@ Yii::import('zii.widgets.CDetailView');
 class BootDetailView extends CDetailView
 {
 	/**
-	 * @property array the HTML options used for {@link tagName}
+	 * @var array the HTML options used for {@link tagName}
 	 */
 	public $htmlOptions=array('class'=>'detail-view');
-
 	/**
-	 * @property string the URL of the CSS file used by this detail view.
+	 * @var string the URL of the CSS file used by this detail view.
 	 * Defaults to false, meaning that no CSS will be included.
 	 */
 	public $cssFile=false;

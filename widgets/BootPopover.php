@@ -7,11 +7,11 @@
  * @since 0.9.2
  */
 
-Yii::import('ext.bootstrap.widgets.BootWidget');
+Yii::import('bootstrap.widgets.BootWidget');
 class BootPopover extends BootWidget
 {
 	/**
-	 * @property string the CSS selector to use for selecting the pop-over elements.
+	 * @var string the CSS selector to use for selecting the pop-over elements.
 	 */
 	public $selector = '.pop';
 	

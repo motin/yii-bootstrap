@@ -6,19 +6,19 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
 
-Yii::import('ext.bootstrap.widgets.BootWidget');
+Yii::import('bootstrap.widgets.BootWidget');
 class BootAlert extends BootWidget
 {
 	/**
-	 * @property array the keys for which to get flash messages.
+	 * @var array the keys for which to get flash messages.
 	 */
 	public $keys = array('success','info','warning','error');
 	/**
-	 * @property string the template to use for displaying flash messages.
+	 * @var string the template to use for displaying flash messages.
 	 */
 	public $template = '<div class="alert-message {key}"><p>{message}</p></div>';
 	/**
-	 * @property array the html options.
+	 * @var array the html options.
 	 */
 	public $htmlOptions = array('class'=>'alert');
 

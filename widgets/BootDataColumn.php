@@ -14,7 +14,7 @@ Yii::import('zii.widgets.grid.CDataColumn');
 class BootDataColumn extends CDataColumn
 {
 	/**
-	 * @properties string the header color for sortable columns.
+	 * @var string the header color for sortable columns.
 	 * Valid values are: 'blue', 'green', 'red', 'yellow', 'orange' and 'purple'.
 	 * @since 0.9.6
 	 */

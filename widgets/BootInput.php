@@ -9,21 +9,21 @@
 class BootInput extends CInputWidget
 {
 	/**
-	 * @property BootActiveForm the associated form widget.
+	 * @var BootActiveForm the associated form widget.
 	 */
 	public $form;
 	/**
-	 * @property string the input label text.
+	 * @var string the input label text.
 	 */
 	public $label;
 	/**
-	 * @property string the input type.
+	 * @var string the input type.
 	 * Following types are supported: checkbox, checkboxlist, dropdownlist, filefield, password,
 	 * radiobutton, radiobuttonlist, textarea, textfield, captcha and uneditable.
 	 */
 	public $type;
 	/**
-	 * @property array the data for list inputs.
+	 * @var array the data for list inputs.
 	 */
 	public $data = array();
 

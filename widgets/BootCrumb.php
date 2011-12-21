@@ -10,11 +10,11 @@ Yii::import('zii.widgets.CBreadcrumbs');
 class BootCrumb extends CBreadcrumbs
 {
 	/**
-	 * @property array the HTML attributes for the breadcrumbs container tag.
+	 * @var array the HTML attributes for the breadcrumbs container tag.
 	 */
 	public $htmlOptions=array('class'=>'breadcrumb');
 	/**
-	 * @property string the separator between links in the breadcrumbs. Defaults to ' / '.
+	 * @var string the separator between links in the breadcrumbs. Defaults to ' / '.
 	 */
 	public $separator = '/';
 
