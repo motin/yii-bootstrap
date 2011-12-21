@@ -1,7 +1,7 @@
 /*!
  * Bootstrap Twipsy jQuery UI widget file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
- * @copyright  Copyright &copy; Christoffer Niska 2011-
+ * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @see http://twitter.github.com/bootstrap
  */
@@ -30,6 +30,7 @@
 		 * - placement: The placement of the tooltip. Valid values are: "above", "right", "below" and "left".
 		 * - showEvent: The event for showing the tooltip.
 		 * - hideEvent: The event for hiding the tooltip.
+		 * - offset: Pixel offset of the tooltip.
 		 * - live: Indicates whether to use jQuery.live or jQuery.bind.
 		 * @type Object
 		 */
@@ -37,6 +38,7 @@
 			placement: 'above',
 			showEvent: 'mouseenter',
 			hideEvent: 'mouseleave',
+			offset: 0,
 			live: false
 		},
 		/**
@@ -106,23 +108,23 @@
 
 			switch ( this.options.placement ) {
 				case 'above':
-					top = offset.top - twipsy.outerHeight(),
+					top = offset.top - twipsy.outerHeight() - this.options.offset,
 					left = offset.left + ( ( element.outerWidth() - twipsy.outerWidth() ) / 2 );
 					break;
 
 				case 'right':
 					top = offset.top + ( ( element.outerHeight() - twipsy.outerHeight() ) / 2 );
-					left = offset.left + element.outerWidth();
+					left = offset.left + element.outerWidth() - this.options.offset;
 					break;
 
 				case 'below':
-					top = offset.top + element.outerHeight(),
+					top = offset.top + element.outerHeight() + this.options.offset,
 					left = offset.left + ( ( element.outerWidth() - twipsy.outerWidth() ) / 2 );
 					break;
 
 				case 'left':
 					top = offset.top + ( ( element.outerHeight() - twipsy.outerHeight() ) / 2 );
-					left = offset.left - twipsy.outerWidth();
+					left = offset.left - twipsy.outerWidth() + this.options.offset;
 					break;
 			}
 

@@ -1,7 +1,7 @@
 /*!
  * Bootstrap Tabs jQuery UI widget file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
- * @copyright  Copyright &copy; Christoffer Niska 2011-
+ * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @see http://twitter.github.com/bootstrap
  */

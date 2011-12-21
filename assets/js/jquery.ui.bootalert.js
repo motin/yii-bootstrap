@@ -1,7 +1,7 @@
 /*!
  * Bootstrap Alert jQuery UI widget file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
- * @copyright  Copyright &copy; Christoffer Niska 2011-
+ * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @see http://twitter.github.com/bootstrap
  */
@@ -21,13 +21,15 @@
 		 * - template: The HTML template for displaying alerts.
 		 * - displayTime: The time to display each alert.
 		 * - closeTime: The duration for closing each alert.
+		 * - closeText: The close link text.
 		 * @type Object
 		 */
 		options: {
 			keys: [ 'success', 'info', 'warning', 'error' ],
 			template: '<div class="alert-message {key}"><p>{message}</p></div>',
 			displayTime: 5000,
-			closeTime: 350
+			closeTime: 350,
+			closeText: '×'
 		},
 		/**
 		 * Creates the widget.
@@ -98,7 +100,7 @@
 		_createCloseLink: function( alert ) {
 			var self = this;
 
-			return $( '<a class="close" href="#">×</a>' )
+			return $( '<a class="close" href="#">' + self.options.closeText + '</a>' )
 				.bind( 'click', function( event ) {
 					self.close( alert );
 					event.preventDefault();
