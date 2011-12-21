@@ -24,7 +24,7 @@ class Bootstrap extends CApplicationComponent
 	/**
 	 * Registers the Bootstrap CSS.
 	 */
-	public function registerBootstrap()
+	public function registerCoreCss()
 	{
 		Yii::app()->clientScript->registerCssFile($this->getAssetsUrl().'/css/bootstrap.min.css');
 	}
