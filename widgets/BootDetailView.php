@@ -7,10 +7,11 @@
  */
 
 Yii::import('zii.widgets.CDetailView');
+
 class BootDetailView extends CDetailView
 {
 	/**
-	 * @var array the HTML options used for {@link tagName}
+	 * @var array the HTML attributes for the container.
 	 */
 	public $htmlOptions=array('class'=>'detail-view');
 	/**

@@ -27,8 +27,13 @@ class BootDataColumn extends CDataColumn
 	{
 		if ($this->grid->enableSorting && $this->sortable && $this->name !== null)
 		{
-			$colorCss = $this->color !== null ? ' '.$this->color : '';
-			$class = 'header'.$colorCss;
+			$class = array();
+			$class[] = 'header';
+
+			if ($this->color !== null)
+				$class[] = $this->color;
+
+			$class = implode(' ', $class);
 
 			if (isset($this->headerHtmlOptions['class']))
 				$this->headerHtmlOptions['class'] .= $class;

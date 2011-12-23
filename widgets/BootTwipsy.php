@@ -7,6 +7,7 @@
  */
 
 Yii::import('bootstrap.widgets.BootWidget');
+
 class BootTwipsy extends BootWidget
 {
 	/**

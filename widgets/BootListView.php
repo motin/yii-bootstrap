@@ -14,8 +14,7 @@ class BootListView extends CListView
 	 */
 	public $pagerCssClass = 'pagination';
 	/**
-	 * @var array the configuration for the pager. Defaults to <code>array('class'=>'BootPager')</code>.
-	 * @see enablePagination
+	 * @var array the configuration for the pager.
 	 */
 	public $pager = array('class'=>'bootstrap.widgets.BootPager');
 }

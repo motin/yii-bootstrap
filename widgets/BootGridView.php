@@ -8,6 +8,7 @@
 
 Yii::import('zii.widgets.grid.CGridView');
 Yii::import('bootstrap.widgets.BootDataColumn');
+
 class BootGridView extends CGridView
 {
 	/**

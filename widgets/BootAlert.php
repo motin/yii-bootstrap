@@ -7,6 +7,7 @@
  */
 
 Yii::import('bootstrap.widgets.BootWidget');
+
 class BootAlert extends BootWidget
 {
 	/**
@@ -46,19 +47,18 @@ class BootAlert extends BootWidget
 		if (is_string($this->keys))
 			$this->keys = array($this->keys);
 
-		$markup = '';
+		echo CHtml::openTag('div',$this->htmlOptions);
+		
 		foreach ($this->keys as $key)
 			if (Yii::app()->user->hasFlash($key))
-				$markup .= strtr($this->template, array('{key}'=>$key, '{message}'=>Yii::app()->user->getFlash($key)));
+				echo strtr($this->template, array('{key}'=>$key, '{message}'=>Yii::app()->user->getFlash($key)));
 
-		echo CHtml::openTag('div',$this->htmlOptions);
-		echo $markup;
 		echo '</div>';
 
 		$this->options['keys'] = $this->keys;
 		$this->options['template'] = $this->template;
 
 		$options = !empty($this->options) ? CJavaScript::encode($this->options) : '';
-		Yii::app()->getClientScript()->registerScript(__CLASS__.'#'.$id,"jQuery('#{$id}').bootAlert({$options});");
+		Yii::app()->clientScript->registerScript(__CLASS__.'#'.$id,"jQuery('#{$id}').bootAlert({$options});");
 	}
 }

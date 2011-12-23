@@ -7,13 +7,13 @@
  */
 
 Yii::import('bootstrap.widgets.BootListView');
+
 class BootMediaGrid extends BootListView
 {
 	/**
 	 * @var string the tag name for the view container. Defaults to 'div'.
 	 */
 	public $tagName = 'div';
-
 	/**
 	 * @var array the images to display in the media grid.
 	 */
@@ -41,10 +41,10 @@ class BootMediaGrid extends BootListView
 				$data['widget'] = $this;
 				echo CHtml::openTag('li');
 				$owner->$render($this->itemView,$data);
-				echo CHtml::closeTag('li');
+				echo '</li>';
 			}
 
-			echo CHtml::closeTag('ul');
+			echo '</ul>';
 		}
 		else
 			$this->renderEmptyText();

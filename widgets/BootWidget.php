@@ -13,7 +13,7 @@ class BootWidget extends CWidget
 	 */
 	public $options = array();
 	/**
-	 * @var array the HTML attributes that should be rendered in the HTML tag representing the Bootstrap widget.
+	 * @var array the HTML attributes for the widget container.
 	 */
 	public $htmlOptions = array();
 

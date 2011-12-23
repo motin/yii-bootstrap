@@ -4,10 +4,14 @@
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
- * @since 0.9.6
  */
 
 Yii::import('bootstrap.widgets.BootWidget');
+
+/**
+ * Bootstrap JavaScript tabs widget.
+ * @since 0.9.6
+ */
 class BootTabs extends BootWidget
 {
 	/**

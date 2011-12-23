@@ -8,6 +8,7 @@
  */
 
 Yii::import('bootstrap.widgets.BootWidget');
+
 class BootModal extends BootWidget
 {
 	/**
