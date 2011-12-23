@@ -186,7 +186,7 @@ class BootInput extends CInputWidget
 	protected function captcha()
 	{
 		echo $this->getLabel().'<div class="input"><div class="captcha">';
-		echo '<div class="widget">'.$this->widget('CCaptcha', array(), true).'</div>';
+		echo '<div class="widget">'.$this->widget('CCaptcha', array('showRefreshButton'=>false), true).'</div>';
 		echo $this->form->textField($this->model, $this->attribute, $this->htmlOptions);
 		echo $this->getError().$this->getHint();
 		echo '</div></div>';

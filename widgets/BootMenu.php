@@ -33,6 +33,21 @@ class BootMenu extends CMenu
 		parent::init();
 	}
 
+	/**
+	 * Runs the menu widget.
+	 */
+	public function run()
+	{
+		parent::run();
+
+		$id = $this->getId();
+		Yii::app()->clientScript->registerScript(__CLASS__.'#'.$id,"
+			jQuery('#{$id} .dropdown-toggle').bind('click', function() {
+				$(this).parent().toggleClass('open');
+			});
+		");
+	}
+
     /**
      * Normalizes the items so that the 'active' state is properly identified for every menu item.
      * @param array $items the items to be normalized.
