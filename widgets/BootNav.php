@@ -13,10 +13,6 @@
 class BootNav extends BootWidget
 {
 	/**
-	 * @var array the menu items.
-	 */
-	public $items = array();
-	/**
 	 * @var string the URL for the brand link.
 	 */
 	public $brandUrl;
@@ -29,9 +25,21 @@ class BootNav extends BootWidget
 	 */
 	public $brandOptions = array();
 	/**
-	 * @var array the HTML attributes for the menu.
+	 * @var array the primary menu items.
 	 */
-	public $navOptions = array();
+	public $primaryItems = array();
+	/**
+	 * @var array the secondary menu items.
+	 */
+	public $secondaryItems = array();
+	/**
+	 * @var array the HTML attributes for the primary menu.
+	 */
+	public $primaryOptions = array();
+	/**
+	 * @var array the HTML attributes for the secondary menu.
+	 */
+	public $secondaryOptions = array();
 
 	/**
 	 * Runs the widget.
@@ -51,10 +59,15 @@ class BootNav extends BootWidget
 		if (isset($this->brandUrl))
 			$this->brandOptions['href'] = $this->brandUrl;
 
-		if (isset($this->navOptions['class']))
-			$this->navOptions['class'] .= ' nav';
+		if (isset($this->primaryOptions['class']))
+			$this->primaryOptions['class'] .= ' nav';
 		else
-			$this->navOptions['class'] = 'nav';
+			$this->primaryOptions['class'] = 'nav';
+
+		if (isset($this->secondaryOptions['class']))
+			$this->secondaryOptions['class'] .= ' secondary-nav';
+		else
+			$this->secondaryOptions['class'] = 'secondary-nav';
 
 		echo CHtml::openTag('div', $this->htmlOptions);
 		echo '<div class="topbar-inner"><div class="container">';
@@ -62,11 +75,23 @@ class BootNav extends BootWidget
 		echo $this->brandText;
 		echo '</a>';
 
-		$this->controller->widget('bootstrap.widgets.BootMenu', array(
-			'type'=>'',
-			'items'=>$this->items,
-			'htmlOptions'=>$this->navOptions,
-		));
+		if (!empty($this->primaryItems))
+		{
+			$this->controller->widget('bootstrap.widgets.BootMenu', array(
+				'type'=>'',
+				'items'=>$this->primaryItems,
+				'htmlOptions'=>$this->primaryOptions,
+			));
+		}
+
+		if (!empty($this->secondaryItems))
+		{
+			$this->controller->widget('bootstrap.widgets.BootMenu', array(
+				'type'=>'',
+				'items'=>$this->secondaryItems,
+				'htmlOptions'=>$this->secondaryOptions,
+			));
+		}
 
 		echo '</div></div></div>';
 	}
