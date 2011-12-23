@@ -16,14 +16,12 @@ class BootMenu extends CMenu
 {
 	/**
 	 * @var string the type of menu to display.
-	 * Following types are supported: 'tabs' and 'pills'.
+	 * Following types are supported: '', 'tabs' and 'pills'.
 	 */
 	public $type = 'tabs';
 
 	/**
 	 * Initializes the menu widget.
-	 * This method mainly normalizes the {@link items} property.
-	 * If this method is overridden, make sure the parent implementation is invoked.
 	 */
 	public function init()
 	{
@@ -88,6 +86,7 @@ class BootMenu extends CMenu
     /**
      * Recursively renders the menu items.
      * @param array $items the menu items to be rendered recursively
+	 * @param integer $depth the menu depth. Defaults to zero.
      */
     protected function renderMenuRecursive($items, $depth=0)
     {
