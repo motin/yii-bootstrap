@@ -6,6 +6,8 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
 
+ Yii::import('bootstrap.widgets.BootWidget');
+
 /**
  * Bootstrap topbar navigation widget with support for dropdown menus.
  * @since 0.9.7
