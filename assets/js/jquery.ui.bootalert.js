@@ -29,7 +29,7 @@
 			template: '<div class="alert-message {key}"><p>{message}</p></div>',
 			displayTime: 5000,
 			closeTime: 350,
-			closeText: '×'
+			closeText: '&times;'
 		},
 		/**
 		 * Creates the widget.
@@ -74,7 +74,7 @@
 
 			closeLink.prependTo( alert );
 
-			if ( self.options.closeTime > 0 ) {
+			if ( self.options.displayTime > 0 ) {
 				setTimeout( function() {
 					self.close( alert );
 				}, self.options.displayTime );
