@@ -15,13 +15,17 @@
 class BootNav extends BootWidget
 {
 	/**
+	 * @var string the topbar type. Defaults to 'normal'. Valid values are 'normal' and 'fluid'.
+	 */
+	public $type = 'normal';
+	/**
+	 * @var string the text for the brand.
+	 */
+	public $brand;
+	/**
 	 * @var string the URL for the brand link.
 	 */
 	public $brandUrl;
-	/**
-	 * @var string the text for the brand link.
-	 */
-	public $brandText;
 	/**
 	 * @var array the HTML attributes for the brand link.
 	 */
@@ -42,6 +46,21 @@ class BootNav extends BootWidget
 	 * @var array the HTML attributes for the secondary menu.
 	 */
 	public $secondaryOptions = array();
+
+	/**
+	 * Initializes the widget.
+	 */
+	public function init()
+	{
+		if (!in_array($this->type, array('normal', 'fluid')))
+			throw new CException(__CLASS__.'.type is invalid. Valid values are "normal" and "fluid".');
+
+		if (!isset($this->brand))
+			$this->brand = CHtml::encode(Yii::app()->name);
+
+		if (!isset($this->brandUrl))
+			$this->brandUrl = Yii::app()->homeUrl;
+	}
 
 	/**
 	 * Runs the widget.
@@ -71,11 +90,11 @@ class BootNav extends BootWidget
 		else
 			$this->secondaryOptions['class'] = 'secondary-nav';
 
+		$cssClass = $this->type === 'normal' ? 'container' : 'container-fluid';
+
 		echo CHtml::openTag('div', $this->htmlOptions);
-		echo '<div class="topbar-inner"><div class="container">';
-		echo CHtml::openTag('a', $this->brandOptions);
-		echo $this->brandText;
-		echo '</a>';
+		echo '<div class="topbar-inner"><div class="'.$cssClass.'">';
+		echo CHtml::openTag('a', $this->brandOptions).$this->brand.'</a>';
 
 		if (!empty($this->primaryItems))
 		{
