@@ -31,13 +31,17 @@ class BootNav extends BootWidget
 	 */
 	public $brandOptions = array();
 	/**
+	 * @var string the item template.
+	 */
+	public $itemTemplate = '{menu}';
+	/**
 	 * @var array the primary menu items.
 	 */
 	public $primaryItems = array();
 	/**
 	 * @var array the secondary menu items.
 	 */
-	public $secondaryItems = array();
+	public $secondaryItems = array(); 
 	/**
 	 * @var array the HTML attributes for the primary menu.
 	 */
@@ -86,9 +90,9 @@ class BootNav extends BootWidget
 			$this->primaryOptions['class'] = 'nav';
 
 		if (isset($this->secondaryOptions['class']))
-			$this->secondaryOptions['class'] .= ' secondary-nav';
+			$this->secondaryOptions['class'] .= ' nav secondary-nav';
 		else
-			$this->secondaryOptions['class'] = 'secondary-nav';
+			$this->secondaryOptions['class'] = 'nav secondary-nav';
 
 		$cssClass = $this->type === 'normal' ? 'container' : 'container-fluid';
 
@@ -101,6 +105,8 @@ class BootNav extends BootWidget
 			$this->controller->widget('bootstrap.widgets.BootMenu', array(
 				'type'=>'',
 				'items'=>$this->primaryItems,
+				'itemTemplate'=>$this->itemTemplate,
+				'encodeLabel'=>false,
 				'htmlOptions'=>$this->primaryOptions,
 			));
 		}
@@ -110,6 +116,8 @@ class BootNav extends BootWidget
 			$this->controller->widget('bootstrap.widgets.BootMenu', array(
 				'type'=>'',
 				'items'=>$this->secondaryItems,
+				'itemTemplate'=>$this->itemTemplate,
+				'encodeLabel'=>false,
 				'htmlOptions'=>$this->secondaryOptions,
 			));
 		}
