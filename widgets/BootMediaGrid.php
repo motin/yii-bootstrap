@@ -8,6 +8,7 @@
 
 Yii::import('bootstrap.widgets.BootListView');
 
+// todo: update to work with Bootstrap 2 Thumbnails.
 class BootMediaGrid extends BootListView
 {
 	/**

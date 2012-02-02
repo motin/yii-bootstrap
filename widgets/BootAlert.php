@@ -13,15 +13,15 @@ class BootAlert extends BootWidget
 	/**
 	 * @var array the keys for which to get flash messages.
 	 */
-	public $keys = array('success','info','warning','error');
+	public $keys = array('success', 'info', 'warning', 'error'/* or */, 'danger');
 	/**
 	 * @var string the template to use for displaying flash messages.
 	 */
-	public $template = '<div class="alert-message {key}"><p>{message}</p></div>';
+	public $template = '<div class="alert alert-{key}"><a class="close">&times;</a>{message}</div>';
 	/**
 	 * @var array the html options.
 	 */
-	public $htmlOptions = array('class'=>'alert');
+	public $htmlOptions = array();
 
 	/**
 	 * Initializes the widget.
@@ -48,7 +48,7 @@ class BootAlert extends BootWidget
 			$this->keys = array($this->keys);
 
 		echo CHtml::openTag('div',$this->htmlOptions);
-		
+
 		foreach ($this->keys as $key)
 			if (Yii::app()->user->hasFlash($key))
 				echo strtr($this->template, array('{key}'=>$key, '{message}'=>Yii::app()->user->getFlash($key)));

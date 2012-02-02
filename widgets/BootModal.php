@@ -9,6 +9,7 @@
 
 Yii::import('bootstrap.widgets.BootWidget');
 
+// todo: update to work with Bootstrap 2.
 class BootModal extends BootWidget
 {
 	/**

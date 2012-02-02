@@ -26,9 +26,9 @@ class BootMenu extends CMenu
 	public function init()
 	{
 		if (isset($this->htmlOptions['class']))
-			$this->htmlOptions['class'] .= ' '.$this->type;
+			$this->htmlOptions['class'] .= ' nav nav-'.$this->type;
 		else
-			$this->htmlOptions['class'] = $this->type;
+			$this->htmlOptions['class'] = ' nav nav-'.$this->type;
 
 		parent::init();
 	}
@@ -164,6 +164,7 @@ class BootMenu extends CMenu
                     echo "\n" . CHtml::openTag('ul', isset($item['submenuOptions']) ? $item['submenuOptions'] : $this->submenuHtmlOptions) . "\n";
                     $this->renderMenuRecursive($item['items'], $depth + 1);
                     echo '</ul>'."\n";
+                    echo '</ul>'."\n";
                 }
 
                 echo '</li>'."\n";
@@ -189,9 +190,11 @@ class BootMenu extends CMenu
                 $item['linkOptions']['class'] .= ' dropdown-toggle';
             else
                 $item['linkOptions']['class'] = 'dropdown-toggle';
+
+			$item['linkOptions']['data-toggle'] = 'dropdown';
         }
 
-        $label = $this->linkLabelWrapper === null ? $item['label'] : '<' . $this->linkLabelWrapper . '>' . $item['label'] . '</' . $this->linkLabelWrapper . '>';
+        $label = $this->linkLabelWrapper === null ? $item['label'] : '<' . $this->linkLabelWrapper . '>' . $item['label'] . '<b class="caret"></b></' . $this->linkLabelWrapper . '>';
         return CHtml::link($label, $item['url'], isset($item['linkOptions']) ? $item['linkOptions'] : array());
     }
 }

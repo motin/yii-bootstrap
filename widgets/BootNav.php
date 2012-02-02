@@ -2,22 +2,18 @@
 /**
  * BootNav class file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
- * @copyright  Copyright &copy; Christoffer Niska 2011-
+ * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
 
- Yii::import('bootstrap.widgets.BootWidget');
+Yii::import('bootstrap.widgets.BootWidget');
 
 /**
- * Bootstrap topbar navigation widget with support for dropdown menus.
+ * Bootstrap navigation widget with support for dropdown menus.
  * @since 0.9.7
  */
 class BootNav extends BootWidget
 {
-	/**
-	 * @var string the topbar type. Defaults to 'normal'. Valid values are 'normal' and 'fluid'.
-	 */
-	public $type = 'normal';
 	/**
 	 * @var string the text for the brand.
 	 */
@@ -31,34 +27,26 @@ class BootNav extends BootWidget
 	 */
 	public $brandOptions = array();
 	/**
-	 * @var string the item template.
+	 * @var array navigation item groups.
+	 * @since 0.9.8
 	 */
-	public $itemTemplate = '{menu}';
+	public $groups = array();
 	/**
-	 * @var array the primary menu items.
+	 * @var boolean flag that indicates if the nav should use the full width available. Defaults to false.
+	 * @since 0.9.8
 	 */
-	public $primaryItems = array();
+	public $fluid = false;
 	/**
-	 * @var array the secondary menu items.
+	 * @var boolean flag that indicates if the nav bar should be fixed to the top of the page. Defaults to true.
+	 * @since 0.9.8
 	 */
-	public $secondaryItems = array(); 
-	/**
-	 * @var array the HTML attributes for the primary menu.
-	 */
-	public $primaryOptions = array();
-	/**
-	 * @var array the HTML attributes for the secondary menu.
-	 */
-	public $secondaryOptions = array();
+	public $fixed = true;
 
 	/**
 	 * Initializes the widget.
 	 */
 	public function init()
 	{
-		if (!in_array($this->type, array('normal', 'fluid')))
-			throw new CException(__CLASS__.'.type is invalid. Valid values are "normal" and "fluid".');
-
 		if (!isset($this->brand))
 			$this->brand = CHtml::encode(Yii::app()->name);
 
@@ -72,9 +60,12 @@ class BootNav extends BootWidget
 	public function run()
 	{
 		if (isset($this->htmlOptions['class']))
-			$this->htmlOptions['class'] .= ' topbar';
+			$this->htmlOptions['class'] .= ' navbar';
 		else
-			$this->htmlOptions['class'] = 'topbar';
+			$this->htmlOptions['class'] = 'navbar';
+
+		if ($this->fixed)
+			$this->htmlOptions['class'] .= ' navbar-fixed-top';
 
 		if (isset($this->brandOptions['class']))
 			$this->brandOptions['class'] .= ' brand';
@@ -84,44 +75,42 @@ class BootNav extends BootWidget
 		if (isset($this->brandUrl))
 			$this->brandOptions['href'] = $this->brandUrl;
 
-		if (isset($this->primaryOptions['class']))
-			$this->primaryOptions['class'] .= ' nav';
-		else
-			$this->primaryOptions['class'] = 'nav';
-
-		if (isset($this->secondaryOptions['class']))
-			$this->secondaryOptions['class'] .= ' nav secondary-nav';
-		else
-			$this->secondaryOptions['class'] = 'nav secondary-nav';
-
-		$cssClass = $this->type === 'normal' ? 'container' : 'container-fluid';
+		$containerCssClass = $this->fluid ? 'container-fluid' : 'container';
 
 		echo CHtml::openTag('div', $this->htmlOptions);
-		echo '<div class="topbar-inner"><div class="'.$cssClass.'">';
+		echo '<div class="navbar-inner"><div class="'.$containerCssClass.'">';
+		echo '<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"></a>'; //todo: Add support for collapse on narrow layouts.
 		echo CHtml::openTag('a', $this->brandOptions).$this->brand.'</a>';
+		echo '<div class="nav-collapse">';
 
-		if (!empty($this->primaryItems))
+		foreach ($this->groups as $group)
 		{
+			if (!isset($group['items']))
+				$group['items'] = array();
+
+			if (!isset($group['itemTemplate']))
+				$group['itemTemplate'] = '{menu}';
+
+			if (!isset($group['encodeLabel']))
+				$group['encodeLabel'] = true;
+
+			if (!isset($group['htmlOptions']))
+				$group['htmlOptions'] = array();
+
+			if (isset($group['htmlOptions']['class']))
+				$group['htmlOptions']['class'] .= ' nav';
+			else
+				$group['htmlOptions']['class'] = 'nav';
+
 			$this->controller->widget('bootstrap.widgets.BootMenu', array(
-				'type'=>'',
-				'items'=>$this->primaryItems,
-				'itemTemplate'=>$this->itemTemplate,
-				'encodeLabel'=>false,
-				'htmlOptions'=>$this->primaryOptions,
+				'type'=>'', // no default styling
+				'items'=>$group['items'],
+				'itemTemplate'=>$group['itemTemplate'],
+				'encodeLabel'=>$group['encodeLabel'],
+				'htmlOptions'=>$group['htmlOptions'],
 			));
 		}
 
-		if (!empty($this->secondaryItems))
-		{
-			$this->controller->widget('bootstrap.widgets.BootMenu', array(
-				'type'=>'',
-				'items'=>$this->secondaryItems,
-				'itemTemplate'=>$this->itemTemplate,
-				'encodeLabel'=>false,
-				'htmlOptions'=>$this->secondaryOptions,
-			));
-		}
-
-		echo '</div></div></div>';
+		echo '</div></div></div></div>';
 	}
 }

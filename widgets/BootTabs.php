@@ -38,7 +38,7 @@ class BootTabs extends BootWidget
 	/**
 	 * @var string the CSS selector to use for selecting the tabs elements.
 	 */
-    public $selector = '.tabs li > a, .pills > li > a';
+    public $selector = '.nav-tabs li > a, .nav-pills > li > a';
 
     /**
      * Initializes the widget.
@@ -112,7 +112,7 @@ class BootTabs extends BootWidget
                 }
             }
         }
-        echo CHtml::openTag('ul', array('class'=>$this->type, 'data-'.$this->type=>$this->type));
+        echo CHtml::openTag('ul', array('class'=>'nav nav-'.$this->type, 'data-'.$this->type=>$this->type));
         echo $tabsOut;
         echo '</ul>';
 

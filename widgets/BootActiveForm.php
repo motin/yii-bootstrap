@@ -8,14 +8,21 @@
 
 class BootActiveForm extends CActiveForm
 {
+	// The different form types.
+	const TYPE_VERTICAL = 'form-vertical';
+	const TYPE_INLINE = 'form-inline';
+	const TYPE_SEARCH = 'form-search';
+	const TYPE_HORIZONTAL = 'form-horizontal';
+
 	/**
-	 * @var string the error message type. Valid types are 'inline' and 'block'.
+	 * @var string the form type. See class constants.
 	 */
-	public $errorMessageType = 'inline';
+	public $type = self::TYPE_VERTICAL;
+
 	/**
-	 * @var boolean whether this is a stacked form.
+	 * @var boolean flag that indicates if the errors should be displayed as blocks.
 	 */
-	public $stacked = false;
+	public $inlineErrors = true;
 
 	/**
 	 * Initializes the widget.
@@ -23,14 +30,12 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function init()
 	{
-		$cssClass = $this->stacked ? 'form-stacked' : '';
-
 		if (!isset($this->htmlOptions['class']))
-			$this->htmlOptions['class'] = $cssClass;
+			$this->htmlOptions['class'] = $this->type;
 		else
-			$this->htmlOptions['class'] .= ' '.$cssClass;
+			$this->htmlOptions['class'] .= ' '.$this->type;
 
-		if ($this->errorMessageType === 'inline')
+		if ($this->inlineErrors)
 			$this->errorMessageCssClass = 'help-inline';
 		else
 			$this->errorMessageCssClass = 'help-block';
@@ -212,7 +217,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function checkBoxList($model, $attribute, $data, $htmlOptions = array())
 	{
-		return $this->inputsList('checkbox', $model, $attribute, $data, $htmlOptions);
+		return $this->inputsList(true, $model, $attribute, $data, $htmlOptions);
 	}
 
 	/**
@@ -229,12 +234,12 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function radioButtonList($model, $attribute, $data, $htmlOptions = array())
 	{
-		return $this->inputsList('radio', $model, $attribute, $data, $htmlOptions);
+		return $this->inputsList(false, $model, $attribute, $data, $htmlOptions);
 	}
 
 	/**
 	 * Renders an input list.
-	 * @param string $type the input type. Valid types are 'checkbox' and 'radio'.
+	 * @param boolean $checkbox flag that indicates if the list is a checkbox-list.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array $data value-label pairs used to generate the radio button list.
@@ -242,7 +247,7 @@ class BootActiveForm extends CActiveForm
 	 * @return string the generated input list.
 	 * @since 0.9.5
 	 */
-	protected function inputsList($type, $model, $attribute, $data, $htmlOptions = array())
+	protected function inputsList($checkbox, $model, $attribute, $data, $htmlOptions = array())
 	{
 		CHtml::resolveNameID($model, $attribute, $htmlOptions);
 		$selection = CHtml::resolveValue($model, $attribute);
@@ -274,7 +279,8 @@ class BootActiveForm extends CActiveForm
 		$items = array();
 		$baseID = CHtml::getIdByName($name);
 		$id = 0;
-		$method = $type === 'checkbox' ? 'checkBox' : 'radioButton';
+		$method = $checkbox ? 'checkBox' : 'radioButton';
+		$labelCssClass = $checkbox ? 'checkbox' : 'radio';
 
 		foreach($data as $value => $label)
 		{
@@ -282,10 +288,10 @@ class BootActiveForm extends CActiveForm
 			$htmlOptions['value'] = $value;
 			$htmlOptions['id'] = $baseID.'_'.$id++;
 			$option = CHtml::$method($name, $checked, $htmlOptions);
-			$items[] = '<label>'.$option.'<span>'.$label.'</span></label>';
+			$items[] = '<label class="'.$labelCssClass.'">'.$option.$label.'</label>';
 		}
 
-		return $hidden.'<ul class="inputs-list"><li>'.implode('</li><li>',$items).'</li></ul>';
+		return implode('',$items);
 	}
 
 	/**
@@ -303,7 +309,7 @@ class BootActiveForm extends CActiveForm
 	public function errorSummary($models, $header = null, $footer = null, $htmlOptions = array())
 	{
 		if (!isset($htmlOptions['class']))
-			$htmlOptions['class'] = 'alert-message block-message error'; // Bootstrap error class as default
+			$htmlOptions['class'] = 'alert alert-block alert-error'; // Bootstrap error class as default
 
 		return parent::errorSummary($models, $header, $footer, $htmlOptions);
 	}
@@ -328,8 +334,10 @@ class BootActiveForm extends CActiveForm
 		if (!isset($htmlOptions['class']))
 			$htmlOptions['class'] = $this->errorMessageCssClass;
 
+		$tag = $this->inlineErrors ? 'span' : 'p';
+
 		if (!$enableAjaxValidation && !$enableClientValidation)
-			return $this->errorSpan($model, $attribute, $htmlOptions);
+			return $this->getErrorHtml($model, $attribute, $htmlOptions, $tag);
 
 		$id = CHtml::activeId($model,$attribute);
 		$inputID = isset($htmlOptions['inputID']) ? $htmlOptions['inputID'] : $id;
@@ -388,14 +396,14 @@ class BootActiveForm extends CActiveForm
 				$option['clientValidation']="js:function(value, messages, attribute) {\n".implode("\n",$validators)."\n}";
 		}
 
-		$html = $this->errorSpan($model, $attribute, $htmlOptions);
+		$html = $this->getErrorHtml($model, $attribute, $htmlOptions, $tag);
 
 		if ($html === '')
 		{
 			if (isset($htmlOptions['style']))
-				$htmlOptions['style'] = rtrim($htmlOptions['style'], ';').';display:none';
+				$htmlOptions['style'] = rtrim($htmlOptions['style'], ';').';display: none';
 			else
-				$htmlOptions['style'] = 'display:none';
+				$htmlOptions['style'] = 'display: none';
 
 			$html = CHtml::tag('span', $htmlOptions, '');
 		}
@@ -409,12 +417,12 @@ class BootActiveForm extends CActiveForm
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute name
 	 * @param array $htmlOptions additional HTML attributes to be rendered in the container div tag.
-	 * This parameter has been available since version 1.0.7.
+	 * @param string $tag the tag to use for rendering the error.
 	 * @return string the error display. Empty if no errors are found.
 	 * @see CModel::getErrors
 	 * @see errorMessageCss
 	 */
-	public static function errorSpan($model, $attribute, $htmlOptions = array())
+	public static function getErrorHtml($model, $attribute, $htmlOptions = array(), $tag = 'span')
 	{
 		CHtml::resolveName($model, $attribute);
 		$error = $model->getError($attribute);
@@ -424,7 +432,7 @@ class BootActiveForm extends CActiveForm
 			if (!isset($htmlOptions['class']))
 				$htmlOptions['class'] = 'help-inline';
 
-			return CHtml::tag('span', $htmlOptions, $error); // Bootstrap errors must be spans
+			return CHtml::tag($tag, $htmlOptions, $error); // Bootstrap errors must be spans
 		}
 		else
 			return '';

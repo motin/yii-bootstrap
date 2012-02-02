@@ -49,19 +49,17 @@
 		 * Creates the widget.
 		 */
 		_create: function() {
-			var self = this,
-				element = self.element,
-				header = self._createHeader(),
-				body = self._createBody(),
-				footer = self._createFooter();
+			var	header = this._createHeader(),
+				body = this._createBody(),
+				footer = this._createFooter();
 
-			element.remove()
+			this.element.remove()
 				.html( '' );
 
-			header.appendTo( element );
-			body.appendTo( element );
-			footer.appendTo( element );
-			element.addClass( 'modal' )
+			header.appendTo( this.element );
+			body.appendTo( this.element );
+			footer.appendTo( this.element );
+			this.element.addClass( 'modal' )
 				.hide()
 				.appendTo( 'body' );
 		},
@@ -71,11 +69,11 @@
 		_init: function() {
 			var self = this;
 
-			if ( self.options.open ) {
-				self.open();
+			if ( this.options.open ) {
+				this.open();
 			}
 
-			if ( self.options.escapeClose ) {
+			if ( this.options.escapeClose ) {
 				$( document ).bind( 'keyup.bootModal', function ( event ) {
 					if ( event.which === 27 ) {
 						self.close();
@@ -87,14 +85,11 @@
 		 * Opens the modal.
 		 */
 		open: function() {
-			var self = this,
-				options = self.options;
-
-			if ( !self.visible ) {
-				var backdrop = self._getBackdrop();
+			if ( !this.visible ) {
+				var backdrop = this._getBackdrop();
 				backdrop.show();
-				self.element.fadeIn( options.openTime );
-				self.visible = true;
+				this.element.fadeIn( this.options.openTime );
+				this.visible = true;
 			}
 
 			return this;
@@ -103,18 +98,17 @@
 		 * Closes the modal.
 		 */
 		close: function() {
-			var self = this,
-				options = self.options;
+			var self = this;
 
-			if ( self.visible ) {
-				self.element.fadeOut( options.closeTime, function() {
+			if ( this.visible ) {
+				this.element.fadeOut( this.options.closeTime, function() {
 					var backdrop = self._getBackdrop();
 					backdrop.hide();
 				});
-				self.visible = false;
+				this.visible = false;
 			}
 
-			return self;
+			return this;
 		},
 		/**
 		 * Creates the modal header element.

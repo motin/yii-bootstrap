@@ -52,7 +52,7 @@ class BootInput extends CInputWidget
 	public function run()
 	{
 		$errorCss = $this->model->hasErrors($this->attribute) ? ' '.CHtml::$errorCss : '';
-		echo CHtml::openTag('div', array('class'=>'clearfix'.$errorCss));
+		echo CHtml::openTag('div', array('class'=>'control-group'.$errorCss));
 
 		switch ($this->type)
 		{
@@ -109,17 +109,17 @@ class BootInput extends CInputWidget
 
 	protected function checkBox()
 	{
-		echo '<div class="input"><div class="inputs-list">';
-		echo '<label for="'.CHtml::getIdByName(CHtml::resolveName($this->model, $this->attribute)).'">';
-		echo $this->form->checkBox($this->model, $this->attribute, $this->htmlOptions).' ';
-		echo '<span>'.$this->model->getAttributeLabel($this->attribute).'</span>';
+		echo '<div class="controls">';
+		echo '<label class="checkbox" for="'.CHtml::getIdByName(CHtml::resolveName($this->model, $this->attribute)).'">';
+		echo $this->form->checkBox($this->model, $this->attribute, $this->htmlOptions).PHP_EOL;
+		echo $this->model->getAttributeLabel($this->attribute);
 		echo $this->getError().$this->getHint();
-		echo '</label></div></div>';
+		echo '</label></div>';
 	}
 
 	protected function checkBoxList()
 	{
-		echo $this->getLabel().'<div class="input">';
+		echo $this->getLabel().'<div class="controls">';
 		echo $this->form->checkBoxList($this->model, $this->attribute, $this->data, $this->htmlOptions);
 		echo $this->getError().$this->getHint();
 		echo '</div>';
@@ -127,7 +127,7 @@ class BootInput extends CInputWidget
 
 	protected function dropDownList()
 	{
-		echo $this->getLabel().'<div class="input">';
+		echo $this->getLabel().'<div class="controls">';
 		echo $this->form->dropDownList($this->model, $this->attribute, $this->data, $this->htmlOptions);
 		echo $this->getError().$this->getHint();
 		echo '</div>';
@@ -135,7 +135,7 @@ class BootInput extends CInputWidget
 
 	protected function fileField()
 	{
-		echo $this->getLabel().'<div class="input">';
+		echo $this->getLabel().'<div class="controls">';
 		echo $this->form->fileField($this->model, $this->attribute, $this->htmlOptions);
 		echo $this->getError().$this->getHint();
 		echo '</div>';
@@ -143,7 +143,7 @@ class BootInput extends CInputWidget
 
 	protected function passwordField()
 	{
-		echo $this->getLabel().'<div class="input">';
+		echo $this->getLabel().'<div class="controls">';
 		echo $this->form->passwordField($this->model, $this->attribute, $this->htmlOptions);
 		echo $this->getError().$this->getHint();
 		echo '</div>';
@@ -151,17 +151,17 @@ class BootInput extends CInputWidget
 
 	protected function radioButton()
 	{
-		echo '<div class="input"><div class="inputs-list">';
-		echo '<label for="'.CHtml::getIdByName(CHtml::resolveName($this->model, $this->attribute)).'">';
-		echo $this->form->radioButton($this->model, $this->attribute, $this->htmlOptions).' ';
-		echo '<span>'.$this->model->getAttributeLabel($this->attribute).'</span>';
+		echo '<div class="controls">';
+		echo '<label class="control-label" for="'.CHtml::getIdByName(CHtml::resolveName($this->model, $this->attribute)).'">';
+		echo $this->form->radioButton($this->model, $this->attribute, $this->htmlOptions).PHP_EOL;
+		echo $this->model->getAttributeLabel($this->attribute);
 		echo $this->getError().$this->getHint();
-		echo '</label></div></div>';
+		echo '</label></div>';
 	}
 
 	protected function radioButtonList()
 	{
-		echo $this->getLabel().'<div class="input">';
+		echo $this->getLabel().'<div class="controls">';
 		echo $this->form->radioButtonList($this->model, $this->attribute, $this->data, $this->htmlOptions);
 		echo $this->getError().$this->getHint();
 		echo '</div>';
@@ -169,7 +169,7 @@ class BootInput extends CInputWidget
 
 	protected function textArea()
 	{
-		echo $this->getLabel().'<div class="input">';
+		echo $this->getLabel().'<div class="controls">';
 		echo $this->form->textArea($this->model, $this->attribute, $this->htmlOptions);
 		echo $this->getError().$this->getHint();
 		echo '</div>';
@@ -177,7 +177,7 @@ class BootInput extends CInputWidget
 
 	protected function textField()
 	{
-		echo $this->getLabel().'<div class="input">';
+		echo $this->getLabel().'<div class="controls">';
 		echo $this->form->textField($this->model, $this->attribute, $this->htmlOptions);
 		echo $this->getError().$this->getHint();
 		echo '</div>';
@@ -185,7 +185,7 @@ class BootInput extends CInputWidget
 
 	protected function captcha()
 	{
-		echo $this->getLabel().'<div class="input"><div class="captcha">';
+		echo $this->getLabel().'<div class="controls"><div class="captcha">';
 		echo '<div class="widget">'.$this->widget('CCaptcha', array('showRefreshButton'=>false), true).'</div>';
 		echo $this->form->textField($this->model, $this->attribute, $this->htmlOptions);
 		echo $this->getError().$this->getHint();
@@ -194,7 +194,7 @@ class BootInput extends CInputWidget
 
 	protected function uneditableField()
 	{
-		echo $this->getLabel().'<div class="input">';
+		echo $this->getLabel().'<div class="controls">';
 		echo '<span class="uneditable-input">'.$this->model->{$this->attribute}.'</span>';
 		echo $this->getError().$this->getHint();
 		echo '</div>';
@@ -224,7 +224,7 @@ class BootInput extends CInputWidget
 		{
 			$hint = $this->htmlOptions['hint'];
 			unset($this->htmlOptions['hint']);
-			return '<span class="help-block">'.$hint.'</span>';
+			return '<p class="help-block">'.$hint.'</p>';
 		}
 		else
 			return '';

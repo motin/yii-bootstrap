@@ -21,26 +21,23 @@
 		 * - template: The HTML template for displaying alerts.
 		 * - displayTime: The time to display each alert.
 		 * - closeTime: The duration for closing each alert.
-		 * - closeText: The close link text.
 		 * @type Object
 		 */
 		options: {
-			keys: [ 'success', 'info', 'warning', 'error' ],
-			template: '<div class="alert-message {key}"><p>{message}</p></div>',
+			keys: [],
+			template: '',
 			displayTime: 5000,
-			closeTime: 350,
-			closeText: '&times;'
+			closeTime: 350
 		},
 		/**
 		 * Creates the widget.
 		 */
 		_create: function() {
-			var self = this,
-				alerts = self.element.find( '.alert-message' );
+			var alerts = this.element.find( '.alert-message' );
 
 			for ( var i = 0, l = alerts.length; i < l; ++i ) {
 				var alert = $( alerts[ i ] );
-				self._initAlert( alert );
+				this._initAlert( alert );
 			}
 		},
 		/**
@@ -50,15 +47,14 @@
 		 */
 		alert: function( key, message ) {
 			if ( this.options.keys.indexOf( key ) !== -1 ) {
-				var self = this,
-					template = this.options.template;
+				var template = this.options.template;
 
 				template = template.replace( '{key}', key );
 				template = template.replace( '{message}', message );
 
 				var alert = $( template );
-				self._initAlert( alert );
-				alert.appendTo( self.element );
+				this._initAlert( alert );
+				alert.appendTo( this.element );
 			}
 
 			return this;
@@ -69,15 +65,18 @@
 		 * @param {Object} alert The alert element.
 		 */
 		_initAlert: function( alert ) {
-			var self = this,
-				closeLink = self._createCloseLink( alert );
+			var self = this;
 
-			closeLink.prependTo( alert );
+			this.element.find( '.close' ).bind( 'click', function( event ) {
+				self.close( alert );
+				event.preventDefault();
+				return false;
+			} );
 
 			if ( self.options.displayTime > 0 ) {
 				setTimeout( function() {
 					self.close( alert );
-				}, self.options.displayTime );
+				}, this.options.displayTime );
 			}
 		},
 		/**
@@ -92,20 +91,6 @@
 			}
 
 			return this;
-		},
-		/**
-		 * Creates the close link.
-		 * @param {Object} alert The alert element.
-		 */
-		_createCloseLink: function( alert ) {
-			var self = this;
-
-			return $( '<a class="close" href="#">' + self.options.closeText + '</a>' )
-				.bind( 'click', function( event ) {
-					self.close( alert );
-					event.preventDefault();
-					return false;
-				} );
 		},
 		/**
 		 * Destructs this widget.

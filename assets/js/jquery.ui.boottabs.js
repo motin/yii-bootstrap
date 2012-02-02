@@ -26,11 +26,9 @@
 		 */
 		_create: function() {
             var self = this,
-                element = self.element,
-                options = self.options,
-                title = self.element.attr( 'title' );
+                title = this.element.attr( 'title' );
 
-            element.bind('click', function( event ) {
+            this.element.bind('click', function( event ) {
                 self._tab( event );
             });
 		},
@@ -47,23 +45,22 @@
             }
         },
         _tab: function( event ) {
-            var self = this,
-                element = self.element,
-                ul = element.closest( 'ul:not(.dropdown-menu)' ),
-                href = element.attr( 'href' ),
+			console.log('tab clicked');
+            var ul = this.element.closest( 'ul:not(.dropdown-menu)' ),
+                href = this.element.attr( 'href' ),
                 previous, pane;
 
             if ( /^#\w+/.test( href ) ) {
                 event.preventDefault();
 
-                if ( !element.parent( 'li' ).hasClass( 'active' ) ) {
+                if ( !this.element.parent( 'li' ).hasClass( 'active' ) ) {
                     previous = ul.find( '.active a' ).last()[0];
                     pane = $( href );
 
-                    self._activate( element.parent( 'li' ), ul );
-                    self._activate( pane, pane.parent() );
+                    this._activate( this.element.parent( 'li' ), ul );
+                    this._activate( pane, pane.parent() );
 
-                    element.trigger( {
+                    this.element.trigger( {
                         type: 'change',
                         relatedTarget: previous
                     } );
