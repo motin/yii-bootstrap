@@ -191,10 +191,11 @@ class BootMenu extends CMenu
             else
                 $item['linkOptions']['class'] = 'dropdown-toggle';
 
+			$item['label'] .= ' <b class="caret"></b>';
 			$item['linkOptions']['data-toggle'] = 'dropdown';
         }
 
-        $label = $this->linkLabelWrapper === null ? $item['label'] : '<' . $this->linkLabelWrapper . '>' . $item['label'] . '<b class="caret"></b></' . $this->linkLabelWrapper . '>';
+        $label = $this->linkLabelWrapper === null ? $item['label'] : '<' . $this->linkLabelWrapper . '>' . $item['label'] . '</' . $this->linkLabelWrapper . '>';
         return CHtml::link($label, $item['url'], isset($item['linkOptions']) ? $item['linkOptions'] : array());
     }
 }

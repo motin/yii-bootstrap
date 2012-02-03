@@ -79,7 +79,8 @@ class BootNav extends BootWidget
 
 		echo CHtml::openTag('div', $this->htmlOptions);
 		echo '<div class="navbar-inner"><div class="'.$containerCssClass.'">';
-		echo '<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"></a>'; //todo: Add support for collapse on narrow layouts.
+		//todo: Add support for collapse on narrow layouts.
+		//echo '<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"></a>';
 		echo CHtml::openTag('a', $this->brandOptions).$this->brand.'</a>';
 		echo '<div class="nav-collapse">';
 
