@@ -11,7 +11,6 @@
 	<link rel="stylesheet/css" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/syntaxhighlighter/styles/shThemeDefault.css">
 	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/syntaxhighlighter/styles/shCore.js"></script>
 	*/ ?>
-	<?php Yii::app()->bootstrap->registerCss(); ?>
 	<?php Yii::app()->bootstrap->registerCoreScript(); ?>
 </head>
 
