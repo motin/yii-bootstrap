@@ -4,11 +4,11 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
-	<link rel="stylesheet/less" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/less/styles.less">
+	<link rel="stylesheet/less" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/less/styles.less" />
 	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/less-1.2.1.min.js"></script>
 	<?php /*
-	<link rel="stylesheet/css" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/syntaxhighlighter/scripts/shCore.css">
-	<link rel="stylesheet/css" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/syntaxhighlighter/styles/shThemeDefault.css">
+	<link rel="stylesheet/css" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/syntaxhighlighter/scripts/shCore.css" />
+	<link rel="stylesheet/css" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/syntaxhighlighter/styles/shThemeDefault.css" />
 	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/syntaxhighlighter/styles/shCore.js"></script>
 	*/ ?>
 	<?php Yii::app()->bootstrap->registerCoreScript(); ?>
@@ -53,7 +53,7 @@
 
 </div>
 
-<?php Yii::app()->clientScript->registerScript('SyntaxHighlighter', "SyntaxHighlighter.all();"); ?>
+<?php //Yii::app()->clientScript->registerScript('SyntaxHighlighter', "SyntaxHighlighter.all();"); ?>
 
 </body>
 </html>
