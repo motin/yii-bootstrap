@@ -8,6 +8,7 @@
 	<li><a href="#bootTwipsy">BootTwipsy</a></li>
 	<li><a href="#bootPopover">BootPopover</a></li>
 	<li><a href="#bootModal">BootModal</a></li>
+	<li><a href="#bootTabbed">BootTabbed</a></li>
 </ul>
 
 <hr />
@@ -26,12 +27,14 @@
 			'---',
 			array('label'=>'Another link', 'url'=>'#'),
 		)),
+		/*
 		array('label'=>'Dropdown', 'items'=>array(
 			array('label'=>'Secondary link', 'url'=>'#'),
 			array('label'=>'Something else here', 'url'=>'#'),
 			'---',
 			array('label'=>'Another link', 'url'=>'#'),
 		)),
+		*/
 		array('label'=>'Contact', 'url'=>array('site/contact')),
 	),
 	)); ?>
@@ -50,16 +53,18 @@
 	<?php Yii::app()->user->setFlash('info','Attention!'); ?>
 	<?php Yii::app()->user->setFlash('error','This is an error.'); ?>
 
-	<?php $this->widget('bootstrap.widgets.BootAlert',array(
-	'options'=>array('displayTime'=>0),
-)); ?>
+	<?php $this->widget('BootAlert',array(
+		'options'=>array('displayTime'=>0),
+	)); ?>
 
 </div>
 
 <hr />
 
 <div id="bootCrumb">
+
 	<h3>BootCrumb</h3>
+
 	<?php $this->widget('BootCrumb',array(
 		'links'=>$this->breadcrumbs,
 		'separator'=>'/',
@@ -70,21 +75,24 @@
 			'Current Page',
 		),
 	)); ?>
+
 </div>
 
 <hr />
 
 <div id="bootActiveForm">
+
 	<h3>BootActiveForm</h3>
+
 	<p>[Include form fields]</p>
+
 	<?php $form=$this->beginWidget('BootActiveForm', array(
-	'id'=>'login-form',
-	'enableClientValidation'=>false,
-	'clientOptions'=>array(
-		'validateOnSubmit'=>false,
-	),
-	));
-	?>
+		'id'=>'login-form',
+		'enableClientValidation'=>false,
+		'clientOptions'=>array(
+			'validateOnSubmit'=>false,
+		),
+	)); ?>
 
 	<?php /** @var BootActiveForm $form */?>
 	<?php //echo $form->textFieldRow($model, 'username'); ?>
@@ -92,13 +100,14 @@
 	<?php //echo $form->checkBoxRow('rememberMe'); ?>
 
 	<div class="actions">
-		<?php echo CHtml::submitButton('Login', array('class'=>'btn-primary')); ?>
-		<?php echo CHtml::submitButton('Login', array('class'=>'btn-success')); ?>
-		<i class="icon-search icon-white"><?php echo CHtml::button('Login', array('class'=>'btn btn-primary')); ?></i>
+		<?php echo CHtml::htmlButton('Submit', array('class'=>'btn btn-primary','type'=>'submit')); ?>
+		<?php echo CHtml::htmlButton('Reset', array('class'=>'btn','type'=>'reset')); ?>
+		<?php echo CHtml::htmlButton('<i class="icon-search"></i> Search', array('class'=>'btn')); ?></i>
 		<p>Button icon classes do not work.</p>
 	</div>
 
 	<?php $this->endWidget(); ?>
+
 </div>
 
 <hr />
@@ -113,29 +122,28 @@
 <hr />
 
 <div id="bootPopover">
+
 	<h3>BootPopover</h3>
+
+	<?php echo CHtml::link('Hover me', '#', 
+			array('class'=>'btn btn-primary btn-danger','data-title'=>'Heading','data-content'=>'Content ...','rel'=>'popover')); ?>
+
 	<?php $this->widget('BootPopover',array(
-	'selector'=>'.pop',
-	'options'=>array(
-		'placement'=>'above',
-		'showEvent'=>'mouseenter',
-		'hideEvent'=>'mouseleave',
-		'offset'=>0, // tooltip offset in pixels
-		'live'=>false, // use .live instead of .bind?
-	),
-)); ?>
-	<?php echo CHtml::link('Click Here', array('#'), array('title'=>'Tooltip text.', 'class'=>'btn btn-primary pop')); ?>
-	<p>Popover tooltips do not appear correctly.</p>
+		'options'=>array(),
+	)); ?>
+
 </div>
 
 <hr />
 
 <div id="bootModal">
+
 	<h3>BootModal</h3>
+
 	<?php $this->beginWidget('BootModal',array(
 	'id'=>'modal',
 	'options'=>array(
-		'title'=>'Sample title',
+		'title'=>'Modal heading',
 		'backdropClose'=>false, // close the modal when the backdrop is clicked?
 		'escapeClose'=>false, // close the modal when escape is pressed?
 		'open'=>false, // should we open the modal on initialization?
@@ -144,9 +152,9 @@
 		'buttons'=>array(
 			array(
 				'label'=>'Ok',
-				'class'=>'btn primary',
+				'class'=>'btn btn-primary',
 				'click'=>"js:function() {
-                    .....
+                    
                 }",
 			),
 			array(
@@ -160,28 +168,11 @@
 		),
 	),
 	)); ?>
+
+	Content ...
+
 	<?php $this->endWidget(); ?>
 
-	<div id="modal" class="modal hide fade" style="display: none;">
-		<div class="modal-header">
-			<a class="close" data-dismiss="modal">×</a>
-			<h3>Modal Heading</h3>
-		</div>
-		<div class="modal-body">
-			<h4>Text in a modal</h4>
-			<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem.</p>
-			<h4>Popover in a modal</h4>
-			<p>
-			<h4>Tooltips in a modal</h4>
-			<p>
-		</div>
-		<div class="modal-footer">
-			<a class="btn btn-primary" href="#">Save changes</a>
-			<a class="btn" data-dismiss="modal" href="#">Close</a>
-		</div>
-	</div>
-
 	<a href="#" onclick="$('#modal').bootModal('open'); return false;">Open</a>
-	<a class="btn" data-toggle="modal" href="#modal">Launch Modal</a>
-	<p>Cannot get this to work.</p>
+
 </div>

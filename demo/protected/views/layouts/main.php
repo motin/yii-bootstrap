@@ -4,18 +4,18 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
-	<?php Yii::app()->bootstrap->registerCoreCss(); ?>
 	<link rel="stylesheet/less" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/less/styles.less">
 	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/less-1.2.1.min.js"></script>
+	<?php Yii::app()->bootstrap->registerCss(); ?>
+	<?php Yii::app()->bootstrap->registerCoreScript(); ?>
 </head>
 
 <body>
 
-<?php $this->widget('bootstrap.widgets.BootNav',array(
+<?php $this->widget('bootstrap.widgets.BootNavbar',array(
 	'brand'=>CHtml::encode(Yii::app()->name),
-	'groups'=>array(
+	'items'=>array(
 		array(
-			'encodeLabel'=>false,
 			'htmlOptions'=>array('class'=>'pull-right'),
 			'items'=>array(
 				array('label'=>'Home', 'url'=>array('/site/index')),
