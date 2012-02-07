@@ -1,6 +1,6 @@
 <?php
 /**
- * BootNav class file.
+ * BootNavbar class file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -11,8 +11,9 @@ Yii::import('bootstrap.widgets.BootWidget');
 /**
  * Bootstrap navigation widget with support for dropdown menus.
  * @since 0.9.7
+ * @todo Add collapse support. http://twitter.github.com/bootstrap/javascript.html#collapse
  */
-class BootNav extends BootWidget
+class BootNavbar extends BootWidget
 {
 	/**
 	 * @var string the text for the brand.
@@ -27,10 +28,10 @@ class BootNav extends BootWidget
 	 */
 	public $brandOptions = array();
 	/**
-	 * @var array navigation item groups.
+	 * @var array navigation items.
 	 * @since 0.9.8
 	 */
-	public $groups = array();
+	public $items = array();
 	/**
 	 * @var boolean flag that indicates if the nav should use the full width available. Defaults to false.
 	 * @since 0.9.8
@@ -79,37 +80,24 @@ class BootNav extends BootWidget
 
 		echo CHtml::openTag('div', $this->htmlOptions);
 		echo '<div class="navbar-inner"><div class="'.$containerCssClass.'">';
-		//todo: Add support for collapse on narrow layouts.
-		//echo '<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"></a>';
+		echo '<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"></a>';
 		echo CHtml::openTag('a', $this->brandOptions).$this->brand.'</a>';
 		echo '<div class="nav-collapse">';
 
-		foreach ($this->groups as $group)
+		foreach ($this->items as $item)
 		{
-			if (!isset($group['items']))
-				$group['items'] = array();
-
-			if (!isset($group['itemTemplate']))
-				$group['itemTemplate'] = '{menu}';
-
-			if (!isset($group['encodeLabel']))
-				$group['encodeLabel'] = true;
-
-			if (!isset($group['htmlOptions']))
-				$group['htmlOptions'] = array();
-
-			if (isset($group['htmlOptions']['class']))
-				$group['htmlOptions']['class'] .= ' nav';
+			if (is_string($item))
+				echo $item;
 			else
-				$group['htmlOptions']['class'] = 'nav';
+			{
+				if (!isset($item['class']))
+					$item['class'] = 'bootstrap.widgets.BootMenu';
 
-			$this->controller->widget('bootstrap.widgets.BootMenu', array(
-				'type'=>'', // no default styling
-				'items'=>$group['items'],
-				'itemTemplate'=>$group['itemTemplate'],
-				'encodeLabel'=>$group['encodeLabel'],
-				'htmlOptions'=>$group['htmlOptions'],
-			));
+				$className = $item['class'];
+				unset($item['class']);
+
+				$this->controller->widget($className, $item);
+			}
 		}
 
 		echo '</div></div></div></div>';

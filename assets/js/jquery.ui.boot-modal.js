@@ -1,5 +1,5 @@
 /*!
- * Bootstrap Modal jQuery UI widget file.
+ * BootModal jQuery UI widget file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -9,6 +9,11 @@
 ( function( $ ) {
 	"use strict" // set strict mode
 
+	/**
+	 * BootModal class.
+	 * @class jQuery.ui.bootModal
+	 * @augments jQuery.ui.bootWidget
+	 */
 	var widget = $.extend( {}, $.ui.bootWidget.prototype, {
 		/**
 		 * The name of the widget.
@@ -47,6 +52,7 @@
 		},
 		/**
 		 * Creates the widget.
+		 * @private
 		 */
 		_create: function() {
 			var	header = this._createHeader(),
@@ -65,6 +71,7 @@
 		},
 		/**
 		 * Initializes the widget.
+		 * @private
 		 */
 		_init: function() {
 			var self = this;
@@ -113,6 +120,7 @@
 		/**
 		 * Creates the modal header element.
 		 * @return {Object} The element.
+		 * @private
 		 */
 		_createHeader: function() {
 			var header = $( '<div class="modal-header">' );
@@ -129,6 +137,7 @@
 		/**
 		 * Creates the modal body element.
 		 * @return {Object} The element.
+		 * @private
 		 */
 		_createBody: function() {
 			return $( '<div class="modal-body">' )
@@ -137,6 +146,7 @@
 		/**
 		 * Creates the modal footer element.
 		 * @return {Object} The element.
+		 * @private
 		 */
 		_createFooter: function() {
 			var i, l, config, button,
@@ -154,6 +164,7 @@
 		 * Creates a button element from the given config array.
 		 * @param {Array} config The button config.
 		 * @returns {Object} The element.
+		 * @private
 		 */
 		_createButton: function( config ) {
 			var button = $( '<button>' ),
@@ -181,6 +192,8 @@
 		},
 		/**
 		 * Creates a close link for this modal.
+		 * @returns {Object} The element.
+		 * @private
 		 */
 		_createCloseLink: function() {
 			var self = this;
@@ -195,6 +208,7 @@
 		/**
 		 * Returns the backdrop element creating it if it doesn't exist.
 		 * @returns {Object} The element.
+		 * @private
 		 */
 		_getBackdrop: function() {
 			var self = this,
@@ -217,7 +231,8 @@
 			return backdrop;
 		},
 		/**
-		 * Destructs the widget.
+		 * Destroys the widget.
+		 * @private
 		 */
 		_destroy: function() {
 			if ( this.options.escapeClose ) {

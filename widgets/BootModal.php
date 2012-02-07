@@ -23,7 +23,7 @@ class BootModal extends BootWidget
 	public function init()
 	{
 		parent::init();
-		$this->registerScriptFile('jquery.ui.bootmodal.js');
+		$this->registerScriptFile('jquery.ui.boot-modal.js');
 
 		$id = $this->getId();
 		if (isset($this->htmlOptions['id']))
@@ -32,7 +32,7 @@ class BootModal extends BootWidget
 			$this->htmlOptions['id'] = $id;
 
 		$options = !empty($this->options) ? CJavaScript::encode($this->options) : '';
-        $this->registerScript(__CLASS__.'#'.$id,"jQuery('#{$id}').bootModal($options);");
+        $this->registerScript(__CLASS__.'#'.$id, "jQuery('#{$id}').bootModal($options);");
 
 		echo CHtml::openTag($this->tagName, $this->htmlOptions).PHP_EOL;
 	}

@@ -6,18 +6,18 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
 
-Yii::import('bootstrap.widgets.BootWidget');
+Yii::import('bootstrap.widgets.BootTooltip');
 
 /**
  * Bootstrap rich-content tooltip widget.
  * @since 0.9.2
  */
-class BootPopover extends BootWidget
+class BootPopover extends BootTooltip
 {
 	/**
 	 * @var string the CSS selector to use for selecting the pop-over elements.
 	 */
-	public $selector = '.pop';
+	public $selector = 'a[rel="popover"]';
 	
 	/**
 	 * Initializes the widget.
@@ -25,8 +25,7 @@ class BootPopover extends BootWidget
 	public function init()
 	{
 		parent::init();
-		$this->registerScriptFile('jquery.ui.boottwipsy.js');
-		$this->registerScriptFile('jquery.ui.bootpopover.js');
+		$this->registerScriptFile('jquery.ui.boot-popover.js');
 	}
 
 	/**

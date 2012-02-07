@@ -8,6 +8,19 @@
  
 class BootInput extends CInputWidget
 {
+	// The different input types.
+	const TYPE_CHECKBOX = 'checkbox';
+	const TYPE_CHECKBOXES = 'checkboxlist';
+	const TYPE_DROPDOWN = 'dropdownlist';
+	const TYPE_FILE = 'filefield';
+	const TYPE_PASSWORD = 'password';
+	const TYPE_RADIO = 'radiobutton';
+	const TYPE_RADIOS = 'radiobuttonlist';
+	const TYPE_TEXTAREA = 'textarea';
+	const TYPE_TEXT = 'textfield';
+	const TYPE_CAPTCHA = 'captcha';
+	const TYPE_UNEDITABLE = 'uneditable';
+
 	/**
 	 * @var BootActiveForm the associated form widget.
 	 */
@@ -29,25 +42,21 @@ class BootInput extends CInputWidget
 
 	/**
 	 * Initializes the widget.
-	 * This method is called by {@link CBaseController::createWidget}
-	 * and {@link CBaseController::beginWidget} after the widget's
-	 * properties have been initialized.
 	 */
 	public function init()
 	{
 		if ($this->form === null)
-			throw new CException('Failed to initialize widget! Form is not set.');
+			throw new CException(__CLASS__.': Failed to initialize widget! Form is not set.');
 
 		if ($this->model === null)
-			throw new CException('Failed to initialize widget! Model is not set.');
+			throw new CException(__CLASS__.': Failed to initialize widget! Model is not set.');
 
 		if ($this->type === null)
-			throw new CException('Failed to initialize widget! Input type is not set.');
+			throw new CException(__CLASS__.': Failed to initialize widget! Input type is not set.');
 	}
 
 	/**
-	 * Executes the widget.
-	 * This method is called by {@link CBaseController::endWidget}.
+	 * Runs the widget.
 	 */
 	public function run()
 	{
@@ -56,57 +65,61 @@ class BootInput extends CInputWidget
 
 		switch ($this->type)
 		{
-			case 'checkbox':
+			case self::TYPE_CHECKBOX:
 				$this->checkBox();
 				break;
 
-			case 'checkboxlist':
+			case self::TYPE_CHECKBOXES:
 				$this->checkBoxList();
 				break;
 
-			case 'dropdownlist':
+			case self::TYPE_DROPDOWN:
 				$this->dropDownList();
 				break;
 
-			case 'filefield':
+			case self::TYPE_FILE:
 				$this->fileField();
 				break;
 
-			case 'password':
+			case self::TYPE_PASSWORD:
 				$this->passwordField();
 				break;
 
-			case 'radiobutton':
+			case self::TYPE_RADIO:
 				$this->radioButton();
 				break;
 
-			case 'radiobuttonlist':
+			case self::TYPE_RADIOS:
 				$this->radioButtonList();
 				break;
 
-			case 'textarea':
+			case self::TYPE_TEXTAREA:
 				$this->textArea();
 				break;
 
-			case 'textfield':
+			case self::TYPE_TEXT:
 				$this->textField();
 				break;
 
-			case 'captcha':
+			case self::TYPE_CAPTCHA:
 				$this->captcha();
 				break;
 
-			case 'uneditable':
+			case self::TYPE_UNEDITABLE:
 				$this->uneditableField();
 				break;
 
 			default:
-				throw new CException('Failed to run widget! Input type is invalid.');
+				throw new CException(__CLASS__.': Failed to run widget! Type is invalid.');
 		}
 
 		echo '</div>';
 	}
 
+	/**
+	 * Renders a checkbox.
+	 * @return string the rendered content
+	 */
 	protected function checkBox()
 	{
 		echo '<div class="controls">';
@@ -117,6 +130,10 @@ class BootInput extends CInputWidget
 		echo '</label></div>';
 	}
 
+	/**
+	 * Renders a list of checkboxes.
+	 * @return string the rendered content
+	 */
 	protected function checkBoxList()
 	{
 		echo $this->getLabel().'<div class="controls">';
@@ -125,6 +142,10 @@ class BootInput extends CInputWidget
 		echo '</div>';
 	}
 
+	/**
+	 * Renders a drop down list (select).
+	 * @return string the rendered content
+	 */
 	protected function dropDownList()
 	{
 		echo $this->getLabel().'<div class="controls">';
@@ -133,6 +154,10 @@ class BootInput extends CInputWidget
 		echo '</div>';
 	}
 
+	/**
+	 * Renders a file field.
+	 * @return string the rendered content
+	 */
 	protected function fileField()
 	{
 		echo $this->getLabel().'<div class="controls">';
@@ -141,6 +166,10 @@ class BootInput extends CInputWidget
 		echo '</div>';
 	}
 
+	/**
+	 * Renders a password field.
+	 * @return string the rendered content
+	 */
 	protected function passwordField()
 	{
 		echo $this->getLabel().'<div class="controls">';
@@ -149,6 +178,10 @@ class BootInput extends CInputWidget
 		echo '</div>';
 	}
 
+	/**
+	 * Renders a radio button.
+	 * @return string the rendered content
+	 */
 	protected function radioButton()
 	{
 		echo '<div class="controls">';
@@ -159,6 +192,10 @@ class BootInput extends CInputWidget
 		echo '</label></div>';
 	}
 
+	/**
+	 * Renders a list of radio buttons.
+	 * @return string the rendered content
+	 */
 	protected function radioButtonList()
 	{
 		echo $this->getLabel().'<div class="controls">';
@@ -167,6 +204,10 @@ class BootInput extends CInputWidget
 		echo '</div>';
 	}
 
+	/**
+	 * Renders a textarea.
+	 * @return string the rendered content
+	 */
 	protected function textArea()
 	{
 		echo $this->getLabel().'<div class="controls">';
@@ -175,6 +216,10 @@ class BootInput extends CInputWidget
 		echo '</div>';
 	}
 
+	/**
+	 * Renders a text field.
+	 * @return string the rendered content
+	 */
 	protected function textField()
 	{
 		echo $this->getLabel().'<div class="controls">';
@@ -183,6 +228,10 @@ class BootInput extends CInputWidget
 		echo '</div>';
 	}
 
+	/**
+	 * Renders a CAPTCHA.
+	 * @return string the rendered content
+	 */
 	protected function captcha()
 	{
 		echo $this->getLabel().'<div class="controls"><div class="captcha">';
@@ -192,6 +241,10 @@ class BootInput extends CInputWidget
 		echo '</div></div>';
 	}
 
+	/**
+	 * Renders an uneditable field.
+	 * @return string the rendered content
+	 */
 	protected function uneditableField()
 	{
 		echo $this->getLabel().'<div class="controls">';

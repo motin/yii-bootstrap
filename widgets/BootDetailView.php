@@ -13,7 +13,7 @@ class BootDetailView extends CDetailView
 	/**
 	 * @var array the HTML attributes for the container.
 	 */
-	public $htmlOptions = array('class'=>'detail-view');
+	public $htmlOptions = array('class'=>'table table-striped table-condensed detail-view');
 	/**
 	 * @var string the URL of the CSS file used by this detail view.
 	 * Defaults to false, meaning that no CSS will be included.
