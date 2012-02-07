@@ -74,13 +74,13 @@
 		_initAlert: function( alert ) {
 			var self = this;
 
-			this.element.find( '.close' ).on( 'click', function( event ) {
+			alert.find( '.close' ).on( 'click', function( event ) {
 				self.close( alert );
 				event.preventDefault();
 				return false;
 			} );
 
-			if ( self.options.displayTime > 0 ) {
+			if ( this.options.displayTime > 0 ) {
 				setTimeout( function() {
 					self.close( alert );
 				}, this.options.displayTime );

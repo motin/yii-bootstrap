@@ -19,12 +19,17 @@ class BootMenu extends BootWidget
 	const TYPE_UNSTYLED = '';
 	const TYPE_TABS = 'tabs';
 	const TYPE_PILLS = 'pills';
+	const TYPE_LIST = 'list';
 
 	/**
 	 * @var string the menu type.
 	 * Valid values are '', 'tabs' and 'pills'. Defaults to ''.
 	 */
 	public $type = self::TYPE_UNSTYLED;
+	/**
+	 * @var boolean whether to stack navigation items.
+	 */
+	public $stacked = false;
 	/**
 	 * @var array the menu items.
 	 */
@@ -63,6 +68,9 @@ class BootMenu extends BootWidget
 
 			if (!empty($this->type))
 				$cssClass .= ' nav-'.$this->type;
+
+			if ($this->type !== self::TYPE_LIST && $this->stacked)
+				$cssClass .= ' nav-stacked';
 
 			if (isset($this->htmlOptions['class']))
 				$this->htmlOptions['class'] .= ' '.$cssClass;
@@ -143,11 +151,11 @@ class BootMenu extends BootWidget
 	 */
 	protected function renderItem($item)
 	{
-		if (!isset($item['url']))
-	    	$item['url'] = '#';
-
 		if (isset($item['items']))
 		{
+			if (!isset($item['url']))
+				$item['url'] = '#';
+
 			if (isset($item['linkOptions']['class']))
 				$item['linkOptions']['class'] .= ' dropdown-toggle';
 			else
@@ -157,7 +165,10 @@ class BootMenu extends BootWidget
 			$item['linkOptions']['data-toggle'] = 'dropdown';
 		}
 
-		return CHtml::link($item['label'], $item['url'], isset($item['linkOptions']) ? $item['linkOptions'] : array());
+		if (isset($item['url']))
+			return CHtml::link($item['label'], $item['url'], isset($item['linkOptions']) ? $item['linkOptions'] : array());
+		else
+			return $item['label'];
 	}
 
 	/**

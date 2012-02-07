@@ -13,11 +13,11 @@ class BootAlert extends BootWidget
 	/**
 	 * @var array the keys for which to get flash messages.
 	 */
-	public $keys = array('success', 'info', 'warning', 'error'/* or */, 'danger');
+	public $keys = array('success', 'info', 'warning', 'error', /* or */'danger');
 	/**
 	 * @var string the template to use for displaying flash messages.
 	 */
-	public $template = '<div class="alert alert-{key}"><a class="close">&times;</a>{message}</div>';
+	public $template = '<div class="alert alert-block alert-{key}"><a class="close">&times;</a>{message}</div>';
 	/**
 	 * @var array the html options.
 	 */
