@@ -29,7 +29,7 @@
 			template: '<div class="alert-message {key}"><p>{message}</p></div>',
 			displayTime: 5000,
 			closeTime: 350,
-			closeText: '×'
+			closeText: '&times;'
 		},
 		/**
 		 * Creates the widget.

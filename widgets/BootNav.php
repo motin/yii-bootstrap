@@ -15,17 +15,25 @@
 class BootNav extends BootWidget
 {
 	/**
+	 * @var string the topbar type. Defaults to 'normal'. Valid values are 'normal' and 'fluid'.
+	 */
+	public $type = 'normal';
+	/**
+	 * @var string the text for the brand.
+	 */
+	public $brand;
+	/**
 	 * @var string the URL for the brand link.
 	 */
 	public $brandUrl;
 	/**
-	 * @var string the text for the brand link.
-	 */
-	public $brandText;
-	/**
 	 * @var array the HTML attributes for the brand link.
 	 */
 	public $brandOptions = array();
+	/**
+	 * @var string the item template.
+	 */
+	public $itemTemplate = '{menu}';
 	/**
 	 * @var array the primary menu items.
 	 */
@@ -33,7 +41,7 @@ class BootNav extends BootWidget
 	/**
 	 * @var array the secondary menu items.
 	 */
-	public $secondaryItems = array();
+	public $secondaryItems = array(); 
 	/**
 	 * @var array the HTML attributes for the primary menu.
 	 */
@@ -42,6 +50,21 @@ class BootNav extends BootWidget
 	 * @var array the HTML attributes for the secondary menu.
 	 */
 	public $secondaryOptions = array();
+
+	/**
+	 * Initializes the widget.
+	 */
+	public function init()
+	{
+		if (!in_array($this->type, array('normal', 'fluid')))
+			throw new CException(__CLASS__.'.type is invalid. Valid values are "normal" and "fluid".');
+
+		if (!isset($this->brand))
+			$this->brand = CHtml::encode(Yii::app()->name);
+
+		if (!isset($this->brandUrl))
+			$this->brandUrl = Yii::app()->homeUrl;
+	}
 
 	/**
 	 * Runs the widget.
@@ -67,21 +90,23 @@ class BootNav extends BootWidget
 			$this->primaryOptions['class'] = 'nav';
 
 		if (isset($this->secondaryOptions['class']))
-			$this->secondaryOptions['class'] .= ' secondary-nav';
+			$this->secondaryOptions['class'] .= ' nav secondary-nav';
 		else
-			$this->secondaryOptions['class'] = 'secondary-nav';
+			$this->secondaryOptions['class'] = 'nav secondary-nav';
+
+		$cssClass = $this->type === 'normal' ? 'container' : 'container-fluid';
 
 		echo CHtml::openTag('div', $this->htmlOptions);
-		echo '<div class="topbar-inner"><div class="container">';
-		echo CHtml::openTag('a', $this->brandOptions);
-		echo $this->brandText;
-		echo '</a>';
+		echo '<div class="topbar-inner"><div class="'.$cssClass.'">';
+		echo CHtml::openTag('a', $this->brandOptions).$this->brand.'</a>';
 
 		if (!empty($this->primaryItems))
 		{
 			$this->controller->widget('bootstrap.widgets.BootMenu', array(
 				'type'=>'',
 				'items'=>$this->primaryItems,
+				'itemTemplate'=>$this->itemTemplate,
+				'encodeLabel'=>false,
 				'htmlOptions'=>$this->primaryOptions,
 			));
 		}
@@ -91,6 +116,8 @@ class BootNav extends BootWidget
 			$this->controller->widget('bootstrap.widgets.BootMenu', array(
 				'type'=>'',
 				'items'=>$this->secondaryItems,
+				'itemTemplate'=>$this->itemTemplate,
+				'encodeLabel'=>false,
 				'htmlOptions'=>$this->secondaryOptions,
 			));
 		}
