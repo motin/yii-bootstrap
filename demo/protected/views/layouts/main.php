@@ -26,6 +26,7 @@
 				array('label'=>'Contact', 'url'=>'#'),
 			),
 		),
+		'<div class="version pull-right">yii-bootstrap-0.9.8</div>',
 	),
 )); ?>
 
