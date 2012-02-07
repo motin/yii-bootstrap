@@ -25,7 +25,6 @@
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
 		),
-		'<form class="navbar-search pull-left" action=""><input type="text" class="search-query span2" placeholder="Search"></form>',
 	),
 )); ?>
 
@@ -33,12 +32,12 @@
 
 	<div class="hero-unit">
 		<h1><?php echo CHtml::encode(Yii::app()->name); ?></h1>
-	</div><!-- header -->
+	</div>
 
-	<?php if(!empty($this->breadcrumbs)):?>
+	<?php if (!empty($this->breadcrumbs)):?>
 		<?php $this->widget('bootstrap.widgets.BootCrumb', array(
 			'links'=>$this->breadcrumbs,
-		)); ?><!-- breadcrumbs -->
+		)); ?>
 	<?php endif?>
 
 	<div class="row">
@@ -47,7 +46,7 @@
 
 	<hr />
 
-	<div id="footer">
+	<div class="footer">
 		&copy; Company <?php echo date('Y'); ?>
 	</div>
 

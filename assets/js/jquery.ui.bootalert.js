@@ -33,7 +33,7 @@
 		 * Creates the widget.
 		 */
 		_create: function() {
-			var alerts = this.element.find( '.alert-message' );
+			var alerts = this.element.find( '.alert' );
 
 			for ( var i = 0, l = alerts.length; i < l; ++i ) {
 				var alert = $( alerts[ i ] );
