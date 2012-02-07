@@ -3,33 +3,46 @@
 class SiteController extends Controller
 {
 	/**
-	 * Declares class-based actions.
-	 */
-	public function actions()
-	{
-		return array(
-			// captcha action renders the CAPTCHA image displayed on the contact page
-			'captcha'=>array(
-				'class'=>'CCaptchaAction',
-				'backColor'=>0xFFFFFF,
-			),
-			// page action renders "static" pages stored under 'protected/views/site/pages'
-			// They can be accessed via: index.php?r=site/page&view=FileName
-			'page'=>array(
-				'class'=>'CViewAction',
-			),
-		);
-	}
-
-	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
 	 */
 	public function actionIndex()
 	{
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		$gridDataProvider = new CArrayDataProvider(array(
+			array('id'=>1, 'firstName'=>'Mark', 'lastName'=>'Otto', 'language'=>'CSS'),
+			array('id'=>2, 'firstName'=>'Jacob', 'lastName'=>'Thornton', 'language'=>'JavaScript'),
+			array('id'=>3, 'firstName'=>'Stu', 'lastName'=>'Dent', 'language'=>'HTML'),
+		));
+
+		$gridColumns = array(
+			array('name'=>'id', 'header'=>'#'),
+			array('name'=>'firstName', 'header'=>'First name'),
+			array('name'=>'lastName', 'header'=>'Last name'),
+			array('name'=>'language', 'header'=>'Language'),
+			array(
+				'class'=>'BootButtonColumn',
+				'viewButtonUrl'=>null,
+				'viewButtonOptions'=>array('rel'=>'tooltip'),
+				'updateButtonUrl'=>null,
+				'updateButtonOptions'=>array('rel'=>'tooltip'),
+				'deleteButtonUrl'=>null,
+				'deleteButtonOptions'=>array('rel'=>'tooltip'),
+			)
+		);
+
+		$rawData = array();
+		for ($i = 0; $i < 200; $i++)
+			$rawData[] = array('id'=>$i + 1);
+
+		$listDataProvider = new CArrayDataProvider($rawData, array(
+			'pagination'=>array('pageSize'=>10),
+		));
+
+		$this->render('index', array(
+			'gridDataProvider'=>$gridDataProvider,
+			'gridColumns'=>$gridColumns,
+			'listDataProvider'=>$listDataProvider,
+		));
 	}
 
 	/**
@@ -44,68 +57,5 @@ class SiteController extends Controller
 	    	else
 	        	$this->render('error', $error);
 	    }
-	}
-
-	/**
-	 * Displays the contact page
-	 */
-	public function actionContact()
-	{
-		$model=new ContactForm;
-
-		// if it is ajax validation request
-		if(isset($_POST['ajax']) && $_POST['ajax']==='contact-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
-
-		if(isset($_POST['ContactForm']))
-		{
-			$model->attributes=$_POST['ContactForm'];
-			if($model->validate())
-			{
-				$headers="From: {$model->email}\r\nReply-To: {$model->email}";
-				mail(Yii::app()->params['adminEmail'],$model->subject,$model->body,$headers);
-				Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
-				$this->refresh();
-			}
-		}
-		$this->render('contact',array('model'=>$model));
-	}
-
-	/**
-	 * Displays the login page
-	 */
-	public function actionLogin()
-	{
-		$model=new LoginForm;
-
-		// if it is ajax validation request
-		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
-
-		// collect user input data
-		if(isset($_POST['LoginForm']))
-		{
-			$model->attributes=$_POST['LoginForm'];
-			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
-				$this->redirect(Yii::app()->user->returnUrl);
-		}
-		// display the login form
-		$this->render('login',array('model'=>$model));
-	}
-
-	/**
-	 * Logs out the current user and redirect to homepage.
-	 */
-	public function actionLogout()
-	{
-		Yii::app()->user->logout();
-		$this->redirect(Yii::app()->homeUrl);
 	}
 }

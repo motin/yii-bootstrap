@@ -2,7 +2,7 @@
 
 <div class="row">
 
-	<div class="span9">
+	<div class="span10">
 
 		<div id="bootActiveForm">
 
@@ -29,12 +29,12 @@
 
 			<h3>BootAlert</h3>
 
-			<?php Yii::app()->user->setFlash('success', 'Success!'); ?>
-			<?php Yii::app()->user->setFlash('warning', 'This is a warning.'); ?>
-			<?php Yii::app()->user->setFlash('info', 'Attention!'); ?>
-			<?php Yii::app()->user->setFlash('error', 'This is an error.'); ?>
+			<?php Yii::app()->user->setFlash('success', '<strong>Well done!</strong> You successfully read this important alert message.'); ?>
+			<?php Yii::app()->user->setFlash('info', '<strong>Heads up!</strong> This alert needs your attention, but it\'s not super important.'); ?>
+			<?php Yii::app()->user->setFlash('warning', '<strong>Warning!</strong> Best check yo self, you\'re not looking too good.'); ?>
+			<?php Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few things up and try submitting again.'); ?>
 
-			<?php $this->widget('BootAlert',array(
+			<?php $this->widget('BootAlert', array(
 				'options'=>array('displayTime'=>0),
 			)); ?>
 
@@ -103,42 +103,97 @@
 
 			<h3>BootMenu</h3>
 
-			<h5>Tabs</h5>
+			<h4>Tabs</h4>
 
-			<?php $this->widget('BootMenu', array(
-				'type'=>'tabs',
-				'items'=>array(
-					array('label'=>'Home', 'url'=>'#', 'active'=>true),
-					array('label'=>'Profile', 'url'=>'#'),
-					array('label'=>'Dropdown', 'items'=>array(
-						array('label'=>'Secondary link', 'url'=>'#'),
-						array('label'=>'Something else here', 'url'=>'#'),
-						'---',
-						array('label'=>'Another link', 'url'=>'#'),
-					)),
-					array('label'=>'Messages', 'url'=>'#'),
-				),
-			)); ?>
+			<div class="row">
 
-			<h5>Pills (Stacked)</h5>
+				<div class="span5">
 
-			<?php $this->widget('BootMenu', array(
-				'type'=>'pills',
-				'stacked'=>true,
-				'items'=>array(
-					array('label'=>'Home', 'url'=>'#', 'active'=>true),
-					array('label'=>'Profile', 'url'=>'#'),
-					array('label'=>'Dropdown', 'items'=>array(
-						array('label'=>'Secondary link', 'url'=>'#'),
-						array('label'=>'Something else here', 'url'=>'#'),
-						'---',
-						array('label'=>'Another link', 'url'=>'#'),
-					)),
-					array('label'=>'Messages', 'url'=>'#'),
-				),
-			)); ?>
+					<?php $this->widget('BootMenu', array(
+						'type'=>'tabs',
+						'items'=>array(
+							array('label'=>'Home', 'url'=>'#', 'active'=>true),
+							array('label'=>'Profile', 'url'=>'#'),
+							array('label'=>'Dropdown', 'items'=>array(
+								array('label'=>'Secondary link', 'url'=>'#'),
+								array('label'=>'Something else here', 'url'=>'#'),
+								'---',
+								array('label'=>'Another link', 'url'=>'#'),
+							)),
+							array('label'=>'Messages', 'url'=>'#'),
+						),
+					)); ?>
 
-			<h5>List</h5>
+				</div>
+
+				<div class="span5">
+
+					<?php $this->widget('BootMenu', array(
+						'type'=>'tabs',
+						'stacked'=>true,
+						'items'=>array(
+							array('label'=>'Home', 'url'=>'#', 'active'=>true),
+							array('label'=>'Profile', 'url'=>'#'),
+							array('label'=>'Dropdown', 'items'=>array(
+								array('label'=>'Secondary link', 'url'=>'#'),
+								array('label'=>'Something else here', 'url'=>'#'),
+								'---',
+								array('label'=>'Another link', 'url'=>'#'),
+							)),
+							array('label'=>'Messages', 'url'=>'#'),
+						),
+					)); ?>
+
+				</div>
+
+			</div>
+
+			<h4>Pills</h4>
+
+			<div class="row">
+
+				<div class="span5">
+
+					<?php $this->widget('BootMenu', array(
+						'type'=>'pills',
+						'items'=>array(
+							array('label'=>'Home', 'url'=>'#', 'active'=>true),
+							array('label'=>'Profile', 'url'=>'#'),
+							array('label'=>'Dropdown', 'items'=>array(
+								array('label'=>'Secondary link', 'url'=>'#'),
+								array('label'=>'Something else here', 'url'=>'#'),
+								'---',
+								array('label'=>'Another link', 'url'=>'#'),
+							)),
+							array('label'=>'Messages', 'url'=>'#'),
+						),
+					)); ?>
+
+				</div>
+
+				<div class="span5">
+
+					<?php $this->widget('BootMenu', array(
+						'type'=>'pills',
+						'stacked'=>true,
+						'items'=>array(
+							array('label'=>'Home', 'url'=>'#', 'active'=>true),
+							array('label'=>'Profile', 'url'=>'#'),
+							array('label'=>'Dropdown', 'items'=>array(
+								array('label'=>'Secondary link', 'url'=>'#'),
+								array('label'=>'Something else here', 'url'=>'#'),
+								'---',
+								array('label'=>'Another link', 'url'=>'#'),
+							)),
+							array('label'=>'Messages', 'url'=>'#'),
+						),
+					)); ?>
+
+				</div>
+
+			</div>
+
+			<h4>List</h4>
 
 			<div class="well" style="padding: 8px 0;">
 
@@ -176,19 +231,43 @@
 		<div id="bootGridView">
 			
 			<h3>BootGridView</h3>
+
+			<h4>Default</h4>
+
+			<?php $this->widget('BootGridView', array(
+				'dataProvider'=>$gridDataProvider,
+				'template'=>"{items}",
+				'itemsCssClass'=>'table',
+				'columns'=>$gridColumns,
+			)); ?>
+
+			<h4>Striped</h4>
+
+			<?php $this->widget('BootGridView', array(
+				'dataProvider'=>$gridDataProvider,
+				'template'=>"{items}",
+				'itemsCssClass'=>'table table-striped',
+				'columns'=>$gridColumns,
+			)); ?>
+
+			<h4>Condensed</h4>
+
+			<?php $this->widget('BootGridView', array(
+				'dataProvider'=>$gridDataProvider,
+				'template'=>"{items}",
+				'itemsCssClass'=>'table table-condensed',
+				'columns'=>$gridColumns,
+			)); ?>
+
+			<h4>Striped and condensed</h4>
+
+			<?php $this->widget('BootGridView', array(
+				'dataProvider'=>$gridDataProvider,
+				'template'=>"{items}",
+				'itemsCssClass'=>'table table-striped table-condensed',
+				'columns'=>$gridColumns,
+			)); ?>
 			
-			<p>@todo</p>
-			
-		</div>
-
-		<hr />
-
-		<div id="bootListView">
-
-			<h3>BootListView</h3>
-
-			<p>@todo</p>
-
 		</div>
 
 		<hr />
@@ -197,7 +276,11 @@
 
 			<h3>BootThumbs</h3>
 
-			<p>@todo</p>
+			<?php $this->widget('BootThumbs', array(
+				'dataProvider'=>$listDataProvider,
+				'template'=>"{items}\n{pager}",
+				'itemView'=>'_thumb',
+			)); ?>
 
 		</div>
 
@@ -277,7 +360,7 @@
 
 	</div>
 
-	<div class="span3">
+	<div class="span2">
 
 		<div class="well" style="padding: 8px 0;">
 
@@ -293,7 +376,6 @@
 					array('label'=>'BootTabbed','url'=>'#bootTabbed'),
 					array('label'=>'BootDetailView','url'=>'#bootDetailView'),
 					array('label'=>'BootGridView','url'=>'#bootGridView'),
-					array('label'=>'BootListView','url'=>'#bootListView'),
 					array('label'=>'BootThumbs','url'=>'#bootThumbs'),
 					array('label'=>'BootTooltip','url'=>'#bootTooltip'),
 					array('label'=>'BootPopover','url'=>'#bootPopover'),
