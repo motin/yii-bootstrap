@@ -14,10 +14,7 @@
 				'clientOptions'=>array('validateOnSubmit'=>true),
 			)); ?>
 
-			<?php /** @var BootActiveForm $form */?>
-			<?php //echo $form->textFieldRow($model, 'username'); ?>
-			<?php //echo $form->passwordFieldRow('password'); ?>
-			<?php //echo $form->checkBoxRow('rememberMe'); ?>
+			<p>@todo</p>
 
 			<div class="form-actions">
 				<?php echo CHtml::htmlButton('<i class="icon-ok icon-white"></i> Submit', array('class'=>'btn btn-primary','type'=>'submit')); ?>
@@ -97,8 +94,6 @@
 					),
 				),
 			)); ?>
-
-			<pre>Test</pre>
 
 		</div>
 

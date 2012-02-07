@@ -5,10 +5,12 @@
 	<meta name="language" content="en" />
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 	<link rel="stylesheet/less" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/less/styles.less">
+	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/less-1.2.1.min.js"></script>
+	<?php /*
 	<link rel="stylesheet/css" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/syntaxhighlighter/scripts/shCore.css">
 	<link rel="stylesheet/css" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js/syntaxhighlighter/styles/shThemeDefault.css">
-	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/less-1.2.1.min.js"></script>
 	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/syntaxhighlighter/styles/shCore.js"></script>
+	*/ ?>
 	<?php Yii::app()->bootstrap->registerCss(); ?>
 	<?php Yii::app()->bootstrap->registerCoreScript(); ?>
 </head>
@@ -19,13 +21,10 @@
 	'brand'=>CHtml::encode(Yii::app()->name),
 	'items'=>array(
 		array(
-			'htmlOptions'=>array('class'=>'pull-right'),
 			'items'=>array(
-				array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
-				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+				array('label'=>'Home', 'url'=>'#'),
+				array('label'=>'About', 'url'=>'#'),
+				array('label'=>'Contact', 'url'=>'#'),
 			),
 		),
 	),
