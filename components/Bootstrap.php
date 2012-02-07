@@ -18,15 +18,36 @@ class Bootstrap extends CApplicationComponent
 	 */
 	public function init()
 	{
-		Yii::setPathOfAlias('bootstrap', realpath(dirname(__FILE__).'/..'));
+		if (!Yii::getPathOfAlias('bootstrap'))
+			Yii::setPathOfAlias('bootstrap', realpath(dirname(__FILE__).'/..'));
 	}
 
 	/**
 	 * Registers the Bootstrap CSS.
 	 */
-	public function registerCoreCss()
+	public function registerCss()
 	{
 		Yii::app()->clientScript->registerCssFile($this->getAssetsUrl().'/css/bootstrap.min.css');
+	}
+
+	/**
+	 * Registers the Bootstrap responsive CSS.
+	 * @since 0.9.8
+	 */
+	public function registerResponsiveCss()
+	{
+		Yii::app()->clientScript->registerCssFile($this->getAssetsUrl().'/css/bootstrap-responsive.min.css');
+	}
+
+	/**
+	 * Registers the Bootstrap core JavaScript functionality.
+	 * @since 0.9.8
+	 */
+	public function registerCoreScript()
+	{
+		$this->registerScriptFile('jquery.ui.boot-dropdown.js');
+
+		Yii::app()->clientScript->registerScript(__CLASS__, "jQuery('.dropdown-toggle[data-toggle=\"dropdown\"]').bootDropdown();");
 	}
 
 	/**

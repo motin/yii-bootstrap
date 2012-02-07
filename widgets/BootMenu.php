@@ -6,196 +6,223 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
 
-Yii::import('zii.widgets.CMenu');
+Yii::import('bootstrap.widgets.BootWidget');
 
 /**
  * Bootstrap menu widget with support for dropdown sub-menus.
- * @since 0.9.5
+ * @since 0.9.8
+ * @todo Add api and target support. http://twitter.github.com/bootstrap/javascript.html#dropdowns
  */
-class BootMenu extends CMenu
+class BootMenu extends BootWidget
 {
-	/**
-	 * @var string the type of menu to display.
-	 * Following types are supported: '', 'tabs' and 'pills'.
-	 */
-	public $type = 'tabs';
+	// The different menu types.
+	const TYPE_UNSTYLED = '';
+	const TYPE_TABS = 'tabs';
+	const TYPE_PILLS = 'pills';
 
 	/**
-	 * Initializes the menu widget.
+	 * @var string the menu type.
+	 * Valid values are '', 'tabs' and 'pills'. Defaults to ''.
+	 */
+	public $type = self::TYPE_UNSTYLED;
+	/**
+	 * @var array the menu items.
+	 */
+	public $items = array();
+	/**
+	 * @var string the item template.
+	 */
+	public $itemTemplate;
+	/**
+	 * @var boolean whether to encode item labels.
+	 */
+	public $encodeLabel = true;
+	/**
+	 * @var array the HTML options for dropdown menus.
+	 */
+	public $dropdownOptions = array();
+
+	/**
+	 * Initializes the widget.
 	 */
 	public function init()
 	{
-		if (isset($this->htmlOptions['class']))
-			$this->htmlOptions['class'] .= ' nav nav-'.$this->type;
-		else
-			$this->htmlOptions['class'] = ' nav nav-'.$this->type;
-
-		parent::init();
+		$this->htmlOptions['id'] = $this->getId();
+		$route = $this->controller->getRoute();
+		$this->items = $this->normalizeItems($this->items, $route);
 	}
 
 	/**
-	 * Runs the menu widget.
+	 * Runs the widget.
 	 */
 	public function run()
 	{
-		parent::run();
+		if (!empty($this->items))
+		{
+			$cssClass = 'nav';
 
-		$id = $this->getId();
-		Yii::app()->clientScript->registerScript(__CLASS__.'#'.$id,"
-			jQuery('#{$id} .dropdown-toggle').bind('click', function() {
-				$(this).parent().toggleClass('open');
-			});
-		");
+			if (!empty($this->type))
+				$cssClass .= ' nav-'.$this->type;
+
+			if (isset($this->htmlOptions['class']))
+				$this->htmlOptions['class'] .= ' '.$cssClass;
+			else
+				$this->htmlOptions['class'] = $cssClass;
+
+			echo CHtml::openTag('ul', $this->htmlOptions).PHP_EOL;
+			$this->renderItems($this->items);
+			echo '</ul>';
+		}
 	}
 
-    /**
-     * Normalizes the items so that the 'active' state is properly identified for every menu item.
-     * @param array $items the items to be normalized.
-     * @param string $route the route of the current request.
-     * @param boolean $active whether there is an active child menu item.
-     * @return array the normalized menu items
-     */
-    protected function normalizeItems($items, $route, &$active)
-    {
-        foreach ($items as $i => $item)
-        {
-            if (is_array($item))
-            {
-                if (isset($item['visible']) && !$item['visible'])
-                {
-                    unset($items[$i]);
-                    continue;
-                }
+	/**
+	 * Renders the items in this menu.
+	 * @param array $items the menu items
+	 */
+	protected function renderItems($items)
+	{
+		foreach ($items as $item)
+		{
+			if (!is_array($item))
+				echo '<li class="divider"></li>';
+			else
+			{
+				$options = isset($item['itemOptions']) ? $item['itemOptions'] : array();
+				$class = array();
 
-                if (!isset($item['label']))
-                    $item['label'] = '';
+				if (isset($item['items']))
+					$class[] = 'dropdown';
 
-                if ($this->encodeLabel)
-                    $items[$i]['label'] = CHtml::encode($item['label']);
+				if ($item['active'])
+					$class[] = 'active';
 
-                $hasActiveChild = false;
+				if($class !== array())
+				{
+					if(empty($options['class']))
+						$options['class'] = implode(' ',$class);
+					else
+						$options['class'] .= ' '.implode(' ',$class);
+				}
 
-                if (isset($item['items']))
-                {
-                    $items[$i]['items'] = $this->normalizeItems($item['items'], $route, $hasActiveChild);
+				echo CHtml::openTag('li', $options);
 
-                    if (empty($items[$i]['items']) && $this->hideEmptyItems)
-                        unset($items[$i]['items']);
-                }
+				$menu = $this->renderItem($item);
 
-                if (!isset($item['active']))
-                {
-                    if ($this->activateParents && $hasActiveChild || $this->activateItems && $this->isItemActive($item, $route))
-                        $active = $items[$i]['active'] = true;
-                    else
-                        $items[$i]['active'] = false;
-                }
-                else if ($item['active'])
-                    $active = true;
-            }
-        }
+				if (isset($this->itemTemplate) || isset($item['template']))
+				{
+					$template = isset($item['template']) ? $item['template'] : $this->itemTemplate;
+					echo strtr($template, array('{menu}'=>$menu));
+				}
+				else
+					echo $menu;
 
-        return array_values($items);
-    }
+				if(isset($item['items']) && !empty($item['items']))
+				{
+					if (isset($item['dropdownOptions']['class']))
+						$item['dropdownOptions']['class'] .= ' dropdown-menu';
+					else
+						$item['dropdownOptions']['class'] = 'dropdown-menu';
 
-    /**
-     * Recursively renders the menu items.
-     * @param array $items the menu items to be rendered recursively
-	 * @param integer $depth the menu depth. Defaults to zero.
-     */
-    protected function renderMenuRecursive($items, $depth=0)
-    {
-        if ($depth > 1)
-            return;
+					$dropdownOptions = isset($item['dropdownOptions'])
+							? $item['dropdownOptions'] : $this->dropdownOptions;
 
-        $count = 0;
-        $n = count($items);
+					echo CHtml::openTag('ul', $dropdownOptions).PHP_EOL;
+					$this->renderItems($item['items']);
+					echo '</ul>'.PHP_EOL;
+				}
 
-        foreach ($items as $item)
-        {
-            if (is_array($item))
-            {
-                $count++;
-                $options = isset($item['itemOptions']) ? $item['itemOptions'] : array();
-                $class = array();
+				echo '</li>'.PHP_EOL;
+			}
+		}
+	}
 
-                if (isset($item['items']))
-                {
-                    $options['data-dropdown'] = 'dropdown';
-                    $class[] = 'dropdown';
-                }
+	/**
+	 * Renders a single item in this menu.
+	 * @param array $item the item configuration
+	 * @return string the rendered item
+	 */
+	protected function renderItem($item)
+	{
+		if (!isset($item['url']))
+	    	$item['url'] = '#';
 
-                if ($depth === 0 && $item['active'] && $this->activeCssClass != '')
-                    $class[] = $this->activeCssClass;
-
-                if ($count === 1 && $this->firstItemCssClass != '')
-                    $class[] = $this->firstItemCssClass;
-
-                if ($count === $n && $this->lastItemCssClass != '')
-                    $class[] = $this->lastItemCssClass;
-
-                if ($class !== array())
-                {
-                    if (empty($options['class']))
-                        $options['class'] = implode(' ', $class);
-                    else
-                        $options['class'] .= ' '.implode(' ', $class);
-                }
-
-                echo CHtml::openTag('li', $options);
-
-                $menu = $this->renderMenuItem($item);
-
-                if (isset($this->itemTemplate) || isset($item['template']))
-                {
-                    $template = isset($item['template']) ? $item['template'] : $this->itemTemplate;
-                    echo strtr($template, array('{menu}' => $menu));
-                }
-                else
-                    echo $menu;
-
-                if (isset($item['items']) && count($item['items']))
-                {
-                    if (isset($item['submenuOptions']['class']))
-                        $item['submenuOptions']['class'] .= ' dropdown-menu';
-                    else
-                        $item['submenuOptions']['class'] = 'dropdown-menu';
-
-                    echo "\n" . CHtml::openTag('ul', isset($item['submenuOptions']) ? $item['submenuOptions'] : $this->submenuHtmlOptions) . "\n";
-                    $this->renderMenuRecursive($item['items'], $depth + 1);
-                    echo '</ul>'."\n";
-                    echo '</ul>'."\n";
-                }
-
-                echo '</li>'."\n";
-            }
-            else
-                echo '<li class="divider"></li>';
-        }
-    }
-
-    /**
-     * Renders the content of a menu item.
-     * @param array $item the menu item to be rendered
-     * @return string
-     */
-    protected function renderMenuItem($item)
-    {
-        if (!isset($item['url']))
-            $item['url'] = '#';
-
-        if (isset($item['items']))
-        {
-            if (isset($item['linkOptions']['class']))
-                $item['linkOptions']['class'] .= ' dropdown-toggle';
-            else
-                $item['linkOptions']['class'] = 'dropdown-toggle';
+		if (isset($item['items']))
+		{
+			if (isset($item['linkOptions']['class']))
+				$item['linkOptions']['class'] .= ' dropdown-toggle';
+			else
+				$item['linkOptions']['class'] = 'dropdown-toggle';
 
 			$item['label'] .= ' <b class="caret"></b>';
 			$item['linkOptions']['data-toggle'] = 'dropdown';
-        }
+		}
 
-        $label = $this->linkLabelWrapper === null ? $item['label'] : '<' . $this->linkLabelWrapper . '>' . $item['label'] . '</' . $this->linkLabelWrapper . '>';
-        return CHtml::link($label, $item['url'], isset($item['linkOptions']) ? $item['linkOptions'] : array());
-    }
+		return CHtml::link($item['label'], $item['url'], isset($item['linkOptions']) ? $item['linkOptions'] : array());
+	}
+
+	/**
+	 * Normalizes the items in this menu.
+	 * @param array $items the items to be normalized
+	 * @param string $route the route of the current request
+	 * @return array the normalized menu items
+	 */
+	protected function normalizeItems($items, $route)
+	{
+		foreach ($items as $i => $item)
+		{
+			if (isset($item['visible']) && !$item['visible'])
+			{
+				unset($items[$i]);
+				continue;
+			}
+
+			if (!isset($item['label']))
+				$item['label'] = '';
+
+			if (isset($item['encodeLabel']) && $item['encodeLabel'])
+				$items[$i]['label'] = CHtml::encode($item['label']);
+
+			if (($this->encodeLabel && !isset($item['encodeLabel']))
+					|| (isset($item['encodeLabel']) && $item['encodeLabel'] !== false))
+				$items[$i]['label'] = CHtml::encode($item['label']);
+
+			if (!empty($item['items']) && is_array($item['items']))
+			{
+				$items[$i]['items'] = $this->normalizeItems($item['items'], $route);
+
+				if (empty($items[$i]['items']))
+					unset($items[$i]['items']);
+			}
+
+			if (!isset($item['active']))
+				$items[$i]['active'] = $this->isItemActive($item, $route);
+		}
+
+		return array_values($items);
+	}
+
+	/**
+	 * Checks whether a menu item is active.
+	 * @param array $item the menu item to be checked
+	 * @param string $route the route of the current request
+	 * @return boolean whether the menu item is active
+	 */
+	protected function isItemActive($item,$route)
+	{
+		if (isset($item['url']) && is_array($item['url']) && !strcasecmp(trim($item['url'][0], '/'), $route))
+		{
+			if (count($item['url']) > 1)
+			{
+				foreach (array_splice($item['url'], 1) as $name=>$value)
+				{
+					if (!isset($_GET[$name]) || $_GET[$name] != $value)
+						return false;
+				}
+			}
+
+			return true;
+		}
+
+		return false;
+	}
 }

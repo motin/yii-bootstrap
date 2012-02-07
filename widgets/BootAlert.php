@@ -29,7 +29,7 @@ class BootAlert extends BootWidget
 	public function init()
 	{
 		parent::init();
-		$this->registerScriptFile('jquery.ui.bootalert.js');
+		$this->registerScriptFile('jquery.ui.boot-alert.js');
 	}
 
 	/**

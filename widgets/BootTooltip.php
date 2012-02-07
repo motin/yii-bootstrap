@@ -8,12 +8,12 @@
 
 Yii::import('bootstrap.widgets.BootWidget');
 
-class BootTwipsy extends BootWidget
+class BootTooltip extends BootWidget
 {
 	/**
 	 * @var string the CSS selector to use for selecting the twipsy elements.
 	 */
-	public $selector = 'a[title], a[data-title]';
+	public $selector = 'a[rel="tooltip"]';
 	
 	/**
 	 * Initializes the widget.
@@ -21,7 +21,7 @@ class BootTwipsy extends BootWidget
 	public function init()
 	{
 		parent::init();
-		$this->registerScriptFile('jquery.ui.boottwipsy.js');
+		$this->registerScriptFile('jquery.ui.boot-tooltip.js');
 	}
 
 	/**
@@ -31,6 +31,6 @@ class BootTwipsy extends BootWidget
 	{
 		$id = $this->getId();
 		$options = !empty($this->options) ? CJavaScript::encode($this->options) : '';
-		$this->registerScript(__CLASS__.'#'.$id,"jQuery('{$this->selector}').bootTwipsy($options);");
+		$this->registerScript(__CLASS__.'#'.$id,"jQuery('{$this->selector}').bootTooltip($options);");
 	}
 }

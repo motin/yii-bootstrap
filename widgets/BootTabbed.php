@@ -12,7 +12,7 @@ Yii::import('bootstrap.widgets.BootWidget');
  * Bootstrap JavaScript tabs widget.
  * @since 0.9.6
  */
-class BootTabs extends BootWidget
+class BootTabbed extends BootWidget
 {
 	/**
 	 * @var string the type of tabs to display. Defaults to 'tabs'.
@@ -38,7 +38,7 @@ class BootTabs extends BootWidget
 	/**
 	 * @var string the CSS selector to use for selecting the tabs elements.
 	 */
-    public $selector = '.nav-tabs li > a, .nav-pills > li > a';
+    public $selector = '.nav-tabs > li > a, .nav-pills > li > a';
 
     /**
      * Initializes the widget.
@@ -46,7 +46,7 @@ class BootTabs extends BootWidget
     public function init()
     {
         parent::init();
-        $this->registerScriptFile('jquery.ui.boottabs.js');
+        $this->registerScriptFile('jquery.ui.boot-tabs.js');
     }
 
     /**
@@ -112,6 +112,7 @@ class BootTabs extends BootWidget
                 }
             }
         }
+
         echo CHtml::openTag('ul', array('class'=>'nav nav-'.$this->type, 'data-'.$this->type=>$this->type));
         echo $tabsOut;
         echo '</ul>';

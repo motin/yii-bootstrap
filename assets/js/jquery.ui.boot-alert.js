@@ -1,5 +1,5 @@
 /*!
- * Bootstrap Alert jQuery UI widget file.
+ * BootAlert jQuery UI widget file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -9,6 +9,11 @@
 ( function( $ ) {
 	"use strict" // set strict mode
 
+	/**
+	 * BootAlert class.
+	 * @class jQuery.ui.bootAlert
+	 * @augments jQuery.ui.bootWidget
+	 */
 	var widget = $.extend( {}, $.ui.bootWidget.prototype, {
 		/**
 		 * The name of the widget.
@@ -31,6 +36,7 @@
 		},
 		/**
 		 * Creates the widget.
+		 * @private
 		 */
 		_create: function() {
 			var alerts = this.element.find( '.alert' );
@@ -63,11 +69,12 @@
 		 * Initializes the alert by appending the close link
 		 * and by setting a time out for the close callback.
 		 * @param {Object} alert The alert element.
+		 * @private
 		 */
 		_initAlert: function( alert ) {
 			var self = this;
 
-			this.element.find( '.close' ).bind( 'click', function( event ) {
+			this.element.find( '.close' ).on( 'click', function( event ) {
 				self.close( alert );
 				event.preventDefault();
 				return false;
@@ -91,12 +98,6 @@
 			}
 
 			return this;
-		},
-		/**
-		 * Destructs this widget.
-		 */
-		_destroy: function() {
-			// Nothing here yet...
 		}
 	} );
 

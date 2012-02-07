@@ -25,7 +25,7 @@ class BootWidget extends CWidget
 		Yii::app()->clientScript->registerCoreScript('jquery');
 		Yii::app()->clientScript->registerCoreScript('jquery.ui');
 		
-		$this->registerScriptFile('jquery.ui.bootwidget.js');
+		$this->registerScriptFile('jquery.ui.boot-widget.js');
 	}
 
 	/**

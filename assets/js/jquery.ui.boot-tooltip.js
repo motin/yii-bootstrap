@@ -1,5 +1,5 @@
 /*!
- * Bootstrap Twipsy jQuery UI widget file.
+ * BootTooltip jQuery UI widget file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -9,17 +9,24 @@
 ( function( $ ) {
 	"use strict" // set strict mode
 
+	// todo: fix live binder, currently it doesn't work.
+	// todo: implement support for transition effects.
+	/**
+	 * BootTooltip class.
+	 * @class jQuery.ui.bootTooltip
+	 * @augments jQuery.ui.bootWidget
+	 */
 	var widget = $.extend( {}, $.ui.bootWidget.prototype, {
 		/**
 		 * The name of the widget.
 		 * @type String
 		 */
-		name: 'twipsy',
+		name: 'tooltip',
 		/**
 		 * The value of the tooltip id attribute.
 		 * @type String
 		 */
-		tooltipId: 'twipsy',
+		tooltipId: 'tooltip',
 		/**
 		 * Indicates whether the tooltip is visible.
 		 * @type Boolean
@@ -27,38 +34,38 @@
 		visible: false,
 		/**
 		 * Widget options.
-		 * - placement: The placement of the tooltip. Valid values are: "above", "right", "below" and "left".
+		 * - placement: The placement of the tooltip. Valid values are: "top", "right", "bottom" and "left".
 		 * - showEvent: The event for showing the tooltip.
 		 * - hideEvent: The event for hiding the tooltip.
 		 * - offset: Pixel offset of the tooltip.
-		 * - live: Indicates whether to use jQuery.live or jQuery.bind.
+		 * - live: Indicates whether to use jQuery.live or jQuery.on.
 		 * @type Object
 		 */
 		options: {
-			placement: 'above',
-			showEvent: 'mouseenter',
-			hideEvent: 'mouseleave',
+			placement: 'top',
+			eventIn: 'mouseenter',
+			eventOut: 'mouseleave',
+			title: '',
 			offset: 0,
 			live: false
 		},
 		/**
 		 * Creates the widget.
+		 * @private
 		 */
 		_create: function() {
 			var self = this,
-				element = self.element,
-				options = self.options,
-				title = element.attr( 'title' ),
-				binder = options.live ? 'live' : 'bind';
+				title = this.element.attr( 'data-title' ) || this.element.attr( 'title' ) || this.options.title,
+				binder = this.options.live ? 'live' : 'on';
 
 			if ( title && title.length > 0 ) {
-				element.removeAttr( 'title' ); // remove the title to prevent it being displayed
-				element.attr( 'data-title', title );
+				this.element.removeAttr( 'title' ); // remove the title to prevent it being displayed
+				this.element.attr( 'data-original-title', title );
 
-				element[ binder ]( options.showEvent, function() {
+				this.element[ binder ]( this.options.eventIn, function() {
                     self.show();
                 });
-				element[ binder ]( options.hideEvent, function() {
+				this.element[ binder ]( this.options.eventOut, function() {
                     self.hide();
                 });
 			}
@@ -71,12 +78,12 @@
 				var tooltip = this._getTooltip(),
 					position;
 
-				tooltip.find( '.twipsy-inner' ).html( this.element.attr( 'data-title' ) );
+				tooltip.find( '.tooltip-inner' ).html( this.element.attr( 'data-original-title' ) );
 				position = this._pos();
 				tooltip.css( {
 					top: position.top,
 					left: position.left
-				} ).show(); // todo: implement support for effects.
+				} ).show();
 
 				this.visible = true;
 			}
@@ -89,8 +96,20 @@
 		hide: function() {
 			if ( this.visible ) {
 				var tooltip = this._getTooltip();
-				tooltip.hide(); // todo: implement support for effects.
+				tooltip.hide();
 				this.visible = false;
+			}
+
+			return this;
+		},
+		/**
+		 * Toggles the tooltip.
+		 */
+		toggle: function() {
+			if ( this.visible ) {
+				this.hide();
+			} else {
+				this.show();
 			}
 
 			return this;
@@ -98,6 +117,7 @@
 		/**
 		 * Calculates the position for the tooltip based on the element.
 		 * @return {Object} The offset, an object with "top" and "left" properties.
+		 * @private
 		 */
 		_pos: function() {
 			var twipsy = this._getTooltip(),
@@ -107,8 +127,8 @@
 				left = 0;
 
 			switch ( this.options.placement ) {
-				case 'above':
-					top = offset.top - twipsy.outerHeight() - this.options.offset,
+				case 'top':
+					top = offset.top - twipsy.outerHeight() - this.options.offset;
 					left = offset.left + ( ( element.outerWidth() - twipsy.outerWidth() ) / 2 );
 					break;
 
@@ -117,8 +137,8 @@
 					left = offset.left + element.outerWidth() - this.options.offset;
 					break;
 
-				case 'below':
-					top = offset.top + element.outerHeight() + this.options.offset,
+				case 'bottom':
+					top = offset.top + element.outerHeight() + this.options.offset;
 					left = offset.left + ( ( element.outerWidth() - twipsy.outerWidth() ) / 2 );
 					break;
 
@@ -136,18 +156,19 @@
 		/**
 		 * Creates the tooltip element and appends it to the body element.
 		 * @returns {HTMLElement} The element.
+		 * @private
 		 */
 		_createTooltip: function() {
-			var tooltip = $( '<div class="twipsy">' )
+			var tooltip = $( '<div class="tooltip in">' )
 				.attr( 'id', this.tooltipId )
 				.addClass( this.options.placement )
 				.appendTo( 'body' )
 				.hide();
 
-			$( '<div class="twipsy-arrow">' )
+			$( '<div class="tooltip-arrow">' )
 				.appendTo( tooltip );
 
-			$( '<div class="twipsy-inner">' )
+			$( '<div class="tooltip-inner">' )
 				.appendTo( tooltip );
 
 			return tooltip;
@@ -156,6 +177,7 @@
 		 * Returns the tooltip element from the body element.
 		 * The element is created if it doesn't already exist.
 		 * @return {HTMLElement} The element.
+		 * @private
 		 */
 		_getTooltip: function() {
 			var tooltip = $( '#' + this.tooltipId );
@@ -167,17 +189,18 @@
 			return tooltip;
 		},
 		/**
-		 * Destructs this widget.
+		 * Destroys the widget.
+		 * @private
 		 */
 		_destroy: function() {
-			this.element.unbind( this.options.showEvent );
-			this.element.unbind( this.options.hideEvent );
+			this.element.unbind( this.options.eventIn );
+			this.element.unbind( this.options.eventOut );
 		}
 	} );
 
 	/**
-	 * BootTwipsy jQuery UI widget.
+	 * BootTooltip jQuery UI widget.
 	 */
-	$.widget( 'ui.bootTwipsy', widget );
+	$.widget( 'ui.bootTooltip', widget );
 
 } )( jQuery );
