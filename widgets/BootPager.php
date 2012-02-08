@@ -6,6 +6,9 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
 
+/**
+ * @todo DocBlock
+ */
 class BootPager extends CLinkPager
 {
 	/**

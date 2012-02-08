@@ -8,6 +8,9 @@
 
 Yii::import('zii.widgets.CListView');
 
+/**
+ * @todo DocBlock
+ */
 class BootListView extends CListView
 {
 	/**

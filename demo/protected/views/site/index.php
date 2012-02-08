@@ -52,10 +52,7 @@ Yii::app()->user->setFlash('error',
 			<h2>BootCrumb</h2>
 
 			<?php $this->widget('bootstrap.widgets.BootCrumb', array(
-				'links'=>array(
-					'Library'=>'#',
-					'Data',
-				),
+				'links'=>array('Library'=>'#', 'Data'),
 			)); ?>
 
 			<h4>Source code</h4>
@@ -63,10 +60,7 @@ Yii::app()->user->setFlash('error',
 <?php echo $parser->safeTransform("~~~
 [php]
 <?php \$this->widget('bootstrap.widgets.BootCrumb', array(
-	'links'=>array(
-		'Library'=>'#',
-		'Data',
-	),
+	'links'=>array('Library'=>'#', 'Data'),
 )); ?>
 ~~~"); ?>
 
@@ -410,6 +404,15 @@ Yii::app()->user->setFlash('error',
 		jQuery('a[rel=tooltip]').tooltip();
 	}\",
 )); ?>
+~~~
+**\_thumb.php**
+~~~
+[html]
+<li class=\"span3\">
+	<a href=\"#\" class=\"thumbnail\" rel=\"tooltip\" data-title=\"Tooltip\">
+		<img src=\"http://placehold.it/280x180\" alt=\"\">
+	</a>
+</li>
 ~~~"); ?>
 
 			<a class="top" href="#top">Back to top &uarr;</a>
@@ -488,6 +491,12 @@ Yii::app()->user->setFlash('error',
 
 			<?php $this->beginWidget('bootstrap.widgets.BootModal', array(
 				'id'=>'modal',
+				'events'=>array(
+					'show'=>"js:function() { console.log('modal show.'); }",
+					'shown'=>"js:function() { console.log('modal shown.'); }",
+					'hide'=>"js:function() { console.log('modal hide.'); }",
+					'hidden'=>"js:function() { console.log('modal hidden.'); }",
+				),
 				'htmlOptions'=>array('class'=>'modal hide fade'),
 			)); ?>
 
@@ -518,6 +527,12 @@ Yii::app()->user->setFlash('error',
 [php]
 <?php \$this->beginWidget('bootstrap.widgets.BootModal', array(
 	'id'=>'modal',
+	'events'=>array(
+		'show'=>\"js:function() { console.log('modal show.'); }\",
+		'shown'=>\"js:function() { console.log('modal shown.'); }\",
+		'hide'=>\"js:function() { console.log('modal hide.'); }\",
+		'hidden'=>\"js:function() { console.log('modal hidden.'); }\",
+	),
 	'htmlOptions'=>array('class'=>'hide fade'),
 )); ?>
 ~~~

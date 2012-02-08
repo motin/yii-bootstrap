@@ -7,7 +7,9 @@
  */
 
 /**
- * @todo Fix collapse. http://twitter.github.com/bootstrap/javascript.html#collapse
+ * @todo Add support for passing options to the global plugins.
+ * @todo Fix collapse integration. http://twitter.github.com/bootstrap/javascript.html#collapse
+ * @todo DocBlock
  */
 class Bootstrap extends CApplicationComponent
 {

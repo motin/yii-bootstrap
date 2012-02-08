@@ -8,6 +8,9 @@
 
 Yii::import('bootstrap.widgets.BootInput');
 
+/**
+ * @todo DocBlock
+ */
 class BootActiveForm extends CActiveForm
 {
 	// The different form types.

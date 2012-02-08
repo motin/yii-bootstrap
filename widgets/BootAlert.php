@@ -9,7 +9,8 @@
 Yii::import('bootstrap.widgets.BootWidget');
 
 /**
- * @todo Add support for events. http://twitter.github.com/bootstrap/javascript.html#alerts
+ * @todo DocBlock
+ * @todo Fix event support. http://twitter.github.com/bootstrap/javascript.html#alerts
  */
 class BootAlert extends BootWidget
 {
@@ -54,6 +55,23 @@ class BootAlert extends BootWidget
 
 		echo '</div>';
 
-		Yii::app()->clientScript->registerScript(__CLASS__.'#'.$this->id,"jQuery('#{$this->id}').alert();");
+		$selector = "#{$this->id} .alert";
+		Yii::app()->clientScript->registerScript(__CLASS__.'#'.$this->id, "jQuery('{$selector}').alert();");
+
+		/*
+		// Register the "close" event-handler.
+		if (isset($this->events['close']))
+		{
+			$fn = CJavaScript::encode($this->events['close']);
+			Yii::app()->clientScript->registerScript(__CLASS__.'#'.$this->id.'.close', "jQuery('{$selector}').bind('close', {$fn});");
+		}
+
+		// Register the "closed" event-handler.
+		if (isset($this->events['closed']))
+		{
+			$fn = CJavaScript::encode($this->events['closed']);
+			Yii::app()->clientScript->registerScript(__CLASS__.'#'.$this->id.'.closed', "jQuery('{$selector}').bind('closed', {$fn});");
+		}
+		*/
 	}
 }

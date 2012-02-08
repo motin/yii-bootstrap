@@ -8,6 +8,9 @@
 
 Yii::import('bootstrap.widgets.BootListView');
 
+/**
+ * @todo DocBlock
+ */
 class BootThumbs extends BootListView
 {
 	/**

@@ -45,10 +45,11 @@
 	<div class="footer">
 
 		<p class="powered">
-			Powered by <?php echo CHtml::link('Yii 1.1.9', 'http://www.yiiframework.com'); ?> //
-			<?php echo CHtml::link('Yii-Bootstrap 0.9.8', 'http://www.yiiframework.com/extension/bootstrap'); ?> //
-			<?php echo CHtml::link('Bootstrap 2', 'http://twitter.github.com/bootstrap'); ?> //
-			<?php echo CHtml::link('LESS 1.2.1', 'http://www.lesscss.org'); ?>
+			Powered by <?php echo CHtml::link('Yii 1.1.9', 'http://www.yiiframework.com', array('target'=>'_blank')); ?> //
+			<?php echo CHtml::link('jQuery 1.7.1', 'http://www.jquery.com', array('target'=>'_blank')); ?> //
+			<?php echo CHtml::link('Yii-Bootstrap 0.9.8', 'http://www.yiiframework.com/extension/bootstrap', array('target'=>'_blank')); ?> //
+			<?php echo CHtml::link('Bootstrap 2', 'http://twitter.github.com/bootstrap', array('target'=>'_blank')); ?> //
+			<?php echo CHtml::link('LESS 1.2.1', 'http://www.lesscss.org', array('target'=>'_blank')); ?>
 		</p>
 
 	</div>

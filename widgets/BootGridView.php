@@ -8,6 +8,9 @@
 
 Yii::import('zii.widgets.grid.CGridView');
 
+/**
+ * @todo DocBlock
+ */
 class BootGridView extends CGridView
 {
 	/**

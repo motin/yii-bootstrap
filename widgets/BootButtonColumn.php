@@ -1,7 +1,13 @@
 <?php
+/**
+ * @todo DocBlock
+ */
 
 Yii::import('zii.widgets.grid.CButtonColumn');
 
+/**
+ * @todo DocBlock
+ */
 class BootButtonColumn extends CButtonColumn
 {
 	public $viewButtonIconCssClass = 'icon-search';

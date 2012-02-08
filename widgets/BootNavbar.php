@@ -9,7 +9,7 @@
 Yii::import('bootstrap.widgets.BootWidget');
 
 /**
- * Bootstrap navigation widget with support for dropdown menus.
+ * Bootstrap navigation bar widget.
  * @since 0.9.7
  * @todo Add collapse support. http://twitter.github.com/bootstrap/javascript.html#collapse
  */
@@ -48,11 +48,13 @@ class BootNavbar extends BootWidget
 	 */
 	public function init()
 	{
-		if (!isset($this->brand))
+		if ($this->brand !== false)
+		{
 			$this->brand = CHtml::encode(Yii::app()->name);
 
-		if (!isset($this->brandUrl))
-			$this->brandUrl = Yii::app()->homeUrl;
+			if (!isset($this->brandUrl))
+				$this->brandUrl = Yii::app()->homeUrl;
+		}
 	}
 
 	/**
@@ -87,7 +89,7 @@ class BootNavbar extends BootWidget
         if ($this->brand)
             echo CHtml::openTag('a', $this->brandOptions).$this->brand.'</a>';
         
-		echo '<div class="nav-collapse collapse">';
+		echo '<div class="nav-collapse">';
 
 		foreach ($this->items as $item)
 		{

@@ -8,6 +8,9 @@
 
 Yii::import('bootstrap.widgets.BootWidget');
 
+/**
+ * @todo DocBlock
+ */
 class BootTooltip extends BootWidget
 {
 	/**

@@ -6,12 +6,19 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
 
+/**
+ * @todo DocBlock
+ */
 class BootWidget extends CWidget
 {
 	/**
-	 * @var array the initial JavaScript options that should be passed to the Bootstrap plugin.
+	 * @var array the options for the Bootstrap JavaScript plugin.
 	 */
 	public $options = array();
+	/**
+	 * @var string[] the JavaScript event handlers.
+	 */
+	public $events = array();
 	/**
 	 * @var array the HTML attributes for the widget container.
 	 */
@@ -24,8 +31,6 @@ class BootWidget extends CWidget
 	{
 		Yii::app()->clientScript->registerCoreScript('jquery');
 		Yii::app()->clientScript->registerCoreScript('jquery.ui');
-		
-		$this->registerScriptFile('jquery.ui.boot-widget.js');
 	}
 
 	/**

@@ -8,6 +8,9 @@
 
 Yii::import('zii.widgets.CDetailView');
 
+/**
+ * @todo DocBlock
+ */
 class BootDetailView extends CDetailView
 {
 	/**

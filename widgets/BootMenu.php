@@ -9,9 +9,8 @@
 Yii::import('bootstrap.widgets.BootWidget');
 
 /**
- * Bootstrap menu widget with support for dropdown sub-menus.
+ * Bootstrap menu widget.
  * @since 0.9.8
- * @todo Add api and target support. http://twitter.github.com/bootstrap/javascript.html#dropdowns
  */
 class BootMenu extends BootWidget
 {
