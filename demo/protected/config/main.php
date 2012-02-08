@@ -1,7 +1,7 @@
 <?php
 
 // Set the path of Bootstrap to be the root of the project.
-Yii::setPathOfAlias('bootstrap', realpath(dirname(__FILE__).'/../../../bootstrap/'));
+Yii::setPathOfAlias('bootstrap', realpath(dirname(__FILE__).'/../../../'));
 
 // Application configuration.
 return array(
