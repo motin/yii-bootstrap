@@ -2,69 +2,91 @@
 
 <div class="row">
 
-	<div class="span10">
+	<div class="span9">
 
-		<div id="bootActiveForm">
+		<h1>Widgets</h1>
 
-			<h3>BootActiveForm</h3>
+		<div class="section" id="bootAlert">
 
-			<?php $form=$this->beginWidget('BootActiveForm', array(
-				'id'=>'login-form',
-				'enableClientValidation'=>true,
-				'clientOptions'=>array('validateOnSubmit'=>true),
+			<h2>BootAlert</h2>
+
+			<?php
+			Yii::app()->user->setFlash('success',
+					'<strong>Well done!</strong> You successfully read this important alert message.');
+			Yii::app()->user->setFlash('info',
+					'<strong>Heads up!</strong> This alert needs your attention, but it\'s not super important.');
+			Yii::app()->user->setFlash('warning',
+					'<strong>Warning!</strong> Best check yo self, you\'re not looking too good.');
+			Yii::app()->user->setFlash('error',
+					'<strong>Oh snap!</strong> Change a few things up and try submitting again.');
+			?>
+
+			<?php $this->widget('bootstrap.widgets.BootAlert', array(
+				'options'=>array(
+					'displayTime'=>0, // indefinitely
+				),
 			)); ?>
 
-			<p>@todo</p>
+			<h4>Source code</h4>
 
-			<div class="form-actions">
-				<?php echo CHtml::htmlButton('<i class="icon-ok icon-white"></i> Submit', array('class'=>'btn btn-primary','type'=>'submit')); ?>
-				<?php echo CHtml::htmlButton('<i class="icon-remove"></i> Reset', array('class'=>'btn','type'=>'reset')); ?>
-			</div>
+<?php echo $parser->safeTransform("~~~
+[php]
+<?php
+Yii::app()->user->setFlash('success',
+		'<strong>Well done!</strong> You successfully read this important alert message.');
+Yii::app()->user->setFlash('info',
+		'<strong>Heads up!</strong> This alert needs your attention, but it\'s not super important.');
+Yii::app()->user->setFlash('warning',
+		'<strong></strong>Warning!</strong> Best check yo self, you\'re not looking too good.');
+Yii::app()->user->setFlash('error',
+		'<strong>Oh snap!</strong> Change a few things up and try submitting again.');
+?>
+~~~
+~~~
+[php]
+<?php \$this->widget('bootstrap.widgets.BootAlert', array(
+	'options'=>array(
+		'displayTime'=>0, // indefinitely
+	),
+)); ?>
+~~~"); ?>
 
-			<?php $this->endWidget(); ?>
+			<a class="top" href="#top">Back to top &uarr;</a>
 
 		</div>
 
-		<div id="bootAlert">
+		<div class="section" id="bootCrumb">
 
-			<h3>BootAlert</h3>
+			<h2>BootCrumb</h2>
 
-			<?php Yii::app()->user->setFlash('success', '<strong>Well done!</strong> You successfully read this important alert message.'); ?>
-			<?php Yii::app()->user->setFlash('info', '<strong>Heads up!</strong> This alert needs your attention, but it\'s not super important.'); ?>
-			<?php Yii::app()->user->setFlash('warning', '<strong>Warning!</strong> Best check yo self, you\'re not looking too good.'); ?>
-			<?php Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few things up and try submitting again.'); ?>
-
-			<?php $this->widget('BootAlert', array(
-				'options'=>array('displayTime'=>0),
-			)); ?>
-
-		</div>
-
-		<hr />
-
-		<div id="bootCrumb">
-
-			<h3>BootCrumb</h3>
-
-			<?php $this->widget('BootCrumb', array(
+			<?php $this->widget('bootstrap.widgets.BootCrumb', array(
 				'links'=>array('Library'=>'#', 'Data'),
 			)); ?>
 
+			<h4>Source code</h4>
+
+<?php echo $parser->safeTransform("~~~
+[php]
+<?php \$this->widget('bootstrap.widgets.BootCrumb', array(
+	'links'=>array('Library'=>'#', 'Data'),
+)); ?>
+~~~"); ?>
+
+			<a class="top" href="#top">Back to top &uarr;</a>
+
 		</div>
 
-		<hr />
+		<div class="section" id="bootNavbar">
 
-		<div id="bootNavbar">
+			<h2>BootNavbar</h2>
 
-			<h3>BootNavbar</h3>
-
-			<?php $this->widget('BootNavbar', array(
+			<?php $this->widget('bootstrap.widgets.BootNavbar', array(
 				'fixed'=>false,
 				'brand'=>'Project name',
 				'brandUrl'=>'#',
 				'items'=>array(
 					array(
-						'class'=>'BootMenu',
+						'class'=>'bootstrap.widgets.BootMenu',
 						'items'=>array(
 							array('label'=>'Home', 'url'=>'#', 'active'=>true),
 							array('label'=>'Link', 'url'=>'#'),
@@ -77,9 +99,11 @@
 							)),
 						),
 					),
-					'<form class="navbar-search pull-left" action=""><input type="text" class="search-query span2" placeholder="Search"></form>',
+					'<form class="navbar-search pull-left" action="">
+						<input type="text" class="search-query span2" placeholder="Search">
+					</form>',
 					array(
-						'class'=>'BootMenu',
+						'class'=>'bootstrap.widgets.BootMenu',
 						'htmlOptions'=>array('class'=>'pull-right'),
 						'items'=>array(
 							array('label'=>'Link', 'url'=>'#'),
@@ -95,21 +119,67 @@
 				),
 			)); ?>
 
+			<h4>Source code</h4>
+
+<?php echo $parser->safeTransform("~~~
+[php]
+<?php \$this->widget('bootstrap.widgets.BootNavbar', array(
+	'fixed'=>false,
+	'brand'=>'Project name',
+	'brandUrl'=>'#',
+	'items'=>array(
+		array(
+			'class'=>'bootstrap.widgets.BootMenu',
+			'items'=>array(
+				array('label'=>'Home', 'url'=>'#', 'active'=>true),
+				array('label'=>'Link', 'url'=>'#'),
+				array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
+					array('label'=>'Action', 'url'=>'#'),
+					array('label'=>'Another action', 'url'=>'#'),
+					array('label'=>'Something else here', 'url'=>'#'),
+					'---',
+					array('label'=>'Separated link', 'url'=>'#'),
+				)),
+			),
+		),
+		'<form class=\"navbar-search pull-left\" action=\"\">
+			<input type=\"text\" class=\"search-query span2\" placeholder=\"Search\">
+		</form>',
+		array(
+			'class'=>'bootstrap.widgets.BootMenu',
+			'htmlOptions'=>array('class'=>'pull-right'),
+			'items'=>array(
+				array('label'=>'Link', 'url'=>'#'),
+				array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
+					array('label'=>'Action', 'url'=>'#'),
+					array('label'=>'Another action', 'url'=>'#'),
+					array('label'=>'Something else here', 'url'=>'#'),
+					'---',
+					array('label'=>'Separated link', 'url'=>'#'),
+				)),
+			),
+		),
+	),
+)); ?>
+~~~"); ?>
+
+			<a class="top" href="#top">Back to top &uarr;</a>
+
 		</div>
 
-		<hr />
+		<div class="section" id="bootMenu">
 
-		<div id="bootMenu">
+			<h2>BootMenu</h2>
 
-			<h3>BootMenu</h3>
-
-			<h4>Tabs</h4>
+			<h3>Tabs</h3>
 
 			<div class="row">
 
 				<div class="span5">
 
-					<?php $this->widget('BootMenu', array(
+					<h4>Default</h4>
+
+					<?php $this->widget('bootstrap.widgets.BootMenu', array(
 						'type'=>'tabs',
 						'items'=>array(
 							array('label'=>'Home', 'url'=>'#', 'active'=>true),
@@ -126,9 +196,11 @@
 
 				</div>
 
-				<div class="span5">
+				<div class="span4">
 
-					<?php $this->widget('BootMenu', array(
+					<h4>Stacked</h4>
+
+					<?php $this->widget('bootstrap.widgets.BootMenu', array(
 						'type'=>'tabs',
 						'stacked'=>true,
 						'items'=>array(
@@ -148,13 +220,15 @@
 
 			</div>
 
-			<h4>Pills</h4>
+			<h3>Pills</h3>
 
 			<div class="row">
 
 				<div class="span5">
 
-					<?php $this->widget('BootMenu', array(
+					<h4>Default</h4>
+
+					<?php $this->widget('bootstrap.widgets.BootMenu', array(
 						'type'=>'pills',
 						'items'=>array(
 							array('label'=>'Home', 'url'=>'#', 'active'=>true),
@@ -171,9 +245,11 @@
 
 				</div>
 
-				<div class="span5">
+				<div class="span4">
 
-					<?php $this->widget('BootMenu', array(
+					<h4>Stacked</h4>
+
+					<?php $this->widget('bootstrap.widgets.BootMenu', array(
 						'type'=>'pills',
 						'stacked'=>true,
 						'items'=>array(
@@ -193,11 +269,11 @@
 
 			</div>
 
-			<h4>List</h4>
+			<h3>List</h3>
 
 			<div class="well" style="padding: 8px 0;">
 
-				<?php $this->widget('BootMenu', array(
+				<?php $this->widget('bootstrap.widgets.BootMenu', array(
 					'type'=>'list',
 					'items'=>array(
 						array('label'=>'Home', 'url'=>'#', 'active'=>true),
@@ -214,81 +290,125 @@
 
 			</div>
 
+			<h4>Source code</h4>
+
+<?php echo $parser->safeTransform("~~~
+[php]
+<?php \$this->widget('bootstrap.widgets.BootMenu', array(
+	'type'=>'tabs', // '', 'tabs', 'pills' or 'list'
+	'stacked'=>false, // whether this is a stacked menu
+	'items'=>array(
+		array('label'=>'Home', 'url'=>'#', 'active'=>true),
+		array('label'=>'Profile', 'url'=>'#'),
+		array('label'=>'Dropdown', 'items'=>array(
+			array('label'=>'Secondary link', 'url'=>'#'),
+			array('label'=>'Something else here', 'url'=>'#'),
+			'---',
+			array('label'=>'Another link', 'url'=>'#'),
+		)),
+		array('label'=>'Messages', 'url'=>'#'),
+	),
+)); ?>
+~~~"); ?>
+
+			<a class="top" href="#top">Back to top &uarr;</a>
+
 		</div>
 
-		<hr />
+		<div class="section" id="bootTabbed">
 
-		<div id="bootTabbed">
+			<h2>BootTabbed</h2>
 
-			<h3>BootTabbed</h3>
-			
 			<p>@todo</p>
 
+			<a class="top" href="#top">Back to top &uarr;</a>
+
 		</div>
 
-		<hr />
+		<div class="section" id="bootGridView">
 
-		<div id="bootGridView">
-			
-			<h3>BootGridView</h3>
+			<h2>BootGridView</h2>
 
-			<h4>Default</h4>
+			<h3>Default</h3>
 
-			<?php $this->widget('BootGridView', array(
+			<?php $this->widget('bootstrap.widgets.BootGridView', array(
 				'dataProvider'=>$gridDataProvider,
 				'template'=>"{items}",
 				'itemsCssClass'=>'table',
 				'columns'=>$gridColumns,
 			)); ?>
 
-			<h4>Striped</h4>
+			<h3>Striped</h3>
 
-			<?php $this->widget('BootGridView', array(
+			<?php $this->widget('bootstrap.widgets.BootGridView', array(
 				'dataProvider'=>$gridDataProvider,
 				'template'=>"{items}",
 				'itemsCssClass'=>'table table-striped',
 				'columns'=>$gridColumns,
 			)); ?>
 
-			<h4>Condensed</h4>
+			<h3>Condensed</h3>
 
-			<?php $this->widget('BootGridView', array(
+			<?php $this->widget('bootstrap.widgets.BootGridView', array(
 				'dataProvider'=>$gridDataProvider,
 				'template'=>"{items}",
 				'itemsCssClass'=>'table table-condensed',
 				'columns'=>$gridColumns,
 			)); ?>
 
-			<h4>Striped and condensed</h4>
+			<h3>Striped and condensed</h3>
 
-			<?php $this->widget('BootGridView', array(
+			<?php $this->widget('bootstrap.widgets.BootGridView', array(
 				'dataProvider'=>$gridDataProvider,
 				'template'=>"{items}",
 				'itemsCssClass'=>'table table-striped table-condensed',
 				'columns'=>$gridColumns,
 			)); ?>
-			
+
+			<h4>Source code</h4>
+
+<?php echo $parser->safeTransform("~~~
+[php]
+<?php \$this->widget('bootstrap.widgets.BootGridView', array(
+	'dataProvider'=>\$gridDataProvider,
+	'template'=>\"{items}\",
+	'itemsCssClass'=>'table table-striped table-condensed',
+	'columns'=>\$gridColumns,
+)); ?>
+~~~"); ?>
+
+			<a class="top" href="#top">Back to top &uarr;</a>
+
 		</div>
 
-		<hr />
+		<div class="section" id="bootThumbs">
 
-		<div id="bootThumbs">
+			<h2>BootThumbs</h2>
 
-			<h3>BootThumbs</h3>
-
-			<?php $this->widget('BootThumbs', array(
+			<?php $this->widget('bootstrap.widgets.BootThumbs', array(
 				'dataProvider'=>$listDataProvider,
 				'template'=>"{items}\n{pager}",
 				'itemView'=>'_thumb',
 			)); ?>
 
+			<h4>Source code</h4>
+
+<?php echo $parser->safeTransform("~~~
+[php]
+<?php \$this->widget('bootstrap.widgets.BootThumbs', array(
+	'dataProvider'=>\$listDataProvider,
+	'template'=>\"{items}\\n{pager}\",
+	'itemView'=>'_thumb',
+)); ?>
+~~~"); ?>
+
+			<a class="top" href="#top">Back to top &uarr;</a>
+
 		</div>
 
-		<hr />
+		<div class="section" id="bootTooltip">
 
-		<div id="bootTooltip">
-
-			<h3>BootTooltip</h3>
+			<h2>BootTooltip</h2>
 
 			<p class="well">
 				Lorem ipsum dolor sit amet,
@@ -304,30 +424,65 @@
 				massa a dui tempor dapibus.
 			</p>
 
-			<?php $this->widget('BootTooltip'); ?>
+			<?php $this->widget('bootstrap.widgets.BootTooltip'); ?>
+
+			<h4>Source code</h4>
+
+<?php echo $parser->safeTransform("~~~
+[html]
+<p class=\"well\">
+	Lorem ipsum dolor sit amet,
+	<a href=\"#\" rel=\"tooltip\" title=\"First tooltip\">consectetur</a>
+	adipiscing elit.
+	Fusce ut velit sem, id elementum elit. Quisque tincidunt magna in quam luctus a ultrices tellus luctus.
+	Pellentesque at tellus urna. Ut congue, nibh eu
+	<a href=\"#\" rel=\"tooltip\" title=\"Another tooltip\">interdum commodo</a>,
+	ligula urna consequat tortor, at vehicula tellus est a orci.
+	Maecenas nec ligula sed ipsum posuere sollicitudin pretium ac sapien.
+	Sed odio dui, pretium eu pellentesque ac, tempor sed sem. Sed
+	<a href=\"#\" rel=\"tooltip\" title=\"Yet another tooltip\">sodales</a>
+	massa a dui tempor dapibus.
+</p>
+~~~
+~~~
+[php]
+<?php \$this->widget('bootstrap.widgets.BootTooltip'); ?>
+~~~"); ?>
+
+			<a class="top" href="#top">Back to top &uarr;</a>
 
 		</div>
 
-		<hr />
+		<div class="section" id="bootPopover">
 
-		<div id="bootPopover">
+			<h2>BootPopover</h2>
 
-			<h3>BootPopover</h3>
+			<p><?php echo CHtml::link('Hover me', '#',
+					array('class'=>'btn btn-primary btn-danger','data-title'=>'Heading','data-content'=>'Content ...','rel'=>'popover')); ?></p>
 
-			<?php echo CHtml::link('Hover me', '#',
-					array('class'=>'btn btn-primary btn-danger','data-title'=>'Heading','data-content'=>'Content ...','rel'=>'popover')); ?>
+			<?php $this->widget('bootstrap.widgets.BootPopover'); ?>
 
-			<?php $this->widget('BootPopover'); ?>
+			<h4>Source code</h4>
+
+<?php echo $parser->safeTransform("~~~
+[php]
+<p><?php echo CHtml::link('Hover me', '#',
+		array('class'=>'btn btn-primary btn-danger','data-title'=>'Heading','data-content'=>'Content ...','rel'=>'popover')); ?></p>
+~~~
+~~~
+[php]
+<?php \$this->widget('bootstrap.widgets.BootPopover'); ?>
+~~~"); ?>
+
+			<a class="top" href="#top">Back to top &uarr;</a>
 
 		</div>
 
-		<hr />
+		<div class="section" id="bootModal">
 
-		<div id="bootModal">
+			<h2>BootModal</h2>
 
-			<h3>BootModal</h3>
-
-			<?php $this->beginWidget('BootModal',array(
+			<?php $this->beginWidget('bootstrap.widgets.BootModal', array(
 			'id'=>'modal',
 			'options'=>array(
 				'title'=>'Heading',
@@ -354,21 +509,203 @@
 
 			<?php $this->endWidget(); ?>
 
-			<?php echo CHtml::link('Click me','#',array('class'=>'btn btn-primary', 'onclick'=>"jQuery('#modal').bootModal('open'); return false;")); ?>
+			<p><?php echo CHtml::link('Click me','#',
+					array('class'=>'btn btn-primary', 'onclick'=>"jQuery('#modal').bootModal('open'); return false;")); ?></p>
+
+			<h4>Source code</h4>
+
+<?php echo $parser->safeTransform("~~~
+[php]
+<?php \$this->beginWidget('bootstrap.widgets.BootModal', array(
+	'id'=>'modal',
+	'options'=>array(
+		'title'=>'Heading',
+		'buttons'=>array(
+			array(
+				'label'=>'Ok',
+				'class'=>'btn btn-primary',
+				'click'=>\"js:function() {
+				}\",
+			),
+			array(
+				'label'=>'Cancel',
+				'class'=>'btn',
+				'click'=>\"js:function() {
+					$('#modal').bootModal('close');
+					return false;
+				}\",
+			),
+		),
+	),
+)); ?>
+~~~
+~~~
+[html]
+Content ...
+~~~
+~~~
+[php]
+<?php \$this->endWidget(); ?>
+~~~
+~~~
+[php]
+<p><?php echo CHtml::link('Click me', '#',
+		array('class'=>'btn btn-primary', 'onclick'=>\"jQuery('#modal').bootModal('open'); return false;\")); ?></p>
+~~~"); ?>
+
+			<a class="top" href="#top">Back to top &uarr;</a>
+
+		</div>
+
+		<div class="section" id="bootActiveForm">
+
+			<h2>BootActiveForm</h2>
+
+			<?php /** @var BootActiveForm $form */
+			$form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
+				'id'=>'verticalForm',
+				'enableClientValidation'=>true,
+				'clientOptions'=>array('validateOnSubmit'=>true),
+				'htmlOptions'=>array('class'=>'well'),
+			)); ?>
+
+			<?php echo $form->textFieldRow($model, 'textField'); ?>
+			<?php echo $form->passwordFieldRow($model, 'password'); ?>
+			<?php echo $form->checkboxRow($model, 'checkbox'); ?>
+
+			<?php echo CHtml::htmlButton('<i class="icon-ok icon-white"></i> Submit',
+					array('class'=>'btn btn-primary','type'=>'submit')); ?>
+
+			<?php $this->endWidget(); ?>
+
+			<?php /** @var BootActiveForm $form */
+			$form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
+				'id'=>'horizontalForm',
+				'type'=>BootActiveForm::TYPE_HORIZONTAL,
+				'enableClientValidation'=>true,
+				'clientOptions'=>array('validateOnSubmit'=>true),
+			)); ?>
+
+			<fieldset>
+
+				<legend>Horizontal form</legend>
+
+				<?php echo $form->textFieldRow($model, 'textField',
+						array('hint'=>'In addition to freeform text, any HTML5 text-based input appears like so.')); ?>
+				<?php echo $form->dropDownListRow($model, 'dropdown', array('Something ...', '1', '2', '3', '4', '5')); ?>
+				<?php echo $form->dropDownListRow($model, 'multiDropdown', array('1', '2', '3', '4', '5'),
+						array('multiple'=>true)); ?>
+				<?php echo $form->fileFieldRow($model, 'fileField'); ?>
+				<?php echo $form->textAreaRow($model, 'textarea', array('class'=>'span8', 'rows'=>5)); ?>
+				<?php echo $form->uneditableRow($model, 'uneditable'); ?>
+				<?php echo $form->textFieldRow($model, 'disabled', array('disabled'=>true)); ?>
+				<?php echo $form->checkBoxRow($model, 'disabledCheckbox', array('disabled'=>true)); ?>
+				<?php echo $form->checkBoxListInlineRow($model, 'inlineCheckboxes', array('1', '2', '3')); ?>
+				<?php echo $form->checkBoxListRow($model, 'checkboxes', array(
+					'Option one is this and that—be sure to include why it\'s great',
+					'Option two can also be checked and included in form results',
+					'Option three can—yes, you guessed it—also be checked and included in form results',
+				), array('hint'=>'<strong>Note:</strong> Labels surround all the options for much larger click areas.')); ?>
+				<?php echo $form->radioButtonRow($model, 'radioButton'); ?>
+				<?php echo $form->radioButtonListRow($model, 'radioButtons', array(
+					'Option one is this and that—be sure to include why it\'s great',
+					'Option two can is something else and selecting it will deselect option one',
+				)); ?>
+				<?php echo $form->captchaRow($model, 'captcha'); ?>
+
+			</fieldset>
+
+			<div class="form-actions">
+				<?php echo CHtml::htmlButton('<i class="icon-ok icon-white"></i> Submit',
+						array('class'=>'btn btn-primary','type'=>'submit')); ?>
+				<?php echo CHtml::htmlButton('<i class="icon-remove"></i> Reset',
+						array('class'=>'btn','type'=>'reset')); ?>
+			</div>
+
+			<?php $this->endWidget(); ?>
+
+			<h4>Source code</h4>
+
+<?php echo $parser->safeTransform("~~~
+[php]
+<?php /** @var BootActiveForm \$form */
+\$form = \$this->beginWidget('bootstrap.widgets.BootActiveForm', array(
+	'id'=>'verticalForm',
+	'enableClientValidation'=>true,
+	'clientOptions'=>array('validateOnSubmit'=>true),
+	'htmlOptions'=>array('class'=>'well'),
+)); ?>
+
+<?php echo \$form->textFieldRow(\$model, 'textField'); ?>
+<?php echo \$form->passwordFieldRow(\$model, 'password'); ?>
+<?php echo \$form->checkboxRow(\$model, 'checkbox'); ?>
+
+<?php echo CHtml::htmlButton('<i class=\"icon-ok icon-white\"></i> Submit',
+		array('class'=>'btn btn-primary','type'=>'submit')); ?>
+
+<?php \$this->endWidget(); ?>
+
+<?php /** @var BootActiveForm \$form */
+\$form = \$this->beginWidget('bootstrap.widgets.BootActiveForm', array(
+	'id'=>'horizontalForm',
+	'type'=>BootActiveForm::TYPE_HORIZONTAL,
+	'enableClientValidation'=>true,
+	'clientOptions'=>array('validateOnSubmit'=>true),
+)); ?>
+
+<fieldset>
+
+	<legend>Horizontal form</legend>
+
+	<?php echo \$form->textFieldRow(\$model, 'textField',
+			array('hint'=>'In addition to freeform text, any HTML5 text-based input appears like so.')); ?>
+	<?php echo \$form->dropDownListRow(\$model, 'dropdown', array('Something ...', '1', '2', '3', '4', '5')); ?>
+	<?php echo \$form->dropDownListRow(\$model, 'multiDropdown', array('1', '2', '3', '4', '5'),
+			array('multiple'=>true)); ?>
+	<?php echo \$form->fileFieldRow(\$model, 'fileField'); ?>
+	<?php echo \$form->textAreaRow(\$model, 'textarea', array('class'=>'span8', 'rows'=>5)); ?>
+	<?php echo \$form->uneditableRow(\$model, 'uneditable'); ?>
+	<?php echo \$form->textFieldRow(\$model, 'disabled', array('disabled'=>true)); ?>
+	<?php echo \$form->checkBoxRow(\$model, 'disabledCheckbox', array('disabled'=>true)); ?>
+	<?php echo \$form->checkBoxListInlineRow(\$model, 'inlineCheckboxes', array('1', '2', '3')); ?>
+	<?php echo \$form->checkBoxListRow(\$model, 'checkboxes', array(
+		'Option one is this and that—be sure to include why it\'s great',
+		'Option two can also be checked and included in form results',
+		'Option three can—yes, you guessed it—also be checked and included in form results',
+	), array('hint'=>'<strong>Note:</strong> Labels surround all the options for much larger click areas.')); ?>
+	<?php echo \$form->radioButtonRow(\$model, 'radioButton'); ?>
+	<?php echo \$form->radioButtonListRow(\$model, 'radioButtons', array(
+		'Option one is this and that—be sure to include why it\'s great',
+		'Option two can is something else and selecting it will deselect option one',
+	)); ?>
+	<?php echo \$form->captchaRow(\$model, 'captcha'); ?>
+
+</fieldset>
+
+<div class=\"form-actions\">
+	<?php echo CHtml::htmlButton('<i class=\"icon-ok icon-white\"></i> Submit',
+			array('class'=>'btn btn-primary','type'=>'submit')); ?>
+	<?php echo CHtml::htmlButton('<i class=\"icon-remove\"></i> Reset',
+			array('class'=>'btn','type'=>'reset')); ?>
+</div>
+
+<?php \$this->endWidget(); ?>
+~~~"); ?>
+
+			<a class="top" href="#top">Back to top &uarr;</a>
 
 		</div>
 
 	</div>
 
-	<div class="span2">
+	<div class="span3">
 
 		<div class="well" style="padding: 8px 0;">
 
-			<?php $this->widget('BootMenu', array(
+			<?php $this->widget('bootstrap.widgets.BootMenu', array(
 				'type'=>'list',
 				'items'=>array(
 					array('label'=>'WIDGETS','itemOptions'=>array('class'=>'nav-header')),
-					array('label'=>'BootActiveForm','url'=>'#bootActiveForm'),
 					array('label'=>'BootAlert','url'=>'#bootAlert'),
 					array('label'=>'BootCrumb','url'=>'#bootCrumb'),
 					array('label'=>'BootNavbar','url'=>'#bootNavbar'),
@@ -380,6 +717,7 @@
 					array('label'=>'BootTooltip','url'=>'#bootTooltip'),
 					array('label'=>'BootPopover','url'=>'#bootPopover'),
 					array('label'=>'BootModal','url'=>'#bootModal'),
+					array('label'=>'BootActiveForm','url'=>'#bootActiveForm'),
 				),
 			)); ?>
 

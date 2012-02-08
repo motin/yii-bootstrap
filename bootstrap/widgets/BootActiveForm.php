@@ -6,6 +6,8 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
 
+Yii::import('bootstrap.widgets.BootInput');
+
 class BootActiveForm extends CActiveForm
 {
 	// The different form types.
@@ -55,7 +57,7 @@ class BootActiveForm extends CActiveForm
 	public function inputRow($type, $model, $attribute, $data = null, $htmlOptions = array())
 	{
 		ob_start();
-		Yii::app()->controller->widget('bootstrap.widgets.BootInput',array(
+		Yii::app()->controller->widget('BootInput',array(
 			'type'=>$type,
 			'form'=>$this,
 			'model'=>$model,
@@ -75,7 +77,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function checkBoxRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputRow('checkbox', $model, $attribute, null, $htmlOptions);
+		return $this->inputRow(BootInput::TYPE_CHECKBOX, $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
@@ -88,7 +90,20 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function checkBoxListRow($model, $attribute, $data = array(), $htmlOptions = array())
 	{
-		return $this->inputRow('checkboxlist', $model, $attribute, $data, $htmlOptions);
+		return $this->inputRow(BootInput::TYPE_CHECKBOXES, $model, $attribute, $data, $htmlOptions);
+	}
+
+	/**
+	 * Renders a checkbox list inline input row.
+	 * @param CModel $model the data model
+	 * @param string $attribute the attribute
+	 * @param array $data the list data
+	 * @param array $htmlOptions additional HTML attributes
+	 * @return string the generated row
+	 */
+	public function checkBoxListInlineRow($model, $attribute, $data = array(), $htmlOptions = array())
+	{
+		return $this->inputRow(BootInput::TYPE_CHECKBOXES_INLINE, $model, $attribute, $data, $htmlOptions);
 	}
 
 	/**
@@ -101,7 +116,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function dropDownListRow($model, $attribute, $data = array(), $htmlOptions = array())
 	{
-		return $this->inputRow('dropdownlist', $model, $attribute, $data, $htmlOptions);
+		return $this->inputRow(BootInput::TYPE_DROPDOWN, $model, $attribute, $data, $htmlOptions);
 	}
 
 	/**
@@ -113,7 +128,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function fileFieldRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputRow('filefield', $model, $attribute, null, $htmlOptions);
+		return $this->inputRow(BootInput::TYPE_FILE, $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
@@ -125,7 +140,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function passwordFieldRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputRow('password', $model, $attribute, null, $htmlOptions);
+		return $this->inputRow(BootInput::TYPE_PASSWORD, $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
@@ -137,7 +152,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function radioButtonRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputRow('radiobutton', $model, $attribute, null, $htmlOptions);
+		return $this->inputRow(BootInput::TYPE_RADIO, $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
@@ -150,7 +165,20 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function radioButtonListRow($model, $attribute, $data = array(), $htmlOptions = array())
 	{
-		return $this->inputRow('radiobuttonlist', $model, $attribute, $data, $htmlOptions);
+		return $this->inputRow(BootInput::TYPE_RADIOS, $model, $attribute, $data, $htmlOptions);
+	}
+
+	/**
+	 * Renders a radio button list inline input row.
+	 * @param CModel $model the data model
+	 * @param string $attribute the attribute
+	 * @param array $data the list data
+	 * @param array $htmlOptions additional HTML attributes
+	 * @return string the generated row
+	 */
+	public function radioButtonListInlineRow($model, $attribute, $data = array(), $htmlOptions = array())
+	{
+		return $this->inputRow(BootInput::TYPE_RADIOS_INLINE, $model, $attribute, $data, $htmlOptions);
 	}
 
 	/**
@@ -162,7 +190,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function textFieldRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputRow('textfield', $model, $attribute, null, $htmlOptions);
+		return $this->inputRow(BootInput::TYPE_TEXT, $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
@@ -174,7 +202,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function textAreaRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputRow('textarea', $model, $attribute, null, $htmlOptions);
+		return $this->inputRow(BootInput::TYPE_TEXTAREA, $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
@@ -187,7 +215,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function captchaRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputRow('captcha', $model, $attribute, null, $htmlOptions);
+		return $this->inputRow(BootInput::TYPE_CAPTCHA, $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
@@ -200,7 +228,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function uneditableRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputRow('uneditable', $model, $attribute, null, $htmlOptions);
+		return $this->inputRow(BootInput::TYPE_UNEDITABLE, $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
@@ -281,6 +309,12 @@ class BootActiveForm extends CActiveForm
 		$id = 0;
 		$method = $checkbox ? 'checkBox' : 'radioButton';
 		$labelCssClass = $checkbox ? 'checkbox' : 'radio';
+
+		if (isset($htmlOptions['inline']))
+		{
+			$labelCssClass .= ' inline';
+			unset($htmlOptions['inline']);
+		}
 
 		foreach($data as $value => $label)
 		{

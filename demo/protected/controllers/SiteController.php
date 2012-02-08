@@ -3,11 +3,26 @@
 class SiteController extends Controller
 {
 	/**
+	 * Declares class-based actions.
+	 */
+	public function actions()
+	{
+		return array(
+			'captcha'=>array(
+				'class'=>'CCaptchaAction',
+				'backColor'=>0xFFFFFF,
+			),
+		);
+	}
+
+	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
 	 */
 	public function actionIndex()
 	{
+		$model = new TestForm();
+
 		$gridDataProvider = new CArrayDataProvider(array(
 			array('id'=>1, 'firstName'=>'Mark', 'lastName'=>'Otto', 'language'=>'CSS'),
 			array('id'=>2, 'firstName'=>'Jacob', 'lastName'=>'Thornton', 'language'=>'JavaScript'),
@@ -31,17 +46,22 @@ class SiteController extends Controller
 		);
 
 		$rawData = array();
-		for ($i = 0; $i < 200; $i++)
+		for ($i = 0; $i < 100; $i++)
 			$rawData[] = array('id'=>$i + 1);
 
 		$listDataProvider = new CArrayDataProvider($rawData, array(
-			'pagination'=>array('pageSize'=>10),
+			'pagination'=>array('pageSize'=>9),
 		));
 
+		$parser = new CMarkdownParser();
+		Yii::app()->clientScript->registerCss('TextHighligther', file_get_contents($parser->getDefaultCssFile()));
+
 		$this->render('index', array(
+			'model'=>$model,
 			'gridDataProvider'=>$gridDataProvider,
 			'gridColumns'=>$gridColumns,
 			'listDataProvider'=>$listDataProvider,
+			'parser'=>$parser,
 		));
 	}
 

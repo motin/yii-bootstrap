@@ -1,6 +1,7 @@
 // IMPORTS
 
 @import "../../bootstrap/vendors/bootstrap/less/bootstrap.less";
+@import "../demo/js/shjs/sh_style.css";
 
 // VARIABLES
 
@@ -13,6 +14,14 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
 	margin-bottom: 0.6em;
+}
+
+.hl-code pre {
+    background: #FCFCFC;
+    border-color: #EEE transparent #EEE;
+	font-family: "Menlo", "Consolas", "Courier New", Courier, mono;
+	font-size: 11px;
+	.border-radius(0);
 }
 
 .popover h3.popover-title {
@@ -28,10 +37,27 @@ span.required {
 	margin: 10px 0;
 }
 
+.section {
+	padding-top: 50px;
+
+	a.top {
+		display: block;
+		text-align: right;
+	}
+}
+
 #bootNavbar .navbar-inner > .container {
-	width: 740px;
+	width: 660px;
+}
+
+#bootMenu .menuCol {
+	min-height: 140px;
 }
 
 #bootThumbs .list-view {
 	padding-top: 30px;
+}
+
+#bootActiveForm .form-vertical .control-group > label {
+	font-weight: bold;
 }

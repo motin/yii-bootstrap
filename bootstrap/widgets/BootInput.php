@@ -11,11 +11,13 @@ class BootInput extends CInputWidget
 	// The different input types.
 	const TYPE_CHECKBOX = 'checkbox';
 	const TYPE_CHECKBOXES = 'checkboxlist';
+	const TYPE_CHECKBOXES_INLINE = 'checkboxlist_inline';
 	const TYPE_DROPDOWN = 'dropdownlist';
 	const TYPE_FILE = 'filefield';
 	const TYPE_PASSWORD = 'password';
 	const TYPE_RADIO = 'radiobutton';
 	const TYPE_RADIOS = 'radiobuttonlist';
+	const TYPE_RADIOS_INLINE = 'radiobuttonlist_inline';
 	const TYPE_TEXTAREA = 'textarea';
 	const TYPE_TEXT = 'textfield';
 	const TYPE_CAPTCHA = 'captcha';
@@ -73,6 +75,10 @@ class BootInput extends CInputWidget
 				$this->checkBoxList();
 				break;
 
+			case self::TYPE_CHECKBOXES_INLINE:
+				$this->checkBoxListInline();
+				break;
+
 			case self::TYPE_DROPDOWN:
 				$this->dropDownList();
 				break;
@@ -91,6 +97,10 @@ class BootInput extends CInputWidget
 
 			case self::TYPE_RADIOS:
 				$this->radioButtonList();
+				break;
+
+			case self::TYPE_RADIOS_INLINE:
+				$this->radioButtonListInline();
 				break;
 
 			case self::TYPE_TEXTAREA:
@@ -143,6 +153,16 @@ class BootInput extends CInputWidget
 	}
 
 	/**
+	 * Renders a list of inline checkboxes.
+	 * @return string the rendered content
+	 */
+	protected function checkBoxListInline()
+	{
+		$this->htmlOptions['inline'] = true;
+		$this->checkBoxList();
+	}
+
+	/**
 	 * Renders a drop down list (select).
 	 * @return string the rendered content
 	 */
@@ -185,7 +205,7 @@ class BootInput extends CInputWidget
 	protected function radioButton()
 	{
 		echo '<div class="controls">';
-		echo '<label class="control-label" for="'.CHtml::getIdByName(CHtml::resolveName($this->model, $this->attribute)).'">';
+		echo '<label class="radio" for="'.CHtml::getIdByName(CHtml::resolveName($this->model, $this->attribute)).'">';
 		echo $this->form->radioButton($this->model, $this->attribute, $this->htmlOptions).PHP_EOL;
 		echo $this->model->getAttributeLabel($this->attribute);
 		echo $this->getError().$this->getHint();
@@ -202,6 +222,16 @@ class BootInput extends CInputWidget
 		echo $this->form->radioButtonList($this->model, $this->attribute, $this->data, $this->htmlOptions);
 		echo $this->getError().$this->getHint();
 		echo '</div>';
+	}
+
+	/**
+	 * Renders a list of inline radio buttons.
+	 * @return string the rendered content
+	 */
+	protected function radioButtonListInline()
+	{
+		$this->htmlOptions['inline'] = true;
+		$this->radioButtonList();
 	}
 
 	/**
