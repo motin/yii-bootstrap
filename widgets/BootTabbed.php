@@ -124,6 +124,6 @@ class BootTabbed extends BootWidget
         echo CHtml::closeTag($this->tagName);
 
         $options = !empty($this->options) ? CJavaScript::encode($this->options) : '';
-        $this->registerScript(__CLASS__.'#'.$id,"jQuery('{$this->selector}').bootTabs({$options});");
+        $this->registerScript(__CLASS__.'#'.$id, "jQuery('{$this->selector}').bootTabbed({$options});");
     }
 }
