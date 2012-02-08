@@ -652,7 +652,9 @@ Content ...
 		array('class'=>'btn btn-primary','type'=>'submit')); ?>
 
 <?php \$this->endWidget(); ?>
-
+~~~
+~~~
+[php]
 <?php /** @var BootActiveForm \$form */
 \$form = \$this->beginWidget('bootstrap.widgets.BootActiveForm', array(
 	'id'=>'horizontalForm',
