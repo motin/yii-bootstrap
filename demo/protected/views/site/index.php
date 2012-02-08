@@ -411,17 +411,15 @@ Yii::app()->user->setFlash('error',
 			<h2>BootTooltip</h2>
 
 			<p class="well">
-				Lorem ipsum dolor sit amet,
-				<a href="#" rel="tooltip" title="First tooltip">consectetur</a>
-				adipiscing elit.
+				Lorem ipsum dolor sit <a href="#" rel="tooltip" title="First tooltip">amet</a>,
+				consectetur adipiscing elit.
 				Fusce ut velit sem, id elementum elit. Quisque tincidunt magna in quam luctus a ultrices tellus luctus.
-				Pellentesque at tellus urna. Ut congue, nibh eu
-				<a href="#" rel="tooltip" title="Another tooltip">interdum commodo</a>,
+				Pellentesque at tellus urna.
+				Ut congue, <a href="#" rel="tooltip" title="Another tooltip">nibh eu</a> interdum commodo,
 				ligula urna consequat tortor, at vehicula tellus est a orci.
 				Maecenas nec ligula sed ipsum posuere sollicitudin pretium ac sapien.
-				Sed odio dui, pretium eu pellentesque ac, tempor sed sem. Sed
-				<a href="#" rel="tooltip" title="Yet another tooltip">sodales</a>
-				massa a dui tempor dapibus.
+				Sed odio dui, pretium eu pellentesque ac,
+				<a href="#" rel="tooltip" title="Yet another tooltip">tempor</a> sed sem.
 			</p>
 
 			<?php $this->widget('bootstrap.widgets.BootTooltip'); ?>
@@ -431,17 +429,15 @@ Yii::app()->user->setFlash('error',
 <?php echo $parser->safeTransform("~~~
 [html]
 <p class=\"well\">
-	Lorem ipsum dolor sit amet,
-	<a href=\"#\" rel=\"tooltip\" title=\"First tooltip\">consectetur</a>
-	adipiscing elit.
+	Lorem ipsum dolor sit <a href=\"#\" rel=\"tooltip\" title=\"First tooltip\">amet</a>,
+	consectetur adipiscing elit.
 	Fusce ut velit sem, id elementum elit. Quisque tincidunt magna in quam luctus a ultrices tellus luctus.
-	Pellentesque at tellus urna. Ut congue, nibh eu
-	<a href=\"#\" rel=\"tooltip\" title=\"Another tooltip\">interdum commodo</a>,
+	Pellentesque at tellus urna.
+	Ut congue, <a href=\"#\" rel=\"tooltip\" title=\"Another tooltip\">nibh eu</a> interdum commodo,
 	ligula urna consequat tortor, at vehicula tellus est a orci.
 	Maecenas nec ligula sed ipsum posuere sollicitudin pretium ac sapien.
-	Sed odio dui, pretium eu pellentesque ac, tempor sed sem. Sed
-	<a href=\"#\" rel=\"tooltip\" title=\"Yet another tooltip\">sodales</a>
-	massa a dui tempor dapibus.
+	Sed odio dui, pretium eu pellentesque ac,
+	<a href=\"#\" rel=\"tooltip\" title=\"Yet another tooltip\">tempor</a> sed sem.
 </p>
 ~~~
 ~~~
@@ -457,8 +453,12 @@ Yii::app()->user->setFlash('error',
 
 			<h2>BootPopover</h2>
 
-			<p><?php echo CHtml::link('Hover me', '#',
-					array('class'=>'btn btn-primary btn-danger','data-title'=>'Heading','data-content'=>'Content ...','rel'=>'popover')); ?></p>
+			<p><?php echo CHtml::link('Hover me', '#', array(
+				'class'=>'btn btn-primary btn-danger',
+				'data-title'=>'Heading',
+				'data-content'=>'Content ...',
+				'rel'=>'popover'
+			)); ?></p>
 
 			<?php $this->widget('bootstrap.widgets.BootPopover'); ?>
 
@@ -466,8 +466,12 @@ Yii::app()->user->setFlash('error',
 
 <?php echo $parser->safeTransform("~~~
 [php]
-<p><?php echo CHtml::link('Hover me', '#',
-		array('class'=>'btn btn-primary btn-danger','data-title'=>'Heading','data-content'=>'Content ...','rel'=>'popover')); ?></p>
+<p><?php echo CHtml::link('Hover me', '#', array(
+	'class'=>'btn btn-primary btn-danger',
+	'data-title'=>'Heading',
+	'data-content'=>'Content ...',
+	'rel'=>'popover'
+)); ?></p>
 ~~~
 ~~~
 [php]
@@ -509,8 +513,10 @@ Yii::app()->user->setFlash('error',
 
 			<?php $this->endWidget(); ?>
 
-			<p><?php echo CHtml::link('Click me','#',
-					array('class'=>'btn btn-primary', 'onclick'=>"jQuery('#modal').bootModal('open'); return false;")); ?></p>
+			<p><?php echo CHtml::link('Click me','#', array(
+				'class'=>'btn btn-primary',
+				'onclick'=>"jQuery('#modal').bootModal('open'); return false;",
+			)); ?></p>
 
 			<h4>Source code</h4>
 
@@ -549,8 +555,10 @@ Content ...
 ~~~
 ~~~
 [php]
-<p><?php echo CHtml::link('Click me', '#',
-		array('class'=>'btn btn-primary', 'onclick'=>\"jQuery('#modal').bootModal('open'); return false;\")); ?></p>
+<p><?php echo CHtml::link('Click me', '#', array(
+	'class'=>'btn btn-primary',
+	'onclick'=>\"jQuery('#modal').bootModal('open'); return false;\",
+)); ?></p>
 ~~~"); ?>
 
 			<a class="top" href="#top">Back to top &uarr;</a>
@@ -618,7 +626,7 @@ Content ...
 			<div class="form-actions">
 				<?php echo CHtml::htmlButton('<i class="icon-ok icon-white"></i> Submit',
 						array('class'=>'btn btn-primary','type'=>'submit')); ?>
-				<?php echo CHtml::htmlButton('<i class="icon-remove"></i> Reset',
+				<?php echo CHtml::htmlButton('<i class="icon-ban-circle"></i> Reset',
 						array('class'=>'btn','type'=>'reset')); ?>
 			</div>
 
@@ -685,7 +693,7 @@ Content ...
 <div class=\"form-actions\">
 	<?php echo CHtml::htmlButton('<i class=\"icon-ok icon-white\"></i> Submit',
 			array('class'=>'btn btn-primary','type'=>'submit')); ?>
-	<?php echo CHtml::htmlButton('<i class=\"icon-remove\"></i> Reset',
+	<?php echo CHtml::htmlButton('<i class=\"icon-ban-circle\"></i> Reset',
 			array('class'=>'btn','type'=>'reset')); ?>
 </div>
 
