@@ -33,12 +33,12 @@ class BootNavbar extends BootWidget
 	 */
 	public $items = array();
 	/**
-	 * @var boolean flag that indicates if the nav should use the full width available. Defaults to false.
+	 * @var boolean whether the nav span over the full width. Defaults to false.
 	 * @since 0.9.8
 	 */
 	public $fluid = false;
 	/**
-	 * @var boolean flag that indicates if the nav bar should be fixed to the top of the page. Defaults to true.
+	 * @var boolean whether the nav bar is fixed to the top of the page. Defaults to true.
 	 * @since 0.9.8
 	 */
 	public $fixed = true;
@@ -48,7 +48,7 @@ class BootNavbar extends BootWidget
 	 */
 	public function init()
 	{
-		if ($this->brand !== false)
+		if (!$this->brand)
 		{
 			$this->brand = CHtml::encode(Yii::app()->name);
 
@@ -86,7 +86,7 @@ class BootNavbar extends BootWidget
 		echo '<div class="navbar-inner"><div class="'.$containerCssClass.'">';
 		echo '<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"></a>';
 
-        if ($this->brand)
+        if ($this->brand !== false)
             echo CHtml::openTag('a', $this->brandOptions).$this->brand.'</a>';
         
 		echo '<div class="nav-collapse">';
@@ -97,13 +97,13 @@ class BootNavbar extends BootWidget
 				echo $item;
 			else
 			{
-				if (!isset($item['class']))
-					$item['class'] = 'bootstrap.widgets.BootMenu';
+				if (isset($item['class']))
+				{
+					$className = $item['class'];
+					unset($item['class']);
 
-				$className = $item['class'];
-				unset($item['class']);
-
-				$this->controller->widget($className, $item);
+					$this->controller->widget($className, $item);
+				}
 			}
 		}
 
