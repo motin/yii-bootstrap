@@ -44,7 +44,14 @@
 	<hr />
 
 	<div class="footer">
-		&copy; Company <?php echo date('Y'); ?>
+
+		<p class="powered">
+			Powered by <?php echo CHtml::link('Yii 1.1.9', 'http://www.yiiframework.com'); ?> //
+			<?php echo CHtml::link('Yii-Bootstrap 0.9.8', 'http://www.yiiframework.com/extension/bootstrap'); ?> //
+			<?php echo CHtml::link('Bootstrap 2', 'http://twitter.github.com/bootstrap'); ?> //
+			<?php echo CHtml::link('LESS 1.2.1', 'http://www.lesscss.org'); ?>
+		</p>
+
 	</div>
 
 </div>
