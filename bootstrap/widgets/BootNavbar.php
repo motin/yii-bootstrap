@@ -81,7 +81,10 @@ class BootNavbar extends BootWidget
 		echo CHtml::openTag('div', $this->htmlOptions);
 		echo '<div class="navbar-inner"><div class="'.$containerCssClass.'">';
 		echo '<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"></a>';
-		echo CHtml::openTag('a', $this->brandOptions).$this->brand.'</a>';
+
+        if ($this->brand)
+            echo CHtml::openTag('a', $this->brandOptions).$this->brand.'</a>';
+        
 		echo '<div class="nav-collapse">';
 
 		foreach ($this->items as $item)
