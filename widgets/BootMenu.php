@@ -31,6 +31,10 @@ class BootMenu extends BootWidget
 	 */
 	public $stacked = false;
 	/**
+	 * @var boolean whether to enable the scroll-spy.
+	 */
+	public $scrollspy = false;
+	/**
 	 * @var array the menu items.
 	 */
 	public $items = array();
@@ -55,6 +59,9 @@ class BootMenu extends BootWidget
 		$this->htmlOptions['id'] = $this->getId();
 		$route = $this->controller->getRoute();
 		$this->items = $this->normalizeItems($this->items, $route);
+
+		if ($this->scrollspy)
+			Yii::app()->clientScript->registerScript(__CLASS__.'#'.$this->id, "jQuery('#{$this->id}').scrollspy();");
 	}
 
 	/**

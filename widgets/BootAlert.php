@@ -8,6 +8,9 @@
 
 Yii::import('bootstrap.widgets.BootWidget');
 
+/**
+ * @todo Add support for events. http://twitter.github.com/bootstrap/javascript.html#alerts
+ */
 class BootAlert extends BootWidget
 {
 	/**
@@ -17,7 +20,7 @@ class BootAlert extends BootWidget
 	/**
 	 * @var string the template to use for displaying flash messages.
 	 */
-	public $template = '<div class="alert alert-block alert-{key}"><a class="close">&times;</a>{message}</div>';
+	public $template = '<div class="alert alert-block alert-{key} fade in"><a class="close" data-dismiss="alert">&times;</a>{message}</div>';
 	/**
 	 * @var array the html options.
 	 */
@@ -29,7 +32,8 @@ class BootAlert extends BootWidget
 	public function init()
 	{
 		parent::init();
-		$this->registerScriptFile('jquery.ui.boot-alert.js');
+		$this->registerScriptFile('bootstrap-alert.js');
+		$this->htmlOptions['id'] = $this->getId();
 	}
 
 	/**
@@ -37,28 +41,19 @@ class BootAlert extends BootWidget
 	 */
 	public function run()
 	{
-		$id = $this->getId();
-
-		if (isset($this->htmlOptions['id']))
-			$id = $this->htmlOptions['id'];
-		else
-			$this->htmlOptions['id'] = $id;
-
 		if (is_string($this->keys))
 			$this->keys = array($this->keys);
 
-		echo CHtml::openTag('div',$this->htmlOptions);
+		echo CHtml::openTag('div', $this->htmlOptions);
 
 		foreach ($this->keys as $key)
+		{
 			if (Yii::app()->user->hasFlash($key))
 				echo strtr($this->template, array('{key}'=>$key, '{message}'=>Yii::app()->user->getFlash($key)));
+		}
 
 		echo '</div>';
 
-		$this->options['keys'] = $this->keys;
-		$this->options['template'] = $this->template;
-
-		$options = !empty($this->options) ? CJavaScript::encode($this->options) : '';
-		Yii::app()->clientScript->registerScript(__CLASS__.'#'.$id,"jQuery('#{$id}').bootAlert({$options});");
+		Yii::app()->clientScript->registerScript(__CLASS__.'#'.$this->id,"jQuery('#{$this->id}').alert();");
 	}
 }

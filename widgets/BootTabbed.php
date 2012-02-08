@@ -11,6 +11,7 @@ Yii::import('bootstrap.widgets.BootWidget');
 /**
  * Bootstrap JavaScript tabs widget.
  * @since 0.9.6
+ * @todo Change to use bootstrap-tab.js http://twitter.github.com/bootstrap/javascript.html#tabs
  */
 class BootTabbed extends BootWidget
 {

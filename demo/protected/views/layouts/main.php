@@ -6,7 +6,6 @@
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 	<link rel="stylesheet/less" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/less/styles.less" />
 	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/less/less-1.2.1.min.js"></script>
-	<?php Yii::app()->bootstrap->registerCoreScript(); ?>
 </head>
 
 <body id="top">

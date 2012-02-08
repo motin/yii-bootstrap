@@ -6,6 +6,9 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
 
+/**
+ * @todo Fix collapse. http://twitter.github.com/bootstrap/javascript.html#collapse
+ */
 class Bootstrap extends CApplicationComponent
 {
 	/**
@@ -20,6 +23,8 @@ class Bootstrap extends CApplicationComponent
 	{
 		if (!Yii::getPathOfAlias('bootstrap'))
 			Yii::setPathOfAlias('bootstrap', realpath(dirname(__FILE__).'/..'));
+
+		$this->registerCoreScript();
 	}
 
 	/**
@@ -40,14 +45,31 @@ class Bootstrap extends CApplicationComponent
 	}
 
 	/**
-	 * Registers the Bootstrap core JavaScript functionality.
+	 * Registers the Bootstrap JavaScript functionality.
 	 * @since 0.9.8
 	 */
 	public function registerCoreScript()
 	{
-		$this->registerScriptFile('jquery.ui.boot-dropdown.js');
+		// Include the global plugins.
+		$this->registerScriptFile('bootstrap-collapse.js');
+		$this->registerScriptFile('bootstrap-transition.js');
+		$this->registerScriptFile('bootstrap-modal.js');
+		$this->registerScriptFile('bootstrap-dropdown.js');
+		$this->registerScriptFile('bootstrap-scrollspy.js');
+		$this->registerScriptFile('bootstrap-tooltip.js');
+		$this->registerScriptFile('bootstrap-popover.js');
+		$this->registerScriptFile('bootstrap-button.js');
 
-		Yii::app()->clientScript->registerScript(__CLASS__, "jQuery('.dropdown-toggle[data-toggle=\"dropdown\"]').bootDropdown();");
+		Yii::app()->clientScript->registerScript(__CLASS__, "
+			// Register global plugins.
+			jQuery('.dropdown-toggle').dropdown();
+			jQuery('a[rel=tooltip]').tooltip();
+			jQuery('a[rel=popover]').popover();
+			jQuery('.collapse').collapse();
+
+			// Enable scroll-spy.
+			jQuery('body').attr('data-spy', 'scroll');
+		");
 	}
 
 	/**

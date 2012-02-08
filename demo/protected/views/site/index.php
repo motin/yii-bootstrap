@@ -21,11 +21,7 @@
 					'<strong>Oh snap!</strong> Change a few things up and try submitting again.');
 			?>
 
-			<?php $this->widget('bootstrap.widgets.BootAlert', array(
-				'options'=>array(
-					'displayTime'=>0, // indefinitely
-				),
-			)); ?>
+			<?php $this->widget('bootstrap.widgets.BootAlert'); ?>
 
 			<h4>Source code</h4>
 
@@ -44,11 +40,7 @@ Yii::app()->user->setFlash('error',
 ~~~
 ~~~
 [php]
-<?php \$this->widget('bootstrap.widgets.BootAlert', array(
-	'options'=>array(
-		'displayTime'=>0, // indefinitely
-	),
-)); ?>
+<?php \$this->widget('bootstrap.widgets.BootAlert'); ?>
 ~~~"); ?>
 
 			<a class="top" href="#top">Back to top &uarr;</a>
@@ -60,7 +52,10 @@ Yii::app()->user->setFlash('error',
 			<h2>BootCrumb</h2>
 
 			<?php $this->widget('bootstrap.widgets.BootCrumb', array(
-				'links'=>array('Library'=>'#', 'Data'),
+				'links'=>array(
+					'Library'=>'#',
+					'Data',
+				),
 			)); ?>
 
 			<h4>Source code</h4>
@@ -68,7 +63,10 @@ Yii::app()->user->setFlash('error',
 <?php echo $parser->safeTransform("~~~
 [php]
 <?php \$this->widget('bootstrap.widgets.BootCrumb', array(
-	'links'=>array('Library'=>'#', 'Data'),
+	'links'=>array(
+		'Library'=>'#',
+		'Data',
+	),
 )); ?>
 ~~~"); ?>
 
@@ -389,6 +387,12 @@ Yii::app()->user->setFlash('error',
 				'dataProvider'=>$listDataProvider,
 				'template'=>"{items}\n{pager}",
 				'itemView'=>'_thumb',
+				// Remove the existing tooltips and
+				// rebind the plugin after each ajax-call.
+				'afterAjaxUpdate'=>"js:function() {
+					jQuery('.tooltip').remove();
+					jQuery('a[rel=tooltip]').tooltip();
+				}",
 			)); ?>
 
 			<h4>Source code</h4>
@@ -399,6 +403,12 @@ Yii::app()->user->setFlash('error',
 	'dataProvider'=>\$listDataProvider,
 	'template'=>\"{items}\\n{pager}\",
 	'itemView'=>'_thumb',
+	// Remove the existing tooltips and
+	// rebind the plugin after each ajax-call.
+	'afterAjaxUpdate'=>\"js:function() {
+		jQuery('.tooltip').remove();
+		jQuery('a[rel=tooltip]').tooltip();
+	}\",
 )); ?>
 ~~~"); ?>
 
@@ -422,8 +432,6 @@ Yii::app()->user->setFlash('error',
 				<a href="#" rel="tooltip" title="Yet another tooltip">tempor</a> sed sem.
 			</p>
 
-			<?php $this->widget('bootstrap.widgets.BootTooltip'); ?>
-
 			<h4>Source code</h4>
 
 <?php echo $parser->safeTransform("~~~
@@ -439,10 +447,6 @@ Yii::app()->user->setFlash('error',
 	Sed odio dui, pretium eu pellentesque ac,
 	<a href=\"#\" rel=\"tooltip\" title=\"Yet another tooltip\">tempor</a> sed sem.
 </p>
-~~~
-~~~
-[php]
-<?php \$this->widget('bootstrap.widgets.BootTooltip'); ?>
 ~~~"); ?>
 
 			<a class="top" href="#top">Back to top &uarr;</a>
@@ -453,29 +457,25 @@ Yii::app()->user->setFlash('error',
 
 			<h2>BootPopover</h2>
 
-			<p><?php echo CHtml::link('Hover me', '#', array(
-				'class'=>'btn btn-primary btn-danger',
-				'data-title'=>'Heading',
-				'data-content'=>'Content ...',
-				'rel'=>'popover'
-			)); ?></p>
-
-			<?php $this->widget('bootstrap.widgets.BootPopover'); ?>
+			<div class="well">
+				<?php echo CHtml::link('Hover me', '#', array(
+					'class'=>'btn btn-primary btn-danger',
+					'data-title'=>'Heading',
+					'data-content'=>'Content ...',
+					'rel'=>'popover'
+				)); ?>
+			</div>
 
 			<h4>Source code</h4>
 
 <?php echo $parser->safeTransform("~~~
 [php]
-<p><?php echo CHtml::link('Hover me', '#', array(
+<?php echo CHtml::link('Hover me', '#', array(
 	'class'=>'btn btn-primary btn-danger',
 	'data-title'=>'Heading',
 	'data-content'=>'Content ...',
 	'rel'=>'popover'
-)); ?></p>
-~~~
-~~~
-[php]
-<?php \$this->widget('bootstrap.widgets.BootPopover'); ?>
+)); ?>
 ~~~"); ?>
 
 			<a class="top" href="#top">Back to top &uarr;</a>
@@ -487,36 +487,30 @@ Yii::app()->user->setFlash('error',
 			<h2>BootModal</h2>
 
 			<?php $this->beginWidget('bootstrap.widgets.BootModal', array(
-			'id'=>'modal',
-			'options'=>array(
-				'title'=>'Heading',
-				'buttons'=>array(
-					array(
-						'label'=>'Ok',
-						'class'=>'btn btn-primary',
-						'click'=>"js:function() {
-						}",
-					),
-					array(
-						'label'=>'Cancel',
-						'class'=>'btn',
-						'click'=>"js:function() {
-							$('#modal').bootModal('close');
-							return false;
-						}",
-					),
-				),
-			),
+				'id'=>'modal',
+				'htmlOptions'=>array('class'=>'modal hide fade'),
 			)); ?>
 
-			Content ...
+			<div class="modal-header">
+				<a class="close" data-dismiss="modal">&times;</a>
+				<h3>Modal header</h3>
+			</div>
+			<div class="modal-body">
+				<p>One fine body...</p>
+			</div>
+			<div class="modal-footer">
+				<?php echo CHtml::link('Save changes', '#', array('class'=>'btn btn-primary', 'data-dismiss'=>'modal')); ?>
+				<?php echo CHtml::link('Close', '#', array('class'=>'btn', 'data-dismiss'=>'modal')); ?>
+			</div>
 
 			<?php $this->endWidget(); ?>
 
-			<p><?php echo CHtml::link('Click me','#', array(
-				'class'=>'btn btn-primary',
-				'onclick'=>"jQuery('#modal').bootModal('open'); return false;",
-			)); ?></p>
+			<div class="well">
+				<?php echo CHtml::link('Click me','#modal', array(
+					'class'=>'btn btn-primary',
+					'data-toggle'=>'modal',
+				)); ?>
+			</div>
 
 			<h4>Source code</h4>
 
@@ -524,30 +518,22 @@ Yii::app()->user->setFlash('error',
 [php]
 <?php \$this->beginWidget('bootstrap.widgets.BootModal', array(
 	'id'=>'modal',
-	'options'=>array(
-		'title'=>'Heading',
-		'buttons'=>array(
-			array(
-				'label'=>'Ok',
-				'class'=>'btn btn-primary',
-				'click'=>\"js:function() {
-				}\",
-			),
-			array(
-				'label'=>'Cancel',
-				'class'=>'btn',
-				'click'=>\"js:function() {
-					$('#modal').bootModal('close');
-					return false;
-				}\",
-			),
-		),
-	),
+	'htmlOptions'=>array('class'=>'hide fade'),
 )); ?>
 ~~~
 ~~~
 [html]
-Content ...
+<div class=\"modal-header\">
+	<a class=\"close\" data-dismiss=\"modal\">&times;</a>
+	<h3>Modal header</h3>
+</div>
+<div class=\"modal-body\">
+	<p>One fine body…</p>
+</div>
+<div class=\"modal-footer\">
+	<?php echo CHtml::link('Save changes', '#', array('class'=>'btn btn-primary', 'data-dismiss'=>'modal')); ?>
+	<?php echo CHtml::link('Close', '#', array('class'=>'btn', 'data-dismiss'=>'modal')); ?>
+</div>
 ~~~
 ~~~
 [php]
@@ -555,10 +541,10 @@ Content ...
 ~~~
 ~~~
 [php]
-<p><?php echo CHtml::link('Click me', '#', array(
+<?php echo CHtml::link('Click me','#modal', array(
 	'class'=>'btn btn-primary',
-	'onclick'=>\"jQuery('#modal').bootModal('open'); return false;\",
-)); ?></p>
+	'data-toggle'=>'modal',
+)); ?>
 ~~~"); ?>
 
 			<a class="top" href="#top">Back to top &uarr;</a>
@@ -714,6 +700,7 @@ Content ...
 
 			<?php $this->widget('bootstrap.widgets.BootMenu', array(
 				'type'=>'list',
+				//'scrollspy'=>true,
 				'items'=>array(
 					array('label'=>'WIDGETS','itemOptions'=>array('class'=>'nav-header')),
 					array('label'=>'BootAlert','url'=>'#bootAlert'),

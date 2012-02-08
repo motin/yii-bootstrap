@@ -67,6 +67,8 @@ class BootNavbar extends BootWidget
 
 		if ($this->fixed)
 			$this->htmlOptions['class'] .= ' navbar-fixed-top';
+		else
+			$this->htmlOptions['class'] .= ' navbar-static';
 
 		if (isset($this->brandOptions['class']))
 			$this->brandOptions['class'] .= ' brand';
@@ -85,7 +87,7 @@ class BootNavbar extends BootWidget
         if ($this->brand)
             echo CHtml::openTag('a', $this->brandOptions).$this->brand.'</a>';
         
-		echo '<div class="nav-collapse">';
+		echo '<div class="nav-collapse collapse">';
 
 		foreach ($this->items as $item)
 		{

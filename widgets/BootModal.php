@@ -9,7 +9,9 @@
 
 Yii::import('bootstrap.widgets.BootWidget');
 
-// todo: update to work with Bootstrap 2.
+/**
+ * @todo Add support for events. http://twitter.github.com/bootstrap/javascript.html#modals
+ */
 class BootModal extends BootWidget
 {
 	/**
@@ -23,16 +25,8 @@ class BootModal extends BootWidget
 	public function init()
 	{
 		parent::init();
-		$this->registerScriptFile('jquery.ui.boot-modal.js');
-
-		$id = $this->getId();
-		if (isset($this->htmlOptions['id']))
-			$id = $this->htmlOptions['id'];
-		else
-			$this->htmlOptions['id'] = $id;
-
-		$options = !empty($this->options) ? CJavaScript::encode($this->options) : '';
-        $this->registerScript(__CLASS__.'#'.$id, "jQuery('#{$id}').bootModal($options);");
+		$this->registerScriptFile('bootstrap-modal.js');
+		$this->htmlOptions['id'] = $this->getId();
 
 		echo CHtml::openTag($this->tagName, $this->htmlOptions).PHP_EOL;
 	}
