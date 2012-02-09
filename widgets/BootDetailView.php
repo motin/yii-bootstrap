@@ -9,7 +9,8 @@
 Yii::import('zii.widgets.CDetailView');
 
 /**
- * @todo DocBlock
+ * Bootstrap detail view widget.
+ * Used for setting default HTML classes and disabling the default CSS.
  */
 class BootDetailView extends CDetailView
 {

@@ -7,7 +7,8 @@
  */
 
 /**
- * @todo DocBlock
+ * Bootstrap base widget.
+ * Used for registering required scripts and defining default properties.
  */
 class BootWidget extends CWidget
 {
@@ -30,7 +31,6 @@ class BootWidget extends CWidget
 	public function init()
 	{
 		Yii::app()->clientScript->registerCoreScript('jquery');
-		Yii::app()->clientScript->registerCoreScript('jquery.ui');
 	}
 
 	/**

@@ -9,7 +9,7 @@
 Yii::import('bootstrap.widgets.BootWidget');
 
 /**
- * @todo DocBlock
+ * Bootstrap alert widget.
  * @todo Fix event support. http://twitter.github.com/bootstrap/javascript.html#alerts
  */
 class BootAlert extends BootWidget

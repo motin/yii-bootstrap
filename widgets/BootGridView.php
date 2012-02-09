@@ -9,7 +9,8 @@
 Yii::import('zii.widgets.grid.CGridView');
 
 /**
- * @todo DocBlock
+ * Bootstrap grid view widget.
+ * Used for setting default HTML classes, disabling the default CSS and enable the bootstrap pager.
  */
 class BootGridView extends CGridView
 {
@@ -17,7 +18,6 @@ class BootGridView extends CGridView
 	 * @var boolean whether to display the table even when there is no data. Defaults to false.
 	 */
 	public $showTableOnEmpty = false;
-
 	/**
 	 * @var string the CSS class name for the container table. Defaults to 'table'.
 	 */
@@ -32,4 +32,9 @@ class BootGridView extends CGridView
 	 * Defaults to <code>array('class'=>'ext.bootstrap.widgets.BootPager')</code>.
 	 */
 	public $pager = array('class'=>'bootstrap.widgets.BootPager');
+	/**
+	 * @var string the URL of the CSS file used by this detail view.
+	 * Defaults to false, meaning that no CSS will be included.
+	 */
+	public $cssFile = false;
 }

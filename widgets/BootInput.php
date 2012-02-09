@@ -7,20 +7,21 @@
  */
 
 /**
- * @todo DocBlock
+ * Bootstrap input widget.
+ * Used for rendering inputs with boostrap standards.
  */
 class BootInput extends CInputWidget
 {
 	// The different input types.
 	const TYPE_CHECKBOX = 'checkbox';
-	const TYPE_CHECKBOXES = 'checkboxlist';
-	const TYPE_CHECKBOXES_INLINE = 'checkboxlist_inline';
+	const TYPE_CHECKBOXLIST = 'checkboxlist';
+	const TYPE_CHECKBOXLIST_INLINE = 'checkboxlist_inline';
 	const TYPE_DROPDOWN = 'dropdownlist';
 	const TYPE_FILE = 'filefield';
 	const TYPE_PASSWORD = 'password';
 	const TYPE_RADIO = 'radiobutton';
-	const TYPE_RADIOS = 'radiobuttonlist';
-	const TYPE_RADIOS_INLINE = 'radiobuttonlist_inline';
+	const TYPE_RADIOLIST = 'radiobuttonlist';
+	const TYPE_RADIOLIST_INLINE = 'radiobuttonlist_inline';
 	const TYPE_TEXTAREA = 'textarea';
 	const TYPE_TEXT = 'textfield';
 	const TYPE_CAPTCHA = 'captcha';
@@ -74,11 +75,11 @@ class BootInput extends CInputWidget
 				$this->checkBox();
 				break;
 
-			case self::TYPE_CHECKBOXES:
+			case self::TYPE_CHECKBOXLIST:
 				$this->checkBoxList();
 				break;
 
-			case self::TYPE_CHECKBOXES_INLINE:
+			case self::TYPE_CHECKBOXLIST_INLINE:
 				$this->checkBoxListInline();
 				break;
 
@@ -98,11 +99,11 @@ class BootInput extends CInputWidget
 				$this->radioButton();
 				break;
 
-			case self::TYPE_RADIOS:
+			case self::TYPE_RADIOLIST:
 				$this->radioButtonList();
 				break;
 
-			case self::TYPE_RADIOS_INLINE:
+			case self::TYPE_RADIOLIST_INLINE:
 				$this->radioButtonListInline();
 				break;
 

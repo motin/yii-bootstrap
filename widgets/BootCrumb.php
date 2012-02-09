@@ -9,7 +9,7 @@
 Yii::import('zii.widgets.CBreadcrumbs');
 
 /**
- * @todo DocBlock
+ * Bootstrap breadcrumb widget.
  */
 class BootCrumb extends CBreadcrumbs
 {

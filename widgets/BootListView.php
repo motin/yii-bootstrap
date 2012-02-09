@@ -9,7 +9,8 @@
 Yii::import('zii.widgets.CListView');
 
 /**
- * @todo DocBlock
+ * Bootstrap list view.
+ * Used to enable the bootstrap pager.
  */
 class BootListView extends CListView
 {

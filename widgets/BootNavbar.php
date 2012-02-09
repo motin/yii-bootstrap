@@ -11,7 +11,6 @@ Yii::import('bootstrap.widgets.BootWidget');
 /**
  * Bootstrap navigation bar widget.
  * @since 0.9.7
- * @todo Add collapse support. http://twitter.github.com/bootstrap/javascript.html#collapse
  */
 class BootNavbar extends BootWidget
 {
@@ -42,6 +41,11 @@ class BootNavbar extends BootWidget
 	 * @since 0.9.8
 	 */
 	public $fixed = true;
+	/**
+	 * @var boolean whether to enable collapsing on narrow screens.
+	 * Enabled by default if the collapse plugin is registered.
+	 */
+	public $collapse = null;
 
 	/**
 	 * Initializes the widget.
@@ -55,6 +59,9 @@ class BootNavbar extends BootWidget
 			if (!isset($this->brandUrl))
 				$this->brandUrl = Yii::app()->homeUrl;
 		}
+
+		if (!isset($this->collapse))
+			$this->collapse = Yii::app()->bootstrap->isPluginRegistered('collapse');
 	}
 
 	/**
@@ -84,12 +91,19 @@ class BootNavbar extends BootWidget
 
 		echo CHtml::openTag('div', $this->htmlOptions);
 		echo '<div class="navbar-inner"><div class="'.$containerCssClass.'">';
-		echo '<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"></a>';
+
+		if ($this->collapse)
+		{
+			echo '<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">';
+			echo '<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>';
+			echo '</a>';
+		}
 
         if ($this->brand !== false)
             echo CHtml::openTag('a', $this->brandOptions).$this->brand.'</a>';
-        
-		echo '<div class="nav-collapse">';
+
+		if ($this->collapse)
+			echo '<div class="nav-collapse">';
 
 		foreach ($this->items as $item)
 		{
@@ -107,6 +121,9 @@ class BootNavbar extends BootWidget
 			}
 		}
 
-		echo '</div></div></div></div>';
+		if ($this->collapse)
+			echo '</div>';
+
+		echo '</div></div></div>';
 	}
 }

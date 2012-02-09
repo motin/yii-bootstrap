@@ -1,6 +1,7 @@
-// IMPORTS
+// PRE-IMPORTS
 
 @import "../../lib/bootstrap/less/bootstrap.less";
+//@import "../yii/vendors/TextHighlighter/highlight.css";
 
 // VARIABLES
 
@@ -15,8 +16,15 @@ h1, h2, h3, h4, h5, h6 {
 	margin-bottom: 0.6em;
 }
 
-.footer .powered {
-	color: #888;
+footer {
+	.powered {
+		color: #888;
+		margin-bottom: 20px;
+	}
+
+	.copy {
+		color: #666;
+	}
 }
 
 .hl-code pre {
@@ -37,10 +45,10 @@ span.required {
 
 .version {
 	color: #CCC;
-	margin: 10px 0;
+	margin: 10px 10px 10px;
 }
 
-.section {
+section {
 	padding-top: 50px;
 
 	a.top {
@@ -57,6 +65,10 @@ span.required {
 	min-height: 140px;
 }
 
+#bootTabbed .tabbed {
+	margin-bottom: 20px;
+}
+
 #bootThumbs .list-view {
 	padding-top: 30px;
 }
@@ -64,3 +76,8 @@ span.required {
 #bootActiveForm .form-vertical .control-group > label {
 	font-weight: bold;
 }
+
+// POST-IMPORTS
+
+// Responsive style must be included after the body padding has been set.
+@import "../../lib/bootstrap/less/responsive.less";

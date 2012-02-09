@@ -7,7 +7,7 @@
  */
 
 /**
- * @todo DocBlock
+ * Bootstrap pager widget.
  */
 class BootPager extends CLinkPager
 {

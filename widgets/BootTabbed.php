@@ -6,12 +6,13 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
 
+Yii::import('bootstrap.widgets.BootMenu');
 Yii::import('bootstrap.widgets.BootWidget');
 
 /**
  * Bootstrap JavaScript tabs widget.
- * @since 0.9.6
- * @todo Change to use bootstrap-tab.js http://twitter.github.com/bootstrap/javascript.html#tabs
+ * @since 0.9.8
+ * @todo Fix event support. http://twitter.github.com/bootstrap/javascript.html#tabs
  */
 class BootTabbed extends BootWidget
 {
@@ -19,27 +20,13 @@ class BootTabbed extends BootWidget
 	 * @var string the type of tabs to display. Defaults to 'tabs'.
 	 * Valid values are 'tabs' and 'pills'.
 	 */
-    public $type = 'tabs';
+    public $type = BootMenu::TYPE_TABS;
 	/**
 	 * @var array the tab configuration.
 	 */
     public $tabs = array();
-	/**
-	 * @var string the name of the container element that contains all panels. Defaults to 'div'.
-	 */
-    public $tagName = 'div';
-	/**
-	 * @var string the template to use for displaying the header.
-	 */
-    public $headerTemplate = '<li class="{class}"><a href="{url}">{title}</a></li>';
-	/**
-	 * @var string the template to use for displaying the content.
-	 */
-    public $contentTemplate = '<div class="tab-pane {class}" id="{id}">{content}</div>';
-	/**
-	 * @var string the CSS selector to use for selecting the tabs elements.
-	 */
-    public $selector = '.nav-tabs > li > a, .nav-pills > li > a';
+
+	public $encodeLabel = true;
 
     /**
      * Initializes the widget.
@@ -47,7 +34,7 @@ class BootTabbed extends BootWidget
     public function init()
     {
         parent::init();
-        $this->registerScriptFile('jquery.ui.boot-tabbed.js');
+        $this->registerScriptFile('bootstrap-tab.js');
     }
 
     /**
@@ -61,70 +48,111 @@ class BootTabbed extends BootWidget
         else
             $this->htmlOptions['id'] = $id;
 
-        echo CHtml::openTag($this->tagName, $this->htmlOptions);
+	    $panes = array();
+	    $items = $this->normalizeTabs($this->tabs, $panes);
 
-        $tabsOut = '';
-        $contentOut = '';
-        $tabCount = 0;
+	    echo CHtml::openTag('div', $this->htmlOptions);
 
-        foreach ($this->tabs as $title => $content)
+	    $this->controller->widget('bootstrap.widgets.BootMenu', array(
+			'type'=>$this->type,
+		    'items'=>$items,
+	    ));
+
+	    echo '<div class="tab-content">';
+		echo implode('', $panes);
+	    echo '</div></div>';
+
+	    $this->registerScript(__CLASS__.'#'.$id, "jQuery('{$id}').tab('show');");
+
+	    /*
+        // Register the "show" event-handler.
+        if (isset($this->events['show']))
         {
-            $tabId = (is_array($content) && isset($content['id'])) ? $content['id'] : $id.'_tab_'.$tabCount++;
-
-            if (!is_array($content))
-            {
-                $tabsOut .= strtr($this->headerTemplate, array(
-                    '{title}'=>$title,
-                    '{url}'=>'#'.$tabId,
-                    '{id}'=>'#'.$tabId,
-                    '{class}'=>$tabCount === 1 ? 'active' : '',
-                ));
-
-                $contentOut .= strtr($this->contentTemplate, array(
-                    '{content}'=>$content,
-                    '{id}'=>$tabId,
-                    '{class}'=>$tabCount === 1 ? 'active' : '',
-                ));
-            }
-            elseif (isset($content['ajax']))
-            {
-                $tabsOut .= strtr($this->headerTemplate, array(
-                    '{title}'=>$title,
-                    '{url}'=>CHtml::normalizeUrl($content['ajax']),
-                    '{id}'=>'#'.$tabId,
-                    '{class}'=>$tabCount === 1 ? 'active' : '',
-                ));
-            }
-            else
-            {
-                $tabsOut .= strtr($this->headerTemplate, array(
-                    '{title}'=>$title,
-                    '{url}'=>'#'.$tabId,
-                    '{class}'=>$tabCount === 1 ? 'active' : '',
-                ));
-
-                if(isset($content['content']))
-                {
-                    $contentOut .= strtr($this->contentTemplate, array(
-                        '{content}'=>$content['content'],
-                        '{id}'=>$tabId,
-                        '{class}'=>$tabCount === 1 ? 'active' : '',
-                    ));
-                }
-            }
+            $fn = CJavaScript::encode($this->events['show']);
+            Yii::app()->clientScript->registerScript(__CLASS__.'#'.$this->id.'.show',
+	                "jQuery('#{$id} a[data-toggle=\"tab\"').on('show', {$fn});");
         }
 
-        echo CHtml::openTag('ul', array('class'=>'nav nav-'.$this->type, 'data-'.$this->type=>$this->type));
-        echo $tabsOut;
-        echo '</ul>';
-
-        echo CHtml::openTag('div', array('class'=>$this->type === 'tabs' ? 'tab-content' : 'pill-content'));
-        echo $contentOut;
-        echo '</div>';
-
-        echo CHtml::closeTag($this->tagName);
-
-        $options = !empty($this->options) ? CJavaScript::encode($this->options) : '';
-        $this->registerScript(__CLASS__.'#'.$id, "jQuery('{$this->selector}').bootTabbed({$options});");
+        // Register the "shown" event-handler.
+        if (isset($this->events['shown']))
+        {
+            $fn = CJavaScript::encode($this->events['shown']);
+            Yii::app()->clientScript->registerScript(__CLASS__.'#'.$this->id.'.shown',
+	                "jQuery('#{$id} a[data-toggle=\"tab\"').on('shown', {$fn});");
+        }
+	    */
     }
+
+	/**
+	 * Normalizes the tab configuration.
+	 * @param array $tabs the tab configuration
+	 * @param array $panes a reference to the panes array
+	 * @param integer $i the current index
+	 * @return array the items
+	 */
+	protected function normalizeTabs($tabs, &$panes, &$i = 0)
+	{
+		$id = $this->getId();
+		$transitions = Yii::app()->bootstrap->transitions;
+
+		$items = array();
+
+	    foreach ($tabs as &$tab)
+	    {
+		    $i++;
+		    $item = array();
+
+		    $itemId = isset($tab['id']) ? $tab['id'] : $id.'_tab_'.$i;
+
+		    $item['label'] = isset($tab['label']) ? $tab['label'] : '';
+
+		    if (!isset($tab['items']))
+			    $item['url'] = '#'.$itemId;
+
+		    if (isset($tab['itemOptions']))
+			    $item['itemOptions'] = $tab['itemOptions'];
+
+		    if ($i === 1)
+		    {
+			    if (isset($item['itemOptions']['class']))
+	                $item['itemOptions']['class'] .= ' active';
+	            else
+		            $item['itemOptions']['class'] = 'active';
+		    }
+
+		    if (isset($tab['items']))
+				$item['items'] = $this->normalizeTabs($tab['items'], $panes, $i);
+
+		    $item['linkOptions']['data-toggle'] = 'tab';
+
+		    if (!isset($tab['content']))
+			    $tab['content'] = '';
+
+		    if (!isset($tab['paneOptions']))
+			    $tab['paneOptions'] = array();
+
+		    $tab['paneOptions']['id'] = $itemId;
+
+		    if (isset($tab['paneOptions']['class']))
+			    $tab['paneOptions']['class'] .= ' tab-pane';
+		    else
+			    $tab['paneOptions']['class'] = 'tab-pane';
+
+		    if ($transitions)
+		        $tab['paneOptions']['class'] .= ' fade';
+
+		    if ($i === 1)
+		    {
+			    if ($transitions)
+					$tab['paneOptions']['class'] .= ' in';
+
+			    $tab['paneOptions']['class'] .= ' active';
+		    }
+
+		    $items[] = $item;
+		    $panes[] = CHtml::tag('div', $tab['paneOptions'], $tab['content']);
+	    }
+
+		return $items;
+	}
 }

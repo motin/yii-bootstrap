@@ -27,6 +27,8 @@ return array(
 	'components'=>array(
 		'bootstrap'=>array(
 			'class'=>'bootstrap.components.Bootstrap',
+			'coreCss'=>false,
+			'responsiveCss'=>false,
 		),
 		'errorHandler'=>array(
 			'errorAction'=>'site/error',

@@ -6,7 +6,7 @@
 
 		<h1>Widgets</h1>
 
-		<div class="section" id="bootAlert">
+		<section id="bootAlert">
 
 			<h2>BootAlert</h2>
 
@@ -45,9 +45,9 @@ Yii::app()->user->setFlash('error',
 
 			<a class="top" href="#top">Back to top &uarr;</a>
 
-		</div>
+		</section>
 
-		<div class="section" id="bootCrumb">
+		<section id="bootCrumb">
 
 			<h2>BootCrumb</h2>
 
@@ -66,9 +66,9 @@ Yii::app()->user->setFlash('error',
 
 			<a class="top" href="#top">Back to top &uarr;</a>
 
-		</div>
+		</section>
 
-		<div class="section" id="bootNavbar">
+		<section id="bootNavbar">
 
 			<h2>BootNavbar</h2>
 
@@ -157,9 +157,9 @@ Yii::app()->user->setFlash('error',
 
 			<a class="top" href="#top">Back to top &uarr;</a>
 
-		</div>
+		</section>
 
-		<div class="section" id="bootMenu">
+		<section id="bootMenu">
 
 			<h2>BootMenu</h2>
 
@@ -305,19 +305,58 @@ Yii::app()->user->setFlash('error',
 
 			<a class="top" href="#top">Back to top &uarr;</a>
 
-		</div>
+		</section>
 
-		<div class="section" id="bootTabbed">
+		<section id="bootTabbed">
 
 			<h2>BootTabbed</h2>
 
-			<p>@todo</p>
+			<?php $this->widget('bootstrap.widgets.BootTabbed', array(
+				'htmlOptions'=>array('class'=>'tabbed'),
+				'tabs'=>array(
+					array('label'=>'Home', 'content'=>'Raw denim you probably haven\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'),
+					array('label'=>'Profile', 'content'=>'Food truck fixie locavore, accusamus mcsweeney\'s marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.'),
+					array('label'=>'Dropdown', 'items'=>array(
+						array('label'=>'@fat', 'content'=>'Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney\'s organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven\'t heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.'),
+						array('label'=>'@mdo', 'content'=>'Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.'),
+					)),
+				),
+			)); ?>
+
+			<?php $this->widget('bootstrap.widgets.BootTabbed', array(
+				'type'=>BootMenu::TYPE_PILLS,
+				'htmlOptions'=>array('class'=>'tabbed'),
+				'tabs'=>array(
+					array('label'=>'Home', 'content'=>'Raw denim you probably haven\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'),
+					array('label'=>'Profile', 'content'=>'Food truck fixie locavore, accusamus mcsweeney\'s marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.'),
+					array('label'=>'Dropdown', 'items'=>array(
+						array('label'=>'@fat', 'content'=>'Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney\'s organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven\'t heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.'),
+						array('label'=>'@mdo', 'content'=>'Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.'),
+					)),
+				),
+			)); ?>
+
+			<h4>Source code</h4>
+
+<?php echo $parser->safeTransform("~~~
+[php]
+<?php \$this->widget('bootstrap.widgets.BootTabbed', array(
+	'tabs'=>array(
+		array('label'=>'Home', 'content'=>'Raw denim you probably haven\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'),
+		array('label'=>'Profile', 'content'=>'Food truck fixie locavore, accusamus mcsweeney\'s marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.'),
+		array('label'=>'Dropdown', 'items'=>array(
+			array('label'=>'@fat', 'content'=>'Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney\'s organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven\'t heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.'),
+			array('label'=>'@mdo', 'content'=>'Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.'),
+		)),
+	),
+)); ?>
+~~~"); ?>
 
 			<a class="top" href="#top">Back to top &uarr;</a>
 
-		</div>
+		</section>
 
-		<div class="section" id="bootGridView">
+		<section id="bootGridView">
 
 			<h2>BootGridView</h2>
 
@@ -371,9 +410,9 @@ Yii::app()->user->setFlash('error',
 
 			<a class="top" href="#top">Back to top &uarr;</a>
 
-		</div>
+		</section>
 
-		<div class="section" id="bootThumbs">
+		<section id="bootThumbs">
 
 			<h2>BootThumbs</h2>
 
@@ -417,9 +456,9 @@ Yii::app()->user->setFlash('error',
 
 			<a class="top" href="#top">Back to top &uarr;</a>
 
-		</div>
+		</section>
 
-		<div class="section" id="bootTooltip">
+		<section id="bootTooltip">
 
 			<h2>BootTooltip</h2>
 
@@ -454,9 +493,9 @@ Yii::app()->user->setFlash('error',
 
 			<a class="top" href="#top">Back to top &uarr;</a>
 
-		</div>
+		</section>
 
-		<div class="section" id="bootPopover">
+		<section id="bootPopover">
 
 			<h2>BootPopover</h2>
 
@@ -483,9 +522,9 @@ Yii::app()->user->setFlash('error',
 
 			<a class="top" href="#top">Back to top &uarr;</a>
 
-		</div>
+		</section>
 
-		<div class="section" id="bootModal">
+		<section id="bootModal">
 
 			<h2>BootModal</h2>
 
@@ -564,9 +603,9 @@ Yii::app()->user->setFlash('error',
 
 			<a class="top" href="#top">Back to top &uarr;</a>
 
-		</div>
+		</section>
 
-		<div class="section" id="bootActiveForm">
+		<section id="bootActiveForm">
 
 			<h2>BootActiveForm</h2>
 
@@ -705,13 +744,13 @@ Yii::app()->user->setFlash('error',
 
 			<a class="top" href="#top">Back to top &uarr;</a>
 
-		</div>
+		</section>
 
 	</div>
 
 	<div class="span3">
 
-		<div class="well" style="padding: 8px 0;">
+		<aside class="well" style="padding: 8px 0;">
 
 			<?php $this->widget('bootstrap.widgets.BootMenu', array(
 				'type'=>'list',
@@ -733,7 +772,7 @@ Yii::app()->user->setFlash('error',
 				),
 			)); ?>
 
-		</div>
+		</aside>
 
 	</div>
 

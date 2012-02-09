@@ -9,7 +9,7 @@
 Yii::import('bootstrap.widgets.BootInput');
 
 /**
- * @todo DocBlock
+ * Bootstrap active form widget.
  */
 class BootActiveForm extends CActiveForm
 {
@@ -93,7 +93,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function checkBoxListRow($model, $attribute, $data = array(), $htmlOptions = array())
 	{
-		return $this->inputRow(BootInput::TYPE_CHECKBOXES, $model, $attribute, $data, $htmlOptions);
+		return $this->inputRow(BootInput::TYPE_CHECKBOXLIST, $model, $attribute, $data, $htmlOptions);
 	}
 
 	/**
@@ -106,7 +106,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function checkBoxListInlineRow($model, $attribute, $data = array(), $htmlOptions = array())
 	{
-		return $this->inputRow(BootInput::TYPE_CHECKBOXES_INLINE, $model, $attribute, $data, $htmlOptions);
+		return $this->inputRow(BootInput::TYPE_CHECKBOXLIST_INLINE, $model, $attribute, $data, $htmlOptions);
 	}
 
 	/**
@@ -168,7 +168,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function radioButtonListRow($model, $attribute, $data = array(), $htmlOptions = array())
 	{
-		return $this->inputRow(BootInput::TYPE_RADIOS, $model, $attribute, $data, $htmlOptions);
+		return $this->inputRow(BootInput::TYPE_RADIOLIST, $model, $attribute, $data, $htmlOptions);
 	}
 
 	/**
@@ -181,7 +181,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function radioButtonListInlineRow($model, $attribute, $data = array(), $htmlOptions = array())
 	{
-		return $this->inputRow(BootInput::TYPE_RADIOS_INLINE, $model, $attribute, $data, $htmlOptions);
+		return $this->inputRow(BootInput::TYPE_RADIOLIST_INLINE, $model, $attribute, $data, $htmlOptions);
 	}
 
 	/**

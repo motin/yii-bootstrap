@@ -1,11 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
+	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
-	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+	<!--[if lt IE 9]>
+		<script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
 	<link rel="stylesheet/less" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/less/styles.less" />
-	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/less/less-1.2.1.min.js"></script>
+	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/less-1.2.1.min.js"></script>
 	<script type="text/javascript">
 
 		var _gaq = _gaq || [];
@@ -27,6 +30,7 @@
 	'brand'=>CHtml::encode(Yii::app()->name),
 	'items'=>array(
 		array(
+			'class'=>'bootstrap.widgets.BootMenu',
 			'items'=>array(
 				array('label'=>'Home', 'url'=>'#'),
 				array('label'=>'About', 'url'=>'#'),
@@ -55,7 +59,7 @@
 
 	<hr />
 
-	<div class="footer">
+	<footer>
 
 		<p class="powered">
 			Powered by <?php echo CHtml::link('Yii 1.1.9', 'http://www.yiiframework.com', array('target'=>'_blank')); ?> //
@@ -65,7 +69,11 @@
 			<?php echo CHtml::link('LESS 1.2.1', 'http://www.lesscss.org', array('target'=>'_blank')); ?>
 		</p>
 
-	</div>
+		<p class="copy">
+			&copy; Christoffer Niska 2011
+		</p>
+
+	</footer>
 
 </div>
 

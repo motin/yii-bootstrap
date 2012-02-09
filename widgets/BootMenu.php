@@ -10,6 +10,7 @@ Yii::import('bootstrap.widgets.BootWidget');
 
 /**
  * Bootstrap menu widget.
+ * Used for rendering of bootstrap menus with support dropdown sub-menus and scroll-spying.
  * @since 0.9.8
  */
 class BootMenu extends BootWidget
@@ -55,12 +56,17 @@ class BootMenu extends BootWidget
 	 */
 	public function init()
 	{
-		$this->htmlOptions['id'] = $this->getId();
+		$id = $this->getId();
+        if (isset($this->htmlOptions['id']))
+            $id = $this->htmlOptions['id'];
+        else
+            $this->htmlOptions['id'] = $id;
+
 		$route = $this->controller->getRoute();
 		$this->items = $this->normalizeItems($this->items, $route);
 
 		if ($this->scrollspy)
-			Yii::app()->clientScript->registerScript(__CLASS__.'#'.$this->id, "jQuery('#{$this->id}').scrollspy();");
+			Yii::app()->clientScript->registerScript(__CLASS__.'#'.$this->id, "jQuery('#{$id}').scrollspy();");
 	}
 
 	/**
