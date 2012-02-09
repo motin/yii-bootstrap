@@ -76,6 +76,7 @@ Yii::app()->user->setFlash('error',
 				'fixed'=>false,
 				'brand'=>'Project name',
 				'brandUrl'=>'#',
+				'collapse'=>true, // requires bootstrap-responsive.css
 				'items'=>array(
 					array(
 						'class'=>'bootstrap.widgets.BootMenu',
@@ -119,6 +120,7 @@ Yii::app()->user->setFlash('error',
 	'fixed'=>false,
 	'brand'=>'Project name',
 	'brandUrl'=>'#',
+	'collapse'=>true, // requires bootstrap-responsive.css
 	'items'=>array(
 		array(
 			'class'=>'bootstrap.widgets.BootMenu',

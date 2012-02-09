@@ -42,10 +42,9 @@ class BootNavbar extends BootWidget
 	 */
 	public $fixed = true;
 	/**
-	 * @var boolean whether to enable collapsing on narrow screens.
-	 * Enabled by default if the collapse plugin is registered.
+	 * @var boolean whether to enable collapsing on narrow screens. Default to false.
 	 */
-	public $collapse = null;
+	public $collapse = false;
 
 	/**
 	 * Initializes the widget.
@@ -60,8 +59,8 @@ class BootNavbar extends BootWidget
 				$this->brandUrl = Yii::app()->homeUrl;
 		}
 
-		if (!isset($this->collapse))
-			$this->collapse = Yii::app()->bootstrap->isPluginRegistered('collapse');
+		if ($this->collapse)
+			Yii::app()->bootstrap->registerCollapse();
 	}
 
 	/**

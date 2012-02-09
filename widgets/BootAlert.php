@@ -21,7 +21,7 @@ class BootAlert extends BootWidget
 	/**
 	 * @var string the template to use for displaying flash messages.
 	 */
-	public $template = '<div class="alert alert-block alert-{key} fade in"><a class="close" data-dismiss="alert">&times;</a>{message}</div>';
+	public $template = '<div class="alert alert-block alert-{key}{class}"><a class="close" data-dismiss="alert">&times;</a>{message}</div>';
 	/**
 	 * @var array the html options.
 	 */
@@ -33,8 +33,11 @@ class BootAlert extends BootWidget
 	public function init()
 	{
 		parent::init();
-		$this->registerScriptFile('bootstrap-alert.js');
-		$this->htmlOptions['id'] = $this->getId();
+
+		Yii::app()->bootstrap->registerAlert();
+
+		if (!isset($this->htmlOptions['id']))
+			$this->htmlOptions['id'] = $this->getId();
 	}
 
 	/**
@@ -47,10 +50,18 @@ class BootAlert extends BootWidget
 
 		echo CHtml::openTag('div', $this->htmlOptions);
 
+		$transitions = Yii::app()->bootstrap->isPluginRegistered(Bootstrap::PLUGIN_TRANSITION);
+
 		foreach ($this->keys as $key)
 		{
 			if (Yii::app()->user->hasFlash($key))
-				echo strtr($this->template, array('{key}'=>$key, '{message}'=>Yii::app()->user->getFlash($key)));
+			{
+				echo strtr($this->template, array(
+					'{class}'=>$transitions ? ' fade in' : '',
+					'{key}'=>$key,
+					'{message}'=>Yii::app()->user->getFlash($key),
+				));
+			}
 		}
 
 		echo '</div>';

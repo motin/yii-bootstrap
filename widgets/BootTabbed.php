@@ -25,7 +25,9 @@ class BootTabbed extends BootWidget
 	 * @var array the tab configuration.
 	 */
     public $tabs = array();
-
+	/**
+	 * @var boolean whether to encode item labels.
+	 */
 	public $encodeLabel = true;
 
     /**
@@ -34,7 +36,11 @@ class BootTabbed extends BootWidget
     public function init()
     {
         parent::init();
-        $this->registerScriptFile('bootstrap-tab.js');
+
+        Yii::app()->bootstrap->registerTabs();
+
+		if (!isset($this->htmlOptions['id']))
+			$this->htmlOptions['id'] = $this->getId();
     }
 
     /**
@@ -42,12 +48,6 @@ class BootTabbed extends BootWidget
      */
     public function run()
     {
-        $id = $this->getId();
-        if (isset($this->htmlOptions['id']))
-            $id = $this->htmlOptions['id'];
-        else
-            $this->htmlOptions['id'] = $id;
-
 	    $panes = array();
 	    $items = $this->normalizeTabs($this->tabs, $panes);
 
@@ -55,6 +55,7 @@ class BootTabbed extends BootWidget
 
 	    $this->controller->widget('bootstrap.widgets.BootMenu', array(
 			'type'=>$this->type,
+			'encodeLabel'=>$this->encodeLabel,
 		    'items'=>$items,
 	    ));
 
@@ -62,7 +63,7 @@ class BootTabbed extends BootWidget
 		echo implode('', $panes);
 	    echo '</div></div>';
 
-	    $this->registerScript(__CLASS__.'#'.$id, "jQuery('{$id}').tab('show');");
+	    $this->registerScript(__CLASS__.'#'.$this->id, "jQuery('{$this->id}').tab('show');");
 
 	    /*
         // Register the "show" event-handler.
@@ -93,24 +94,25 @@ class BootTabbed extends BootWidget
 	protected function normalizeTabs($tabs, &$panes, &$i = 0)
 	{
 		$id = $this->getId();
-		$transitions = Yii::app()->bootstrap->transitions;
+		$transitions = Yii::app()->bootstrap->isPluginRegistered(Bootstrap::PLUGIN_TRANSITION);
 
 		$items = array();
 
-	    foreach ($tabs as &$tab)
+	    foreach ($tabs as $tab)
 	    {
 		    $i++;
-		    $item = array();
+			$item = $tab;
 
-		    $itemId = isset($tab['id']) ? $tab['id'] : $id.'_tab_'.$i;
+			if (!isset($item['id']))
+				$item['id'] = $id.'_tab_'.$i;
 
-		    $item['label'] = isset($tab['label']) ? $tab['label'] : '';
+			if (!isset($item['label']))
+				$item['label'] = '';
 
-		    if (!isset($tab['items']))
-			    $item['url'] = '#'.$itemId;
+			$item['url'] = '#'.$item['id'];
 
-		    if (isset($tab['itemOptions']))
-			    $item['itemOptions'] = $tab['itemOptions'];
+			if (!isset($item['itemOptions']))
+				$item['itemOptions'] = array();
 
 		    if ($i === 1)
 		    {
@@ -120,37 +122,46 @@ class BootTabbed extends BootWidget
 		            $item['itemOptions']['class'] = 'active';
 		    }
 
+			$item['linkOptions']['data-toggle'] = 'tab';
+
 		    if (isset($tab['items']))
-				$item['items'] = $this->normalizeTabs($tab['items'], $panes, $i);
+			{
+				$item['items'] = $this->normalizeTabs($item['items'], $panes, $i);
+				unset($item['url']);
+			}
 
-		    $item['linkOptions']['data-toggle'] = 'tab';
+		    if (!isset($item['content']))
+			    $item['content'] = '';
 
-		    if (!isset($tab['content']))
-			    $tab['content'] = '';
+			$content = $item['content'];
+			unset($item['content']);
 
-		    if (!isset($tab['paneOptions']))
-			    $tab['paneOptions'] = array();
+		    if (!isset($item['paneOptions']))
+				$item['paneOptions'] = array();
 
-		    $tab['paneOptions']['id'] = $itemId;
+			$paneOptions = $item['paneOptions'];
+			unset($item['paneOptions']);
+
+			$paneOptions['id'] = $item['id'];
 
 		    if (isset($tab['paneOptions']['class']))
-			    $tab['paneOptions']['class'] .= ' tab-pane';
+				$paneOptions['class'] .= ' tab-pane';
 		    else
-			    $tab['paneOptions']['class'] = 'tab-pane';
+				$paneOptions['class'] = 'tab-pane';
 
 		    if ($transitions)
-		        $tab['paneOptions']['class'] .= ' fade';
+				$paneOptions['class'] .= ' fade';
 
 		    if ($i === 1)
 		    {
 			    if ($transitions)
-					$tab['paneOptions']['class'] .= ' in';
+					$paneOptions['class'] .= ' in';
 
-			    $tab['paneOptions']['class'] .= ' active';
+				$paneOptions['class'] .= ' active';
 		    }
 
-		    $items[] = $item;
-		    $panes[] = CHtml::tag('div', $tab['paneOptions'], $tab['content']);
+		    $panes[] = CHtml::tag('div', $paneOptions, $content);
+			$items[] = $item;
 	    }
 
 		return $items;

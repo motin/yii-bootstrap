@@ -16,8 +16,11 @@ class BootActiveForm extends CActiveForm
 	// The different form types.
 	const TYPE_VERTICAL = 'form-vertical';
 	const TYPE_INLINE = 'form-inline';
-	const TYPE_SEARCH = 'form-search';
 	const TYPE_HORIZONTAL = 'form-horizontal';
+
+	const INPUT_HORIZONTAL = 'bootstrap.widgets.BootInputHorizontal';
+	const INPUT_INLINE = 'bootstrap.widgets.BootInputInline';
+	const INPUT_VERTICAL = 'bootstrap.widgets.BootInputVertical';
 
 	/**
 	 * @var string the form type. See class constants.
@@ -59,8 +62,31 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function inputRow($type, $model, $attribute, $data = null, $htmlOptions = array())
 	{
+		// Determine the input widget class name.
+		switch ($this->type)
+		{
+			case self::TYPE_INLINE:
+			case self::TYPE_HORIZONTAL:
+			case self::TYPE_VERTICAL:
+			default:
+				$className = self::INPUT_HORIZONTAL;
+				break;
+
+			/*
+			case self::TYPE_INLINE:
+				$className = self::INPUT_INLINE;
+				break;
+
+			case self::TYPE_VERTICAL:
+			default:
+				$className = self::INPUT_VERTICAL;
+				break;
+			*/
+
+		}
+
 		ob_start();
-		Yii::app()->controller->widget('BootInput',array(
+		Yii::app()->controller->widget($className, array(
 			'type'=>$type,
 			'form'=>$this,
 			'model'=>$model,

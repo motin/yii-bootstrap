@@ -28,6 +28,7 @@
 
 <?php $this->widget('BootNavbar',array(
 	'brand'=>CHtml::encode(Yii::app()->name),
+	'collapse'=>true,
 	'items'=>array(
 		array(
 			'class'=>'bootstrap.widgets.BootMenu',

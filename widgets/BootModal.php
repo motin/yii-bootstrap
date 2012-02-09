@@ -20,8 +20,19 @@ class BootModal extends BootWidget
 	public function init()
 	{
 		parent::init();
-		$this->registerScriptFile('bootstrap-modal.js');
-		$this->htmlOptions['id'] = $this->getId();
+
+		Yii::app()->bootstrap->registerModal();
+
+		if (!isset($this->htmlOptions['id']))
+			$this->htmlOptions['id'] = $this->getId();
+
+		if (isset($this->htmlOptions['class']))
+			$this->htmlOptions['class'] .= ' modal';
+		else
+			$this->htmlOptions['class'] = 'modal';
+
+		if (Yii::app()->bootstrap->isPluginRegistered(Bootstrap::PLUGIN_TRANSITION))
+			$this->htmlOptions['class'] .= ' fade';
 
 		echo CHtml::openTag('div', $this->htmlOptions).PHP_EOL;
 	}
@@ -37,28 +48,32 @@ class BootModal extends BootWidget
 		if (isset($this->events['show']))
 		{
 			$fn = CJavaScript::encode($this->events['show']);
-			Yii::app()->clientScript->registerScript(__CLASS__.'#'.$this->id.'.show', "jQuery('#{$this->id}').on('show', {$fn});");
+			Yii::app()->clientScript->registerScript(__CLASS__.'#'.$this->id.'.show',
+					"jQuery('#{$this->id}').on('show', {$fn});");
 		}
 
 		// Register the "shown" event-handler.
 		if (isset($this->events['shown']))
 		{
 			$fn = CJavaScript::encode($this->events['shown']);
-			Yii::app()->clientScript->registerScript(__CLASS__.'#'.$this->id.'.shown', "jQuery('#{$this->id}').on('shown', {$fn});");
+			Yii::app()->clientScript->registerScript(__CLASS__.'#'.$this->id.'.shown',
+					"jQuery('#{$this->id}').on('shown', {$fn});");
 		}
 
 		// Register the "hide" event-handler.
 		if (isset($this->events['hide']))
 		{
 			$fn = CJavaScript::encode($this->events['hide']);
-			Yii::app()->clientScript->registerScript(__CLASS__.'#'.$this->id.'.hide', "jQuery('#{$this->id}').on('hide', {$fn});");
+			Yii::app()->clientScript->registerScript(__CLASS__.'#'.$this->id.'.hide',
+					"jQuery('#{$this->id}').on('hide', {$fn});");
 		}
 
 		// Register the "hidden" event-handler.
 		if (isset($this->events['hidden']))
 		{
 			$fn = CJavaScript::encode($this->events['hidden']);
-			Yii::app()->clientScript->registerScript(__CLASS__.'#'.$this->id.'.hidden', "jQuery('#{$this->id}').on('hidden', {$fn});");
+			Yii::app()->clientScript->registerScript(__CLASS__.'#'.$this->id.'.hidden',
+					"jQuery('#{$this->id}').on('hidden', {$fn});");
 		}
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * BootInputBlock class file.
+ * BootInput class file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -8,9 +8,10 @@
 
 /**
  * Bootstrap input widget.
- * Used for rendering inputs with boostrap standards.
+ * Used for rendering inputs according to Bootstrap standards.
+ * @todo Implement BootInputInline and BootInputVertical. http://twitter.github.com/bootstrap/base-css.html#forms
  */
-class BootInput extends CInputWidget
+abstract class BootInput extends CInputWidget
 {
 	// The different input types.
 	const TYPE_CHECKBOX = 'checkbox';
@@ -133,196 +134,112 @@ class BootInput extends CInputWidget
 	/**
 	 * Renders a checkbox.
 	 * @return string the rendered content
+	 * @abstract
 	 */
-	protected function checkBox()
-	{
-		echo '<div class="controls">';
-		echo '<label class="checkbox" for="'.CHtml::getIdByName(CHtml::resolveName($this->model, $this->attribute)).'">';
-		echo $this->form->checkBox($this->model, $this->attribute, $this->htmlOptions).PHP_EOL;
-		echo $this->model->getAttributeLabel($this->attribute);
-		echo $this->getError().$this->getHint();
-		echo '</label></div>';
-	}
+	abstract protected function checkBox();
 
 	/**
 	 * Renders a list of checkboxes.
 	 * @return string the rendered content
+	 * @abstract
 	 */
-	protected function checkBoxList()
-	{
-		echo $this->getLabel().'<div class="controls">';
-		echo $this->form->checkBoxList($this->model, $this->attribute, $this->data, $this->htmlOptions);
-		echo $this->getError().$this->getHint();
-		echo '</div>';
-	}
+	abstract protected function checkBoxList();
 
 	/**
 	 * Renders a list of inline checkboxes.
 	 * @return string the rendered content
+	 * @abstract
 	 */
-	protected function checkBoxListInline()
-	{
-		$this->htmlOptions['inline'] = true;
-		$this->checkBoxList();
-	}
+	abstract protected function checkBoxListInline();
 
 	/**
 	 * Renders a drop down list (select).
 	 * @return string the rendered content
+	 * @abstract
 	 */
-	protected function dropDownList()
-	{
-		echo $this->getLabel().'<div class="controls">';
-		echo $this->form->dropDownList($this->model, $this->attribute, $this->data, $this->htmlOptions);
-		echo $this->getError().$this->getHint();
-		echo '</div>';
-	}
+	abstract protected function dropDownList();
 
 	/**
 	 * Renders a file field.
 	 * @return string the rendered content
+	 * @abstract
 	 */
-	protected function fileField()
-	{
-		echo $this->getLabel().'<div class="controls">';
-		echo $this->form->fileField($this->model, $this->attribute, $this->htmlOptions);
-		echo $this->getError().$this->getHint();
-		echo '</div>';
-	}
+	abstract protected function fileField();
 
 	/**
 	 * Renders a password field.
 	 * @return string the rendered content
+	 * @abstract
 	 */
-	protected function passwordField()
-	{
-		echo $this->getLabel().'<div class="controls">';
-		echo $this->form->passwordField($this->model, $this->attribute, $this->htmlOptions);
-		echo $this->getError().$this->getHint();
-		echo '</div>';
-	}
+	abstract protected function passwordField();
 
 	/**
 	 * Renders a radio button.
 	 * @return string the rendered content
+	 * @abstract
 	 */
-	protected function radioButton()
-	{
-		echo '<div class="controls">';
-		echo '<label class="radio" for="'.CHtml::getIdByName(CHtml::resolveName($this->model, $this->attribute)).'">';
-		echo $this->form->radioButton($this->model, $this->attribute, $this->htmlOptions).PHP_EOL;
-		echo $this->model->getAttributeLabel($this->attribute);
-		echo $this->getError().$this->getHint();
-		echo '</label></div>';
-	}
+	abstract protected function radioButton();
 
 	/**
 	 * Renders a list of radio buttons.
 	 * @return string the rendered content
+	 * @abstract
 	 */
-	protected function radioButtonList()
-	{
-		echo $this->getLabel().'<div class="controls">';
-		echo $this->form->radioButtonList($this->model, $this->attribute, $this->data, $this->htmlOptions);
-		echo $this->getError().$this->getHint();
-		echo '</div>';
-	}
+	abstract protected function radioButtonList();
 
 	/**
 	 * Renders a list of inline radio buttons.
 	 * @return string the rendered content
+	 * @abstract
 	 */
-	protected function radioButtonListInline()
-	{
-		$this->htmlOptions['inline'] = true;
-		$this->radioButtonList();
-	}
+	abstract protected function radioButtonListInline();
 
 	/**
 	 * Renders a textarea.
 	 * @return string the rendered content
+	 * @abstract
 	 */
-	protected function textArea()
-	{
-		echo $this->getLabel().'<div class="controls">';
-		echo $this->form->textArea($this->model, $this->attribute, $this->htmlOptions);
-		echo $this->getError().$this->getHint();
-		echo '</div>';
-	}
+	abstract protected function textArea();
 
 	/**
 	 * Renders a text field.
 	 * @return string the rendered content
+	 * @abstract
 	 */
-	protected function textField()
-	{
-		echo $this->getLabel().'<div class="controls">';
-		echo $this->form->textField($this->model, $this->attribute, $this->htmlOptions);
-		echo $this->getError().$this->getHint();
-		echo '</div>';
-	}
+	abstract protected function textField();
 
 	/**
 	 * Renders a CAPTCHA.
 	 * @return string the rendered content
+	 * @abstract
 	 */
-	protected function captcha()
-	{
-		echo $this->getLabel().'<div class="controls"><div class="captcha">';
-		echo '<div class="widget">'.$this->widget('CCaptcha', array('showRefreshButton'=>false), true).'</div>';
-		echo $this->form->textField($this->model, $this->attribute, $this->htmlOptions);
-		echo $this->getError().$this->getHint();
-		echo '</div></div>';
-	}
+	abstract protected function captcha();
 
 	/**
 	 * Renders an uneditable field.
 	 * @return string the rendered content
+	 * @abstract
 	 */
-	protected function uneditableField()
-	{
-		echo $this->getLabel().'<div class="controls">';
-		echo '<span class="uneditable-input">'.$this->model->{$this->attribute}.'</span>';
-		echo $this->getError().$this->getHint();
-		echo '</div>';
-	}
+	abstract protected function uneditableField();
 
 	/**
 	 * Returns the label for this block.
 	 * @return string the label
+	 * @abstract
 	 */
-	protected function getLabel()
-	{
-		if ($this->label !== false && !in_array($this->type, array('checkbox', 'radio')) && $this->hasModel())
-			return $this->form->labelEx($this->model, $this->attribute);
-		else if ($this->label !== null)
-			return $this->label;
-		else
-			return '';
-	}
+	abstract protected function getLabel();
 
 	/**
 	 * Returns the hint text for this block.
 	 * @return string the hint text
+	 * @abstract
 	 */
-	protected function getHint()
-	{
-		if (isset($this->htmlOptions['hint']))
-		{
-			$hint = $this->htmlOptions['hint'];
-			unset($this->htmlOptions['hint']);
-			return '<p class="help-block">'.$hint.'</p>';
-		}
-		else
-			return '';
-	}
+	abstract protected function getHint();
 
 	/**
 	 * Returns the error text for this block.
 	 * @return string the error text
+	 * @abstract
 	 */
-	protected function getError()
-	{
-		return $this->form->error($this->model, $this->attribute);
-	}
+	abstract protected function getError();
 }

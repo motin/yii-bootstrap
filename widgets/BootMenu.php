@@ -56,17 +56,11 @@ class BootMenu extends BootWidget
 	 */
 	public function init()
 	{
-		$id = $this->getId();
-        if (isset($this->htmlOptions['id']))
-            $id = $this->htmlOptions['id'];
-        else
-            $this->htmlOptions['id'] = $id;
+        if (!isset($this->htmlOptions['id']))
+            $this->htmlOptions['id'] = $this->getId();
 
 		$route = $this->controller->getRoute();
 		$this->items = $this->normalizeItems($this->items, $route);
-
-		if ($this->scrollspy)
-			Yii::app()->clientScript->registerScript(__CLASS__.'#'.$this->id, "jQuery('#{$id}').scrollspy();");
 	}
 
 	/**
@@ -92,6 +86,11 @@ class BootMenu extends BootWidget
 			echo CHtml::openTag('ul', $this->htmlOptions).PHP_EOL;
 			$this->renderItems($this->items);
 			echo '</ul>';
+
+			Yii::app()->bootstrap->registerDropdown();
+
+			if ($this->scrollspy)
+				Yii::app()->bootstrap->registerScrollSpy('#'.$this->id);
 		}
 	}
 
