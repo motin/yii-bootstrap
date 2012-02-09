@@ -64,7 +64,7 @@ class BootTabbed extends BootWidget
 		echo implode('', $panes);
 	    echo '</div></div>';
 
-	    $this->registerScript(__CLASS__.'#'.$this->id, "jQuery('{$this->id}').tab('show');");
+	    Yii::app()->clientScript->registerScript(__CLASS__.'#'.$this->id, "jQuery('{$this->id}').tab('show');");
 
 	    /*
         // Register the "show" event-handler.
