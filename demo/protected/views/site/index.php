@@ -11,14 +11,10 @@
 			<h2>BootAlert</h2>
 
 			<?php
-			Yii::app()->user->setFlash('success',
-					'<strong>Well done!</strong> You successfully read this important alert message.');
-			Yii::app()->user->setFlash('info',
-					'<strong>Heads up!</strong> This alert needs your attention, but it\'s not super important.');
-			Yii::app()->user->setFlash('warning',
-					'<strong>Warning!</strong> Best check yo self, you\'re not looking too good.');
-			Yii::app()->user->setFlash('error',
-					'<strong>Oh snap!</strong> Change a few things up and try submitting again.');
+			Yii::app()->user->setFlash('success', '<strong>Well done!</strong> You successfully read this important alert message.');
+			Yii::app()->user->setFlash('info', '<strong>Heads up!</strong> This alert needs your attention, but it\'s not super important.');
+			Yii::app()->user->setFlash('warning', '<strong>Warning!</strong> Best check yo self, you\'re not looking too good.');
+			Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few things up and try submitting again.');
 			?>
 
 			<?php $this->widget('bootstrap.widgets.BootAlert'); ?>
@@ -28,14 +24,10 @@
 <?php echo $parser->safeTransform("~~~
 [php]
 <?php
-Yii::app()->user->setFlash('success',
-		'<strong>Well done!</strong> You successfully read this important alert message.');
-Yii::app()->user->setFlash('info',
-		'<strong>Heads up!</strong> This alert needs your attention, but it\'s not super important.');
-Yii::app()->user->setFlash('warning',
-		'<strong>Warning!</strong> Best check yo self, you\'re not looking too good.');
-Yii::app()->user->setFlash('error',
-		'<strong>Oh snap!</strong> Change a few things up and try submitting again.');
+Yii::app()->user->setFlash('success', '<strong>Well done!</strong> You successfully read this important alert message.');
+Yii::app()->user->setFlash('info', '<strong>Heads up!</strong> This alert needs your attention, but it\'s not super important.');
+Yii::app()->user->setFlash('warning', '<strong>Warning!</strong> Best check yo self, you\'re not looking too good.');
+Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few things up and try submitting again.');
 ?>
 ~~~
 ~~~
@@ -165,131 +157,58 @@ Yii::app()->user->setFlash('error',
 
 			<h2>BootMenu</h2>
 
-			<h3>Tabs</h3>
+			<h3>Basic tabs</h3>
 
-			<div class="row">
+			<?php $this->widget('bootstrap.widgets.BootMenu', array(
+				'type'=>'tabs',
+				'items'=>array(
+					array('label'=>'Home', 'url'=>'#', 'active'=>true),
+					array('label'=>'Profile', 'url'=>'#'),
+					array('label'=>'Messages', 'url'=>'#'),
+				),
+			)); ?>
 
-				<div class="span5">
+			<h3>Stacked tabs</h3>
 
-					<h4>Default</h4>
+			<?php $this->widget('bootstrap.widgets.BootMenu', array(
+				'type'=>'tabs',
+				'stacked'=>true,
+				'items'=>array(
+					array('label'=>'Home', 'url'=>'#', 'active'=>true),
+					array('label'=>'Profile', 'url'=>'#'),
+					array('label'=>'Messages', 'url'=>'#'),
+				),
+			)); ?>
 
-					<?php $this->widget('bootstrap.widgets.BootMenu', array(
-						'type'=>'tabs',
-						'items'=>array(
-							array('label'=>'Home', 'url'=>'#', 'active'=>true),
-							array('label'=>'Profile', 'url'=>'#'),
-							array('label'=>'Dropdown', 'items'=>array(
-								array('label'=>'Secondary link', 'url'=>'#'),
-								array('label'=>'Something else here', 'url'=>'#'),
-								'---',
-								array('label'=>'Another link', 'url'=>'#'),
-							)),
-							array('label'=>'Messages', 'url'=>'#'),
-						),
-					)); ?>
+			<h3>Basic pills</h3>
 
-				</div>
+			<?php $this->widget('bootstrap.widgets.BootMenu', array(
+				'type'=>'pills',
+				'items'=>array(
+					array('label'=>'Home', 'url'=>'#', 'active'=>true),
+					array('label'=>'Profile', 'url'=>'#'),
+					array('label'=>'Messages', 'url'=>'#'),
+				),
+			)); ?>
 
-				<div class="span4">
+			<h3>Stacked pills</h3>
 
-					<h4>Stacked</h4>
-
-					<?php $this->widget('bootstrap.widgets.BootMenu', array(
-						'type'=>'tabs',
-						'stacked'=>true,
-						'items'=>array(
-							array('label'=>'Home', 'url'=>'#', 'active'=>true),
-							array('label'=>'Profile', 'url'=>'#'),
-							array('label'=>'Dropdown', 'items'=>array(
-								array('label'=>'Secondary link', 'url'=>'#'),
-								array('label'=>'Something else here', 'url'=>'#'),
-								'---',
-								array('label'=>'Another link', 'url'=>'#'),
-							)),
-							array('label'=>'Messages', 'url'=>'#'),
-						),
-					)); ?>
-
-				</div>
-
-			</div>
-
-			<h3>Pills</h3>
-
-			<div class="row">
-
-				<div class="span5">
-
-					<h4>Default</h4>
-
-					<?php $this->widget('bootstrap.widgets.BootMenu', array(
-						'type'=>'pills',
-						'items'=>array(
-							array('label'=>'Home', 'url'=>'#', 'active'=>true),
-							array('label'=>'Profile', 'url'=>'#'),
-							array('label'=>'Dropdown', 'items'=>array(
-								array('label'=>'Secondary link', 'url'=>'#'),
-								array('label'=>'Something else here', 'url'=>'#'),
-								'---',
-								array('label'=>'Another link', 'url'=>'#'),
-							)),
-							array('label'=>'Messages', 'url'=>'#'),
-						),
-					)); ?>
-
-				</div>
-
-				<div class="span4">
-
-					<h4>Stacked</h4>
-
-					<?php $this->widget('bootstrap.widgets.BootMenu', array(
-						'type'=>'pills',
-						'stacked'=>true,
-						'items'=>array(
-							array('label'=>'Home', 'url'=>'#', 'active'=>true),
-							array('label'=>'Profile', 'url'=>'#'),
-							array('label'=>'Dropdown', 'items'=>array(
-								array('label'=>'Secondary link', 'url'=>'#'),
-								array('label'=>'Something else here', 'url'=>'#'),
-								'---',
-								array('label'=>'Another link', 'url'=>'#'),
-							)),
-							array('label'=>'Messages', 'url'=>'#'),
-						),
-					)); ?>
-
-				</div>
-
-			</div>
-
-			<h3>List</h3>
-
-			<div class="well" style="padding: 8px 0;">
-
-				<?php $this->widget('bootstrap.widgets.BootMenu', array(
-					'type'=>'list',
-					'items'=>array(
-						array('label'=>'Home', 'url'=>'#', 'active'=>true),
-						array('label'=>'Profile', 'url'=>'#'),
-						array('label'=>'Dropdown', 'items'=>array(
-							array('label'=>'Secondary link', 'url'=>'#'),
-							array('label'=>'Something else here', 'url'=>'#'),
-							'---',
-							array('label'=>'Another link', 'url'=>'#'),
-						)),
-						array('label'=>'Messages', 'url'=>'#'),
-					),
-				)); ?>
-
-			</div>
+			<?php $this->widget('bootstrap.widgets.BootMenu', array(
+				'type'=>'pills',
+				'stacked'=>true,
+				'items'=>array(
+					array('label'=>'Home', 'url'=>'#', 'active'=>true),
+					array('label'=>'Profile', 'url'=>'#'),
+					array('label'=>'Messages', 'url'=>'#'),
+				),
+			)); ?>
 
 			<h4>Source code</h4>
 
 <?php echo $parser->safeTransform("~~~
 [php]
 <?php \$this->widget('bootstrap.widgets.BootMenu', array(
-	'type'=>'tabs', // '', 'tabs', 'pills' or 'list'
+	'type'=>'tabs', // '', 'tabs', 'pills' (or 'list')
 	'stacked'=>false, // whether this is a stacked menu
 	'items'=>array(
 		array('label'=>'Home', 'url'=>'#', 'active'=>true),
@@ -301,6 +220,47 @@ Yii::app()->user->setFlash('error',
 			array('label'=>'Another link', 'url'=>'#'),
 		)),
 		array('label'=>'Messages', 'url'=>'#'),
+	),
+)); ?>
+~~~"); ?>
+
+			<h3>Nav list</h3>
+
+			<div class="well" style="padding: 8px 0;">
+
+				<?php $this->widget('bootstrap.widgets.BootMenu', array(
+					'type'=>'list',
+					'encodeLabel'=>false,
+					'items'=>array(
+						array('label'=>'LIST HEADER', 'itemOptions'=>array('class'=>'nav-header')),
+						array('label'=>'<i class="icon-home"></i> Home', 'url'=>'#', 'active'=>true),
+						array('label'=>'<i class="icon-book"></i> Library', 'url'=>'#'),
+						array('label'=>'<i class="icon-pencil"></i> Application', 'url'=>'#'),
+						array('label'=>'ANOTHER LIST HEADER', 'itemOptions'=>array('class'=>'nav-header')),
+						array('label'=>'<i class="icon-user"></i> Profile', 'url'=>'#'),
+						array('label'=>'<i class="icon-cog"></i> Settings', 'url'=>'#'),
+						array('label'=>'<i class="icon-flag"></i> Help', 'url'=>'#'),
+					),
+				)); ?>
+
+			</div>
+
+<h4>Source code</h4>
+
+<?php echo $parser->safeTransform("~~~
+[php]
+<?php \$this->widget('bootstrap.widgets.BootMenu', array(
+	'type'=>'list',
+	'encodeLabel'=>false,
+	'items'=>array(
+		array('label'=>'LIST HEADER', 'itemOptions'=>array('class'=>'nav-header')),
+		array('label'=>'<i class=\"icon-home\"></i> Home', 'url'=>'#', 'active'=>true),
+		array('label'=>'<i class=\"icon-book\"></i> Library', 'url'=>'#'),
+		array('label'=>'<i class=\"icon-pencil\"></i> Application', 'url'=>'#'),
+		array('label'=>'ANOTHER LIST HEADER', 'itemOptions'=>array('class'=>'nav-header')),
+		array('label'=>'<i class=\"icon-user\"></i> Profile', 'url'=>'#'),
+		array('label'=>'<i class=\"icon-cog\"></i> Settings', 'url'=>'#'),
+		array('label'=>'<i class=\"icon-flag\"></i> Help', 'url'=>'#'),
 	),
 )); ?>
 ~~~"); ?>
@@ -611,6 +571,8 @@ Yii::app()->user->setFlash('error',
 
 			<h2>BootActiveForm</h2>
 
+			<h3>Vertical</h3>
+
 			<?php /** @var BootActiveForm $form */
 			$form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
 				'id'=>'verticalForm',
@@ -619,26 +581,59 @@ Yii::app()->user->setFlash('error',
 				'htmlOptions'=>array('class'=>'well'),
 			)); ?>
 
-			<?php echo $form->textFieldRow($model, 'textField'); ?>
-			<?php echo $form->passwordFieldRow($model, 'password'); ?>
+			<?php echo $form->textFieldRow($model, 'textField', array('class'=>'span3')); ?>
+			<?php echo $form->passwordFieldRow($model, 'password', array('class'=>'span3')); ?>
 			<?php echo $form->checkboxRow($model, 'checkbox'); ?>
-
-			<?php echo CHtml::htmlButton('<i class="icon-ok icon-white"></i> Submit',
-					array('class'=>'btn btn-primary','type'=>'submit')); ?>
+			<?php echo CHtml::htmlButton('<i class="icon-ok"></i> Submit', array('class'=>'btn', 'type'=>'submit')); ?>
 
 			<?php $this->endWidget(); ?>
+
+			<h3>Search</h3>
+
+			<?php /** @var BootActiveForm $form */
+			$form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
+				'id'=>'searchForm',
+				'type'=>'search',
+				'enableClientValidation'=>true,
+				'clientOptions'=>array('validateOnSubmit'=>true),
+				'htmlOptions'=>array('class'=>'well'),
+			)); ?>
+
+			<?php echo $form->textFieldRow($model, 'textField', array('class'=>'input-medium')); ?>
+			<?php echo CHtml::htmlButton('<i class="icon-search"></i> Search', array('class'=>'btn', 'type'=>'submit')); ?>
+
+			<?php $this->endWidget(); ?>
+
+			<h3>Inline</h3>
+
+			<?php /** @var BootActiveForm $form */
+			$form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
+				'id'=>'inlineForm',
+				'type'=>'inline',
+				'enableClientValidation'=>true,
+				'clientOptions'=>array('validateOnSubmit'=>true),
+				'htmlOptions'=>array('class'=>'well'),
+			)); ?>
+
+			<?php echo $form->textFieldRow($model, 'textField', array('class'=>'input-small')); ?>
+			<?php echo $form->passwordFieldRow($model, 'password', array('class'=>'input-small')); ?>
+			<?php echo CHtml::htmlButton('Go', array('class'=>'btn', 'type'=>'submit')); ?>
+
+			<?php $this->endWidget(); ?>
+
+			<h3>Horizontal</h3>
 
 			<?php /** @var BootActiveForm $form */
 			$form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
 				'id'=>'horizontalForm',
-				'type'=>BootActiveForm::TYPE_HORIZONTAL,
+				'type'=>'horizontal',
 				'enableClientValidation'=>true,
 				'clientOptions'=>array('validateOnSubmit'=>true),
 			)); ?>
 
 			<fieldset>
 
-				<legend>Horizontal form</legend>
+				<legend>Legend</legend>
 
 				<?php echo $form->textFieldRow($model, 'textField',
 						array('hint'=>'In addition to freeform text, any HTML5 text-based input appears like so.')); ?>
@@ -666,10 +661,8 @@ Yii::app()->user->setFlash('error',
 			</fieldset>
 
 			<div class="form-actions">
-				<?php echo CHtml::htmlButton('<i class="icon-ok icon-white"></i> Submit',
-						array('class'=>'btn btn-primary','type'=>'submit')); ?>
-				<?php echo CHtml::htmlButton('<i class="icon-ban-circle"></i> Reset',
-						array('class'=>'btn','type'=>'reset')); ?>
+				<?php echo CHtml::htmlButton('<i class="icon-ok icon-white"></i> Submit', array('class'=>'btn btn-primary', 'type'=>'submit')); ?>
+				<?php echo CHtml::htmlButton('<i class="icon-ban-circle"></i> Reset', array('class'=>'btn', 'type'=>'reset')); ?>
 			</div>
 
 			<?php $this->endWidget(); ?>
@@ -686,12 +679,43 @@ Yii::app()->user->setFlash('error',
 	'htmlOptions'=>array('class'=>'well'),
 )); ?>
 
-<?php echo \$form->textFieldRow(\$model, 'textField'); ?>
-<?php echo \$form->passwordFieldRow(\$model, 'password'); ?>
+<?php echo \$form->textFieldRow(\$model, 'textField', array('class'=>'span3')); ?>
+<?php echo \$form->passwordFieldRow(\$model, 'password', array('class'=>'span3')); ?>
 <?php echo \$form->checkboxRow(\$model, 'checkbox'); ?>
+<?php echo CHtml::htmlButton('<i class=\"icon-ok\"></i> Submit', array('class'=>'btn', 'type'=>'submit')); ?>
 
-<?php echo CHtml::htmlButton('<i class=\"icon-ok icon-white\"></i> Submit',
-		array('class'=>'btn btn-primary','type'=>'submit')); ?>
+<?php \$this->endWidget(); ?>
+~~~
+~~~
+[php]
+<?php /** @var BootActiveForm \$form */
+\$form = \$this->beginWidget('bootstrap.widgets.BootActiveForm', array(
+	'id'=>'searchForm',
+	'type'=>'search',
+	'enableClientValidation'=>true,
+	'clientOptions'=>array('validateOnSubmit'=>true),
+	'htmlOptions'=>array('class'=>'well'),
+)); ?>
+
+<?php echo \$form->textFieldRow(\$model, 'textField', array('class'=>'input-medium')); ?>
+<?php echo CHtml::htmlButton('<i class=\"icon-search\"></i> Search', array('class'=>'btn','type'=>'submit')); ?>
+
+<?php \$this->endWidget(); ?>
+~~~
+~~~
+[php]
+<?php /** @var BootActiveForm \$form */
+\$form = \$this->beginWidget('bootstrap.widgets.BootActiveForm', array(
+	'id'=>'inlineForm',
+	'type'=>'inline',
+	'enableClientValidation'=>true,
+	'clientOptions'=>array('validateOnSubmit'=>true),
+	'htmlOptions'=>array('class'=>'well'),
+)); ?>
+
+<?php echo \$form->textFieldRow(\$model, 'textField', array('class'=>'input-small')); ?>
+<?php echo \$form->passwordFieldRow(\$model, 'password', array('class'=>'input-small')); ?>
+<?php echo CHtml::htmlButton('Go', array('class'=>'btn', 'type'=>'submit')); ?>
 
 <?php \$this->endWidget(); ?>
 ~~~
@@ -700,20 +724,19 @@ Yii::app()->user->setFlash('error',
 <?php /** @var BootActiveForm \$form */
 \$form = \$this->beginWidget('bootstrap.widgets.BootActiveForm', array(
 	'id'=>'horizontalForm',
-	'type'=>BootActiveForm::TYPE_HORIZONTAL,
+	'type'=>'horizontal,
 	'enableClientValidation'=>true,
 	'clientOptions'=>array('validateOnSubmit'=>true),
 )); ?>
 
 <fieldset>
 
-	<legend>Horizontal form</legend>
+	<legend>Legend</legend>
 
 	<?php echo \$form->textFieldRow(\$model, 'textField',
 			array('hint'=>'In addition to freeform text, any HTML5 text-based input appears like so.')); ?>
 	<?php echo \$form->dropDownListRow(\$model, 'dropdown', array('Something ...', '1', '2', '3', '4', '5')); ?>
-	<?php echo \$form->dropDownListRow(\$model, 'multiDropdown', array('1', '2', '3', '4', '5'),
-			array('multiple'=>true)); ?>
+	<?php echo \$form->dropDownListRow(\$model, 'multiDropdown', array('1', '2', '3', '4', '5'), array('multiple'=>true)); ?>
 	<?php echo \$form->fileFieldRow(\$model, 'fileField'); ?>
 	<?php echo \$form->textAreaRow(\$model, 'textarea', array('class'=>'span8', 'rows'=>5)); ?>
 	<?php echo \$form->uneditableRow(\$model, 'uneditable'); ?>
@@ -735,10 +758,8 @@ Yii::app()->user->setFlash('error',
 </fieldset>
 
 <div class=\"form-actions\">
-	<?php echo CHtml::htmlButton('<i class=\"icon-ok icon-white\"></i> Submit',
-			array('class'=>'btn btn-primary','type'=>'submit')); ?>
-	<?php echo CHtml::htmlButton('<i class=\"icon-ban-circle\"></i> Reset',
-			array('class'=>'btn','type'=>'reset')); ?>
+	<?php echo CHtml::htmlButton('<i class=\"icon-ok icon-white\"></i> Submit', array('class'=>'btn btn-primary', 'type'=>'submit')); ?>
+	<?php echo CHtml::htmlButton('<i class=\"icon-ban-circle\"></i> Reset', array('class'=>'btn', 'type'=>'reset')); ?>
 </div>
 
 <?php \$this->endWidget(); ?>

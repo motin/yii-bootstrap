@@ -4,6 +4,7 @@
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
+ * @package bootstrap.widgets.input
  */
 
 /**
@@ -67,9 +68,6 @@ abstract class BootInput extends CInputWidget
 	 */
 	public function run()
 	{
-		$errorCss = $this->model->hasErrors($this->attribute) ? ' '.CHtml::$errorCss : '';
-		echo CHtml::openTag('div', array('class'=>'control-group'.$errorCss));
-
 		switch ($this->type)
 		{
 			case self::TYPE_CHECKBOX:
@@ -127,8 +125,47 @@ abstract class BootInput extends CInputWidget
 			default:
 				throw new CException(__CLASS__.': Failed to run widget! Type is invalid.');
 		}
+	}
 
-		echo '</div>';
+	/**
+	 * Returns the error text for this block.
+	 * @param array $htmlOptions additional HTML attributes
+	 * @return string the error text
+	 */
+	protected function getError($htmlOptions = array())
+	{
+		return $this->form->error($this->model, $this->attribute, $htmlOptions);
+	}
+
+	/**
+	 * Returns the hint text for this block.
+	 * @return string the hint text
+	 */
+	protected function getHint()
+	{
+		if (isset($this->htmlOptions['hint']))
+		{
+			$hint = $this->htmlOptions['hint'];
+			unset($this->htmlOptions['hint']);
+			return '<p class="help-block">'.$hint.'</p>';
+		}
+		else
+			return '';
+	}
+
+	/**
+	 * Returns the label for this block.
+	 * @param array $htmlOptions additional HTML attributes
+	 * @return string the label
+	 */
+	protected function getLabel($htmlOptions = array())
+	{
+		if ($this->label !== false && !in_array($this->type, array('checkbox', 'radio')) && $this->hasModel())
+			return $this->form->labelEx($this->model, $this->attribute, $htmlOptions);
+		else if ($this->label !== null)
+			return $this->label;
+		else
+			return '';
 	}
 
 	/**
@@ -221,25 +258,4 @@ abstract class BootInput extends CInputWidget
 	 * @abstract
 	 */
 	abstract protected function uneditableField();
-
-	/**
-	 * Returns the label for this block.
-	 * @return string the label
-	 * @abstract
-	 */
-	abstract protected function getLabel();
-
-	/**
-	 * Returns the hint text for this block.
-	 * @return string the hint text
-	 * @abstract
-	 */
-	abstract protected function getHint();
-
-	/**
-	 * Returns the error text for this block.
-	 * @return string the error text
-	 * @abstract
-	 */
-	abstract protected function getError();
 }

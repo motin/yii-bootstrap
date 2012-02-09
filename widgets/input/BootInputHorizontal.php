@@ -4,9 +4,10 @@
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
+ * @package bootstrap.widgets.input
  */
 
-Yii::import('bootstrap.widgets.BootInput');
+Yii::import('bootstrap.widgets.input.BootInput');
 
 /**
  * Bootstrap horizontal form input widget.
@@ -14,6 +15,28 @@ Yii::import('bootstrap.widgets.BootInput');
  */
 class BootInputHorizontal extends BootInput
 {
+	/**
+	 * Runs the widget.
+	 */
+	public function run()
+	{
+		$errorCss = $this->model->hasErrors($this->attribute) ? ' '.CHtml::$errorCss : '';
+		echo CHtml::openTag('div', array('class'=>'control-group'.$errorCss));
+		parent::run();
+		echo '</div>';
+	}
+
+	/**
+	 * Returns the label for this block.
+	 * @param array $htmlOptions additional HTML attributes
+	 * @return string the label
+	 */
+	protected function getLabel($htmlOptions = array())
+	{
+		$htmlOptions['class'] = 'control-label';
+		return parent::getLabel($htmlOptions);
+	}
+
 	/**
 	 * Renders a checkbox.
 	 * @return string the rendered content
@@ -169,44 +192,5 @@ class BootInputHorizontal extends BootInput
 		echo '<span class="uneditable-input">'.$this->model->{$this->attribute}.'</span>';
 		echo $this->getError().$this->getHint();
 		echo '</div>';
-	}
-
-	/**
-	 * Returns the label for this block.
-	 * @return string the label
-	 */
-	protected function getLabel()
-	{
-		if ($this->label !== false && !in_array($this->type, array('checkbox', 'radio')) && $this->hasModel())
-			return $this->form->labelEx($this->model, $this->attribute);
-		else if ($this->label !== null)
-			return $this->label;
-		else
-			return '';
-	}
-
-	/**
-	 * Returns the hint text for this block.
-	 * @return string the hint text
-	 */
-	protected function getHint()
-	{
-		if (isset($this->htmlOptions['hint']))
-		{
-			$hint = $this->htmlOptions['hint'];
-			unset($this->htmlOptions['hint']);
-			return '<p class="help-block">'.$hint.'</p>';
-		}
-		else
-			return '';
-	}
-
-	/**
-	 * Returns the error text for this block.
-	 * @return string the error text
-	 */
-	protected function getError()
-	{
-		return $this->form->error($this->model, $this->attribute);
 	}
 }

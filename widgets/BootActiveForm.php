@@ -4,9 +4,10 @@
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
+ * @package bootstrap.widgets
  */
 
-Yii::import('bootstrap.widgets.BootInput');
+Yii::import('bootstrap.widgets.input.BootInput');
 
 /**
  * Bootstrap active form widget.
@@ -14,13 +15,15 @@ Yii::import('bootstrap.widgets.BootInput');
 class BootActiveForm extends CActiveForm
 {
 	// The different form types.
-	const TYPE_VERTICAL = 'form-vertical';
-	const TYPE_INLINE = 'form-inline';
-	const TYPE_HORIZONTAL = 'form-horizontal';
+	const TYPE_VERTICAL = 'vertical';
+	const TYPE_INLINE = 'inline';
+	const TYPE_HORIZONTAL = 'horizontal';
+	const TYPE_SEARCH = 'search';
 
-	const INPUT_HORIZONTAL = 'bootstrap.widgets.BootInputHorizontal';
-	const INPUT_INLINE = 'bootstrap.widgets.BootInputInline';
-	const INPUT_VERTICAL = 'bootstrap.widgets.BootInputVertical';
+	const INPUT_HORIZONTAL = 'bootstrap.widgets.input.BootInputHorizontal';
+	const INPUT_INLINE = 'bootstrap.widgets.input.BootInputInline';
+	const INPUT_SEARCH = 'bootstrap.widgets.input.BootInputSearch';
+	const INPUT_VERTICAL = 'bootstrap.widgets.input.BootInputVertical';
 
 	/**
 	 * @var string the form type. See class constants.
@@ -39,9 +42,9 @@ class BootActiveForm extends CActiveForm
 	public function init()
 	{
 		if (!isset($this->htmlOptions['class']))
-			$this->htmlOptions['class'] = $this->type;
+			$this->htmlOptions['class'] = 'form-'.$this->type;
 		else
-			$this->htmlOptions['class'] .= ' '.$this->type;
+			$this->htmlOptions['class'] .= ' form-'.$this->type;
 
 		if ($this->inlineErrors)
 			$this->errorMessageCssClass = 'help-inline';
@@ -51,53 +54,7 @@ class BootActiveForm extends CActiveForm
 		parent::init();
 	}
 
-	/**
-	 * Creates an input row of a specific type.
-	 * @param string $type the input type
-	 * @param CModel $model the data model
-	 * @param string $attribute the attribute
-	 * @param array $data the data for list inputs
-	 * @param array $htmlOptions additional HTML attributes
-	 * @return string the generated row
-	 */
-	public function inputRow($type, $model, $attribute, $data = null, $htmlOptions = array())
-	{
-		// Determine the input widget class name.
-		switch ($this->type)
-		{
-			case self::TYPE_INLINE:
-			case self::TYPE_HORIZONTAL:
-			case self::TYPE_VERTICAL:
-			default:
-				$className = self::INPUT_HORIZONTAL;
-				break;
-
-			/*
-			case self::TYPE_INLINE:
-				$className = self::INPUT_INLINE;
-				break;
-
-			case self::TYPE_VERTICAL:
-			default:
-				$className = self::INPUT_VERTICAL;
-				break;
-			*/
-
-		}
-
-		ob_start();
-		Yii::app()->controller->widget($className, array(
-			'type'=>$type,
-			'form'=>$this,
-			'model'=>$model,
-			'attribute'=>$attribute,
-			'data'=>$data,
-			'htmlOptions'=>$htmlOptions,
-		));
-		return ob_get_clean();
-	}
-
-	/**
+/**
 	 * Renders a checkbox input row.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
@@ -499,5 +456,56 @@ class BootActiveForm extends CActiveForm
 		}
 		else
 			return '';
+	}
+
+	/**
+	 * Creates an input row of a specific type.
+	 * @param string $type the input type
+	 * @param CModel $model the data model
+	 * @param string $attribute the attribute
+	 * @param array $data the data for list inputs
+	 * @param array $htmlOptions additional HTML attributes
+	 * @return string the generated row
+	 */
+	public function inputRow($type, $model, $attribute, $data = null, $htmlOptions = array())
+	{
+		ob_start();
+		Yii::app()->controller->widget($this->getInputClassName(), array(
+			'type'=>$type,
+			'form'=>$this,
+			'model'=>$model,
+			'attribute'=>$attribute,
+			'data'=>$data,
+			'htmlOptions'=>$htmlOptions,
+		));
+		return ob_get_clean();
+	}
+
+	/**
+	 * Returns the input widget class name suitable for the form.
+	 * @return string the class name
+	 */
+	protected function getInputClassName()
+	{
+		// Determine the input widget class name.
+		switch ($this->type)
+		{
+			case self::TYPE_HORIZONTAL:
+				return self::INPUT_HORIZONTAL;
+				break;
+
+			case self::TYPE_INLINE:
+				return self::INPUT_INLINE;
+				break;
+
+			case self::TYPE_SEARCH:
+				return self::INPUT_SEARCH;
+				break;
+
+			case self::TYPE_VERTICAL:
+			default:
+				return self::INPUT_VERTICAL;
+				break;
+		}
 	}
 }
