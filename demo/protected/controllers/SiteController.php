@@ -36,6 +36,7 @@ class SiteController extends Controller
 			array('name'=>'language', 'header'=>'Language'),
 			array(
 				'class'=>'BootButtonColumn',
+				'htmlOptions'=>array('style'=>'width: 50px'),
 				'viewButtonUrl'=>null,
 				'viewButtonOptions'=>array('rel'=>'tooltip'),
 				'updateButtonUrl'=>null,

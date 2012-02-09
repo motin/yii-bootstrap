@@ -334,6 +334,15 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 				'columns'=>$gridColumns,
 			)); ?>
 
+			<h3>Bordered</h3>
+
+			<?php $this->widget('bootstrap.widgets.BootGridView', array(
+				'dataProvider'=>$gridDataProvider,
+				'template'=>"{items}",
+				'itemsCssClass'=>'table table-bordered',
+				'columns'=>$gridColumns,
+			)); ?>
+
 			<h3>Condensed</h3>
 
 			<?php $this->widget('bootstrap.widgets.BootGridView', array(
@@ -343,12 +352,12 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 				'columns'=>$gridColumns,
 			)); ?>
 
-			<h3>Striped and condensed</h3>
+			<h3>Striped, bordered and condensed</h3>
 
 			<?php $this->widget('bootstrap.widgets.BootGridView', array(
 				'dataProvider'=>$gridDataProvider,
 				'template'=>"{items}",
-				'itemsCssClass'=>'table table-striped table-condensed',
+				'itemsCssClass'=>'table table-striped table-bordered table-condensed',
 				'columns'=>$gridColumns,
 			)); ?>
 
@@ -356,11 +365,31 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 <?php echo $parser->safeTransform("~~~
 [php]
+\$gridDataProvider = new CArrayDataProvider(array(
+	array('id'=>1, 'firstName'=>'Mark', 'lastName'=>'Otto', 'language'=>'CSS'),
+	array('id'=>2, 'firstName'=>'Jacob', 'lastName'=>'Thornton', 'language'=>'JavaScript'),
+	array('id'=>3, 'firstName'=>'Stu', 'lastName'=>'Dent', 'language'=>'HTML'),
+));
+~~~
+~~~
+[php]
 <?php \$this->widget('bootstrap.widgets.BootGridView', array(
 	'dataProvider'=>\$gridDataProvider,
 	'template'=>\"{items}\",
-	'itemsCssClass'=>'table table-striped table-condensed',
-	'columns'=>\$gridColumns,
+	'itemsCssClass'=>'table table-striped table-bordered table-condensed',
+	'columns'=>array(
+		array('name'=>'id', 'header'=>'#'),
+		array('name'=>'firstName', 'header'=>'First name'),
+		array('name'=>'lastName', 'header'=>'Last name'),
+		array('name'=>'language', 'header'=>'Language'),
+		array(
+			'class'=>'BootButtonColumn',
+			'htmlOptions'=>array('style'=>'width: 50px'),
+			'viewButtonOptions'=>array('rel'=>'tooltip'),
+			'updateButtonOptions'=>array('rel'=>'tooltip'),
+			'deleteButtonOptions'=>array('rel'=>'tooltip'),
+		),
+	),
 )); ?>
 ~~~"); ?>
 
