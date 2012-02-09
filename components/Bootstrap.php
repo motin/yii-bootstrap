@@ -184,15 +184,6 @@ class Bootstrap extends CApplicationComponent
 	public function registerScrollSpy($selector = null, $options = array())
 	{
 		$this->registerPlugin(self::PLUGIN_SCROLLSPY, $selector, $options);
-
-		if (!isset($selector))
-		{
-			$selector = isset($this->plugins[self::PLUGIN_SCROLLSPY], $this->plugins[self::PLUGIN_SCROLLSPY]['selector'])
-					? $this->plugins[self::PLUGIN_SCROLLSPY]['selector']
-					: 'body';
-		}
-
-		Yii::app()->clientScript->registerScript(__CLASS__.'.scrollspy', "jQuery({$selector}).attr('data-spy', 'scroll');");
 	}
 
 	/**
@@ -245,6 +236,25 @@ class Bootstrap extends CApplicationComponent
 	}
 
 	/**
+	 * Sets the target element for the scrollspy.
+	 * @param string $selector the CSS selector
+	 * @param string $target the target CSS selector
+	 * @param string $offset the offset
+	 */
+	public function spyOn($selector, $target = null, $offset = null)
+	{
+		$script = "jQuery('{$selector}').attr('data-spy', 'scroll');";
+
+		if (isset($target))
+			$script .= "jQuery('{$selector}').attr('data-target', '{$target}');";
+
+		if (isset($offset))
+			$script .= "jQuery('{$selector}').attr('data-offset', '{$offset}');";
+
+		Yii::app()->clientScript->registerScript(__CLASS__.'.spyOn.'.$selector, $script);
+	}
+
+	/**
 	 * Returns whether a plugin is disabled in the plugin configuration.
 	 * @param string $name the name of the plugin
 	 * @return boolean the result
@@ -260,7 +270,7 @@ class Bootstrap extends CApplicationComponent
 	 * @param string $name the name of the plugin
 	 * @param string $selector the CSS selector
 	 * @param array $options the plugin options
-	 * @param string $defaultSelector the default selector to use
+	 * @param string $defaultSelector the default CSS selector
 	 * @since 0.9.8
 	 */
 	protected function registerPlugin($name, $selector = null, $options = array(), $defaultSelector = null)

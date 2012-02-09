@@ -1,9 +1,5 @@
 <?php $this->beginContent('//layouts/main'); ?>
 
-<div class="span12">
-
-	<?php echo $content; ?>
-
-</div>
+<?php echo $content; ?>
 
 <?php $this->endContent(); ?>

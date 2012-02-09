@@ -48,7 +48,7 @@ class SiteController extends Controller
 			$rawData[] = array('id'=>$i + 1);
 
 		$listDataProvider = new CArrayDataProvider($rawData, array(
-			'pagination'=>array('pageSize'=>9),
+			'pagination'=>array('pageSize'=>12),
 		));
 
 		$parser = new CMarkdownParser();

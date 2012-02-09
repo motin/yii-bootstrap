@@ -13,6 +13,7 @@ Yii::import('bootstrap.widgets.BootWidget');
  * Bootstrap menu widget.
  * Used for rendering of bootstrap menus with support dropdown sub-menus and scroll-spying.
  * @since 0.9.8
+ * @todo Fix scrollspy.
  */
 class BootMenu extends BootWidget
 {
@@ -32,9 +33,9 @@ class BootMenu extends BootWidget
 	 */
 	public $stacked = false;
 	/**
-	 * @var boolean whether to enable the scroll-spy.
+	 * @var array the scroll-spy configuration.
 	 */
-	public $scrollspy = false;
+	public $scrollspy;
 	/**
 	 * @var array the menu items.
 	 */
@@ -88,10 +89,26 @@ class BootMenu extends BootWidget
 			$this->renderItems($this->items);
 			echo '</ul>';
 
-			Yii::app()->bootstrap->registerDropdown();
+			/** @var Bootstrap $bootstrap */
+			$bootstrap = Yii::app()->bootstrap;
+			$bootstrap->registerDropdown();
 
-			if ($this->scrollspy)
-				Yii::app()->bootstrap->registerScrollSpy('#'.$this->id);
+			/*
+			if (isset($this->scrollspy))
+			{
+				if (!is_array($this->scrollspy))
+					$this->scrollspy = array();
+
+				if (!isset($this->scrollspy['target']))
+					$this->scrollspy['target'] = 'body';
+
+				if (!isset($this->scrollspy['offset']))
+					$this->scrollspy['offset'] = null;
+
+				$bootstrap->registerScrollSpy();
+				$bootstrap->spyOn($this->scrollspy['target'], '#'.$this->id, $this->scrollspy['offset']);
+			}
+			*/
 		}
 	}
 
