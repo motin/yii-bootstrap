@@ -213,12 +213,6 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	'items'=>array(
 		array('label'=>'Home', 'url'=>'#', 'active'=>true),
 		array('label'=>'Profile', 'url'=>'#'),
-		array('label'=>'Dropdown', 'items'=>array(
-			array('label'=>'Secondary link', 'url'=>'#'),
-			array('label'=>'Something else here', 'url'=>'#'),
-			'---',
-			array('label'=>'Another link', 'url'=>'#'),
-		)),
 		array('label'=>'Messages', 'url'=>'#'),
 	),
 )); ?>

@@ -22,7 +22,7 @@ class BootGridView extends CGridView
 	/**
 	 * @var string the CSS class name for the container table. Defaults to 'table'.
 	 */
-	public $itemsCssClass = 'table';
+	public $itemsCssClass = 'table table-striped';
 	/**
 	 * @var string the CSS class name for the pager container.
 	 * Defaults to 'pagination'.
