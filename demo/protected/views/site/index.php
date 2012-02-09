@@ -768,7 +768,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 <?php /** @var BootActiveForm \$form */
 \$form = \$this->beginWidget('bootstrap.widgets.BootActiveForm', array(
 	'id'=>'horizontalForm',
-	'type'=>'horizontal,
+	'type'=>'horizontal',
 	'enableClientValidation'=>true,
 	'clientOptions'=>array('validateOnSubmit'=>true),
 )); ?>
