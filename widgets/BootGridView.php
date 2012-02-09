@@ -16,10 +16,6 @@ Yii::import('zii.widgets.grid.CGridView');
 class BootGridView extends CGridView
 {
 	/**
-	 * @var boolean whether to display the table even when there is no data. Defaults to false.
-	 */
-	public $showTableOnEmpty = false;
-	/**
 	 * @var string the CSS class name for the container table. Defaults to 'table'.
 	 */
 	public $itemsCssClass = 'table table-striped';
