@@ -58,9 +58,9 @@ class Bootstrap extends CApplicationComponent
 	}
 
 	/**
-	 * Registers the Bootstrap core CSS.
+	 * Registers the Bootstrap CSS.
 	 */
-	protected function registerCoreCss()
+	public function registerCss()
 	{
 		Yii::app()->clientScript->registerCssFile($this->getAssetsUrl().'/css/bootstrap.min.css');
 	}
@@ -69,7 +69,7 @@ class Bootstrap extends CApplicationComponent
 	 * Registers the Bootstrap responsive CSS.
 	 * @since 0.9.8
 	 */
-	protected function registerResponsiveCss()
+	public function registerResponsiveCss()
 	{
 		Yii::app()->clientScript->registerCssFile($this->getAssetsUrl().'/css/bootstrap-responsive.min.css');
 	}
