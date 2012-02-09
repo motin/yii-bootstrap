@@ -532,13 +532,13 @@ Yii::app()->user->setFlash('error',
 
 			<?php $this->beginWidget('bootstrap.widgets.BootModal', array(
 				'id'=>'modal',
+				'htmlOptions'=>array('class'=>'hide'),
 				'events'=>array(
 					'show'=>"js:function() { console.log('modal show.'); }",
 					'shown'=>"js:function() { console.log('modal shown.'); }",
 					'hide'=>"js:function() { console.log('modal hide.'); }",
 					'hidden'=>"js:function() { console.log('modal hidden.'); }",
 				),
-				'htmlOptions'=>array('class'=>'modal hide fade'),
 			)); ?>
 
 			<div class="modal-header">
@@ -568,13 +568,13 @@ Yii::app()->user->setFlash('error',
 [php]
 <?php \$this->beginWidget('bootstrap.widgets.BootModal', array(
 	'id'=>'modal',
+	'htmlOptions'=>array('class'=>'hide'),
 	'events'=>array(
 		'show'=>\"js:function() { console.log('modal show.'); }\",
 		'shown'=>\"js:function() { console.log('modal shown.'); }\",
 		'hide'=>\"js:function() { console.log('modal hide.'); }\",
 		'hidden'=>\"js:function() { console.log('modal hidden.'); }\",
 	),
-	'htmlOptions'=>array('class'=>'hide fade'),
 )); ?>
 ~~~
 ~~~
