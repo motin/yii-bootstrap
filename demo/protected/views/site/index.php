@@ -317,7 +317,20 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 			
 			<h2>BootDetailView</h2>
 			
-			<p>@todo</p>
+			<?php $this->widget('bootstrap.widgets.BootDetailView', array(
+				'data'=>array('id'=>1, 'firstName'=>'Mark', 'lastName'=>'Otto', 'language'=>'CSS'),
+				'attributes'=>array('firstName', 'lastName', 'language'),
+			)); ?>
+
+			<h4>Source code</h4>
+
+<?php echo $parser->safeTransform("~~~
+[php]
+<?php \$this->widget('bootstrap.widgets.BootDetailView', array(
+	'data'=>array('id'=>1, 'firstName'=>'Mark', 'lastName'=>'Otto', 'language'=>'CSS'),
+	'attributes'=>array('firstName', 'lastName', 'language'),
+)); ?>
+~~~"); ?>
 
 			<a class="top" href="#top">Back to top &uarr;</a>
 			
