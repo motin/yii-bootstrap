@@ -161,11 +161,11 @@ class BootMenu extends BootWidget
 	 */
 	protected function renderItem($item)
 	{
-		if (!isset($item['url']))
-			$item['url'] = '#';
-
 		if (isset($item['items']))
 		{
+			if (!isset($item['url']))
+				$item['url'] = '#';
+
 			if (isset($item['linkOptions']['class']))
 				$item['linkOptions']['class'] .= ' dropdown-toggle';
 			else
@@ -175,7 +175,10 @@ class BootMenu extends BootWidget
 			$item['linkOptions']['data-toggle'] = 'dropdown';
 		}
 
-		return CHtml::link($item['label'], $item['url'], isset($item['linkOptions']) ? $item['linkOptions'] : array());
+		if (isset($item['url']))
+			return CHtml::link($item['label'], $item['url'], isset($item['linkOptions']) ? $item['linkOptions'] : array());
+		else
+			return $item['label'];
 	}
 
 	/**
