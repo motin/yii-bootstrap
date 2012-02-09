@@ -176,7 +176,16 @@ class BootMenu extends BootWidget
 		}
 
 		if (isset($item['url']))
+		{
+			if (isset($item['icon'])) {
+				if (strpos($item['icon'], 'icon') === false)
+					$item['icon'] = 'icon-'.$item['icon'];
+
+	            $item['label'] = '<i class="'.$item['icon'].'"></i> '.$item['label'];
+	        }
+
 			return CHtml::link($item['label'], $item['url'], isset($item['linkOptions']) ? $item['linkOptions'] : array());
+		}
 		else
 			return $item['label'];
 	}

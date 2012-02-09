@@ -227,13 +227,13 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 					'encodeLabel'=>false,
 					'items'=>array(
 						array('label'=>'LIST HEADER', 'itemOptions'=>array('class'=>'nav-header')),
-						array('label'=>'<i class="icon-home"></i> Home', 'url'=>'#', 'active'=>true),
-						array('label'=>'<i class="icon-book"></i> Library', 'url'=>'#'),
-						array('label'=>'<i class="icon-pencil"></i> Application', 'url'=>'#'),
+						array('label'=>'Home', 'icon'=>'home', 'url'=>'#', 'active'=>true),
+						array('label'=>'Library', 'icon'=>'book', 'url'=>'#'),
+						array('label'=>'Application', 'icon'=>'pencil', 'url'=>'#'),
 						array('label'=>'ANOTHER LIST HEADER', 'itemOptions'=>array('class'=>'nav-header')),
-						array('label'=>'<i class="icon-user"></i> Profile', 'url'=>'#'),
-						array('label'=>'<i class="icon-cog"></i> Settings', 'url'=>'#'),
-						array('label'=>'<i class="icon-flag"></i> Help', 'url'=>'#'),
+						array('label'=>'Profile', 'icon'=>'user', 'url'=>'#'),
+						array('label'=>'Settings', 'icon'=>'cog', 'url'=>'#'),
+						array('label'=>'Help', 'icon'=>'flag', 'url'=>'#'),
 					),
 				)); ?>
 
@@ -248,13 +248,13 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	'encodeLabel'=>false,
 	'items'=>array(
 		array('label'=>'LIST HEADER', 'itemOptions'=>array('class'=>'nav-header')),
-		array('label'=>'<i class=\"icon-home\"></i> Home', 'url'=>'#', 'active'=>true),
-		array('label'=>'<i class=\"icon-book\"></i> Library', 'url'=>'#'),
-		array('label'=>'<i class=\"icon-pencil\"></i> Application', 'url'=>'#'),
+		array('label'=>'Home', 'icon'=>'home', 'url'=>'#', 'active'=>true),
+		array('label'=>'Library', 'icon'=>'book', 'url'=>'#'),
+		array('label'=>'Application', 'icon'=>'pencil', 'url'=>'#'),
 		array('label'=>'ANOTHER LIST HEADER', 'itemOptions'=>array('class'=>'nav-header')),
-		array('label'=>'<i class=\"icon-user\"></i> Profile', 'url'=>'#'),
-		array('label'=>'<i class=\"icon-cog\"></i> Settings', 'url'=>'#'),
-		array('label'=>'<i class=\"icon-flag\"></i> Help', 'url'=>'#'),
+		array('label'=>'Profile', 'icon'=>'user', 'url'=>'#'),
+		array('label'=>'Settings', 'icon'=>'cog', 'url'=>'#'),
+		array('label'=>'Help', 'icon'=>'flag', 'url'=>'#'),
 	),
 )); ?>
 ~~~"); ?>
@@ -280,7 +280,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 			)); ?>
 
 			<?php $this->widget('bootstrap.widgets.BootTabbed', array(
-				'type'=>BootMenu::TYPE_PILLS,
+				'type'=>'pills',
 				'htmlOptions'=>array('class'=>'tabbed'),
 				'tabs'=>array(
 					array('label'=>'Home', 'content'=>'Raw denim you probably haven\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'),
@@ -297,6 +297,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 <?php echo $parser->safeTransform("~~~
 [php]
 <?php \$this->widget('bootstrap.widgets.BootTabbed', array(
+	'type'=>'pills', // 'tabs' or 'pills'
 	'tabs'=>array(
 		array('label'=>'Home', 'content'=>'Raw denim you probably haven\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'),
 		array('label'=>'Profile', 'content'=>'Food truck fixie locavore, accusamus mcsweeney\'s marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.'),
@@ -312,6 +313,16 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 		</section>
 
+		<section id="bootDetailView">
+			
+			<h2>BootDetailView</h2>
+			
+			<p>@todo</p>
+
+			<a class="top" href="#top">Back to top &uarr;</a>
+			
+		</section>
+
 		<section id="bootGridView">
 
 			<h2>BootGridView</h2>
@@ -325,7 +336,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 				'columns'=>$gridColumns,
 			)); ?>
 
-			<h3>Striped</h3>moi
+			<h3>Striped</h3>
 
 			<?php $this->widget('bootstrap.widgets.BootGridView', array(
 				'dataProvider'=>$gridDataProvider,
@@ -385,9 +396,6 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		array(
 			'class'=>'BootButtonColumn',
 			'htmlOptions'=>array('style'=>'width: 50px'),
-			'viewButtonOptions'=>array('rel'=>'tooltip'),
-			'updateButtonOptions'=>array('rel'=>'tooltip'),
-			'deleteButtonOptions'=>array('rel'=>'tooltip'),
 		),
 	),
 )); ?>

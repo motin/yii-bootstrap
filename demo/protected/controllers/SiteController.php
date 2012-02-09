@@ -38,11 +38,8 @@ class SiteController extends Controller
 				'class'=>'BootButtonColumn',
 				'htmlOptions'=>array('style'=>'width: 50px'),
 				'viewButtonUrl'=>null,
-				'viewButtonOptions'=>array('rel'=>'tooltip'),
 				'updateButtonUrl'=>null,
-				'updateButtonOptions'=>array('rel'=>'tooltip'),
 				'deleteButtonUrl'=>null,
-				'deleteButtonOptions'=>array('rel'=>'tooltip'),
 			)
 		);
 
