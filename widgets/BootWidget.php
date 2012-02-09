@@ -9,7 +9,6 @@
 
 /**
  * Bootstrap base widget.
- * Used for registering required scripts and defining default properties.
  */
 class BootWidget extends CWidget
 {
@@ -25,33 +24,4 @@ class BootWidget extends CWidget
 	 * @var array the HTML attributes for the widget container.
 	 */
 	public $htmlOptions = array();
-
-	/**
-	 * Initializes the widget.
-	 */
-	public function init()
-	{
-		Yii::app()->clientScript->registerCoreScript('jquery');
-	}
-
-	/**
-	 * Registers a JavaScript file under Bootstrap.
-	 * @param string $fileName the name of the JavaScript file
-	 * @param integer $position the position of the JavaScript file
-	 */
-	protected function registerScriptFile($fileName, $position=CClientScript::POS_HEAD)
-	{
-		Yii::app()->bootstrap->registerScriptFile($fileName, $position);
-	}
-
-    /**
-     * Registers a piece of javascript code.
-     * @param string $id ID that uniquely identifies this piece of JavaScript code
-     * @param string $script the javascript code
-     * @param integer $position the position of the JavaScript code
-     */
-    protected function registerScript($id, $script, $position=CClientScript::POS_END)
-    {
-        Yii::app()->clientScript->registerScript($id, $script, $position);
-    }
 }

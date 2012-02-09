@@ -325,7 +325,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 				'columns'=>$gridColumns,
 			)); ?>
 
-			<h3>Striped</h3>
+			<h3>Striped</h3>moi
 
 			<?php $this->widget('bootstrap.widgets.BootGridView', array(
 				'dataProvider'=>$gridDataProvider,
