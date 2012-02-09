@@ -6,56 +6,40 @@
 
 		<h1>Widgets</h1>
 
-		<div class="section" id="bootAlert">
+		<section id="bootAlert">
 
 			<h2>BootAlert</h2>
 
 			<?php
-			Yii::app()->user->setFlash('success',
-					'<strong>Well done!</strong> You successfully read this important alert message.');
-			Yii::app()->user->setFlash('info',
-					'<strong>Heads up!</strong> This alert needs your attention, but it\'s not super important.');
-			Yii::app()->user->setFlash('warning',
-					'<strong>Warning!</strong> Best check yo self, you\'re not looking too good.');
-			Yii::app()->user->setFlash('error',
-					'<strong>Oh snap!</strong> Change a few things up and try submitting again.');
+			Yii::app()->user->setFlash('success', '<strong>Well done!</strong> You successfully read this important alert message.');
+			Yii::app()->user->setFlash('info', '<strong>Heads up!</strong> This alert needs your attention, but it\'s not super important.');
+			Yii::app()->user->setFlash('warning', '<strong>Warning!</strong> Best check yo self, you\'re not looking too good.');
+			Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few things up and try submitting again.');
 			?>
 
-			<?php $this->widget('bootstrap.widgets.BootAlert', array(
-				'options'=>array(
-					'displayTime'=>0, // indefinitely
-				),
-			)); ?>
+			<?php $this->widget('bootstrap.widgets.BootAlert'); ?>
 
 			<h4>Source code</h4>
 
 <?php echo $parser->safeTransform("~~~
 [php]
 <?php
-Yii::app()->user->setFlash('success',
-		'<strong>Well done!</strong> You successfully read this important alert message.');
-Yii::app()->user->setFlash('info',
-		'<strong>Heads up!</strong> This alert needs your attention, but it\'s not super important.');
-Yii::app()->user->setFlash('warning',
-		'<strong>Warning!</strong> Best check yo self, you\'re not looking too good.');
-Yii::app()->user->setFlash('error',
-		'<strong>Oh snap!</strong> Change a few things up and try submitting again.');
+Yii::app()->user->setFlash('success', '<strong>Well done!</strong> You successfully read this important alert message.');
+Yii::app()->user->setFlash('info', '<strong>Heads up!</strong> This alert needs your attention, but it\'s not super important.');
+Yii::app()->user->setFlash('warning', '<strong>Warning!</strong> Best check yo self, you\'re not looking too good.');
+Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few things up and try submitting again.');
 ?>
 ~~~
 ~~~
 [php]
-<?php \$this->widget('bootstrap.widgets.BootAlert', array(
-	'options'=>array(
-		'displayTime'=>0, // indefinitely
-	),
-)); ?>
+<?php \$this->widget('bootstrap.widgets.BootAlert'); ?>
 ~~~"); ?>
 
 			<a class="top" href="#top">Back to top &uarr;</a>
 
-		</div>
+		</section>
 
-		<div class="section" id="bootCrumb">
+		<section id="bootCrumb">
 
 			<h2>BootCrumb</h2>
 
@@ -74,9 +58,9 @@ Yii::app()->user->setFlash('error',
 
 			<a class="top" href="#top">Back to top &uarr;</a>
 
-		</div>
+		</section>
 
-		<div class="section" id="bootNavbar">
+		<section id="bootNavbar">
 
 			<h2>BootNavbar</h2>
 
@@ -84,6 +68,7 @@ Yii::app()->user->setFlash('error',
 				'fixed'=>false,
 				'brand'=>'Project name',
 				'brandUrl'=>'#',
+				'collapse'=>true, // requires bootstrap-responsive.css
 				'items'=>array(
 					array(
 						'class'=>'bootstrap.widgets.BootMenu',
@@ -127,6 +112,7 @@ Yii::app()->user->setFlash('error',
 	'fixed'=>false,
 	'brand'=>'Project name',
 	'brandUrl'=>'#',
+	'collapse'=>true, // requires bootstrap-responsive.css
 	'items'=>array(
 		array(
 			'class'=>'bootstrap.widgets.BootMenu',
@@ -165,167 +151,192 @@ Yii::app()->user->setFlash('error',
 
 			<a class="top" href="#top">Back to top &uarr;</a>
 
-		</div>
+		</section>
 
-		<div class="section" id="bootMenu">
+		<section id="bootMenu">
 
 			<h2>BootMenu</h2>
 
-			<h3>Tabs</h3>
+			<h3>Basic tabs</h3>
 
-			<div class="row">
+			<?php $this->widget('bootstrap.widgets.BootMenu', array(
+				'type'=>'tabs',
+				'items'=>array(
+					array('label'=>'Home', 'url'=>'#', 'active'=>true),
+					array('label'=>'Profile', 'url'=>'#'),
+					array('label'=>'Messages', 'url'=>'#'),
+				),
+			)); ?>
 
-				<div class="span5">
+			<h3>Stacked tabs</h3>
 
-					<h4>Default</h4>
+			<?php $this->widget('bootstrap.widgets.BootMenu', array(
+				'type'=>'tabs',
+				'stacked'=>true,
+				'items'=>array(
+					array('label'=>'Home', 'url'=>'#', 'active'=>true),
+					array('label'=>'Profile', 'url'=>'#'),
+					array('label'=>'Messages', 'url'=>'#'),
+				),
+			)); ?>
 
-					<?php $this->widget('bootstrap.widgets.BootMenu', array(
-						'type'=>'tabs',
-						'items'=>array(
-							array('label'=>'Home', 'url'=>'#', 'active'=>true),
-							array('label'=>'Profile', 'url'=>'#'),
-							array('label'=>'Dropdown', 'items'=>array(
-								array('label'=>'Secondary link', 'url'=>'#'),
-								array('label'=>'Something else here', 'url'=>'#'),
-								'---',
-								array('label'=>'Another link', 'url'=>'#'),
-							)),
-							array('label'=>'Messages', 'url'=>'#'),
-						),
-					)); ?>
+			<h3>Basic pills</h3>
 
-				</div>
+			<?php $this->widget('bootstrap.widgets.BootMenu', array(
+				'type'=>'pills',
+				'items'=>array(
+					array('label'=>'Home', 'url'=>'#', 'active'=>true),
+					array('label'=>'Profile', 'url'=>'#'),
+					array('label'=>'Messages', 'url'=>'#'),
+				),
+			)); ?>
 
-				<div class="span4">
+			<h3>Stacked pills</h3>
 
-					<h4>Stacked</h4>
-
-					<?php $this->widget('bootstrap.widgets.BootMenu', array(
-						'type'=>'tabs',
-						'stacked'=>true,
-						'items'=>array(
-							array('label'=>'Home', 'url'=>'#', 'active'=>true),
-							array('label'=>'Profile', 'url'=>'#'),
-							array('label'=>'Dropdown', 'items'=>array(
-								array('label'=>'Secondary link', 'url'=>'#'),
-								array('label'=>'Something else here', 'url'=>'#'),
-								'---',
-								array('label'=>'Another link', 'url'=>'#'),
-							)),
-							array('label'=>'Messages', 'url'=>'#'),
-						),
-					)); ?>
-
-				</div>
-
-			</div>
-
-			<h3>Pills</h3>
-
-			<div class="row">
-
-				<div class="span5">
-
-					<h4>Default</h4>
-
-					<?php $this->widget('bootstrap.widgets.BootMenu', array(
-						'type'=>'pills',
-						'items'=>array(
-							array('label'=>'Home', 'url'=>'#', 'active'=>true),
-							array('label'=>'Profile', 'url'=>'#'),
-							array('label'=>'Dropdown', 'items'=>array(
-								array('label'=>'Secondary link', 'url'=>'#'),
-								array('label'=>'Something else here', 'url'=>'#'),
-								'---',
-								array('label'=>'Another link', 'url'=>'#'),
-							)),
-							array('label'=>'Messages', 'url'=>'#'),
-						),
-					)); ?>
-
-				</div>
-
-				<div class="span4">
-
-					<h4>Stacked</h4>
-
-					<?php $this->widget('bootstrap.widgets.BootMenu', array(
-						'type'=>'pills',
-						'stacked'=>true,
-						'items'=>array(
-							array('label'=>'Home', 'url'=>'#', 'active'=>true),
-							array('label'=>'Profile', 'url'=>'#'),
-							array('label'=>'Dropdown', 'items'=>array(
-								array('label'=>'Secondary link', 'url'=>'#'),
-								array('label'=>'Something else here', 'url'=>'#'),
-								'---',
-								array('label'=>'Another link', 'url'=>'#'),
-							)),
-							array('label'=>'Messages', 'url'=>'#'),
-						),
-					)); ?>
-
-				</div>
-
-			</div>
-
-			<h3>List</h3>
-
-			<div class="well" style="padding: 8px 0;">
-
-				<?php $this->widget('bootstrap.widgets.BootMenu', array(
-					'type'=>'list',
-					'items'=>array(
-						array('label'=>'Home', 'url'=>'#', 'active'=>true),
-						array('label'=>'Profile', 'url'=>'#'),
-						array('label'=>'Dropdown', 'items'=>array(
-							array('label'=>'Secondary link', 'url'=>'#'),
-							array('label'=>'Something else here', 'url'=>'#'),
-							'---',
-							array('label'=>'Another link', 'url'=>'#'),
-						)),
-						array('label'=>'Messages', 'url'=>'#'),
-					),
-				)); ?>
-
-			</div>
+			<?php $this->widget('bootstrap.widgets.BootMenu', array(
+				'type'=>'pills',
+				'stacked'=>true,
+				'items'=>array(
+					array('label'=>'Home', 'url'=>'#', 'active'=>true),
+					array('label'=>'Profile', 'url'=>'#'),
+					array('label'=>'Messages', 'url'=>'#'),
+				),
+			)); ?>
 
 			<h4>Source code</h4>
 
 <?php echo $parser->safeTransform("~~~
 [php]
 <?php \$this->widget('bootstrap.widgets.BootMenu', array(
-	'type'=>'tabs', // '', 'tabs', 'pills' or 'list'
+	'type'=>'tabs', // '', 'tabs', 'pills' (or 'list')
 	'stacked'=>false, // whether this is a stacked menu
 	'items'=>array(
 		array('label'=>'Home', 'url'=>'#', 'active'=>true),
 		array('label'=>'Profile', 'url'=>'#'),
-		array('label'=>'Dropdown', 'items'=>array(
-			array('label'=>'Secondary link', 'url'=>'#'),
-			array('label'=>'Something else here', 'url'=>'#'),
-			'---',
-			array('label'=>'Another link', 'url'=>'#'),
-		)),
 		array('label'=>'Messages', 'url'=>'#'),
+	),
+)); ?>
+~~~"); ?>
+
+			<h3>Nav list</h3>
+
+			<div class="well" style="padding: 8px 0;">
+
+				<?php $this->widget('bootstrap.widgets.BootMenu', array(
+					'type'=>'list',
+					'encodeLabel'=>false,
+					'items'=>array(
+						array('label'=>'LIST HEADER', 'itemOptions'=>array('class'=>'nav-header')),
+						array('label'=>'Home', 'icon'=>'home', 'url'=>'#', 'active'=>true),
+						array('label'=>'Library', 'icon'=>'book', 'url'=>'#'),
+						array('label'=>'Application', 'icon'=>'pencil', 'url'=>'#'),
+						array('label'=>'ANOTHER LIST HEADER', 'itemOptions'=>array('class'=>'nav-header')),
+						array('label'=>'Profile', 'icon'=>'user', 'url'=>'#'),
+						array('label'=>'Settings', 'icon'=>'cog', 'url'=>'#'),
+						array('label'=>'Help', 'icon'=>'flag', 'url'=>'#'),
+					),
+				)); ?>
+
+			</div>
+
+<h4>Source code</h4>
+
+<?php echo $parser->safeTransform("~~~
+[php]
+<?php \$this->widget('bootstrap.widgets.BootMenu', array(
+	'type'=>'list',
+	'encodeLabel'=>false,
+	'items'=>array(
+		array('label'=>'LIST HEADER', 'itemOptions'=>array('class'=>'nav-header')),
+		array('label'=>'Home', 'icon'=>'home', 'url'=>'#', 'active'=>true),
+		array('label'=>'Library', 'icon'=>'book', 'url'=>'#'),
+		array('label'=>'Application', 'icon'=>'pencil', 'url'=>'#'),
+		array('label'=>'ANOTHER LIST HEADER', 'itemOptions'=>array('class'=>'nav-header')),
+		array('label'=>'Profile', 'icon'=>'user', 'url'=>'#'),
+		array('label'=>'Settings', 'icon'=>'cog', 'url'=>'#'),
+		array('label'=>'Help', 'icon'=>'flag', 'url'=>'#'),
 	),
 )); ?>
 ~~~"); ?>
 
 			<a class="top" href="#top">Back to top &uarr;</a>
 
-		</div>
+		</section>
 
-		<div class="section" id="bootTabbed">
+		<section id="bootTabbed">
 
 			<h2>BootTabbed</h2>
 
-			<p>@todo</p>
+			<?php $this->widget('bootstrap.widgets.BootTabbed', array(
+				'htmlOptions'=>array('class'=>'tabbed'),
+				'tabs'=>array(
+					array('label'=>'Home', 'content'=>'Raw denim you probably haven\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'),
+					array('label'=>'Profile', 'content'=>'Food truck fixie locavore, accusamus mcsweeney\'s marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.'),
+					array('label'=>'Dropdown', 'items'=>array(
+						array('label'=>'@fat', 'content'=>'Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney\'s organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven\'t heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.'),
+						array('label'=>'@mdo', 'content'=>'Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.'),
+					)),
+				),
+			)); ?>
+
+			<?php $this->widget('bootstrap.widgets.BootTabbed', array(
+				'type'=>'pills',
+				'htmlOptions'=>array('class'=>'tabbed'),
+				'tabs'=>array(
+					array('label'=>'Home', 'content'=>'Raw denim you probably haven\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'),
+					array('label'=>'Profile', 'content'=>'Food truck fixie locavore, accusamus mcsweeney\'s marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.'),
+					array('label'=>'Dropdown', 'items'=>array(
+						array('label'=>'@fat', 'content'=>'Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney\'s organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven\'t heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.'),
+						array('label'=>'@mdo', 'content'=>'Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.'),
+					)),
+				),
+			)); ?>
+
+			<h4>Source code</h4>
+
+<?php echo $parser->safeTransform("~~~
+[php]
+<?php \$this->widget('bootstrap.widgets.BootTabbed', array(
+	'type'=>'pills', // 'tabs' or 'pills'
+	'tabs'=>array(
+		array('label'=>'Home', 'content'=>'Raw denim you probably haven\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'),
+		array('label'=>'Profile', 'content'=>'Food truck fixie locavore, accusamus mcsweeney\'s marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.'),
+		array('label'=>'Dropdown', 'items'=>array(
+			array('label'=>'@fat', 'content'=>'Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney\'s organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven\'t heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.'),
+			array('label'=>'@mdo', 'content'=>'Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.'),
+		)),
+	),
+)); ?>
+~~~"); ?>
 
 			<a class="top" href="#top">Back to top &uarr;</a>
 
-		</div>
+		</section>
 
-		<div class="section" id="bootGridView">
+		<section id="bootDetailView">
+			
+			<h2>BootDetailView</h2>
+			
+			<?php $this->widget('bootstrap.widgets.BootDetailView', array(
+				'data'=>array('id'=>1, 'firstName'=>'Mark', 'lastName'=>'Otto', 'language'=>'CSS'),
+				'attributes'=>array('firstName', 'lastName', 'language'),
+			)); ?>
+
+			<h4>Source code</h4>
+
+<?php echo $parser->safeTransform("~~~
+[php]
+<?php \$this->widget('bootstrap.widgets.BootDetailView', array(
+	'data'=>array('id'=>1, 'firstName'=>'Mark', 'lastName'=>'Otto', 'language'=>'CSS'),
+	'attributes'=>array('firstName', 'lastName', 'language'),
+)); ?>
+~~~"); ?>
+
+			<a class="top" href="#top">Back to top &uarr;</a>
+			
+		</section>
+
+		<section id="bootGridView">
 
 			<h2>BootGridView</h2>
 
@@ -347,6 +358,15 @@ Yii::app()->user->setFlash('error',
 				'columns'=>$gridColumns,
 			)); ?>
 
+			<h3>Bordered</h3>
+
+			<?php $this->widget('bootstrap.widgets.BootGridView', array(
+				'dataProvider'=>$gridDataProvider,
+				'template'=>"{items}",
+				'itemsCssClass'=>'table table-bordered',
+				'columns'=>$gridColumns,
+			)); ?>
+
 			<h3>Condensed</h3>
 
 			<?php $this->widget('bootstrap.widgets.BootGridView', array(
@@ -356,12 +376,12 @@ Yii::app()->user->setFlash('error',
 				'columns'=>$gridColumns,
 			)); ?>
 
-			<h3>Striped and condensed</h3>
+			<h3>Striped, bordered and condensed</h3>
 
 			<?php $this->widget('bootstrap.widgets.BootGridView', array(
 				'dataProvider'=>$gridDataProvider,
 				'template'=>"{items}",
-				'itemsCssClass'=>'table table-striped table-condensed',
+				'itemsCssClass'=>'table table-striped table-bordered table-condensed',
 				'columns'=>$gridColumns,
 			)); ?>
 
@@ -369,19 +389,36 @@ Yii::app()->user->setFlash('error',
 
 <?php echo $parser->safeTransform("~~~
 [php]
+\$gridDataProvider = new CArrayDataProvider(array(
+	array('id'=>1, 'firstName'=>'Mark', 'lastName'=>'Otto', 'language'=>'CSS'),
+	array('id'=>2, 'firstName'=>'Jacob', 'lastName'=>'Thornton', 'language'=>'JavaScript'),
+	array('id'=>3, 'firstName'=>'Stu', 'lastName'=>'Dent', 'language'=>'HTML'),
+));
+~~~
+~~~
+[php]
 <?php \$this->widget('bootstrap.widgets.BootGridView', array(
 	'dataProvider'=>\$gridDataProvider,
 	'template'=>\"{items}\",
-	'itemsCssClass'=>'table table-striped table-condensed',
-	'columns'=>\$gridColumns,
+	'itemsCssClass'=>'table table-striped table-bordered table-condensed',
+	'columns'=>array(
+		array('name'=>'id', 'header'=>'#'),
+		array('name'=>'firstName', 'header'=>'First name'),
+		array('name'=>'lastName', 'header'=>'Last name'),
+		array('name'=>'language', 'header'=>'Language'),
+		array(
+			'class'=>'BootButtonColumn',
+			'htmlOptions'=>array('style'=>'width: 50px'),
+		),
+	),
 )); ?>
 ~~~"); ?>
 
 			<a class="top" href="#top">Back to top &uarr;</a>
 
-		</div>
+		</section>
 
-		<div class="section" id="bootThumbs">
+		<section id="bootThumbs">
 
 			<h2>BootThumbs</h2>
 
@@ -389,6 +426,12 @@ Yii::app()->user->setFlash('error',
 				'dataProvider'=>$listDataProvider,
 				'template'=>"{items}\n{pager}",
 				'itemView'=>'_thumb',
+				// Remove the existing tooltips and
+				// rebind the plugin after each ajax-call.
+				'afterAjaxUpdate'=>"js:function() {
+					jQuery('.tooltip').remove();
+					jQuery('a[rel=tooltip]').tooltip();
+				}",
 			)); ?>
 
 			<h4>Source code</h4>
@@ -399,14 +442,29 @@ Yii::app()->user->setFlash('error',
 	'dataProvider'=>\$listDataProvider,
 	'template'=>\"{items}\\n{pager}\",
 	'itemView'=>'_thumb',
+	// Remove the existing tooltips and
+	// rebind the plugin after each ajax-call.
+	'afterAjaxUpdate'=>\"js:function() {
+		jQuery('.tooltip').remove();
+		jQuery('a[rel=tooltip]').tooltip();
+	}\",
 )); ?>
+~~~
+**\_thumb.php**
+~~~
+[html]
+<li class=\"span3\">
+	<a href=\"#\" class=\"thumbnail\" rel=\"tooltip\" data-title=\"Tooltip\">
+		<img src=\"http://placehold.it/280x180\" alt=\"\">
+	</a>
+</li>
 ~~~"); ?>
 
 			<a class="top" href="#top">Back to top &uarr;</a>
 
-		</div>
+		</section>
 
-		<div class="section" id="bootTooltip">
+		<section id="bootTooltip">
 
 			<h2>BootTooltip</h2>
 
@@ -421,8 +479,6 @@ Yii::app()->user->setFlash('error',
 				Sed odio dui, pretium eu pellentesque ac,
 				<a href="#" rel="tooltip" title="Yet another tooltip">tempor</a> sed sem.
 			</p>
-
-			<?php $this->widget('bootstrap.widgets.BootTooltip'); ?>
 
 			<h4>Source code</h4>
 
@@ -439,84 +495,76 @@ Yii::app()->user->setFlash('error',
 	Sed odio dui, pretium eu pellentesque ac,
 	<a href=\"#\" rel=\"tooltip\" title=\"Yet another tooltip\">tempor</a> sed sem.
 </p>
-~~~
-~~~
-[php]
-<?php \$this->widget('bootstrap.widgets.BootTooltip'); ?>
 ~~~"); ?>
 
 			<a class="top" href="#top">Back to top &uarr;</a>
 
-		</div>
+		</section>
 
-		<div class="section" id="bootPopover">
+		<section id="bootPopover">
 
 			<h2>BootPopover</h2>
 
-			<p><?php echo CHtml::link('Hover me', '#', array(
-				'class'=>'btn btn-primary btn-danger',
-				'data-title'=>'Heading',
-				'data-content'=>'Content ...',
-				'rel'=>'popover'
-			)); ?></p>
-
-			<?php $this->widget('bootstrap.widgets.BootPopover'); ?>
+			<div class="well">
+				<?php echo CHtml::link('Hover me', '#', array(
+					'class'=>'btn btn-primary btn-danger',
+					'data-title'=>'Heading',
+					'data-content'=>'Content ...',
+					'rel'=>'popover'
+				)); ?>
+			</div>
 
 			<h4>Source code</h4>
 
 <?php echo $parser->safeTransform("~~~
 [php]
-<p><?php echo CHtml::link('Hover me', '#', array(
+<?php echo CHtml::link('Hover me', '#', array(
 	'class'=>'btn btn-primary btn-danger',
 	'data-title'=>'Heading',
 	'data-content'=>'Content ...',
 	'rel'=>'popover'
-)); ?></p>
-~~~
-~~~
-[php]
-<?php \$this->widget('bootstrap.widgets.BootPopover'); ?>
+)); ?>
 ~~~"); ?>
 
 			<a class="top" href="#top">Back to top &uarr;</a>
 
-		</div>
+		</section>
 
-		<div class="section" id="bootModal">
+		<section id="bootModal">
 
 			<h2>BootModal</h2>
 
 			<?php $this->beginWidget('bootstrap.widgets.BootModal', array(
-			'id'=>'modal',
-			'options'=>array(
-				'title'=>'Heading',
-				'buttons'=>array(
-					array(
-						'label'=>'Ok',
-						'class'=>'btn btn-primary',
-						'click'=>"js:function() {
-						}",
-					),
-					array(
-						'label'=>'Cancel',
-						'class'=>'btn',
-						'click'=>"js:function() {
-							$('#modal').bootModal('close');
-							return false;
-						}",
-					),
+				'id'=>'modal',
+				'htmlOptions'=>array('class'=>'hide'),
+				'events'=>array(
+					'show'=>"js:function() { console.log('modal show.'); }",
+					'shown'=>"js:function() { console.log('modal shown.'); }",
+					'hide'=>"js:function() { console.log('modal hide.'); }",
+					'hidden'=>"js:function() { console.log('modal hidden.'); }",
 				),
-			),
 			)); ?>
 
-			Content ...
+			<div class="modal-header">
+				<a class="close" data-dismiss="modal">&times;</a>
+				<h3>Modal header</h3>
+			</div>
+			<div class="modal-body">
+				<p>One fine body...</p>
+			</div>
+			<div class="modal-footer">
+				<?php echo CHtml::link('Save changes', '#', array('class'=>'btn btn-primary', 'data-dismiss'=>'modal')); ?>
+				<?php echo CHtml::link('Close', '#', array('class'=>'btn', 'data-dismiss'=>'modal')); ?>
+			</div>
 
 			<?php $this->endWidget(); ?>
 
-			<p><?php echo CHtml::link('Click me','#', array(
-				'class'=>'btn btn-primary',
-				'onclick'=>"jQuery('#modal').bootModal('open'); return false;",
-			)); ?></p>
+			<div class="well">
+				<?php echo CHtml::link('Click me','#modal', array(
+					'class'=>'btn btn-primary',
+					'data-toggle'=>'modal',
+				)); ?>
+			</div>
 
 			<h4>Source code</h4>
 
@@ -524,30 +572,28 @@ Yii::app()->user->setFlash('error',
 [php]
 <?php \$this->beginWidget('bootstrap.widgets.BootModal', array(
 	'id'=>'modal',
-	'options'=>array(
-		'title'=>'Heading',
-		'buttons'=>array(
-			array(
-				'label'=>'Ok',
-				'class'=>'btn btn-primary',
-				'click'=>\"js:function() {
-				}\",
-			),
-			array(
-				'label'=>'Cancel',
-				'class'=>'btn',
-				'click'=>\"js:function() {
-					$('#modal').bootModal('close');
-					return false;
-				}\",
-			),
-		),
+	'htmlOptions'=>array('class'=>'hide'),
+	'events'=>array(
+		'show'=>\"js:function() { console.log('modal show.'); }\",
+		'shown'=>\"js:function() { console.log('modal shown.'); }\",
+		'hide'=>\"js:function() { console.log('modal hide.'); }\",
+		'hidden'=>\"js:function() { console.log('modal hidden.'); }\",
 	),
 )); ?>
 ~~~
 ~~~
 [html]
-Content ...
+<div class=\"modal-header\">
+	<a class=\"close\" data-dismiss=\"modal\">&times;</a>
+	<h3>Modal header</h3>
+</div>
+<div class=\"modal-body\">
+	<p>One fine body…</p>
+</div>
+<div class=\"modal-footer\">
+	<?php echo CHtml::link('Save changes', '#', array('class'=>'btn btn-primary', 'data-dismiss'=>'modal')); ?>
+	<?php echo CHtml::link('Close', '#', array('class'=>'btn', 'data-dismiss'=>'modal')); ?>
+</div>
 ~~~
 ~~~
 [php]
@@ -555,19 +601,21 @@ Content ...
 ~~~
 ~~~
 [php]
-<p><?php echo CHtml::link('Click me', '#', array(
+<?php echo CHtml::link('Click me','#modal', array(
 	'class'=>'btn btn-primary',
-	'onclick'=>\"jQuery('#modal').bootModal('open'); return false;\",
-)); ?></p>
+	'data-toggle'=>'modal',
+)); ?>
 ~~~"); ?>
 
 			<a class="top" href="#top">Back to top &uarr;</a>
 
-		</div>
+		</section>
 
-		<div class="section" id="bootActiveForm">
+		<section id="bootActiveForm">
 
 			<h2>BootActiveForm</h2>
+
+			<h3>Vertical</h3>
 
 			<?php /** @var BootActiveForm $form */
 			$form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
@@ -577,26 +625,59 @@ Content ...
 				'htmlOptions'=>array('class'=>'well'),
 			)); ?>
 
-			<?php echo $form->textFieldRow($model, 'textField'); ?>
-			<?php echo $form->passwordFieldRow($model, 'password'); ?>
+			<?php echo $form->textFieldRow($model, 'textField', array('class'=>'span3')); ?>
+			<?php echo $form->passwordFieldRow($model, 'password', array('class'=>'span3')); ?>
 			<?php echo $form->checkboxRow($model, 'checkbox'); ?>
-
-			<?php echo CHtml::htmlButton('<i class="icon-ok icon-white"></i> Submit',
-					array('class'=>'btn btn-primary','type'=>'submit')); ?>
+			<?php echo CHtml::htmlButton('<i class="icon-ok"></i> Submit', array('class'=>'btn', 'type'=>'submit')); ?>
 
 			<?php $this->endWidget(); ?>
+
+			<h3>Search</h3>
+
+			<?php /** @var BootActiveForm $form */
+			$form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
+				'id'=>'searchForm',
+				'type'=>'search',
+				'enableClientValidation'=>true,
+				'clientOptions'=>array('validateOnSubmit'=>true),
+				'htmlOptions'=>array('class'=>'well'),
+			)); ?>
+
+			<?php echo $form->textFieldRow($model, 'textField', array('class'=>'input-medium')); ?>
+			<?php echo CHtml::htmlButton('<i class="icon-search"></i> Search', array('class'=>'btn', 'type'=>'submit')); ?>
+
+			<?php $this->endWidget(); ?>
+
+			<h3>Inline</h3>
+
+			<?php /** @var BootActiveForm $form */
+			$form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
+				'id'=>'inlineForm',
+				'type'=>'inline',
+				'enableClientValidation'=>true,
+				'clientOptions'=>array('validateOnSubmit'=>true),
+				'htmlOptions'=>array('class'=>'well'),
+			)); ?>
+
+			<?php echo $form->textFieldRow($model, 'textField', array('class'=>'input-small')); ?>
+			<?php echo $form->passwordFieldRow($model, 'password', array('class'=>'input-small')); ?>
+			<?php echo CHtml::htmlButton('Go', array('class'=>'btn', 'type'=>'submit')); ?>
+
+			<?php $this->endWidget(); ?>
+
+			<h3>Horizontal</h3>
 
 			<?php /** @var BootActiveForm $form */
 			$form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
 				'id'=>'horizontalForm',
-				'type'=>BootActiveForm::TYPE_HORIZONTAL,
+				'type'=>'horizontal',
 				'enableClientValidation'=>true,
 				'clientOptions'=>array('validateOnSubmit'=>true),
 			)); ?>
 
 			<fieldset>
 
-				<legend>Horizontal form</legend>
+				<legend>Legend</legend>
 
 				<?php echo $form->textFieldRow($model, 'textField',
 						array('hint'=>'In addition to freeform text, any HTML5 text-based input appears like so.')); ?>
@@ -624,10 +705,8 @@ Content ...
 			</fieldset>
 
 			<div class="form-actions">
-				<?php echo CHtml::htmlButton('<i class="icon-ok icon-white"></i> Submit',
-						array('class'=>'btn btn-primary','type'=>'submit')); ?>
-				<?php echo CHtml::htmlButton('<i class="icon-ban-circle"></i> Reset',
-						array('class'=>'btn','type'=>'reset')); ?>
+				<?php echo CHtml::htmlButton('<i class="icon-ok icon-white"></i> Submit', array('class'=>'btn btn-primary', 'type'=>'submit')); ?>
+				<?php echo CHtml::htmlButton('<i class="icon-ban-circle"></i> Reset', array('class'=>'btn', 'type'=>'reset')); ?>
 			</div>
 
 			<?php $this->endWidget(); ?>
@@ -644,12 +723,43 @@ Content ...
 	'htmlOptions'=>array('class'=>'well'),
 )); ?>
 
-<?php echo \$form->textFieldRow(\$model, 'textField'); ?>
-<?php echo \$form->passwordFieldRow(\$model, 'password'); ?>
+<?php echo \$form->textFieldRow(\$model, 'textField', array('class'=>'span3')); ?>
+<?php echo \$form->passwordFieldRow(\$model, 'password', array('class'=>'span3')); ?>
 <?php echo \$form->checkboxRow(\$model, 'checkbox'); ?>
+<?php echo CHtml::htmlButton('<i class=\"icon-ok\"></i> Submit', array('class'=>'btn', 'type'=>'submit')); ?>
 
-<?php echo CHtml::htmlButton('<i class=\"icon-ok icon-white\"></i> Submit',
-		array('class'=>'btn btn-primary','type'=>'submit')); ?>
+<?php \$this->endWidget(); ?>
+~~~
+~~~
+[php]
+<?php /** @var BootActiveForm \$form */
+\$form = \$this->beginWidget('bootstrap.widgets.BootActiveForm', array(
+	'id'=>'searchForm',
+	'type'=>'search',
+	'enableClientValidation'=>true,
+	'clientOptions'=>array('validateOnSubmit'=>true),
+	'htmlOptions'=>array('class'=>'well'),
+)); ?>
+
+<?php echo \$form->textFieldRow(\$model, 'textField', array('class'=>'input-medium')); ?>
+<?php echo CHtml::htmlButton('<i class=\"icon-search\"></i> Search', array('class'=>'btn','type'=>'submit')); ?>
+
+<?php \$this->endWidget(); ?>
+~~~
+~~~
+[php]
+<?php /** @var BootActiveForm \$form */
+\$form = \$this->beginWidget('bootstrap.widgets.BootActiveForm', array(
+	'id'=>'inlineForm',
+	'type'=>'inline',
+	'enableClientValidation'=>true,
+	'clientOptions'=>array('validateOnSubmit'=>true),
+	'htmlOptions'=>array('class'=>'well'),
+)); ?>
+
+<?php echo \$form->textFieldRow(\$model, 'textField', array('class'=>'input-small')); ?>
+<?php echo \$form->passwordFieldRow(\$model, 'password', array('class'=>'input-small')); ?>
+<?php echo CHtml::htmlButton('Go', array('class'=>'btn', 'type'=>'submit')); ?>
 
 <?php \$this->endWidget(); ?>
 ~~~
@@ -658,20 +768,19 @@ Content ...
 <?php /** @var BootActiveForm \$form */
 \$form = \$this->beginWidget('bootstrap.widgets.BootActiveForm', array(
 	'id'=>'horizontalForm',
-	'type'=>BootActiveForm::TYPE_HORIZONTAL,
+	'type'=>'horizontal,
 	'enableClientValidation'=>true,
 	'clientOptions'=>array('validateOnSubmit'=>true),
 )); ?>
 
 <fieldset>
 
-	<legend>Horizontal form</legend>
+	<legend>Legend</legend>
 
 	<?php echo \$form->textFieldRow(\$model, 'textField',
 			array('hint'=>'In addition to freeform text, any HTML5 text-based input appears like so.')); ?>
 	<?php echo \$form->dropDownListRow(\$model, 'dropdown', array('Something ...', '1', '2', '3', '4', '5')); ?>
-	<?php echo \$form->dropDownListRow(\$model, 'multiDropdown', array('1', '2', '3', '4', '5'),
-			array('multiple'=>true)); ?>
+	<?php echo \$form->dropDownListRow(\$model, 'multiDropdown', array('1', '2', '3', '4', '5'), array('multiple'=>true)); ?>
 	<?php echo \$form->fileFieldRow(\$model, 'fileField'); ?>
 	<?php echo \$form->textAreaRow(\$model, 'textarea', array('class'=>'span8', 'rows'=>5)); ?>
 	<?php echo \$form->uneditableRow(\$model, 'uneditable'); ?>
@@ -693,10 +802,8 @@ Content ...
 </fieldset>
 
 <div class=\"form-actions\">
-	<?php echo CHtml::htmlButton('<i class=\"icon-ok icon-white\"></i> Submit',
-			array('class'=>'btn btn-primary','type'=>'submit')); ?>
-	<?php echo CHtml::htmlButton('<i class=\"icon-ban-circle\"></i> Reset',
-			array('class'=>'btn','type'=>'reset')); ?>
+	<?php echo CHtml::htmlButton('<i class=\"icon-ok icon-white\"></i> Submit', array('class'=>'btn btn-primary', 'type'=>'submit')); ?>
+	<?php echo CHtml::htmlButton('<i class=\"icon-ban-circle\"></i> Reset', array('class'=>'btn', 'type'=>'reset')); ?>
 </div>
 
 <?php \$this->endWidget(); ?>
@@ -704,16 +811,17 @@ Content ...
 
 			<a class="top" href="#top">Back to top &uarr;</a>
 
-		</div>
+		</section>
 
 	</div>
 
 	<div class="span3">
 
-		<div class="well" style="padding: 8px 0;">
+		<aside class="well" style="padding: 8px 0;">
 
 			<?php $this->widget('bootstrap.widgets.BootMenu', array(
 				'type'=>'list',
+				//'scrollspy'=>true,
 				'items'=>array(
 					array('label'=>'WIDGETS','itemOptions'=>array('class'=>'nav-header')),
 					array('label'=>'BootAlert','url'=>'#bootAlert'),
@@ -731,7 +839,7 @@ Content ...
 				),
 			)); ?>
 
-		</div>
+		</aside>
 
 	</div>
 
