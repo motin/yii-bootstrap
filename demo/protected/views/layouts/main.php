@@ -35,7 +35,7 @@
 		array(
 			'class'=>'BootMenu',
 			'items'=>array(
-				array('label'=>'Home', 'url'=>array('site/index')),
+				array('label'=>'Demo', 'url'=>array('site/index')),
 				array('label'=>'Setup', 'url'=>array('site/setup')),
 			),
 		),
