@@ -6,7 +6,7 @@ Yii::setPathOfAlias('bootstrap', realpath(dirname(__FILE__).'/../../../'));
 // Application configuration.
 return array(
 	'basePath'=>realpath(dirname(__FILE__).'/..'),
-	'name'=>'Bootstrap Demo',
+	'name'=>'Yii-Bootstrap',
 
 	'preload'=>array('log'),
 
@@ -27,6 +27,7 @@ return array(
 	'components'=>array(
 		'bootstrap'=>array(
 			'class'=>'bootstrap.components.Bootstrap',
+			'responsiveCss'=>true,
 		),
 		'errorHandler'=>array(
 			'errorAction'=>'site/error',

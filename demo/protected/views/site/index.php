@@ -422,8 +422,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		'dataProvider'=>$listDataProvider,
 		'template'=>"{items}\n{pager}",
 		'itemView'=>'_thumb',
-		// Remove the existing tooltips and
-		// rebind the plugin after each ajax-call.
+		// Remove the existing tooltips and rebind the plugin after each ajax-call.
 		'afterAjaxUpdate'=>"js:function() {
 			jQuery('.tooltip').remove();
 			jQuery('a[rel=tooltip]').tooltip();
@@ -438,8 +437,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	'dataProvider'=>\$listDataProvider,
 	'template'=>\"{items}\\n{pager}\",
 	'itemView'=>'_thumb',
-	// Remove the existing tooltips and
-	// rebind the plugin after each ajax-call.
+	// Remove the existing tooltips and rebind the plugin after each ajax-call.
 	'afterAjaxUpdate'=>\"js:function() {
 		jQuery('.tooltip').remove();
 		jQuery('a[rel=tooltip]').tooltip();

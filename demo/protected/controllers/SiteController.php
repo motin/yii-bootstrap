@@ -48,7 +48,7 @@ class SiteController extends Controller
 			$rawData[] = array('id'=>$i + 1);
 
 		$listDataProvider = new CArrayDataProvider($rawData, array(
-			'pagination'=>array('pageSize'=>12),
+			'pagination'=>array('pageSize'=>8),
 		));
 
 		$parser = new CMarkdownParser();
@@ -59,6 +59,16 @@ class SiteController extends Controller
 			'gridDataProvider'=>$gridDataProvider,
 			'gridColumns'=>$gridColumns,
 			'listDataProvider'=>$listDataProvider,
+			'parser'=>$parser,
+		));
+	}
+
+	public function actionSetup()
+	{
+		$parser = new CMarkdownParser();
+		Yii::app()->clientScript->registerCss('TextHighligther', file_get_contents($parser->getDefaultCssFile()));
+
+		$this->render('setup', array(
 			'parser'=>$parser,
 		));
 	}

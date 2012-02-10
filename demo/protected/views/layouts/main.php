@@ -8,6 +8,7 @@
 		<script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 	<?php Yii::app()->bootstrap->registerCss(); ?>
+	<?php Yii::app()->bootstrap->registerResponsiveCss(); ?>
 	<link rel="stylesheet/less" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/less/styles.less" />
 	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/less-1.2.1.min.js"></script>
 	<script type="text/javascript">
@@ -34,12 +35,10 @@
 		array(
 			'class'=>'BootMenu',
 			'items'=>array(
-				array('label'=>'Home', 'url'=>'#'),
-				array('label'=>'About', 'url'=>'#'),
-				array('label'=>'Contact', 'url'=>'#'),
+				array('label'=>'Home', 'url'=>array('site/index')),
+				array('label'=>'Setup', 'url'=>array('site/setup')),
 			),
 		),
-		'<div class="version pull-right">yii-bootstrap-0.9.8</div>',
 	),
 )); ?>
 
@@ -47,6 +46,15 @@
 
 	<div class="hero-unit">
 		<h1><?php echo CHtml::encode(Yii::app()->name); ?></h1>
+		<p>
+			Bringing together the
+			<?php echo CHtml::link('Yii PHP framework', 'http://www.yiiframework.com'); ?> and
+			<?php echo CHtml::link('Bootstrap', 'http://twitter.github.com/bootstrap/'); ?>, Twitter's new web development toolkit.
+			Now with support for Bootstrap 2!
+			<?php echo CHtml::link('Yii-Bootstrap', 'http://www.yiiframework.com/extension/bootstrap/'); ?>
+			is an extension for Yii that focuses on server-side that allows you to easily use Bootstrap in your Yii applications.
+			These widgets have all been developed with care to work seemlessly together with Bootstrap and its jQuery plugins.
+		</p>
 	</div>
 
 	<?php if (!empty($this->breadcrumbs)):?>

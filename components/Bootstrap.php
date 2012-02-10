@@ -27,6 +27,16 @@ class Bootstrap extends CApplicationComponent
 	const PLUGIN_TYPEAHEAD = 'typeahead';
 
 	/**
+	 * @var boolean whether to register the Bootstrap core CSS (bootstrap.min.css).
+	 * Defaults to true.
+	 */
+	public $coreCss = true;
+	/**
+	 * @var boolean whether to register the Bootstrap responsive CSS (bootstrap-responsive.min.css).
+	 * Defaults to false.
+	 */
+	public $responsiveCss = false;
+	/**
 	 * @var array the plugin options (name=>options).
 	 * @since 0.9.8
 	 */
@@ -42,6 +52,12 @@ class Bootstrap extends CApplicationComponent
 	{
 		if (!Yii::getPathOfAlias('bootstrap'))
 			Yii::setPathOfAlias('bootstrap', realpath(dirname(__FILE__).'/..'));
+
+		if ($this->coreCss)
+			$this->registerCss();
+
+		if ($this->responsiveCss)
+			$this->registerResponsiveCss();
 
 		Yii::app()->clientScript->registerCoreScript('jquery');
 		$this->registerCorePlugins();
@@ -230,7 +246,7 @@ class Bootstrap extends CApplicationComponent
 	 * @see http://twitter.github.com/bootstrap/javascript.html#typeahead
 	 * @since 0.9.8
 	 */
-	public function registerTypeAHead($selector = null, $options = array())
+	public function registerTypeahead($selector = null, $options = array())
 	{
 		$this->registerPlugin(self::PLUGIN_TYPEAHEAD, $selector, $options);
 	}
