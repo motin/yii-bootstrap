@@ -42,6 +42,30 @@
 	),
 )); ?>
 
+
+<div class="subnav subnav-fixed">
+
+	<?php $this->widget('bootstrap.widgets.BootMenu', array(
+		'type'=>'pills',
+		//'scrollspy'=>array('offset'=>50),
+		'items'=>array(
+			array('label'=>'BootAlert', 'url'=>'#bootAlert'),
+			array('label'=>'BootCrumb', 'url'=>'#bootCrumb'),
+			array('label'=>'BootNavbar', 'url'=>'#bootNavbar'),
+			array('label'=>'BootMenu', 'url'=>'#bootMenu'),
+			array('label'=>'BootTabbed', 'url'=>'#bootTabbed'),
+			array('label'=>'BootDetailView', 'url'=>'#bootDetailView'),
+			array('label'=>'BootGridView', 'url'=>'#bootGridView'),
+			array('label'=>'BootThumbs', 'url'=>'#bootThumbs'),
+			array('label'=>'BootTooltip', 'url'=>'#bootTooltip'),
+			array('label'=>'BootPopover', 'url'=>'#bootPopover'),
+			array('label'=>'BootModal', 'url'=>'#bootModal'),
+			array('label'=>'BootActiveForm', 'url'=>'#bootActiveForm'),
+		),
+	)); ?>
+
+</div>
+
 <div class="container">
 
 	<div class="hero-unit">

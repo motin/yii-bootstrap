@@ -787,27 +787,3 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	</section>
 
 </div>
-
-<aside id="subnav" class="well" style="padding: 8px 0;">
-
-	<?php $this->widget('bootstrap.widgets.BootMenu', array(
-		'type'=>'list',
-		//'scrollspy'=>array('offset'=>50),
-		'items'=>array(
-			array('label'=>'WIDGETS', 'itemOptions'=>array('class'=>'nav-header')),
-			array('label'=>'BootAlert', 'url'=>'#bootAlert'),
-			array('label'=>'BootCrumb', 'url'=>'#bootCrumb'),
-			array('label'=>'BootNavbar', 'url'=>'#bootNavbar'),
-			array('label'=>'BootMenu', 'url'=>'#bootMenu'),
-			array('label'=>'BootTabbed', 'url'=>'#bootTabbed'),
-			array('label'=>'BootDetailView', 'url'=>'#bootDetailView'),
-			array('label'=>'BootGridView', 'url'=>'#bootGridView'),
-			array('label'=>'BootThumbs', 'url'=>'#bootThumbs'),
-			array('label'=>'BootTooltip', 'url'=>'#bootTooltip'),
-			array('label'=>'BootPopover', 'url'=>'#bootPopover'),
-			array('label'=>'BootModal', 'url'=>'#bootModal'),
-			array('label'=>'BootActiveForm', 'url'=>'#bootActiveForm'),
-		),
-	)); ?>
-
-</aside>
