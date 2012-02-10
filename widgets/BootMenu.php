@@ -89,26 +89,20 @@ class BootMenu extends BootWidget
 			$this->renderItems($this->items);
 			echo '</ul>';
 
-			/** @var Bootstrap $bootstrap */
-			$bootstrap = Yii::app()->bootstrap;
-			$bootstrap->registerDropdown();
+			Yii::app()->bootstrap->registerDropdown();
 
-			/*
-			if (isset($this->scrollspy))
+			if (isset($this->scrollspy) && is_array($this->scrollspy) && isset($this->scrollspy['spy']))
 			{
-				if (!is_array($this->scrollspy))
-					$this->scrollspy = array();
+				Yii::app()->bootstrap->registerScrollSpy();
 
-				if (!isset($this->scrollspy['target']))
-					$this->scrollspy['target'] = 'body';
+				if (!isset($this->scrollspy['subject']))
+					$this->scrollspy['subject'] = 'body';
 
 				if (!isset($this->scrollspy['offset']))
 					$this->scrollspy['offset'] = null;
 
-				$bootstrap->registerScrollSpy();
-				$bootstrap->spyOn($this->scrollspy['target'], '#'.$this->id, $this->scrollspy['offset']);
+				Yii::app()->bootstrap->spyOn($this->scrollspy['subject'], $this->scrollspy['spy'], $this->scrollspy['offset']);
 			}
-			*/
 		}
 	}
 
@@ -178,6 +172,13 @@ class BootMenu extends BootWidget
 	 */
 	protected function renderItem($item)
 	{
+		if (isset($item['icon'])) {
+			if (strpos($item['icon'], 'icon') === false)
+				$item['icon'] = 'icon-'.$item['icon'];
+
+			$item['label'] = '<i class="'.$item['icon'].'"></i> '.$item['label'];
+		}
+
 		if (isset($item['items']))
 		{
 			if (!isset($item['url']))
@@ -193,16 +194,7 @@ class BootMenu extends BootWidget
 		}
 
 		if (isset($item['url']))
-		{
-			if (isset($item['icon'])) {
-				if (strpos($item['icon'], 'icon') === false)
-					$item['icon'] = 'icon-'.$item['icon'];
-
-	            $item['label'] = '<i class="'.$item['icon'].'"></i> '.$item['label'];
-	        }
-
 			return CHtml::link($item['label'], $item['url'], isset($item['linkOptions']) ? $item['linkOptions'] : array());
-		}
 		else
 			return $item['label'];
 	}

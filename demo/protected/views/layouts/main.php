@@ -7,6 +7,7 @@
 	<!--[if lt IE 9]>
 		<script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
+	<?php Yii::app()->bootstrap->registerCss(); ?>
 	<link rel="stylesheet/less" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/less/styles.less" />
 	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/less-1.2.1.min.js"></script>
 	<script type="text/javascript">
@@ -31,7 +32,7 @@
 	'collapse'=>true,
 	'items'=>array(
 		array(
-			'class'=>'bootstrap.widgets.BootMenu',
+			'class'=>'BootMenu',
 			'items'=>array(
 				array('label'=>'Home', 'url'=>'#'),
 				array('label'=>'About', 'url'=>'#'),
@@ -41,30 +42,6 @@
 		'<div class="version pull-right">yii-bootstrap-0.9.8</div>',
 	),
 )); ?>
-
-
-<div class="subnav subnav-fixed">
-
-	<?php $this->widget('bootstrap.widgets.BootMenu', array(
-		'type'=>'pills',
-		//'scrollspy'=>array('offset'=>50),
-		'items'=>array(
-			array('label'=>'BootAlert', 'url'=>'#bootAlert'),
-			array('label'=>'BootCrumb', 'url'=>'#bootCrumb'),
-			array('label'=>'BootNavbar', 'url'=>'#bootNavbar'),
-			array('label'=>'BootMenu', 'url'=>'#bootMenu'),
-			array('label'=>'BootTabbed', 'url'=>'#bootTabbed'),
-			array('label'=>'BootDetailView', 'url'=>'#bootDetailView'),
-			array('label'=>'BootGridView', 'url'=>'#bootGridView'),
-			array('label'=>'BootThumbs', 'url'=>'#bootThumbs'),
-			array('label'=>'BootTooltip', 'url'=>'#bootTooltip'),
-			array('label'=>'BootPopover', 'url'=>'#bootPopover'),
-			array('label'=>'BootModal', 'url'=>'#bootModal'),
-			array('label'=>'BootActiveForm', 'url'=>'#bootActiveForm'),
-		),
-	)); ?>
-
-</div>
 
 <div class="container">
 

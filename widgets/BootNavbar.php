@@ -52,7 +52,7 @@ class BootNavbar extends BootWidget
 	 */
 	public function init()
 	{
-		if (!$this->brand)
+		if ($this->brand !== false)
 		{
 			$this->brand = CHtml::encode(Yii::app()->name);
 

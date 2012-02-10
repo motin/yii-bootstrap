@@ -251,7 +251,7 @@ class Bootstrap extends CApplicationComponent
 		if (isset($offset))
 			$script .= "jQuery('{$selector}').attr('data-offset', '{$offset}');";
 
-		Yii::app()->clientScript->registerScript(__CLASS__.'.spyOn.'.$selector, $script);
+		Yii::app()->clientScript->registerScript(__CLASS__.'.spyOn.'.$selector, $script, CClientScript::POS_BEGIN);
 	}
 
 	/**
