@@ -69,6 +69,8 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 				'items'=>array(
 					array('label'=>'Home', 'url'=>'#', 'active'=>true),
 					array('label'=>'Link', 'url'=>'#'),
+					array('label'=>'Link', 'url'=>'#'),
+					array('label'=>'Link', 'url'=>'#'),
 					array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
 						array('label'=>'Action', 'url'=>'#'),
 						array('label'=>'Another action', 'url'=>'#'),
