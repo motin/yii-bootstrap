@@ -119,15 +119,30 @@
 
 	<h2>Plugin API</h2>
 
-	<p>
-		Yii-Bootstrap comes with an API for registering and binding Bootstrap JavaScript plugins without a single line of JavaScript.
-		Here's an example of how to use the API to register the Typeahead plugin:
-	</p>
+	<p>Yii-Bootstrap comes with an API for registering and binding Bootstrap JavaScript plugins without a single line of JavaScript.</p>
 
+	<p>Here's an example of how to use the API to register the Typeahead plugin:</p>
+
+	<div class="well">
+		<input class="typeahead span3" type="text" placeholder="Start typing ..." />
+	</div>
+
+	<?php Yii::app()->bootstrap->registerTypeahead('.typeahead', array(
+		'source'=>array('Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'),
+		'items'=>4,
+		'matcher'=>"js:function(item) {
+			return ~item.toLowerCase().indexOf(this.query.toLowerCase());
+		}",
+	)); ?>
+	
 <?php echo $parser->safeTransform("~~~
+[html]
+<input class=\"typeahead span3\" type=\"text\" placeholder=\"Start typing ...\" />
+~~~
+~~~
 [php]
 Yii::app()->bootstrap->registerTypeahead('.typeahead', array(
-	'source'=>array('Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Dakota','North Carolina','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'),
+	'source'=>array('Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'),
 	'items'=>4,
 	'matcher'=>\"js:function(item) {
 		return ~item.toLowerCase().indexOf(this.query.toLowerCase());
