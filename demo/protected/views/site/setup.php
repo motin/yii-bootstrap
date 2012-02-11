@@ -170,7 +170,7 @@ Yii::app()->bootstrap->registerTypeahead('.typeahead', array(
 
 	<h2>Comments</h2>
 
-	<div class="fb-comments" data-href="<?php echo Yii::app()->request->requestUri; ?>" data-num-posts="10" data-width="470"></div>
+	<div class="fb-comments" data-href="<?php echo $this->createUrl('setup'); ?>" data-num-posts="10" data-width="470"></div>
 
 	<a class="top" href="#top">Back to top &uarr;</a>
 
