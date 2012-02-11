@@ -1,14 +1,15 @@
 <!doctype html>
 <html>
 <head>
-	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+	<?php Yii::app()->controller->widget('ext.seo.widgets.SeoHead', array(
+		'defaultDescription'=>'Yii-Bootstrap is an extension for Yii that focuses on server-side that allows you to easily use Bootstrap in your Yii applications.',
+		'httpEquivs'=>array('Content-Type'=>'text/html; charset=utf-8', 'Content-Language'=>'en-US'),
+	)); ?>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
 	<!--[if lt IE 9]>
 		<script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-	<?php Yii::app()->bootstrap->registerCss(); ?>
-	<?php Yii::app()->bootstrap->registerResponsiveCss(); ?>
 	<link rel="stylesheet/less" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/less/styles.less" />
 	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/less-1.2.1.min.js"></script>
 	<script type="text/javascript">
@@ -104,9 +105,11 @@
 	<footer>
 
 		<p class="powered">
-			Powered by <?php echo CHtml::link('Yii 1.1.9', 'http://www.yiiframework.com', array('target'=>'_blank')); ?> //
+			Powered by <?php echo CHtml::link('Yii PHP framework 1.1.9', 'http://www.yiiframework.com', array('target'=>'_blank')); ?> //
 			<?php echo CHtml::link('jQuery 1.7.1', 'http://www.jquery.com', array('target'=>'_blank')); ?> //
 			<?php echo CHtml::link('Yii-Bootstrap 0.9.8', 'http://www.yiiframework.com/extension/bootstrap', array('target'=>'_blank')); ?> //
+			<?php echo CHtml::link('Yii-SEO 0.9.3', 'http://www.yiiframework.com/extension/seo', array('target'=>'_blank')); ?> //
+			<?php echo CHtml::link('Yii-Facebook 0.9.1', '#', array('rel'=>'tooltip', 'title'=>'Link available soon')); ?> //
 			<?php echo CHtml::link('Bootstrap 2', 'http://twitter.github.com/bootstrap', array('target'=>'_blank')); ?> //
 			<?php echo CHtml::link('LESS 1.2.1', 'http://www.lesscss.org', array('target'=>'_blank')); ?>
 		</p>

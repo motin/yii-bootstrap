@@ -3,7 +3,19 @@
 class SiteController extends Controller
 {
 	/**
+	 * Declares the behaviors.
+	 * @return array the behaviors
+	 */
+	public function behaviors()
+	{
+		return array(
+			'seo'=>'ext.seo.components.SeoControllerBehavior',
+		);
+	}
+
+	/**
 	 * Declares class-based actions.
+	 * @return array the actions
 	 */
 	public function actions()
 	{

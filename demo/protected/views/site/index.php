@@ -1,4 +1,12 @@
-<?php $this->pageTitle=Yii::app()->name; ?>
+<?php
+$this->pageTitle = array('Demo', Yii::app()->name);
+$this->addMetaProperty('og:title', Yii::app()->name);
+$this->addMetaProperty('og:type', 'website');
+$this->addMetaProperty('og:url', Yii::app()->request->requestUri);
+$this->addMetaProperty('og:site_name', Yii::app()->name);
+$this->addMetaProperty('og:locale',Yii::app()->fb->locale);
+$this->addMetaProperty('fb:app_id', Yii::app()->fb->appID);
+?>
 
 <section id="bootAlert">
 

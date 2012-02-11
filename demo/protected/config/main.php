@@ -32,6 +32,12 @@ return array(
 		'errorHandler'=>array(
 			'errorAction'=>'site/error',
 		),
+		'fb'=>array(
+			'class'=>'ext.facebook.components.FacebookConnect',
+			'appID'=>'106265262835735',
+			'appSecret'=>'941d6e0fa554b725ec258311e4ddc4b6',
+			'appNamespace'=>'yii-bootstrap',
+		),
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(
@@ -47,14 +53,21 @@ return array(
 				*/
 			),
 		),
+		'urlManager'=>array(
+			'showScriptName'=>false,
+			'urlFormat'=>'path',
+			'urlSuffix'=>'.html',
+			'rules'=>array(
+				'demo'=>'site/index',
+				'setup'=>'site/setup',
+			),
+		),
 		'user'=>array(
 			'allowAutoLogin'=>true,
 		),
 	),
 
-	// application-level parameters that can be accessed
-	// using Yii::app()->params['paramName']
+	// Application-level parameters
 	'params'=>array(
-		'adminEmail'=>'webmaster@example.com',
 	),
 );
