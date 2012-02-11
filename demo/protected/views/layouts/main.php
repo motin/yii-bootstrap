@@ -28,6 +28,17 @@
 
 <body id="top">
 
+<div id="fb-root"></div>
+<script type="text/javascript">
+	(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+</script>
+
 <?php $this->widget('BootNavbar',array(
 	'brand'=>CHtml::encode(Yii::app()->name),
 	'collapse'=>true,
@@ -39,6 +50,19 @@
 				array('label'=>'Setup', 'url'=>array('site/setup')),
 			),
 		),
+		'
+		<div class="add-this pull-right">
+			<!-- AddThis Button BEGIN -->
+			<div class="addthis_toolbox addthis_default_style">
+			<a class="addthis_button_facebook"></a>
+			<a class="addthis_button_twitter"></a>
+			<a class="addthis_button_google"></a>
+			<a class="addthis_button_email"></a>
+			<a class="addthis_button_compact"></a>
+			<a class="addthis_counter addthis_bubble_style"></a>
+			</div>
+			<!-- AddThis Button END -->
+		</div>'
 	),
 )); ?>
 
@@ -65,6 +89,16 @@
 
 	<?php echo $content; ?>
 
+	<section id="comments">
+
+		<h2>Comments</h2>
+
+		<div class="fb-comments" data-href="<?php echo Yii::app()->request->requestUri; ?>" data-num-posts="10" data-width="470"></div>
+
+		<a class="top" href="#top">Back to top &uarr;</a>
+
+	</section>
+
 	<hr />
 
 	<footer>
@@ -84,6 +118,8 @@
 	</footer>
 
 </div>
+
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f362fc83fc39768"></script>
 
 </body>
 </html>
