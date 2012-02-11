@@ -1,18 +1,16 @@
 <!doctype html>
-<html>
-<head>
+<html xmlns:fb="http://www.facebook.com/2008/fbml" xml:lang="en" lang="en">
+<head prefix="og: http://ogp.me/ns# <?php echo Yii::app()->fb->appNamespace; ?>: http://ogp.me/ns/apps/<?php echo Yii::app()->fb->appNamespace; ?>#">
 	<?php Yii::app()->controller->widget('ext.seo.widgets.SeoHead', array(
 		'defaultDescription'=>Yii::app()->params['appDescription'],
 		'httpEquivs'=>array('Content-Type'=>'text/html; charset=utf-8', 'Content-Language'=>'en-US'),
 		'title'=>array('class'=>'ext.seo.widgets.SeoTitle', 'separator'=>' :: '),
 	)); ?>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="language" content="en" />
+	<link rel="stylesheet/less" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/less/styles.less" />
+	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/less-1.2.1.min.js"></script>
 	<!--[if lt IE 9]>
 		<script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-	<link rel="stylesheet/less" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/less/styles.less" />
-	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/less-1.2.1.min.js"></script>
 	<script type="text/javascript">
 
 		var _gaq = _gaq || [];
@@ -90,16 +88,6 @@
 	<?php endif?>
 
 	<?php echo $content; ?>
-
-	<section id="comments">
-
-		<h2>Comments</h2>
-
-		<div class="fb-comments" data-href="<?php echo Yii::app()->request->requestUri; ?>" data-num-posts="10" data-width="470"></div>
-
-		<a class="top" href="#top">Back to top &uarr;</a>
-
-	</section>
 
 	<hr />
 

@@ -55,7 +55,7 @@ class SeoHead extends CWidget
 
 		if ($behavior !== null && $behavior->metaTitle !== null)
 			$this->_title = $behavior->metaTitle;
-		else if ($this->defaultDescription !== null)
+		else if ($this->defaultTitle !== null)
 			$this->_title = $this->defaultTitle;
 
 		if ($behavior !== null && $behavior->metaDescription !== null)
@@ -95,7 +95,7 @@ class SeoHead extends CWidget
 		foreach ($this->httpEquivs as $name => $content)
 			echo '<meta http-equiv="'.$name.'" content="'.$content.'" />'.PHP_EOL;
 
-		if ($this->_description !== null)
+		if ($this->_title !== null)
 			echo CHtml::metaTag($this->_title, 'title').PHP_EOL;
 
 		if ($this->_description !== null)

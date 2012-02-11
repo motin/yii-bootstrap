@@ -58,7 +58,6 @@ return array(
 			'urlFormat'=>'path',
 			'urlSuffix'=>'.html',
 			'rules'=>array(
-				'demo'=>'site/index',
 				'setup'=>'site/setup',
 			),
 		),

@@ -792,6 +792,16 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
+<section id="comments">
+
+	<h2>Comments</h2>
+
+	<div class="fb-comments" data-href="<?php echo Yii::app()->request->requestUri; ?>" data-num-posts="10" data-width="470"></div>
+
+	<a class="top" href="#top">Back to top &uarr;</a>
+
+</section>
+
 <div class="subnav subnav-fixed">
 
 	<?php $this->widget('BootMenu', array(
