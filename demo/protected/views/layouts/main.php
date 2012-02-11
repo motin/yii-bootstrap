@@ -2,8 +2,9 @@
 <html>
 <head>
 	<?php Yii::app()->controller->widget('ext.seo.widgets.SeoHead', array(
-		'defaultDescription'=>'Yii-Bootstrap is an extension for Yii that focuses on server-side that allows you to easily use Bootstrap in your Yii applications.',
+		'defaultDescription'=>Yii::app()->params['appDescription'],
 		'httpEquivs'=>array('Content-Type'=>'text/html; charset=utf-8', 'Content-Language'=>'en-US'),
+		'title'=>array('class'=>'ext.seo.widgets.SeoTitle', 'separator'=>' :: '),
 	)); ?>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />

@@ -69,5 +69,7 @@ return array(
 
 	// Application-level parameters
 	'params'=>array(
+		'appTitle'=>'Yii-Bootstrap - Bringing together the Yii PHP framework and Twitter\'s Bootstrap.',
+		'appDescription'=>'Yii-Bootstrap is an extension for Yii that focuses on server-side that allows you to easily use Bootstrap in your Yii applications.',
 	),
 );

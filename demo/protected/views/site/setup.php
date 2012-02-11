@@ -1,5 +1,5 @@
 <?php
-$this->pageTitle = array('Setup', Yii::app()->name);
+$this->pageTitle = array('Setup', Yii::app()->params['appTitle']);
 $this->addMetaProperty('og:title', 'Setup - '.Yii::app()->name);
 $this->addMetaProperty('og:type', 'website');
 $this->addMetaProperty('og:url', Yii::app()->request->requestUri);
