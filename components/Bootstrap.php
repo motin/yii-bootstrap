@@ -278,7 +278,7 @@ class Bootstrap extends CApplicationComponent
 	 */
 	protected function isPluginDisabled($name)
 	{
-		return isset($this->plugins[$name]) || (isset($this->plugins[$name]) && $this->plugins[$name] !== false);
+		return isset($this->plugins[$name]) && $this->plugins[$name] === false;
 	}
 
 	/**
