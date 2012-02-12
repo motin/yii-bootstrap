@@ -54,7 +54,8 @@ class BootNavbar extends BootWidget
 	{
 		if ($this->brand !== false)
 		{
-			$this->brand = CHtml::encode(Yii::app()->name);
+			if (!isset($this->brand))
+				$this->brand = CHtml::encode(Yii::app()->name);
 
 			if (!isset($this->brandUrl))
 				$this->brandUrl = Yii::app()->homeUrl;

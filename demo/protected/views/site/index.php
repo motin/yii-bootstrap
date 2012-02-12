@@ -2,7 +2,8 @@
 $this->pageTitle = Yii::app()->params['appTitle'];
 $this->addMetaProperty('og:title', Yii::app()->params['appTitle']);
 $this->addMetaProperty('og:type', 'website');
-$this->addMetaProperty('og:url', Yii::app()->request->requestUri);
+$this->addMetaProperty('og:image', Yii::app()->request->baseUrl.'/images/bootstrap-avatar_normal.png');
+$this->addMetaProperty('og:url', $this->createUrl('index'));
 $this->addMetaProperty('og:site_name', Yii::app()->name);
 $this->addMetaProperty('og:locale',Yii::app()->fb->locale);
 $this->addMetaProperty('fb:app_id', Yii::app()->fb->appID);
@@ -688,7 +689,6 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 			'Option one is this and that—be sure to include why it\'s great',
 			'Option two can is something else and selecting it will deselect option one',
 		)); ?>
-		<?php echo $form->captchaRow($model, 'captcha'); ?>
 
 	</fieldset>
 
@@ -776,7 +776,6 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		'Option one is this and that—be sure to include why it\'s great',
 		'Option two can is something else and selecting it will deselect option one',
 	)); ?>
-	<?php echo \$form->captchaRow(\$model, 'captcha'); ?>
 
 </fieldset>
 

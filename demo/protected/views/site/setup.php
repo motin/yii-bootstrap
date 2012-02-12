@@ -2,7 +2,7 @@
 $this->pageTitle = array('Setup', Yii::app()->params['appTitle']);
 $this->addMetaProperty('og:title', 'Setup - '.Yii::app()->name);
 $this->addMetaProperty('og:type', 'website');
-$this->addMetaProperty('og:url', Yii::app()->request->requestUri);
+$this->addMetaProperty('og:url', $this->createUrl('setup'));
 $this->addMetaProperty('og:site_name', Yii::app()->name);
 $this->addMetaProperty('og:locale',Yii::app()->fb->locale);
 $this->addMetaProperty('fb:app_id', Yii::app()->fb->appID);
@@ -42,7 +42,7 @@ $this->addMetaProperty('fb:app_id', Yii::app()->fb->appID);
     .....
     'bootstrap'=>array(
         'class'=>'ext.bootstrap.components.Bootstrap', // assuming you extracted bootstrap under extensions
-        'coreCss'=>true // whether to register the Bootstrap core CSS (bootstrap.min.css), defaults to true
+        'coreCss'=>true, // whether to register the Bootstrap core CSS (bootstrap.min.css), defaults to true
         'responsiveCss'=>false, // whether to register the Bootstrap responsive CSS (bootstrap-responsive.min.css), default to false
         'plugins'=>array(
             // Optionally you can configure the \"global\" plugins (button, popover, tooltip and transition)

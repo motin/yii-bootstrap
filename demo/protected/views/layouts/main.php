@@ -87,8 +87,8 @@
 			<?php echo CHtml::link('Bootstrap', 'http://twitter.github.com/bootstrap/'); ?>, Twitter's new web development toolkit.
 			Now with support for Bootstrap 2!
 			<?php echo CHtml::link('Yii-Bootstrap', 'http://www.yiiframework.com/extension/bootstrap/'); ?>
-			is an extension for Yii that focuses on server-side that allows you to easily use Bootstrap in your Yii applications.
-			These widgets have all been developed with care to work seemlessly together with Bootstrap and its jQuery plugins.
+			is an extension for Yii that provides a wide range of server-side widgets that allow you to easily use Bootstrap with Yii.
+			All widgets have been developed following Yii's conventions and work seemlessly together with Bootstrap and its jQuery plugins.
 		</p>
 	</div>
 
