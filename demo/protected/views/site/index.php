@@ -2,8 +2,8 @@
 $this->pageTitle = Yii::app()->params['appTitle'];
 $this->addMetaProperty('og:title', Yii::app()->params['appTitle']);
 $this->addMetaProperty('og:type', 'website');
-$this->addMetaProperty('og:image', Yii::app()->request->baseUrl.'/images/bootstrap-avatar_normal.png');
 $this->addMetaProperty('og:url', $this->createUrl('index'));
+$this->addMetaProperty('og:image', Yii::app()->request->getBaseUrl(true).'/images/bootstrap-avatar_normal.png');
 $this->addMetaProperty('og:site_name', Yii::app()->name);
 $this->addMetaProperty('og:locale',Yii::app()->fb->locale);
 $this->addMetaProperty('fb:app_id', Yii::app()->fb->appID);

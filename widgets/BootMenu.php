@@ -181,7 +181,8 @@ class BootMenu extends BootWidget
 
 		if (isset($item['items']))
 		{
-			$item['url'] = '#';
+			if (!isset($item['url']))
+				$item['url'] = '#';
 
 			if (isset($item['linkOptions']['class']))
 				$item['linkOptions']['class'] .= ' dropdown-toggle';
