@@ -116,7 +116,7 @@
 		</p>
 
 		<p class="copy">
-			&copy; <?php echo CHtml::link('@Crisu', 'http://www.twitter.com/Crisu83', array('target'=>'_blank')); ?> 2011
+			&copy; Christoffer Niska 2011
 		</p>
 
 	</footer>
