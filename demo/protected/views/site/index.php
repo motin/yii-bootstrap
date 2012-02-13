@@ -81,6 +81,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 					array('label'=>'Link', 'url'=>'#'),
 					array('label'=>'Link', 'url'=>'#'),
 					array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
+						array('label'=>'DROPDOWN HEADER', 'itemOptions'=>array('class'=>'nav-header')),
 						array('label'=>'Action', 'url'=>'#'),
 						array('label'=>'Another action', 'url'=>'#'),
 						array('label'=>'Something else here', 'url'=>'#'),
@@ -123,6 +124,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 				array('label'=>'Home', 'url'=>'#', 'active'=>true),
 				array('label'=>'Link', 'url'=>'#'),
 				array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
+					array('label'=>'DROPDOWN HEADER', 'itemOptions'=>array('class'=>'nav-header')),
 					array('label'=>'Action', 'url'=>'#'),
 					array('label'=>'Another action', 'url'=>'#'),
 					array('label'=>'Something else here', 'url'=>'#'),

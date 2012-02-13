@@ -3,9 +3,9 @@
 // Set the path of Bootstrap to be the root of the project.
 Yii::setPathOfAlias('bootstrap', realpath(dirname(__FILE__).'/../../../'));
 
-// Application configuration.
-return array(
-	'basePath'=>realpath(dirname(__FILE__).'/..'),
+$path = dirname(__FILE__);
+$config = array(
+	'basePath'=>realpath($path.'/..'),
 	'name'=>'Yii-Bootstrap',
 
 	'preload'=>array('log'),
@@ -73,3 +73,9 @@ return array(
 		'appDescription'=>'Yii-Bootstrap is an extension for Yii that provides a wide range of server-side widgets that allow you to easily use Bootstrap with Yii.',
 	),
 );
+
+
+if (file_exists($path.'/local.php'))
+	$local = require($path.'/local.php');
+
+return isset($local) ? CMap::mergeArray($config, $local) : $config;

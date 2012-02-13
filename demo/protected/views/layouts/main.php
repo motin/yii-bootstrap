@@ -7,8 +7,7 @@
 		'title'=>array('class'=>'ext.seo.widgets.SeoTitle', 'separator'=>' :: '),
 	)); ?>
 	<link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/favicon.ico">
-	<link rel="stylesheet/less" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/less/styles.less" />
-	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/less-1.2.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/styles.css" />
 	<!--[if lt IE 9]>
 		<script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
@@ -106,13 +105,14 @@
 	<footer>
 
 		<p class="powered">
-			Powered by <?php echo CHtml::link('Yii PHP framework 1.1.9', 'http://www.yiiframework.com', array('target'=>'_blank')); ?> //
+			Powered by <?php echo CHtml::link('Yii PHP framework 1.1.10', 'http://www.yiiframework.com', array('target'=>'_blank')); ?> //
 			<?php echo CHtml::link('jQuery 1.7.1', 'http://www.jquery.com', array('target'=>'_blank')); ?> //
-			<?php echo CHtml::link('Yii-Bootstrap 0.9.8', 'http://www.yiiframework.com/extension/bootstrap', array('target'=>'_blank')); ?> //
+			<?php echo CHtml::link('Yii-Bootstrap 0.9.9', 'http://www.yiiframework.com/extension/bootstrap', array('target'=>'_blank')); ?> //
+			<?php echo CHtml::link('Yii-LESS 0.9.1', 'http://www.yiiframework.com/extension/less', array('target'=>'_blank')); ?>  //
 			<?php echo CHtml::link('Yii-SEO 0.9.3', 'http://www.yiiframework.com/extension/seo', array('target'=>'_blank')); ?> //
 			<?php echo CHtml::link('Yii-Facebook 0.9.1', '#', array('rel'=>'tooltip', 'title'=>'Link available soon')); ?> //
-			<?php echo CHtml::link('Bootstrap 2', 'http://twitter.github.com/bootstrap', array('target'=>'_blank')); ?> //
-			<?php echo CHtml::link('LESS 1.2.1', 'http://www.lesscss.org', array('target'=>'_blank')); ?>
+			<?php echo CHtml::link('Bootstrap 2.0.1', 'http://twitter.github.com/bootstrap', array('target'=>'_blank')); ?> //
+			<?php echo CHtml::link('LESS', 'http://www.lesscss.org', array('target'=>'_blank')); ?>
 		</p>
 
 		<p class="copy">
