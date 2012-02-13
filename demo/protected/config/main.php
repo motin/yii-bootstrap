@@ -35,7 +35,6 @@ $config = array(
 		'fb'=>array(
 			'class'=>'ext.facebook.components.FacebookConnect',
 			'appID'=>'106265262835735',
-			'appSecret'=>'941d6e0fa554b725ec258311e4ddc4b6',
 			'appNamespace'=>'yii-bootstrap',
 		),
 		'log'=>array(
