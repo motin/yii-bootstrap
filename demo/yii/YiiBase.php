@@ -6,7 +6,7 @@
  * @link http://www.yiiframework.com/
  * @copyright Copyright &copy; 2008-2011 Yii Software LLC
  * @license http://www.yiiframework.com/license/
- * @version $Id: YiiBase.php 3526 2012-01-01 03:18:43Z qiang.xue $
+ * @version $Id: YiiBase.php 3564 2012-02-13 01:29:03Z qiang.xue $
  * @package system
  * @since 1.0
  */
@@ -49,7 +49,7 @@ defined('YII_ZII_PATH') or define('YII_ZII_PATH',YII_PATH.DIRECTORY_SEPARATOR.'z
  * you can customize methods of YiiBase.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @version $Id: YiiBase.php 3526 2012-01-01 03:18:43Z qiang.xue $
+ * @version $Id: YiiBase.php 3564 2012-02-13 01:29:03Z qiang.xue $
  * @package system
  * @since 1.0
  */
@@ -82,7 +82,7 @@ class YiiBase
 	 */
 	public static function getVersion()
 	{
-		return '1.1.9';
+		return '1.1.10';
 	}
 
 	/**
