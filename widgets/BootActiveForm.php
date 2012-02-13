@@ -256,7 +256,7 @@ class BootActiveForm extends CActiveForm
 	 * @param boolean $checkbox flag that indicates if the list is a checkbox-list.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
-	 * @param array $data value-label pairs used to generate the radio button list.
+	 * @param array $data value-label pairs used to generate the input list.
 	 * @param array $htmlOptions additional HTML options.
 	 * @return string the generated input list.
 	 * @since 0.9.5
@@ -264,7 +264,7 @@ class BootActiveForm extends CActiveForm
 	protected function inputsList($checkbox, $model, $attribute, $data, $htmlOptions = array())
 	{
 		CHtml::resolveNameID($model, $attribute, $htmlOptions);
-		$selection = CHtml::resolveValue($model, $attribute);
+		$select = CHtml::resolveValue($model, $attribute);
 
 		if ($model->hasErrors($attribute))
 		{
@@ -288,30 +288,50 @@ class BootActiveForm extends CActiveForm
 		$hiddenOptions = isset($htmlOptions['id']) ? array('id' => CHtml::ID_PREFIX.$htmlOptions['id']) : array('id' => false);
 		$hidden = $uncheck !== null ? CHtml::hiddenField($name, $uncheck, $hiddenOptions) : '';
 
-		unset($htmlOptions['template'], $htmlOptions['separator'], $htmlOptions['labelOptions']);
+		if (isset($htmlOptions['template']))
+			$template = $htmlOptions['template'];
+		else
+			$template = '<label class="{labelCssClass}">{input}{label}</label>';
+
+		unset($htmlOptions['template'], $htmlOptions['separator'], $htmlOptions['hint']);
+
+		if ($checkbox && substr($name, -2) !== '[]')
+			$name .= '[]';
+
+		unset($htmlOptions['checkAll'], $htmlOptions['checkAllLast']);
+
+		$labelOptions = isset($htmlOptions['labelOptions']) ? $htmlOptions['labelOptions'] : array();
+		unset($htmlOptions['labelOptions']);
 
 		$items = array();
 		$baseID = CHtml::getIdByName($name);
 		$id = 0;
+		$checkAll = true;
 		$method = $checkbox ? 'checkBox' : 'radioButton';
 		$labelCssClass = $checkbox ? 'checkbox' : 'radio';
 
 		if (isset($htmlOptions['inline']))
-		{
-			$labelCssClass .= ' inline';
-			unset($htmlOptions['inline']);
-		}
+        {
+                $labelCssClass .= ' inline';
+                unset($htmlOptions['inline']);
+        }
 
-		foreach($data as $value => $label)
+		foreach ($data as $value => $label)
 		{
-			$checked =! strcmp($value, $selection);
+			$checked = !is_array($select) && !strcmp($value, $select) || is_array($select) && in_array($value, $select);
+			$checkAll = $checkAll && $checked;
 			$htmlOptions['value'] = $value;
 			$htmlOptions['id'] = $baseID.'_'.$id++;
 			$option = CHtml::$method($name, $checked, $htmlOptions);
-			$items[] = '<label class="'.$labelCssClass.'">'.$option.$label.'</label>';
+			$label = CHtml::label($label, $htmlOptions['id'], $labelOptions);
+			$items[] = strtr($template, array(
+				'{labelCssClass}'=>$labelCssClass,
+				'{input}'=>$option,
+				'{label}'=>$label,
+			));
 		}
 
-		return implode('',$items);
+		return $hidden.implode('', $items);
 	}
 
 	/**
