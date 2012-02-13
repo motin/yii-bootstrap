@@ -60,7 +60,7 @@
 				array('label'=>'Demo', 'url'=>Yii::app()->homeUrl,
 						'active'=>Yii::app()->controller->id === 'site' && Yii::app()->controller->action->id === 'index'),
 				array('label'=>'Setup', 'url'=>array('site/setup')),
-				array('label'=>'@Crisu83', 'url'=>array('http://www.twitter.com/Crisu83')),
+				array('label'=>'@Crisu83', 'url'=>'http://www.twitter.com/Crisu83', 'itemOptions'=>array('target'=>'_blank')),
 			),
 		),
 		'
