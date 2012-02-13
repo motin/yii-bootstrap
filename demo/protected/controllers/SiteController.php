@@ -63,15 +63,12 @@ class SiteController extends Controller
 			'pagination'=>array('pageSize'=>8),
 		));
 
-		$parser = new CMarkdownParser();
-		Yii::app()->clientScript->registerCss('TextHighligther', file_get_contents($parser->getDefaultCssFile()));
-
 		$this->render('index', array(
 			'model'=>$model,
 			'gridDataProvider'=>$gridDataProvider,
 			'gridColumns'=>$gridColumns,
 			'listDataProvider'=>$listDataProvider,
-			'parser'=>$parser,
+			'parser'=>new CMarkdownParser(),
 		));
 	}
 
