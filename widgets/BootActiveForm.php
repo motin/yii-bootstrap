@@ -306,7 +306,6 @@ class BootActiveForm extends CActiveForm
 		$items = array();
 		$baseID = CHtml::getIdByName($name);
 		$id = 0;
-		$checkAll = true;
 		$method = $checkbox ? 'checkBox' : 'radioButton';
 		$labelCssClass = $checkbox ? 'checkbox' : 'radio';
 
@@ -319,7 +318,6 @@ class BootActiveForm extends CActiveForm
 		foreach ($data as $value => $label)
 		{
 			$checked = !is_array($select) && !strcmp($value, $select) || is_array($select) && in_array($value, $select);
-			$checkAll = $checkAll && $checked;
 			$htmlOptions['value'] = $value;
 			$htmlOptions['id'] = $baseID.'_'.$id++;
 			$option = CHtml::$method($name, $checked, $htmlOptions);
