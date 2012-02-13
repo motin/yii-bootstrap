@@ -57,7 +57,8 @@
 		array(
 			'class'=>'BootMenu',
 			'items'=>array(
-				array('label'=>'Demo', 'url'=>array('site/index')),
+				array('label'=>'Demo', 'url'=>Yii::app()->homeUrl,
+						'active'=>Yii::app()->controller->id === 'site' && Yii::app()->controller->action->id === 'index'),
 				array('label'=>'Setup', 'url'=>array('site/setup')),
 			),
 		),
