@@ -416,7 +416,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		array('name'=>'lastName', 'header'=>'Last name'),
 		array('name'=>'language', 'header'=>'Language'),
 		array(
-			'class'=>'BootButtonColumn',
+			'class'=>'bootstrap.widgets.BootButtonColumn',
 			'htmlOptions'=>array('style'=>'width: 50px'),
 		),
 	),

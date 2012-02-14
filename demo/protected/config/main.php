@@ -8,12 +8,18 @@ $config = array(
 	'basePath'=>realpath($path.'/..'),
 	'name'=>'Yii-Bootstrap',
 
-	'preload'=>array('log'),
+	'preload'=>array('bootstrap', 'log'),
 
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
-		'bootstrap.widgets.*',
+	),
+
+	'behaviors'=>array(
+		'maintenance'=>array(
+			'class'=>'ext.maintenance.components.Maintenance',
+			'route'=>array('site/maintenance'),
+		),
 	),
 
 	'modules'=>array(
@@ -21,6 +27,7 @@ $config = array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'boot',
 			'ipFilters'=>array('127.0.0.1','::1'),
+			'generatorPaths'=>array('ext.bootstrap.gii'),
 		),
 	),
 
@@ -72,7 +79,6 @@ $config = array(
 		'appDescription'=>'Yii-Bootstrap is an extension for Yii that provides a wide range of server-side widgets that allow you to easily use Bootstrap with Yii.',
 	),
 );
-
 
 if (file_exists($path.'/local.php'))
 	$local = require($path.'/local.php');

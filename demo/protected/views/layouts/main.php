@@ -50,12 +50,12 @@
 	}(document));
 </script>
 
-<?php $this->widget('BootNavbar',array(
+<?php $this->widget('bootstrap.widgets.BootNavbar',array(
 	'brand'=>CHtml::encode(Yii::app()->name),
 	'collapse'=>true,
 	'items'=>array(
 		array(
-			'class'=>'BootMenu',
+			'class'=>'bootstrap.widgets.BootMenu',
 			'items'=>array(
 				array('label'=>'Demo', 'url'=>Yii::app()->homeUrl,
 						'active'=>Yii::app()->controller->id === 'site' && Yii::app()->controller->action->id === 'index'),
@@ -63,8 +63,7 @@
 				array('label'=>'@Crisu83', 'url'=>'http://www.twitter.com/Crisu83', 'linkOptions'=>array('target'=>'_blank')),
 			),
 		),
-		'
-		<div class="add-this pull-right">
+		'<div class="add-this pull-right">
 			<!-- AddThis Button BEGIN -->
 			<div class="addthis_toolbox addthis_default_style">
 			<a class="addthis_button_facebook"></a>

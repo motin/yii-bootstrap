@@ -47,7 +47,7 @@ class SiteController extends Controller
 			array('name'=>'lastName', 'header'=>'Last name'),
 			array('name'=>'language', 'header'=>'Language'),
 			array(
-				'class'=>'BootButtonColumn',
+				'class'=>'bootstrap.widgets.BootButtonColumn',
 				'htmlOptions'=>array('style'=>'width: 50px'),
 				'viewButtonUrl'=>null,
 				'updateButtonUrl'=>null,
@@ -80,6 +80,12 @@ class SiteController extends Controller
 		$this->render('setup', array(
 			'parser'=>$parser,
 		));
+	}
+
+	public function actionMaintenance()
+	{
+		$this->layout = '/layouts/maintenance';
+		$this->render('maintenance');
 	}
 
 	/**
