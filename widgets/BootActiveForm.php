@@ -372,10 +372,8 @@ class BootActiveForm extends CActiveForm
 		if (!isset($htmlOptions['class']))
 			$htmlOptions['class'] = $this->errorMessageCssClass;
 
-		$tag = $this->inlineErrors ? 'span' : 'p';
-
 		if (!$enableAjaxValidation && !$enableClientValidation)
-			return $this->getErrorHtml($model, $attribute, $htmlOptions, $tag);
+			return $this->getErrorHtml($model, $attribute, $htmlOptions);
 
 		$id = CHtml::activeId($model,$attribute);
 		$inputID = isset($htmlOptions['inputID']) ? $htmlOptions['inputID'] : $id;
@@ -434,7 +432,7 @@ class BootActiveForm extends CActiveForm
 				$option['clientValidation']="js:function(value, messages, attribute) {\n".implode("\n",$validators)."\n}";
 		}
 
-		$html = $this->getErrorHtml($model, $attribute, $htmlOptions, $tag);
+		$html = $this->getErrorHtml($model, $attribute, $htmlOptions);
 
 		if ($html === '')
 		{
@@ -460,18 +458,13 @@ class BootActiveForm extends CActiveForm
 	 * @see CModel::getErrors
 	 * @see errorMessageCss
 	 */
-	public static function getErrorHtml($model, $attribute, $htmlOptions = array(), $tag = 'span')
+	public static function getErrorHtml($model, $attribute, $htmlOptions = array())
 	{
 		CHtml::resolveName($model, $attribute);
 		$error = $model->getError($attribute);
 
 		if ($error !== null)
-		{
-			if (!isset($htmlOptions['class']))
-				$htmlOptions['class'] = 'help-inline';
-
-			return CHtml::tag($tag, $htmlOptions, $error); // Bootstrap errors must be spans
-		}
+			return CHtml::tag('span', $htmlOptions, $error); // Bootstrap errors must be spans
 		else
 			return '';
 	}

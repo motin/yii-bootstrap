@@ -27,12 +27,12 @@ class BootButtonColumn extends CButtonColumn
 	{
 		parent::initDefaultButtons();
 
-		if ($this->viewButtonIcon !== false)
-			$this->buttons['view']['icon'] = $this->viewButtonIcon;
-		if ($this->updateButtonIcon !== false)
-			$this->buttons['update']['icon'] = $this->updateButtonIcon;
-		if ($this->deleteButtonIcon !== false)
-			$this->buttons['delete']['icon'] = $this->deleteButtonIcon;
+        if ($this->viewButtonIcon !== false && !isset($this->buttons['view']['icon']))
+            $this->buttons['view']['icon'] = $this->viewButtonIcon;
+        if ($this->updateButtonIcon !== false && !isset($this->buttons['update']['icon']))
+            $this->buttons['update']['icon'] = $this->updateButtonIcon;
+        if ($this->deleteButtonIcon !== false && !isset($this->buttons['delete']['icon']))
+            $this->buttons['delete']['icon'] = $this->deleteButtonIcon;
 	}
 
 	/**
