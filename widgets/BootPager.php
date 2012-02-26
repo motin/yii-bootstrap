@@ -4,8 +4,12 @@
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
+ * @package bootstrap.widgets
  */
 
+/**
+ * Bootstrap pager widget.
+ */
 class BootPager extends CLinkPager
 {
 	/**
@@ -52,6 +56,7 @@ class BootPager extends CLinkPager
 			return array();
 
 		list ($beginPage, $endPage) = $this->getPageRange();
+
 		$currentPage = $this->getCurrentPage(false); // currentPage is calculated in getPageRange()
 
 		$buttons = array();
@@ -63,15 +68,17 @@ class BootPager extends CLinkPager
 		// prev page
 		if (($page = $currentPage - 1) < 0)
 			$page = 0;
+
 		$buttons[] = $this->createPageButton($this->prevPageLabel, $page, 'previous', $currentPage <= 0, false);
 
 		// internal pages
 		for ($i = $beginPage; $i <= $endPage; ++$i)
-			$buttons[]=$this->createPageButton($i + 1, $i, '', false, $i == $currentPage);
+			$buttons[] = $this->createPageButton($i + 1, $i, '', false, $i == $currentPage);
 
 		// next page
-		if (($page = $currentPage+1)>=$pageCount-1)
+		if (($page = $currentPage+1) >= $pageCount-1)
 			$page = $pageCount-1;
+
 		$buttons[] = $this->createPageButton($this->nextPageLabel, $page, 'next', $currentPage >= ($pageCount - 1), false);
 
 		// last page
