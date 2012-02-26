@@ -99,9 +99,6 @@ class Bootstrap extends CApplicationComponent
 		if (!$this->isPluginDisabled(self::PLUGIN_TRANSITION))
 			$this->enableTransitions();
 
-		if (!$this->isPluginDisabled(self::PLUGIN_BUTTON))
-			$this->registerButton();
-
 		if (!$this->isPluginDisabled(self::PLUGIN_TOOLTIP))
 			$this->registerTooltip();
 

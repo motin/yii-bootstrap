@@ -11,7 +11,7 @@ $this->addMetaProperty('fb:app_id', Yii::app()->fb->appID);
 
 <section id="bootAlert">
 
-	<h2>BootAlert</h2>
+	<h2>Alerts</h2>
 
 	<?php
 	Yii::app()->user->setFlash('success', '<strong>Well done!</strong> You successfully read this important alert message.');
@@ -44,7 +44,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 <section id="bootCrumb">
 
-	<h2>BootCrumb</h2>
+	<h2>Breadcrumbs</h2>
 
 	<?php $this->widget('bootstrap.widgets.BootCrumb', array(
 		'links'=>array('Library'=>'#', 'Data'),
@@ -65,7 +65,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 <section id="bootNavbar">
 
-	<h2>BootNavbar</h2>
+	<h2>Navbar</h2>
 
 	<?php $this->widget('bootstrap.widgets.BootNavbar', array(
 		'fixed'=>false,
@@ -81,7 +81,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 					array('label'=>'Link', 'url'=>'#'),
 					array('label'=>'Link', 'url'=>'#'),
 					array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
-						array('label'=>'DROPDOWN HEADER', 'itemOptions'=>array('class'=>'nav-header')),
+						array('label'=>'DROPDOWN HEADER', 'header'=>true),
 						array('label'=>'Action', 'url'=>'#'),
 						array('label'=>'Another action', 'url'=>'#'),
 						array('label'=>'Something else here', 'url'=>'#'),
@@ -158,7 +158,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 <section id="bootMenu">
 
-	<h2>BootMenu</h2>
+	<h2>Menus</h2>
 
 	<h3>Basic tabs</h3>
 
@@ -266,7 +266,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 <section id="bootTabbed">
 
-	<h2>BootTabbed</h2>
+	<h2>Tabs</h2>
 
 	<?php $this->widget('bootstrap.widgets.BootTabbed', array(
 		'htmlOptions'=>array('class'=>'tabbed'),
@@ -316,7 +316,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 <section id="bootDetailView">
 
-	<h2>BootDetailView</h2>
+	<h2>Detail views</h2>
 
 	<?php $this->widget('bootstrap.widgets.BootDetailView', array(
 		'data'=>array('id'=>1, 'firstName'=>'Mark', 'lastName'=>'Otto', 'language'=>'CSS'),
@@ -347,7 +347,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 <section id="bootGridView">
 
-	<h2>BootGridView</h2>
+	<h2>Grid views</h2>
 
 	<h3>Default</h3>
 
@@ -429,7 +429,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 <section id="bootThumbs">
 
-	<h2>BootThumbs</h2>
+	<h2>Thumbnails</h2>
 
 	<?php $this->widget('bootstrap.widgets.BootThumbs', array(
 		'dataProvider'=>$listDataProvider,
@@ -473,7 +473,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 <section id="bootTooltip">
 
-	<h2>BootTooltip</h2>
+	<h2>Tooltips</h2>
 
 	<p class="well">
 		Lorem ipsum dolor sit <a href="#" rel="tooltip" title="First tooltip">amet</a>,
@@ -510,7 +510,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 <section id="bootPopover">
 
-	<h2>BootPopover</h2>
+	<h2>Popovers</h2>
 
 	<div class="well">
 		<?php echo CHtml::link('Hover me', '#', array(
@@ -534,7 +534,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 <section id="bootModal">
 
-	<h2>BootModal</h2>
+	<h2>Modals</h2>
 
 	<?php $this->beginWidget('bootstrap.widgets.BootModal', array(
 		'id'=>'modal',
@@ -612,7 +612,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 <section id="bootActiveForm">
 
-	<h2>BootActiveForm</h2>
+	<h2>Forms</h2>
 
 	<h3>Vertical</h3>
 
@@ -793,6 +793,354 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
+<section id="bootButton">
+
+	<h2>Buttons</h2>
+
+	<div class="row">
+		<div class="span4">
+			<h3>Large</h3>
+			<p>
+				<?php $this->widget('bootstrap.widgets.BootButton', array(
+					'label'=>'Primary', 'type'=>'primary', 'size'=>'large',
+				)); ?>
+
+				<?php $this->widget('bootstrap.widgets.BootButton', array(
+					'label'=>'Action', 'size'=>'large',
+				)); ?>
+			</p>
+		</div>
+
+		<div class="span4">
+			<h3>Normal</h3>
+			<p>
+				<?php $this->widget('bootstrap.widgets.BootButton', array(
+					'label'=>'Primary', 'type'=>'primary',
+				)); ?>
+
+				<?php $this->widget('bootstrap.widgets.BootButton', array(
+					'label'=>'Action',
+				)); ?>
+			</p>
+		</div>
+
+		<div class="span4">
+			<h3>Small</h3>
+			<p>
+				<?php $this->widget('bootstrap.widgets.BootButton', array(
+					'label'=>'Primary', 'type'=>'primary', 'size'=>'small',
+				)); ?>
+
+				<?php $this->widget('bootstrap.widgets.BootButton', array(
+					'label'=>'Action', 'size'=>'small',
+				)); ?>
+			</p>
+		</div>
+	</div>
+
+	<h4>Source code</h4>
+
+<?php echo $parser->safeTransform("~~~
+[php]
+<p>
+	<?php \$this->widget('bootstrap.widgets.BootButton', array(
+		'label'=>'Primary',
+		'type'=>'primary', // '', 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
+		'size'=>'small', // '', 'small' or 'large'
+	)); ?>
+</p>
+~~~"); ?>
+
+	<h3>Button groups</h3>
+
+	<div class="btn-toolbar">
+		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+			'buttons'=>array(
+				array('label'=>'Left', 'url'=>'#'),
+				array('label'=>'Middle', 'url'=>'#'),
+				array('label'=>'Right', 'url'=>'#'),
+			),
+		)); ?>
+	</div>
+
+	<div class="btn-toolbar">
+		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+			'buttons'=>array(
+				array('label'=>'1', 'url'=>'#'),
+				array('label'=>'2', 'url'=>'#'),
+				array('label'=>'3', 'url'=>'#'),
+				array('label'=>'4', 'url'=>'#'),
+			),
+		)); ?>
+		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+			'buttons'=>array(
+				array('label'=>'5', 'url'=>'#'),
+				array('label'=>'6', 'url'=>'#'),
+				array('label'=>'7', 'url'=>'#'),
+			),
+		)); ?>
+		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+			'buttons'=>array(
+				array('label'=>'8', 'url'=>'#'),
+			),
+		)); ?>
+	</div>
+
+	<h3>Dropdowns</h3>
+
+	<div class="btn-toolbar">
+		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+			'buttons'=>array(
+				array('label'=>'Action', 'items'=>array(
+					array('label'=>'Action'),
+					array('label'=>'Another action'),
+					array('label'=>'Something else'),
+					'---',
+					array('label'=>'Separate link'),
+				)),
+			),
+		)); ?>
+		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+			'type'=>'primary',
+			'buttons'=>array(
+				array('label'=>'Action', 'items'=>array(
+					array('label'=>'Action'),
+					array('label'=>'Another action'),
+					array('label'=>'Something else'),
+					'---',
+					array('label'=>'Separate link'),
+				)),
+			),
+		)); ?>
+		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+			'type'=>'danger',
+			'buttons'=>array(
+				array('label'=>'Danger', 'items'=>array(
+					array('label'=>'Action'),
+					array('label'=>'Another action'),
+					array('label'=>'Something else'),
+					'---',
+					array('label'=>'Separate link'),
+				)),
+			),
+		)); ?>
+	</div>
+	<div class="btn-toolbar">
+		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+			'type'=>'success',
+			'buttons'=>array(
+				array('label'=>'Success', 'items'=>array(
+					array('label'=>'Action'),
+					array('label'=>'Another action'),
+					array('label'=>'Something else'),
+					'---',
+					array('label'=>'Separate link'),
+				)),
+			),
+		)); ?>
+		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+			'type'=>'info',
+			'buttons'=>array(
+				array('label'=>'Info', 'items'=>array(
+					array('label'=>'Action'),
+					array('label'=>'Another action'),
+					array('label'=>'Something else'),
+					'---',
+					array('label'=>'Separate link'),
+				)),
+			),
+		)); ?>
+	</div>
+
+	<h4>Source code</h4>
+
+<?php echo $parser->safeTransform("~~~
+[php]
+<div class=\"btn-toolbar\">
+	<?php \$this->widget('bootstrap.widgets.BootButtonGroup', array(
+		'type'=>'primary', // '', 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
+		'buttons'=>array(
+			array('label'=>'Action', 'items'=>array(
+				array('label'=>'Action'),
+				array('label'=>'Another action'),
+				array('label'=>'Something else'),
+				'---',
+				array('label'=>'Separate link'),
+			)),
+		),
+	)); ?>
+</div>
+~~~"); ?>
+
+	<h3>Split dropdowns</h3>
+
+	<div class="btn-toolbar">
+		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+			'buttons'=>array(
+				array('label'=>'Action', 'url'=>'#'),
+				array('items'=>array(
+					array('label'=>'Action'),
+					array('label'=>'Another action'),
+					array('label'=>'Something else'),
+					'---',
+					array('label'=>'Separate link'),
+				)),
+			),
+		)); ?>
+		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+			'type'=>'primary',
+			'buttons'=>array(
+				array('label'=>'Action', 'url'=>'#'),
+				array('items'=>array(
+					array('label'=>'Action'),
+					array('label'=>'Another action'),
+					array('label'=>'Something else'),
+					'---',
+					array('label'=>'Separate link'),
+				)),
+			),
+		)); ?>
+		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+			'type'=>'danger',
+			'buttons'=>array(
+				array('label'=>'Danger', 'url'=>'#'),
+				array('items'=>array(
+					array('label'=>'Action'),
+					array('label'=>'Another action'),
+					array('label'=>'Something else'),
+					'---',
+					array('label'=>'Separate link'),
+				)),
+			),
+		)); ?>
+	</div>
+	<div class="btn-toolbar">
+		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+			'type'=>'success',
+			'buttons'=>array(
+				array('label'=>'Success', 'url'=>'#'),
+				array('items'=>array(
+					array('label'=>'Action'),
+					array('label'=>'Another action'),
+					array('label'=>'Something else'),
+					'---',
+					array('label'=>'Separate link'),
+				)),
+			),
+		)); ?>
+		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+			'type'=>'info',
+			'buttons'=>array(
+				array('label'=>'Info', 'url'=>'#'),
+				array('items'=>array(
+					array('label'=>'Action'),
+					array('label'=>'Another action'),
+					array('label'=>'Something else'),
+					'---',
+					array('label'=>'Separate link'),
+				)),
+			),
+		)); ?>
+	</div>
+
+	<h4>Source code</h4>
+
+<?php echo $parser->safeTransform("~~~
+[php]
+<div class=\"btn-toolbar\">
+	<?php \$this->widget('bootstrap.widgets.BootButtonGroup', array(
+	    'type'=>'primary', // '', 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
+		'buttons'=>array(
+			array('label'=>'Action', 'url'=>'#'),
+			array('items'=>array(
+				array('label'=>'Action'),
+				array('label'=>'Another action'),
+				array('label'=>'Something else'),
+				'---',
+				array('label'=>'Separate link'),
+			)),
+		),
+	)); ?>
+</div>
+~~~"); ?>
+
+	<h3>Stateful</h3>
+
+	<p>
+		<?php $this->widget('bootstrap.widgets.BootButton', array(
+			'tag'=>'button',
+			'type'=>'primary',
+			'label'=>'Click me',
+			'loadingText'=>'loading...',
+			'htmlOptions'=>array('id'=>'buttonStateful'),
+		)); ?>
+	</p>
+
+	<?php Yii::app()->clientScript->registerScript('buttonStateful', "
+		$('#buttonStateful').click(function() {
+			var btn = $(this);
+			btn.button('loading'); // call the loading function
+			setTimeout(function() {
+				btn.button('reset'); // call the reset function
+			}, 3000);
+		});
+	"); ?>
+
+	<h4>Source code</h4>
+
+<?php echo $parser->safeTransform("~~~
+[php]
+<?php \$this->widget('bootstrap.widgets.BootButton', array(
+	'tag'=>'button',
+	'type'=>'primary',
+	'label'=>'Click me',
+	'loadingText'=>'loading...',
+	'htmlOptions'=>array('id'=>'buttonStateful'),
+)); ?>
+~~~"); ?>
+
+<?php echo $parser->safeTransform("~~~
+[javascript]
+$('#buttonStateful').click(function() {
+	var btn = $(this);
+	btn.button('loading'); // call the loading function
+	setTimeout(function() {
+		btn.button('reset'); // call the reset function
+	}, 3000);
+});
+~~~"); ?>
+
+	<h3>Single state</h3>
+
+	<p>
+		<?php $this->widget('bootstrap.widgets.BootButton', array(
+			'tag'=>'button',
+			'type'=>'primary',
+			'label'=>'Toggle me',
+			'toggle'=>true,
+		)); ?>
+	</p>
+
+	<h4>Source code</h4>
+
+<?php echo $parser->safeTransform("~~~
+[php]
+<?php \$this->widget('bootstrap.widgets.BootButton', array(
+	'tag'=>'button',
+	'type'=>'primary',
+	'label'=>'Toggle me',
+	'toggle'=>true,
+)); ?>
+~~~"); ?>
+
+	<h3>Checkbox and radio</h3>
+
+	<p>@todo</p>
+
+	<a class="top" href="#top">Back to top &uarr;</a>
+
+</section>
+
 <section id="comments">
 
 	<h2>Comments</h2>
@@ -809,18 +1157,19 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		'type'=>'pills',
 		'scrollspy'=>array('spy'=>'.subnav', 'offset'=>50),
 		'items'=>array(
-			array('label'=>'BootAlert', 'url'=>'#bootAlert'),
-			array('label'=>'BootCrumb', 'url'=>'#bootCrumb'),
-			array('label'=>'BootNavbar', 'url'=>'#bootNavbar'),
-			array('label'=>'BootMenu', 'url'=>'#bootMenu'),
-			array('label'=>'BootTabbed', 'url'=>'#bootTabbed'),
-			array('label'=>'BootDetailView', 'url'=>'#bootDetailView'),
-			array('label'=>'BootGridView', 'url'=>'#bootGridView'),
-			array('label'=>'BootThumbs', 'url'=>'#bootThumbs'),
-			array('label'=>'BootTooltip', 'url'=>'#bootTooltip'),
-			array('label'=>'BootPopover', 'url'=>'#bootPopover'),
-			array('label'=>'BootModal', 'url'=>'#bootModal'),
-			array('label'=>'BootActiveForm', 'url'=>'#bootActiveForm'),
+			array('label'=>'Alert', 'url'=>'#bootAlert'),
+			array('label'=>'Breadcrumb', 'url'=>'#bootCrumb'),
+			array('label'=>'Navbar', 'url'=>'#bootNavbar'),
+			array('label'=>'Menu', 'url'=>'#bootMenu'),
+			array('label'=>'Tabs', 'url'=>'#bootTabbed'),
+			array('label'=>'Detail view', 'url'=>'#bootDetailView'),
+			array('label'=>'Grid view', 'url'=>'#bootGridView'),
+			array('label'=>'Thumbnail', 'url'=>'#bootThumbs'),
+			array('label'=>'Tooltip', 'url'=>'#bootTooltip'),
+			array('label'=>'Popover', 'url'=>'#bootPopover'),
+			array('label'=>'Modal', 'url'=>'#bootModal'),
+			array('label'=>'Form', 'url'=>'#bootActiveForm'),
+			array('label'=>'Button', 'url'=>'#bootButton'),
 		),
 	)); ?>
 

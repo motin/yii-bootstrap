@@ -16,17 +16,6 @@ Yii::import('bootstrap.widgets.input.BootInput');
 class BootInputHorizontal extends BootInput
 {
 	/**
-	 * Runs the widget.
-	 */
-	public function run()
-	{
-		$errorCss = $this->model->hasErrors($this->attribute) ? ' '.CHtml::$errorCss : '';
-		echo CHtml::openTag('div', array('class'=>'control-group'.$errorCss));
-		parent::run();
-		echo '</div>';
-	}
-
-	/**
 	 * Returns the label for this block.
 	 * @param array $htmlOptions additional HTML attributes
 	 * @return string the label

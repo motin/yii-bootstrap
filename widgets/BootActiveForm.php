@@ -388,7 +388,7 @@ class BootActiveForm extends CActiveForm
 			'model'=>get_class($model),
 			'name'=>CHtml::resolveName($model, $attribute),
 			'enableAjaxValidation'=>$enableAjaxValidation,
-			'inputContainer'=>'div.clearfix', // Bootstrap requires this
+			'inputContainer'=>'div.control-group', // Bootstrap requires this
 		);
 
 		$optionNames = array(

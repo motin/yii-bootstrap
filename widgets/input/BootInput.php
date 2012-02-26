@@ -68,6 +68,9 @@ abstract class BootInput extends CInputWidget
 	 */
 	public function run()
 	{
+		$errorCss = $this->model->hasErrors($this->attribute) ? ' '.CHtml::$errorCss : '';
+		echo CHtml::openTag('div', array('class'=>'control-group'.$errorCss));
+
 		switch ($this->type)
 		{
 			case self::TYPE_CHECKBOX:
@@ -125,6 +128,8 @@ abstract class BootInput extends CInputWidget
 			default:
 				throw new CException(__CLASS__.': Failed to run widget! Type is invalid.');
 		}
+
+		echo '</div>';
 	}
 
 	/**
