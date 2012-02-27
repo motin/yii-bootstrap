@@ -8,9 +8,9 @@
  * @since 0.9.10
  */
 
-Yii::import('bootstrap.widgets.BootMenu');
+Yii::import('bootstrap.widgets.BootBaseMenu');
 
-class BootDropdown extends BootMenu
+class BootDropdown extends BootBaseMenu
 {
 	/**
 	 * Initializes the widget.
@@ -33,7 +33,7 @@ class BootDropdown extends BootMenu
 	 * Renders the items in this menu.
 	 * @param array $items the menu items
 	 */
-	protected function renderItems($items)
+	public function renderItems($items)
 	{
 		foreach ($items as $item)
 		{

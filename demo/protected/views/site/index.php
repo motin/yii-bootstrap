@@ -1164,12 +1164,12 @@ $('#buttonStateful').click(function() {
 			array('label'=>'Tabs', 'url'=>'#bootTabbed'),
 			array('label'=>'Detail view', 'url'=>'#bootDetailView'),
 			array('label'=>'Grid view', 'url'=>'#bootGridView'),
-			array('label'=>'Thumbnail', 'url'=>'#bootThumbs'),
+			array('label'=>'Thumbnails', 'url'=>'#bootThumbs'),
 			array('label'=>'Tooltip', 'url'=>'#bootTooltip'),
 			array('label'=>'Popover', 'url'=>'#bootPopover'),
 			array('label'=>'Modal', 'url'=>'#bootModal'),
-			array('label'=>'Form', 'url'=>'#bootActiveForm'),
-			array('label'=>'Button', 'url'=>'#bootButton'),
+			array('label'=>'Forms', 'url'=>'#bootActiveForm'),
+			array('label'=>'Buttons', 'url'=>'#bootButton'),
 		),
 	)); ?>
 
