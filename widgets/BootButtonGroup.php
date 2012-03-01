@@ -16,7 +16,7 @@ class BootButtonGroup extends BootWidget
 	const TOGGLE_CHECKBOX = 'checkbox';
 	const TOGGLE_RADIO = 'radio';
 
-	public $tag = BootButton::TAG_LINK;
+	public $method = BootButton::METHOD_LINK;
 	public $type = BootButton::TYPE_NORMAL;
 	public $size = BootButton::SIZE_NORMAL;
 	public $encodeLabel = true;
@@ -47,13 +47,15 @@ class BootButtonGroup extends BootWidget
 		foreach ($this->buttons as $button)
 		{
 			$this->controller->widget('bootstrap.widgets.BootButton', array(
-				'tag'=>isset($button['tag']) ? $button['tag'] : $this->tag,
-				'type'=>$this->type,
+				'method'=>isset($button['method']) ? $button['method'] : $this->method,
+				'type'=>isset($button['type']) ? $button['type'] : $this->type,
 				'size'=>$this->size,
 				'icon'=>isset($button['icon']) ? $button['icon'] : null,
 				'label'=>isset($button['label']) ? $button['label'] : null,
 				'url'=>isset($button['url']) ? $button['url'] : null,
+				'active'=>isset($button['active']) ? $button['active'] : false,
 				'items'=>isset($button['items']) ? $button['items'] : array(),
+				'ajaxOptions'=>isset($button['ajaxOptions']) ? $button['ajaxOptions'] : array(),
 				'htmlOptions'=>isset($button['htmlOptions']) ? $button['htmlOptions'] : array(),
 				'encodeLabel'=>isset($button['encodeLabel']) ? $button['encodeLabel'] : $this->encodeLabel,
 			));

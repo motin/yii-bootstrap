@@ -12,8 +12,10 @@ Yii::import('bootstrap.widgets.BootWidget');
 
 class BootButton extends BootWidget
 {
-	const TAG_LINK = 'a';
-	const TAG_BUTTON = 'button';
+	const METHOD_LINK = 'link';
+	const METHOD_BUTTON = 'button';
+	const METHOD_AJAXLINK = 'ajaxLink';
+	const METHOD_AJAXBUTTON = 'ajaxButton';
 
 	const TYPE_NORMAL = '';
 	const TYPE_PRIMARY = 'primary';
@@ -27,17 +29,19 @@ class BootButton extends BootWidget
 	const SIZE_NORMAL = '';
 	const SIZE_LARGE = 'large';
 
-	public $tag = self::TAG_LINK;
+	public $method = self::METHOD_LINK;
 	public $type = self::TYPE_NORMAL;
 	public $size = self::SIZE_NORMAL;
 	public $icon;
 	public $label;
 	public $url;
+	public $active = false;
 	public $items;
 	public $toggle;
 	public $loadingText;
 	public $completeText;
 	public $encodeLabel = true;
+	public $ajaxOptions = array();
 
 	/**
 	 * Initializes the widget.
@@ -57,11 +61,18 @@ class BootButton extends BootWidget
 		if (isset($this->size) && in_array($this->size, $validSizes))
 			$class[] = 'btn-'.$this->size;
 
+		if ($this->active) {
+			$class[] = 'active';
+		}
+
+		if ($this->encodeLabel)
+			$this->label = CHtml::encode($this->label);
+
 		if ($this->hasDropdown())
 		{
 			$class[] = 'dropdown-toggle';
+			$this->label .= ' <span class="caret"></span>';
 			$this->htmlOptions['data-toggle'] = 'dropdown';
-
 			Yii::app()->bootstrap->registerDropdown();
 		}
 
@@ -72,9 +83,6 @@ class BootButton extends BootWidget
 		else
 			$this->htmlOptions['class'] = $cssClass;
 
-		if ($this->encodeLabel)
-			$this->label = CHtml::encode($this->label);
-
 		if (isset($this->icon))
 		{
 			if (strpos($this->icon, 'icon') === false)
@@ -83,9 +91,14 @@ class BootButton extends BootWidget
 			$this->label = '<i class="'.$this->icon.'"></i> '.$this->label;
 		}
 
-		if (!isset($this->url))
-			$this->url = '#';
+		$this->initHTML5Data();
+	}
 
+	/**
+	 * Initializes the HTML5 data attributes used by the data-api.
+	 */
+	protected function initHTML5Data()
+	{
 		if (isset($this->toggle) || isset($this->loadingText) || isset($this->completeText))
 		{
 			if (isset($this->toggle))
@@ -106,22 +119,32 @@ class BootButton extends BootWidget
 	 */
 	public function run()
 	{
-		if ($this->tag === self::TAG_LINK)
-			$this->htmlOptions['href'] = $this->url;
-
-		echo CHtml::openTag($this->tag, $this->htmlOptions);
-		echo $this->label;
+		echo $this->createButton();
 
 		if ($this->hasDropdown())
-			echo ' <span class="caret"></span>';
+			$this->controller->widget('bootstrap.widgets.BootDropdown', array('items'=>$this->items));
+	}
 
-		echo CHtml::closeTag($this->tag);
-
-		if ($this->hasDropdown())
+	/**
+	 * Creates the button element.
+	 * @return string the created button.
+	 */
+	protected function createButton()
+	{
+		switch ($this->method)
 		{
-			$this->controller->widget('bootstrap.widgets.BootDropdown', array(
-				'items'=>$this->items,
-			));
+			case self::METHOD_BUTTON:
+				return CHtml::htmlButton($this->label, $this->htmlOptions);
+
+			case self::METHOD_AJAXLINK:
+				return CHtml::ajaxLink($this->label, $this->url, $this->ajaxOptions, $this->htmlOptions);
+
+			case self::METHOD_AJAXBUTTON:
+				return CHtml::ajaxButton($this->label, $this->url, $this->ajaxOptions, $this->htmlOptions);
+
+			default:
+			case self::METHOD_LINK:
+				return CHtml::link($this->label, $this->url, $this->htmlOptions);
 		}
 	}
 
