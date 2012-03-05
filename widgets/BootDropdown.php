@@ -48,6 +48,9 @@ class BootDropdown extends BootBaseMenu
 				if (isset($item['header']))
 					$class[] = 'nav-header';
 
+				if ($item['active'])
+					$class[] = 'active';
+
 				$cssClass = implode(' ', $class);
 				if(isset($item['itemOptions']['class']))
 					$item['itemOptions']['class'] .= $cssClass;
@@ -95,6 +98,9 @@ class BootDropdown extends BootBaseMenu
 			if (($this->encodeLabel && !isset($item['encodeLabel']))
 					|| (isset($item['encodeLabel']) && $item['encodeLabel'] !== false))
 				$items[$i]['label'] = CHtml::encode($item['label']);
+
+			if (!isset($item['active']))
+				$items[$i]['active'] = $this->isItemActive($item, $route);
 		}
 
 		return array_values($items);

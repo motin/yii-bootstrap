@@ -53,17 +53,6 @@ abstract class BootBaseMenu extends BootWidget
 			$item['label'] = '<i class="'.$item['icon'].'"></i> '.$item['label'];
 		}
 
-		if (isset($item['items']) && !empty($item['items']))
-		{
-			if (isset($item['linkOptions']['class']))
-				$item['linkOptions']['class'] .= ' dropdown-toggle';
-			else
-				$item['linkOptions']['class'] = 'dropdown-toggle';
-
-			$item['linkOptions']['data-toggle'] = 'dropdown';
-			$item['label'] .= ' <span class="caret"></span>';
-		}
-
 		if (!isset($item['header']) && !isset($item['url']))
 			$item['url'] = '#';
 
@@ -71,6 +60,27 @@ abstract class BootBaseMenu extends BootWidget
 			return CHtml::link($item['label'], $item['url'], $item['linkOptions']);
 		else
 			return $item['label'];
+	}
+
+	/**
+	 * Checks whether a menu item is active.
+	 * @param array $item the menu item to be checked
+	 * @param string $route the route of the current request
+	 * @return boolean the result
+	 */
+	protected function isItemActive($item, $route)
+	{
+		if (isset($item['url']) && is_array($item['url']) && !strcasecmp(trim($item['url'][0], '/'), $route))
+		{
+			if (count($item['url']) > 1)
+				foreach (array_splice($item['url'], 1) as $name=>$value)
+					if (!isset($_GET[$name]) || $_GET[$name] != $value)
+						return false;
+
+			return true;
+		}
+
+		return false;
 	}
 
 	/**

@@ -94,9 +94,6 @@ class BootMenu extends BootBaseMenu
 
 				$class = array();
 
-				if (isset($item['header']))
-					$class[] = 'nav-header';
-
 				if ($item['active'] || (isset($item['items']) && $this->isChildActive($item['items'])))
 					$class[] = 'active';
 
@@ -131,6 +128,30 @@ class BootMenu extends BootBaseMenu
 				echo '</li>';
 			}
 		}
+	}
+
+	/**
+	 * Renders a single item in the menu.
+	 * @param array $item the item configuration
+	 * @return string the rendered item
+	 */
+	protected function renderItem($item)
+	{
+		if (!isset($item['linkOptions']))
+			$item['linkOptions'] = array();
+
+		if (isset($item['items']) && !empty($item['items']))
+		{
+			if (isset($item['linkOptions']['class']))
+				$item['linkOptions']['class'] .= ' dropdown-toggle';
+			else
+				$item['linkOptions']['class'] = 'dropdown-toggle';
+
+			$item['linkOptions']['data-toggle'] = 'dropdown';
+			$item['label'] .= ' <span class="caret"></span>';
+		}
+
+		return parent::renderItem($item);
 	}
 
 	/**
@@ -172,27 +193,6 @@ class BootMenu extends BootBaseMenu
 		}
 
 		return array_values($items);
-	}
-
-	/**
-	 * Checks whether a menu item is active.
-	 * @param array $item the menu item to be checked
-	 * @param string $route the route of the current request
-	 * @return boolean the result
-	 */
-	protected function isItemActive($item, $route)
-	{
-		if (isset($item['url']) && is_array($item['url']) && !strcasecmp(trim($item['url'][0], '/'), $route))
-		{
-			if (count($item['url']) > 1)
-				foreach (array_splice($item['url'], 1) as $name=>$value)
-					if (!isset($_GET[$name]) || $_GET[$name] != $value)
-						return false;
-
-			return true;
-		}
-
-		return false;
 	}
 
 	/**
