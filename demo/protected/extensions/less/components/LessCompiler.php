@@ -7,6 +7,7 @@
  */
 
 Yii::setPathOfAlias('Less', realpath(dirname(__FILE__).'/../lib/lessphp/lib/Less'));
+
 class LessCompiler extends CApplicationComponent
 {
 	/**
@@ -18,9 +19,17 @@ class LessCompiler extends CApplicationComponent
 	 */
 	public $paths = array();
 	/**
-	 * @var bool
+	 * @var boolean whether to auto compile
 	 */
 	public $autoCompile = false;
+	/**
+	 * @var boolean compiler debug mode.
+	 */
+	public $debug = false;
+	/**
+	 * @var boolean whether to compress css or not.
+	 */
+	public $compress = false;
 	/**
 	 * @var \Less\Parser the less parser.
 	 */
@@ -38,9 +47,12 @@ class LessCompiler extends CApplicationComponent
 		if (!file_exists($this->basePath))
 			throw new CException(__CLASS__.': Failed to initialize compiler. Base path does not exist!');
 
-		$this->_parser = new \Less\Parser();
+		$env = new \Less\Environment();
+		$env->compress = $this->compress;
+		$env->debug = $this->debug;
+		$this->_parser = new \Less\Parser($env);
 
-		if ($this->autoCompile)
+		if ($this->autoCompile/* && $this->hasChanges()*/)
 			$this->compile();
 	}
 
@@ -52,8 +64,8 @@ class LessCompiler extends CApplicationComponent
 	{
 		foreach ($this->paths as $lessPath => $cssPath)
 		{
-			$toPath = $this->basePath.'/'.$cssPath;
 			$fromPath = $this->basePath.'/'.$lessPath;
+			$toPath = $this->basePath.'/'.$cssPath;
 
 			if (file_exists($fromPath))
 				file_put_contents($toPath, $this->parse($fromPath));
@@ -68,6 +80,7 @@ class LessCompiler extends CApplicationComponent
 	 * Parses the less code to css.
 	 * @param string $filename the file path to the less file
 	 * @return string the css
+	 * @throws CException
 	 */
 	public function parse($filename)
 	{
@@ -77,8 +90,7 @@ class LessCompiler extends CApplicationComponent
 		}
 		catch (\Less\Exception\ParserException $e)
 		{
-			throw new CException(__CLASS__.': '.Yii::t('less','Failed to compile less file with message: `{message}`.',
-					array('{message}'=>$e->getMessage())));
+			throw new CException(__CLASS__.': Failed to compile less file with message: "'.$e->getMessage().'".');
 		}
 
 		return $css;

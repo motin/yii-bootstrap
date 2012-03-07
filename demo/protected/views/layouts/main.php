@@ -60,8 +60,8 @@
 				array('label'=>'Demo', 'url'=>Yii::app()->homeUrl,
 						'active'=>Yii::app()->controller->id === 'site' && Yii::app()->controller->action->id === 'index'),
 				array('label'=>'Setup', 'url'=>array('site/setup')),
-				array('label'=>'@Crisu83', 'url'=>'http://www.twitter.com/Crisu83', 'linkOptions'=>array('target'=>'_blank')),
 			),
+			'htmlOptions'=>array('pull-left'),
 		),
 		'<div class="add-this pull-right">
 			<!-- AddThis Button BEGIN -->
@@ -74,7 +74,15 @@
 			<a class="addthis_counter addthis_bubble_style"></a>
 			</div>
 			<!-- AddThis Button END -->
-		</div>'
+		</div>',
+		array(
+			'class'=>'bootstrap.widgets.BootMenu',
+			'items'=>array(
+				array('label'=>'Fork me on Bitbucket', 'url'=>'http://www.bitbucket.com/Crisu83/yii-bootstrap', 'linkOptions'=>array('target'=>'_blank')),
+				array('label'=>'Follow me on Twitter', 'url'=>'http://www.twitter.com/Crisu83', 'linkOptions'=>array('target'=>'_blank')),
+			),
+			'htmlOptions'=>array('class'=>'pull-right'),
+		),
 	),
 )); ?>
 

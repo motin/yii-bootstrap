@@ -1,4 +1,5 @@
 @import "../css/highlight.css";
+/**** Start imported file `../../lib/bootstrap/less/mixins.less` ****/
 .clearfix {
   *zoom: 1;
 }
@@ -9,6 +10,7 @@
 .clearfix:after {
   clear: both;
 }
+/**** End imported file `../../lib/bootstrap/less/mixins.less` ****/
 body {
   padding-top: 60px;
   padding-bottom: 60px;
@@ -34,20 +36,27 @@ p {
 }
 .navbar .add-this {
   background: #EEE;
-  margin: 6px 0;
+  margin: 6px 0 6px 10px;
   padding: 6px 12px;
-  -webkit-border-radius: 16px;
-  -moz-border-radius: 16px;
-  border-radius: 16px;
+  /**** Start rules from `.border-radius` (defined in `C:/wamp/www/Crisu83/yii-bootstrap/demo/less/../../lib/bootstrap/less/mixins.less` on line: 325) ****/
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  /**** End rules from `.border-radius` ****/
 }
 .subnav {
   border: 1px solid #E5E5E5;
   font-size: 12px;
+  /**** Start rules from `.border-radius` (defined in `C:/wamp/www/Crisu83/yii-bootstrap/demo/less/../../lib/bootstrap/less/mixins.less` on line: 325) ****/
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
+  /**** End rules from `.border-radius` ****/
+  /**** Start rules from `.size` (defined in `C:/wamp/www/Crisu83/yii-bootstrap/demo/less/../../lib/bootstrap/less/mixins.less` on line: 73) ****/
   width: 100%;
   height: 36px;
+  /**** End rules from `.size` ****/
+  /**** Start rules from `.vertical` (defined in `C:/wamp/www/Crisu83/yii-bootstrap/demo/less/../../lib/bootstrap/less/mixins.less` on line: 475) ****/
   background-color: #f2f2f2;
   background-image: -moz-linear-gradient(top, #f5f5f5, #eeeeee);
   background-image: -ms-linear-gradient(top, #f5f5f5, #eeeeee);
@@ -57,6 +66,7 @@ p {
   background-image: linear-gradient(top, #f5f5f5, #eeeeee);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#eeeeee', GradientType=0);
+  /**** End rules from `.vertical` ****/
 }
 .subnav.subnav-fixed {
   border-color: #D5D5D5;
@@ -66,12 +76,16 @@ p {
   position: fixed;
   right: 0;
   z-index: 1030;
+  /**** Start rules from `.border-radius` (defined in `C:/wamp/www/Crisu83/yii-bootstrap/demo/less/../../lib/bootstrap/less/mixins.less` on line: 325) ****/
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
+  /**** End rules from `.border-radius` ****/
+  /**** Start rules from `.box-shadow` (defined in `C:/wamp/www/Crisu83/yii-bootstrap/demo/less/../../lib/bootstrap/less/mixins.less` on line: 332) ****/
   -webkit-box-shadow: inset 0 1px 0 #ffffff;
   -moz-box-shadow: inset 0 1px 0 #ffffff;
   box-shadow: inset 0 1px 0 #ffffff;
+  /**** End rules from `.box-shadow` ****/
 }
 .subnav .nav {
   margin: 0 auto;
@@ -82,9 +96,11 @@ p {
   padding: 11px;
   border-left: 1px solid whiteSmoke;
   border-right: 1px solid #E5E5E5;
+  /**** Start rules from `.border-radius` (defined in `C:/wamp/www/Crisu83/yii-bootstrap/demo/less/../../lib/bootstrap/less/mixins.less` on line: 325) ****/
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
+  /**** End rules from `.border-radius` ****/
 }
 .subnav .nav  > li:first-child > a {
   border-left: 0;
@@ -96,9 +112,11 @@ p {
   background-color: #E9E9E9;
   border-right-color: #DDD;
   color: #777;
+  /**** Start rules from `.box-shadow` (defined in `C:/wamp/www/Crisu83/yii-bootstrap/demo/less/../../lib/bootstrap/less/mixins.less` on line: 332) ****/
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.05);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.05);
+  /**** End rules from `.box-shadow` ****/
 }
 footer .powered {
   color: #888;
@@ -126,7 +144,7 @@ section a.top {
 #bootMenu .menuCol {
   min-height: 140px;
 }
-#bootTabbed .tabbed {
+#bootTabbable .tabbable {
   margin-bottom: 20px;
 }
 #bootThumbs .list-view {
@@ -142,9 +160,11 @@ section a.top {
   background: #FCFCFC;
   border-color: #EEE transparent #EEE;
   font-family: "Menlo", "Consolas", "Courier New", Courier, mono;
+  /**** Start rules from `.border-radius` (defined in `C:/wamp/www/Crisu83/yii-bootstrap/demo/less/../../lib/bootstrap/less/mixins.less` on line: 325) ****/
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
+  /**** End rules from `.border-radius` ****/
 }
 .maintenance .hero-unit {
   text-align: center;

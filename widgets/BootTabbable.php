@@ -1,6 +1,6 @@
 <?php
 /**
- * BootTabs class file.
+ * BootTabbable class file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -15,7 +15,7 @@ Yii::import('bootstrap.widgets.BootWidget');
  * @since 0.9.8
  * @todo Fix event support. http://twitter.github.com/bootstrap/javascript.html#tabs
  */
-class BootTabbed extends BootWidget
+class BootTabbable extends BootWidget
 {
 	/**
 	 * @var string the type of tabs to display. Defaults to 'tabs'.
