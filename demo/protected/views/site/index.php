@@ -651,7 +651,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h2>Forms</h2>
 
-	<h3>Vertical</h3>
+	<h3>Vertical forms</h3>
 
 	<?php /** @var BootActiveForm $form */
 	$form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
@@ -666,7 +666,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<?php $this->endWidget(); ?>
 
-	<h3>Search</h3>
+	<h3>Search forms</h3>
 
 	<?php /** @var BootActiveForm $form */
 	$form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
@@ -680,7 +680,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<?php $this->endWidget(); ?>
 
-	<h3>Inline</h3>
+	<h3>Inline forms</h3>
 
 	<?php /** @var BootActiveForm $form */
 	$form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
@@ -695,7 +695,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<?php $this->endWidget(); ?>
 
-	<h3>Horizontal</h3>
+	<h3>Horizontal forms</h3>
 
 	<?php /** @var BootActiveForm $form */
 	$form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(

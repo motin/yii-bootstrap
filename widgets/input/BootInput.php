@@ -120,6 +120,12 @@ abstract class BootInput extends CInputWidget
 				break;
 
 			case self::TYPE_UNEDITABLE:
+				$cssClass = 'uneditable-input';
+				if (isset($this->htmlOptions['class']))
+					$this->htmlOptions['class'] .= ' '.$cssClass;
+				else
+					$this->htmlOptions['class'] = $cssClass;
+
 				$this->uneditableField();
 				break;
 

@@ -158,7 +158,7 @@ class BootInputVertical extends BootInput
 	protected function uneditableField()
 	{
 		echo $this->getLabel();
-		echo '<span class="uneditable-input">'.$this->model->{$this->attribute}.'</span>';
+		echo CHtml::tag('span', $this->htmlOptions, $this->model->{$this->attribute});
 		echo $this->getError().$this->getHint();
 	}
 }

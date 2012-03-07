@@ -189,7 +189,7 @@ class BootInputHorizontal extends BootInput
 	protected function uneditableField()
 	{
 		echo $this->getLabel().'<div class="controls">';
-		echo '<span class="uneditable-input">'.$this->model->{$this->attribute}.'</span>';
+		echo CHtml::tag('span', $this->htmlOptions, $this->model->{$this->attribute});
 		echo $this->getError().$this->getHint();
 		echo '</div>';
 	}
