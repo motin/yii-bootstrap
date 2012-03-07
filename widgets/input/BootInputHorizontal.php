@@ -16,6 +16,17 @@ Yii::import('bootstrap.widgets.input.BootInput');
 class BootInputHorizontal extends BootInput
 {
 	/**
+	 * Runs the widget.
+	 */
+	public function run()
+	{
+		$cssClass = $this->getContainerCssClass();
+		echo CHtml::openTag('div', array('class'=>'control-group '.$cssClass));
+		parent::run();
+		echo '</div>';
+	}
+
+	/**
 	 * Returns the label for this block.
 	 * @param array $htmlOptions additional HTML attributes
 	 * @return string the label
@@ -165,7 +176,7 @@ class BootInputHorizontal extends BootInput
 	protected function captcha()
 	{
 		echo $this->getLabel().'<div class="controls"><div class="captcha">';
-		echo '<div class="widget">'.$this->widget('CCaptcha', array('showRefreshButton'=>false), true).'</div>';
+		echo '<div class="widget">'.$this->widget('CCaptcha', $this->data, true).'</div>';
 		echo $this->form->textField($this->model, $this->attribute, $this->htmlOptions);
 		echo $this->getError().$this->getHint();
 		echo '</div></div>';
