@@ -278,7 +278,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<?php echo $parser->safeTransform("~~~
 [php]
-<?php \$this->widget('bootstrap.widgets.BootTabbable', array(
+<?php \$this->widget('bootstrap.widgets.BootTabbed', array(
 	'type'=>'pills', // 'tabs' or 'pills'
 	'tabs'=>array(
 		array('label'=>'Home', 'content'=>'Raw denim you probably haven\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'),
@@ -290,6 +290,11 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	),
 )); ?>
 ~~~"); ?>
+
+	<div class="alert alert-block alert-warning">
+		Tabbable placement support is part of version 0.9.10 and therefore not included in the current release.
+		If you're eager to try it out download the "bootstrap-2.0.2" branch from Bitbucket.
+	</div>
 
 	<div class="row">
 
@@ -336,7 +341,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<?php echo $parser->safeTransform("~~~
 [php]
-<?php \$this->widget('bootstrap.widgets.BootTabbable', array(
+<?php \$this->widget('bootstrap.widgets.BootTabbed', array(
 	'type'=>'tabs',
 	'placement'=>'below', // 'top ', 'right', 'bottom' or 'left'
 	'tabs'=>array(
@@ -386,7 +391,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h2>Grid views</h2>
 
-	<h3>Default</h3>
+	<h3>Default tables</h3>
 
 	<?php $this->widget('bootstrap.widgets.BootGridView', array(
 		'dataProvider'=>$gridDataProvider,
@@ -395,7 +400,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		'columns'=>$gridColumns,
 	)); ?>
 
-	<h3>Striped</h3>
+	<h3>Striped tables</h3>
 
 	<?php $this->widget('bootstrap.widgets.BootGridView', array(
 		'dataProvider'=>$gridDataProvider,
@@ -404,7 +409,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		'columns'=>$gridColumns,
 	)); ?>
 
-	<h3>Bordered</h3>
+	<h3>Bordered tables</h3>
 
 	<?php $this->widget('bootstrap.widgets.BootGridView', array(
 		'dataProvider'=>$gridDataProvider,
@@ -413,7 +418,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		'columns'=>$gridColumns,
 	)); ?>
 
-	<h3>Condensed</h3>
+	<h3>Condensed tables</h3>
 
 	<?php $this->widget('bootstrap.widgets.BootGridView', array(
 		'dataProvider'=>$gridDataProvider,
@@ -422,7 +427,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		'columns'=>$gridColumns,
 	)); ?>
 
-	<h3>Striped, bordered and condensed</h3>
+	<h3>Striped, bordered and condensed tables</h3>
 
 	<?php $this->widget('bootstrap.widgets.BootGridView', array(
 		'dataProvider'=>$gridDataProvider,
@@ -833,6 +838,11 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 <section id="bootButton">
 
 	<h2>Buttons</h2>
+
+	<div class="alert alert-block alert-warning">
+		The button widgets are a part of version 0.9.10 and therefore not included in the current release.
+		If you're eager to try them out download the "bootstrap-2.0.2" branch from Bitbucket.
+	</div>
 
 	<div class="row">
 		<div class="span4">
