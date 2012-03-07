@@ -34,6 +34,13 @@ $config = array(
 		'errorHandler'=>array(
 			'errorAction'=>'site/error',
 		),
+		'clientScript'=>array(
+			'class'=>'ext.minify.EClientScript',
+			//'combineScriptFiles' => true,
+			//'combineCssFiles' => true,
+			//'optimizeCssFiles' => true,
+			//'optimizeScriptFiles' => true,
+		),
 		'fb'=>array(
 			'class'=>'ext.facebook.components.FacebookConnect',
 			'appID'=>'106265262835735',

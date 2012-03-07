@@ -266,36 +266,17 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 <section id="bootTabbable">
 
-	<h2>Tabs</h2>
+	<h2>Tabbable</h2>
 
 	<?php $this->widget('bootstrap.widgets.BootTabbable', array(
+		'type'=>'tabs', // 'tabs' or 'pills'
 		'htmlOptions'=>array('class'=>'tabbable'),
-		'tabs'=>array(
-			array('label'=>'Home', 'content'=>'Raw denim you probably haven\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'),
-			array('label'=>'Profile', 'content'=>'Food truck fixie locavore, accusamus mcsweeney\'s marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.'),
-			array('label'=>'Dropdown', 'items'=>array(
-				array('label'=>'@fat', 'content'=>'Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney\'s organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven\'t heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.'),
-				array('label'=>'@mdo', 'content'=>'Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.'),
-			)),
-		),
-	)); ?>
-
-	<?php $this->widget('bootstrap.widgets.BootTabbable', array(
-		'type'=>'pills',
-		'htmlOptions'=>array('class'=>'tabbable'),
-		'tabs'=>array(
-			array('label'=>'Home', 'content'=>'Raw denim you probably haven\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.'),
-			array('label'=>'Profile', 'content'=>'Food truck fixie locavore, accusamus mcsweeney\'s marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.'),
-			array('label'=>'Dropdown', 'items'=>array(
-				array('label'=>'@fat', 'content'=>'Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney\'s organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven\'t heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.'),
-				array('label'=>'@mdo', 'content'=>'Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.'),
-			)),
-		),
+		'tabs'=>$tabs,
 	)); ?>
 
 	<h4>Source code</h4>
 
-<?php echo $parser->safeTransform("~~~
+	<?php echo $parser->safeTransform("~~~
 [php]
 <?php \$this->widget('bootstrap.widgets.BootTabbable', array(
 	'type'=>'pills', // 'tabs' or 'pills'
@@ -306,6 +287,62 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 			array('label'=>'@fat', 'content'=>'Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney\'s organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven\'t heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.'),
 			array('label'=>'@mdo', 'content'=>'Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.'),
 		)),
+	),
+)); ?>
+~~~"); ?>
+
+	<div class="row">
+
+		<div class="span6">
+
+			<h3>Tabs on the top</h3>
+
+			<?php $this->widget('bootstrap.widgets.BootTabbable', array(
+				'htmlOptions'=>array('class'=>'tabbable tabbable-placed'),
+				'tabs'=>$tabbable,
+			)); ?>
+
+			<h3>Tabs on the left</h3>
+
+			<?php $this->widget('bootstrap.widgets.BootTabbable', array(
+				'placement'=>'left',
+				'htmlOptions'=>array('class'=>'tabbable tabbable-placed'),
+				'tabs'=>$tabbable,
+			)); ?>
+
+		</div>
+
+		<div class="span6">
+
+			<h3>Tabs on the bottom</h3>
+
+			<?php $this->widget('bootstrap.widgets.BootTabbable', array(
+				'placement'=>'below',
+				'htmlOptions'=>array('class'=>'tabbable tabbable-placed'),
+				'tabs'=>$tabbable,
+			)); ?>
+
+			<h3>Tabs on the right</h3>
+
+			<?php $this->widget('bootstrap.widgets.BootTabbable', array(
+				'placement'=>'right',
+				'htmlOptions'=>array('class'=>'tabbable tabbable-placed'),
+				'tabs'=>$tabbable,
+			)); ?>
+
+		</div>
+
+	</div>
+
+	<?php echo $parser->safeTransform("~~~
+[php]
+<?php \$this->widget('bootstrap.widgets.BootTabbable', array(
+	'type'=>'tabs',
+	'placement'=>'below', // 'top ', 'right', 'bottom' or 'left'
+	'tabs'=>array(
+		array('label'=>'Section 1', 'content'=>'<p>I\'m in Section 1.</p>'),
+		array('label'=>'Section 2', 'content'=>'<p>Howdy, I\'m in Section 2.</p>'),
+		array('label'=>'Section 3', 'content'=>'<p>What up girl, this is Section 3.</p>'),
 	),
 )); ?>
 ~~~"); ?>
@@ -1161,7 +1198,7 @@ $('#buttonStateful').click(function() {
 			array('label'=>'Breadcrumb', 'url'=>'#bootCrumb'),
 			array('label'=>'Navbar', 'url'=>'#bootNavbar'),
 			array('label'=>'Menu', 'url'=>'#bootMenu'),
-			array('label'=>'Tabs', 'url'=>'#bootTabbable'),
+			array('label'=>'Tabbable', 'url'=>'#bootTabbable'),
 			array('label'=>'Detail view', 'url'=>'#bootDetailView'),
 			array('label'=>'Grid view', 'url'=>'#bootGridView'),
 			array('label'=>'Thumbnails', 'url'=>'#bootThumbs'),

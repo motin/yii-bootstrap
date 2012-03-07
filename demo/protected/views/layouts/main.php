@@ -7,12 +7,11 @@
 		'title'=>array('class'=>'ext.seo.widgets.SeoTitle', 'separator'=>' :: '),
 	)); ?>
 	<link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/favicon.ico">
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/styles.css" />
+	<?php Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl.'/css/styles.css'); ?>
 	<!--[if lt IE 9]>
 		<script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-	<script type="text/javascript">
-
+	<?php Yii::app()->clientScript->registerScript('GA',"
 		var _gaq = _gaq || [];
 		_gaq.push(['_setAccount', 'UA-29040179-1']);
 		_gaq.push(['_trackPageview']);
@@ -22,8 +21,7 @@
 			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 		})();
-
-	</script>
+	"); ?>
 </head>
 
 <body id="top">

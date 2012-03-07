@@ -17,11 +17,23 @@ Yii::import('bootstrap.widgets.BootWidget');
  */
 class BootTabbable extends BootWidget
 {
+	// The valid placements.
+	const PLACEMENT_ABOVE = 'above';
+	const PLACEMENT_BELOW = 'below';
+	const PLACEMENT_LEFT = 'left';
+	const PLACEMENT_RIGHT = 'right';
+
 	/**
 	 * @var string the type of tabs to display. Defaults to 'tabs'.
 	 * Valid values are 'tabs' and 'pills'.
+	 * Please not that JavaScript pills are not fully supported in Bootstrap!
 	 */
     public $type = BootMenu::TYPE_TABS;
+	/**
+	 * @var string the placement of the tabs.
+	 * Valid values are 'above', 'below', 'left' and 'right'.
+	 */
+	public $placement = self::PLACEMENT_ABOVE;
 	/**
 	 * @var array the tab configuration.
 	 */
@@ -38,10 +50,23 @@ class BootTabbable extends BootWidget
     {
         parent::init();
 
-        Yii::app()->bootstrap->registerTabs();
-
 		if (!isset($this->htmlOptions['id']))
 			$this->htmlOptions['id'] = $this->getId();
+
+		if (isset($this->placement))
+		{
+			$validPlacements = array(self::PLACEMENT_ABOVE, self::PLACEMENT_BELOW, self::PLACEMENT_LEFT, self::PLACEMENT_RIGHT);
+			if (in_array($this->placement, $validPlacements))
+			{
+				$cssClass = 'tabs-'.$this->placement;
+				if (isset($this->htmlOptions['class']))
+					$this->htmlOptions['class'] .= ' '.$cssClass;
+				else
+					$this->htmlOptions['class'] = $cssClass;
+			}
+		}
+
+		Yii::app()->bootstrap->registerTabs();
     }
 
     /**
@@ -49,20 +74,26 @@ class BootTabbable extends BootWidget
      */
     public function run()
     {
-	    $panes = array();
-	    $items = $this->normalizeTabs($this->tabs, $panes);
+	    $content = array();
+	    $items = $this->normalizeTabs($this->tabs, $content);
 
-	    echo CHtml::openTag('div', $this->htmlOptions);
-
-	    $this->controller->widget('bootstrap.widgets.BootMenu', array(
+		ob_start();
+		$this->controller->widget('bootstrap.widgets.BootMenu', array(
 			'type'=>$this->type,
 			'encodeLabel'=>$this->encodeLabel,
-		    'items'=>$items,
-	    ));
+			'items'=>$items,
+		));
+		$tabs = ob_get_clean();
 
-	    echo '<div class="tab-content">';
-		echo implode('', $panes);
-	    echo '</div></div>';
+		ob_start();
+		echo '<div class="tab-content">';
+		echo implode('', $content);
+		echo '</div>';
+		$content = ob_get_clean();
+
+		echo CHtml::openTag('div', $this->htmlOptions);
+		echo $this->placement === self::PLACEMENT_BELOW ? $content.$tabs : $tabs.$content;
+		echo '</div>';
 
 	    Yii::app()->clientScript->registerScript(__CLASS__.'#'.$this->id, "jQuery('{$this->id}').tab('show');");
 

@@ -147,6 +147,9 @@ section a.top {
 #bootTabbable .tabbable {
   margin-bottom: 20px;
 }
+#bootTabbable .tabbable.tabbable-placed {
+  width: 340px;
+}
 #bootThumbs .list-view {
   padding-top: 30px;
 }
