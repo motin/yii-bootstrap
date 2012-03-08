@@ -97,6 +97,12 @@ class BootMenu extends BootBaseMenu
 				if ($item['active'] || (isset($item['items']) && $this->isChildActive($item['items'])))
 					$class[] = 'active';
 
+				if ($this->type === self::TYPE_LIST && !isset($item['url']))
+				{
+					$item['header'] = true;
+					$class[] = 'nav-header';
+				}
+
 				if (isset($item['items']))
 					$class[] = 'dropdown';
 

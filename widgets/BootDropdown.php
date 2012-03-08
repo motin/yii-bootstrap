@@ -49,7 +49,10 @@ class BootDropdown extends BootBaseMenu
 
 				$class = array();
 				if (!isset($item['url']))
+				{
+					$item['header'] = true;
 					$class[] = 'nav-header';
+				}
 
 				if ($item['active'])
 					$class[] = 'active';
