@@ -1190,13 +1190,12 @@ $('#buttonStateful').click(function() {
 
 	<h2>Hero unit <small>Coming in version 0.9.10</small></h2>
 
-	<?php $this->widget('bootstrap.widgets.BootHero', array(
+	<?php $this->beginWidget('bootstrap.widgets.BootHero', array(
 		'heading'=>'Hello, world!',
-		'content'=>"
-			<p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-			<p><a class=\"btn btn-primary btn-large\">Learn more</a></p>
-		",
 	)); ?>
+		<p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+		<p><a class="btn btn-primary btn-large">Learn more</a></p>
+	<?php $this->endWidget(); ?>
 
 	<h4>Source code</h4>
 
@@ -1204,11 +1203,16 @@ $('#buttonStateful').click(function() {
 [php]
 <?php \$this->widget('bootstrap.widgets.BootHero', array(
 	'heading'=>'Hello, world!',
-	'content'=>\"
-		<p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-		<p><a class=\"btn btn-primary btn-large\">Learn more</a></p>
-	\",
 )); ?>
+~~~
+~~~
+[html]
+<p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+<p><a class=\"btn btn-primary btn-large\">Learn more</a></p>
+~~~
+~~~
+[php]
+<?php \$this->endWidget(); ?>
 ~~~"); ?>
 
 		<a class="top" href="#top">Back to top &uarr;</a>

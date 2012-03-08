@@ -86,19 +86,18 @@
 
 <div class="container">
 
-	<?php $this->widget('bootstrap.widgets.BootHero', array(
+	<?php $this->beginWidget('bootstrap.widgets.BootHero', array(
 		'heading'=>Yii::app()->name,
-		'content'=>"
-			<p>
-				Bringing together the ".CHtml::link('Yii PHP framework', 'http://www.yiiframework.com')." and
-				".CHtml::link('Bootstrap', 'http://twitter.github.com/bootstrap/').", Twitter's new web development toolkit.
-				Now with support for Bootstrap 2!
-				".CHtml::link('Yii-Bootstrap', 'http://www.yiiframework.com/extension/bootstrap/')."
-				is an extension for Yii that provides a wide range of server-side widgets that allow you to easily use Bootstrap with Yii.
-				All widgets have been developed following Yii's conventions and work seemlessly together with Bootstrap and its jQuery plugins.
-			</p>
-		",
 	)); ?>
+		<p>
+			Bringing together the <?php echo CHtml::link('Yii PHP framework', 'http://www.yiiframework.com'); ?> and
+			<?php echo CHtml::link('Bootstrap', 'http://twitter.github.com/bootstrap/'); ?> Twitter's new web development toolkit.
+			Now with support for Bootstrap 2!
+			<?php echo CHtml::link('Yii-Bootstrap', 'http://www.yiiframework.com/extension/bootstrap/'); ?>
+			is an extension for Yii that provides a wide range of server-side widgets that allow you to easily use Bootstrap with Yii.
+			All widgets have been developed following Yii's conventions and work seamlessly together with Bootstrap and its jQuery plugins.
+		</p>
+	<?php $this->endWidget(); ?>
 
 	<?php if (!empty($this->breadcrumbs)):?>
 		<?php $this->widget('bootstrap.widgets.BootBreadcrumbs', array(

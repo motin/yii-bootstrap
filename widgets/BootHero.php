@@ -12,6 +12,7 @@ Yii::import('bootstrap.widgets.BootWidget');
 
 /**
  * Modest bootstrap hero widget.
+ * Thanks to Christphe Boulain for suggesting content capturing.
  */
 class BootHero extends BootWidget
 {
@@ -19,10 +20,6 @@ class BootHero extends BootWidget
 	 * @var string the heading text.
 	 */
 	public $heading;
-	/**
-	 * @var string the content text.
-	 */
-	public $content;
 	/**
 	 * @var boolean indicates whether to encode the heading.
 	 */
@@ -41,6 +38,9 @@ class BootHero extends BootWidget
 
 		if ($this->encodeHeading)
 			$this->heading = CHtml::encode($this->heading);
+
+		ob_start();
+		ob_implicit_flush(false);
 	}
 
 	/**
@@ -48,9 +48,13 @@ class BootHero extends BootWidget
 	 */
 	public function run()
 	{
+		$content = ob_get_clean();
 		echo CHtml::openTag('div', $this->htmlOptions);
-		echo CHtml::tag('h1', array(), $this->heading);
-		echo $this->content;
+
+		if (isset($this->heading))
+			echo CHtml::tag('h1', array(), $this->heading);
+
+		echo $content;
 		echo '</div>';
 	}
 }
