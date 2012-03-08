@@ -11,7 +11,7 @@
 	<!--[if lt IE 9]>
 		<script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-	<?php Yii::app()->clientScript->registerScript('GA',"
+	<script type="text/javascript">
 		var _gaq = _gaq || [];
 		_gaq.push(['_setAccount', 'UA-29040179-1']);
 		_gaq.push(['_trackPageview']);
@@ -21,7 +21,7 @@
 			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 		})();
-	"); ?>
+	</script>
 </head>
 
 <body id="top">
