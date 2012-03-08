@@ -701,6 +701,10 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<?php $this->endWidget(); ?>
 
+	<div class="alert alert-block alert-warning">
+
+	</div>
+
 	<h3>Horizontal</h3>
 
 	<?php /** @var BootActiveForm $form */

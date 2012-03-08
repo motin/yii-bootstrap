@@ -59,7 +59,7 @@
 						'active'=>Yii::app()->controller->id === 'site' && Yii::app()->controller->action->id === 'index'),
 				array('label'=>'Setup', 'url'=>array('site/setup')),
 			),
-			'htmlOptions'=>array('pull-left'),
+			'htmlOptions'=>array('class'=>'pull-left'),
 		),
 		'<div class="add-this pull-right">
 			<!-- AddThis Button BEGIN -->
@@ -113,13 +113,13 @@
 	<footer>
 
 		<p class="powered">
-			Powered by <?php echo CHtml::link('Yii PHP framework 1.1.10', 'http://www.yiiframework.com', array('target'=>'_blank')); ?> //
-			<?php echo CHtml::link('jQuery 1.7.1', 'http://www.jquery.com', array('target'=>'_blank')); ?> //
-			<?php echo CHtml::link('Yii-Bootstrap 0.9.10', 'http://www.yiiframework.com/extension/bootstrap', array('target'=>'_blank')); ?> //
-			<?php echo CHtml::link('Yii-LESS 0.9.1', 'http://www.yiiframework.com/extension/less', array('target'=>'_blank')); ?>  //
-			<?php echo CHtml::link('Yii-SEO 0.9.3', 'http://www.yiiframework.com/extension/seo', array('target'=>'_blank')); ?> //
-			<?php echo CHtml::link('Yii-Facebook 0.9.1', '#', array('rel'=>'tooltip', 'title'=>'Link available soon')); ?> //
-			<?php echo CHtml::link('Bootstrap 2.0.2', 'http://twitter.github.com/bootstrap', array('target'=>'_blank')); ?> //
+			Powered by <?php echo CHtml::link('Yii PHP framework 1.1.10', 'http://www.yiiframework.com', array('target'=>'_blank')); ?> /
+			<?php echo CHtml::link('jQuery 1.7.1', 'http://www.jquery.com', array('target'=>'_blank')); ?> /
+			<?php echo CHtml::link('Yii-Bootstrap 0.9.10', 'http://www.yiiframework.com/extension/bootstrap', array('target'=>'_blank')); ?> /
+			<?php echo CHtml::link('Yii-LESS 0.9.1', 'http://www.yiiframework.com/extension/less', array('target'=>'_blank')); ?>  /
+			<?php echo CHtml::link('Yii-SEO 0.9.3', 'http://www.yiiframework.com/extension/seo', array('target'=>'_blank')); ?> /
+			<?php echo CHtml::link('Yii-Facebook 0.9.1', '#', array('rel'=>'tooltip', 'title'=>'Link available soon')); ?> /
+			<?php echo CHtml::link('Bootstrap 2.0.2', 'http://twitter.github.com/bootstrap', array('target'=>'_blank')); ?> /
 			<?php echo CHtml::link('LESS', 'http://www.lesscss.org', array('target'=>'_blank')); ?>
 		</p>
 
@@ -131,7 +131,7 @@
 
 </div>
 
-<?php Yii::app()->clientScript->registerScript('http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f362fc83fc39768', CClientScript::POS_END); ?>
+<?php Yii::app()->clientScript->registerScriptFile('http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f362fc83fc39768', CClientScript::POS_END); ?>
 
 </body>
 </html>
