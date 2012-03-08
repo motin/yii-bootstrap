@@ -836,11 +836,6 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
-<div class="alert alert-block alert-info">
-	<strong>Hey there!</strong> The button, hero, carousel, progress and typeahead widgets are a part of Coming in version 0.9.10 and therefore not included in the current release.
-	If you're eager to try them out download the "bootstrap-2.0.2" branch from Bitbucket.
-</div>
-
 <section id="bootButton">
 
 	<h2>Buttons <small>Coming in version 0.9.10</small></h2>
