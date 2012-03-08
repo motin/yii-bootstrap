@@ -1201,7 +1201,7 @@ $('#buttonStateful').click(function() {
 
 	<?php echo $parser->safeTransform("~~~
 [php]
-<?php \$this->widget('bootstrap.widgets.BootHero', array(
+<?php \$this->beginWidget('bootstrap.widgets.BootHero', array(
 	'heading'=>'Hello, world!',
 )); ?>
 ~~~
