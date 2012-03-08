@@ -48,8 +48,6 @@ class BootTabbable extends BootWidget
      */
     public function init()
     {
-        parent::init();
-
 		if (!isset($this->htmlOptions['id']))
 			$this->htmlOptions['id'] = $this->getId();
 
@@ -74,6 +72,7 @@ class BootTabbable extends BootWidget
      */
     public function run()
     {
+	    $id = $this->id;
 	    $content = array();
 	    $items = $this->normalizeTabs($this->tabs, $content);
 
@@ -95,14 +94,15 @@ class BootTabbable extends BootWidget
 		echo $this->placement === self::PLACEMENT_BELOW ? $content.$tabs : $tabs.$content;
 		echo '</div>';
 
-	    Yii::app()->clientScript->registerScript(__CLASS__.'#'.$this->id, "jQuery('{$this->id}').tab('show');");
+	    /** @var CClientScript $cs */
+	    $cs = Yii::app()->getClientScript();
+	    $cs->registerScript(__CLASS__.'#'.$id, "jQuery('#{$id}').tab('show');");
 
-	    /*
         // Register the "show" event-handler.
         if (isset($this->events['show']))
         {
             $fn = CJavaScript::encode($this->events['show']);
-            Yii::app()->clientScript->registerScript(__CLASS__.'#'.$this->id.'.show',
+	        $cs->registerScript(__CLASS__.'#'.$id.'.show',
 	                "jQuery('#{$id} a[data-toggle=\"tab\"').on('show', {$fn});");
         }
 
@@ -110,10 +110,9 @@ class BootTabbable extends BootWidget
         if (isset($this->events['shown']))
         {
             $fn = CJavaScript::encode($this->events['shown']);
-            Yii::app()->clientScript->registerScript(__CLASS__.'#'.$this->id.'.shown',
+	        $cs->registerScript(__CLASS__.'#'.$id.'.shown',
 	                "jQuery('#{$id} a[data-toggle=\"tab\"').on('shown', {$fn});");
         }
-	    */
     }
 
 	/**

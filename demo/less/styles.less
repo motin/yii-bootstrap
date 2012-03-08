@@ -34,7 +34,7 @@ p {
 	.add-this {
 	    background: #EEE;
 	    margin: 6px 0 6px 10px;
-		padding: 6px 12px;
+		padding: 6px;
 		.border-radius(3px);
 	}
 }
@@ -131,12 +131,40 @@ section {
 	}
 }
 
-#bootThumbs .list-view {
+#bootThumbnails .list-view {
 	padding-top: 30px;
 }
 
 #bootActiveForm .form-vertical .control-group > label {
 	font-weight: bold;
+}
+
+#bootHero .hero-unit {
+	width: 650px;
+
+	h1 {
+		margin-bottom: 0;
+	}
+
+	p {
+		margin-bottom: 9px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+#bootCarousel .carousel {
+	width: 770px;
+
+	.carousel-caption p {
+		margin-bottom: 9px;
+	}
+}
+
+#bootTypeahead input {
+	margin-bottom: 0;
 }
 
 .hl-code {

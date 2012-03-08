@@ -272,6 +272,12 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		'type'=>'tabs', // 'tabs' or 'pills'
 		'htmlOptions'=>array('class'=>'tabbable'),
 		'tabs'=>$tabs,
+		/*
+		'events'=>array(
+			'show'=>"js:function() { console.log('Tabbable show.'); }",
+			'shown'=>"js:function() { console.log('Tabbable shown.'); }",
+		),
+		*/
 	)); ?>
 
 	<h4>Source code</h4>
@@ -291,11 +297,6 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 )); ?>
 ~~~"); ?>
 
-	<div class="alert alert-block alert-warning">
-		Tabbable placement support is part of version 0.9.10 and therefore not included in the current release.
-		If you're eager to try it out download the "bootstrap-2.0.2" branch from Bitbucket.
-	</div>
-
 	<div class="row">
 
 		<div class="span6">
@@ -307,7 +308,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 				'tabs'=>$tabbable,
 			)); ?>
 
-			<h3>Tabs on the left</h3>
+			<h3>Tabs on the left <small>Coming in version 0.9.10</small></h3>
 
 			<?php $this->widget('bootstrap.widgets.BootTabbable', array(
 				'placement'=>'left',
@@ -319,7 +320,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 		<div class="span6">
 
-			<h3>Tabs on the bottom</h3>
+			<h3>Tabs on the bottom <small>Coming in version 0.9.10</small></h3>
 
 			<?php $this->widget('bootstrap.widgets.BootTabbable', array(
 				'placement'=>'below',
@@ -327,7 +328,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 				'tabs'=>$tabbable,
 			)); ?>
 
-			<h3>Tabs on the right</h3>
+			<h3>Tabs on the right <small>Coming in version 0.9.10</small></h3>
 
 			<?php $this->widget('bootstrap.widgets.BootTabbable', array(
 				'placement'=>'right',
@@ -391,7 +392,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h2>Grid views</h2>
 
-	<h3>Default tables</h3>
+	<h3>Default</h3>
 
 	<?php $this->widget('bootstrap.widgets.BootGridView', array(
 		'dataProvider'=>$gridDataProvider,
@@ -400,7 +401,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		'columns'=>$gridColumns,
 	)); ?>
 
-	<h3>Striped tables</h3>
+	<h3>Striped</h3>
 
 	<?php $this->widget('bootstrap.widgets.BootGridView', array(
 		'dataProvider'=>$gridDataProvider,
@@ -409,7 +410,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		'columns'=>$gridColumns,
 	)); ?>
 
-	<h3>Bordered tables</h3>
+	<h3>Bordered</h3>
 
 	<?php $this->widget('bootstrap.widgets.BootGridView', array(
 		'dataProvider'=>$gridDataProvider,
@@ -418,7 +419,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		'columns'=>$gridColumns,
 	)); ?>
 
-	<h3>Condensed tables</h3>
+	<h3>Condensed</h3>
 
 	<?php $this->widget('bootstrap.widgets.BootGridView', array(
 		'dataProvider'=>$gridDataProvider,
@@ -427,7 +428,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		'columns'=>$gridColumns,
 	)); ?>
 
-	<h3>Striped, bordered and condensed tables</h3>
+	<h3>Striped, bordered and condensed</h3>
 
 	<?php $this->widget('bootstrap.widgets.BootGridView', array(
 		'dataProvider'=>$gridDataProvider,
@@ -656,7 +657,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h2>Forms</h2>
 
-	<h3>Vertical forms</h3>
+	<h3>Vertical</h3>
 
 	<?php /** @var BootActiveForm $form */
 	$form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
@@ -671,7 +672,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<?php $this->endWidget(); ?>
 
-	<h3>Search forms</h3>
+	<h3>Search</h3>
 
 	<?php /** @var BootActiveForm $form */
 	$form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
@@ -685,7 +686,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<?php $this->endWidget(); ?>
 
-	<h3>Inline forms</h3>
+	<h3>Inline</h3>
 
 	<?php /** @var BootActiveForm $form */
 	$form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
@@ -700,7 +701,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<?php $this->endWidget(); ?>
 
-	<h3>Horizontal forms</h3>
+	<h3>Horizontal</h3>
 
 	<?php /** @var BootActiveForm $form */
 	$form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
@@ -835,14 +836,14 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
+<div class="alert alert-block alert-info">
+	<strong>Hey there!</strong> The button, hero, carousel, progress and typeahead widgets are a part of Coming in version 0.9.10 and therefore not included in the current release.
+	If you're eager to try them out download the "bootstrap-2.0.2" branch from Bitbucket.
+</div>
+
 <section id="bootButton">
 
-	<h2>Buttons</h2>
-
-	<div class="alert alert-block alert-warning">
-		The button widgets are a part of version 0.9.10 and therefore not included in the current release.
-		If you're eager to try them out download the "bootstrap-2.0.2" branch from Bitbucket.
-	</div>
+	<h2>Buttons <small>Coming in version 0.9.10</small></h2>
 
 	<div class="row">
 		<div class="span4">
@@ -1188,6 +1189,168 @@ $('#buttonStateful').click(function() {
 
 </section>
 
+<section id="bootHero">
+
+	<h2>Hero unit <small>Coming in version 0.9.10</small></h2>
+
+	<?php $this->widget('bootstrap.widgets.BootHero', array(
+		'heading'=>'Hello, world!',
+		'content'=>"
+			<p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+			<p><a class=\"btn btn-primary btn-large\">Learn more</a></p>
+		",
+	)); ?>
+
+	<h4>Source code</h4>
+
+	<?php echo $parser->safeTransform("~~~
+[php]
+<?php \$this->widget('bootstrap.widgets.BootHero', array(
+	'heading'=>'Hello, world!',
+	'content'=>\"
+		<p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+		<p><a class=\"btn btn-primary btn-large\">Learn more</a></p>
+	\",
+)); ?>
+~~~"); ?>
+
+		<a class="top" href="#top">Back to top &uarr;</a>
+
+</section>
+
+<section id="bootCarousel">
+
+	<h2>Carousel <small>Coming in version 0.9.10</small></h2>
+
+	<?php $this->widget('bootstrap.widgets.BootCarousel', array(
+		'items'=>array(
+			array('image'=>'http://placehold.it/770x400&text=First+thumbnail', 'label'=>'First Thumbnail label', 'caption'=>'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.'),
+			array('image'=>'http://placehold.it/770x400&text=Second+thumbnail', 'label'=>'Second Thumbnail label', 'caption'=>'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.'),
+			array('image'=>'http://placehold.it/770x400&text=Third+thumbnail', 'label'=>'Third Thumbnail label', 'caption'=>'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.'),
+		),
+		'events'=>array(
+			'slide'=>"js:function() { console.log('Carousel slide.'); }",
+			'slid'=>"js:function() { console.log('Carousel slid.'); }",
+		),
+	)); ?>
+
+	<h4>Source code</h4>
+
+	<?php echo $parser->safeTransform("~~~
+[php]
+<?php \$this->widget('bootstrap.widgets.BootCarousel', array(
+	'items'=>array(
+		array('image'=>'http://placehold.it/770x400&text=First+thumbnail', 'label'=>'First Thumbnail label', 'caption'=>'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.'),
+		array('image'=>'http://placehold.it/770x400&text=Second+thumbnail', 'label'=>'Second Thumbnail label', 'caption'=>'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.'),
+		array('image'=>'http://placehold.it/770x400&text=Third+thumbnail', 'label'=>'Third Thumbnail label', 'caption'=>'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.'),
+	),
+	'events'=>array(
+		'slide'=>\"js:function() { console.log('Carousel slide.'); }\",
+		'slid'=>\"js:function() { console.log('Carousel slid.'); }\",
+	),
+)); ?>
+~~~"); ?>
+
+		<a class="top" href="#top">Back to top &uarr;</a>
+
+</section>
+
+<section id="bootProgress">
+
+	<h2>Progress bars <small>Coming in version 0.9.10</small></h2>
+
+	<div class="row">
+
+		<div class="span4">
+
+			<h3>Basic</h3>
+
+			<?php $this->widget('bootstrap.widgets.BootProgress', array(
+				'percent'=>30,
+			)); ?>
+
+		</div>
+
+		<div class="span4">
+
+			<h3>Striped</h3>
+
+			<?php $this->widget('bootstrap.widgets.BootProgress', array(
+				'type'=>'info',
+				'percent'=>20,
+				'striped'=>true,
+			)); ?>
+
+		</div>
+
+		<div class="span4">
+
+			<h3>Animated</h3>
+
+			<?php $this->widget('bootstrap.widgets.BootProgress', array(
+				'type'=>'danger', // '', 'info', 'success' or 'danger'
+				'percent'=>40, // the progress
+				'striped'=>true,
+				'animated'=>true,
+			)); ?>
+
+		</div>
+
+	</div>
+
+	<h4>Source code</h4>
+
+	<?php echo $parser->safeTransform("~~~
+[php]
+<?php \$this->widget('bootstrap.widgets.BootProgress', array(
+	'type'=>'danger', // '', 'info', 'success' or 'danger'
+	'percent'=>40, // the progress
+	'striped'=>true,
+	'animated'=>true,
+)); ?>
+~~~"); ?>
+
+	<a class="top" href="#top">Back to top &uarr;</a>
+
+</section>
+
+<section id="bootTypeahead">
+
+	<h2>Typeahead <small>Coming in version 0.9.10</small></h2>
+
+	<div class="well">
+
+		<?php $this->widget('bootstrap.widgets.BootTypeahead', array(
+			'options'=>array(
+				'source'=>array('Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'),
+				'items'=>4,
+				'matcher'=>"js:function(item) {
+			        return ~item.toLowerCase().indexOf(this.query.toLowerCase());
+			    }",
+			),
+		)); ?>
+
+	</div>
+
+	<h4>Source code</h4>
+
+	<?php echo $parser->safeTransform("~~~
+[php]
+<?php \$this->widget('bootstrap.widgets.BootTypeahead', array(
+	'options'=>array(
+		'source'=>array('Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'),
+		'items'=>4,
+		'matcher'=>\"js:function(item) {
+	        return ~item.toLowerCase().indexOf(this.query.toLowerCase());
+	    }\",
+	),
+)); ?>
+~~~"); ?>
+
+	<a class="top" href="#top">Back to top &uarr;</a>
+
+</section>
+
 <section id="comments">
 
 	<h2>Comments</h2>
@@ -1211,12 +1374,16 @@ $('#buttonStateful').click(function() {
 			array('label'=>'Tabbable', 'url'=>'#bootTabbable'),
 			array('label'=>'Detail view', 'url'=>'#bootDetailView'),
 			array('label'=>'Grid view', 'url'=>'#bootGridView'),
-			array('label'=>'Thumbnails', 'url'=>'#bootThumbs'),
+			array('label'=>'Thumbnail', 'url'=>'#bootThumbs'),
 			array('label'=>'Tooltip', 'url'=>'#bootTooltip'),
 			array('label'=>'Popover', 'url'=>'#bootPopover'),
 			array('label'=>'Modal', 'url'=>'#bootModal'),
 			array('label'=>'Forms', 'url'=>'#bootActiveForm'),
 			array('label'=>'Buttons', 'url'=>'#bootButton'),
+			array('label'=>'Hero', 'url'=>'#bootHero'),
+			array('label'=>'Carousel', 'url'=>'#bootCarousel'),
+			array('label'=>'Progress', 'url'=>'#bootProgress'),
+			array('label'=>'Typeahead', 'url'=>'#bootTypeahead'),
 		),
 	)); ?>
 

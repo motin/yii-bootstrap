@@ -86,18 +86,19 @@
 
 <div class="container">
 
-	<div class="hero-unit">
-		<h1><?php echo CHtml::encode(Yii::app()->name); ?></h1>
-		<p>
-			Bringing together the
-			<?php echo CHtml::link('Yii PHP framework', 'http://www.yiiframework.com'); ?> and
-			<?php echo CHtml::link('Bootstrap', 'http://twitter.github.com/bootstrap/'); ?>, Twitter's new web development toolkit.
-			Now with support for Bootstrap 2!
-			<?php echo CHtml::link('Yii-Bootstrap', 'http://www.yiiframework.com/extension/bootstrap/'); ?>
-			is an extension for Yii that provides a wide range of server-side widgets that allow you to easily use Bootstrap with Yii.
-			All widgets have been developed following Yii's conventions and work seemlessly together with Bootstrap and its jQuery plugins.
-		</p>
-	</div>
+	<?php $this->widget('bootstrap.widgets.BootHero', array(
+		'heading'=>Yii::app()->name,
+		'content'=>"
+			<p>
+				Bringing together the ".CHtml::link('Yii PHP framework', 'http://www.yiiframework.com')." and
+				".CHtml::link('Bootstrap', 'http://twitter.github.com/bootstrap/').", Twitter's new web development toolkit.
+				Now with support for Bootstrap 2!
+				".CHtml::link('Yii-Bootstrap', 'http://www.yiiframework.com/extension/bootstrap/')."
+				is an extension for Yii that provides a wide range of server-side widgets that allow you to easily use Bootstrap with Yii.
+				All widgets have been developed following Yii's conventions and work seemlessly together with Bootstrap and its jQuery plugins.
+			</p>
+		",
+	)); ?>
 
 	<?php if (!empty($this->breadcrumbs)):?>
 		<?php $this->widget('bootstrap.widgets.BootCrumb', array(
@@ -114,11 +115,11 @@
 		<p class="powered">
 			Powered by <?php echo CHtml::link('Yii PHP framework 1.1.10', 'http://www.yiiframework.com', array('target'=>'_blank')); ?> //
 			<?php echo CHtml::link('jQuery 1.7.1', 'http://www.jquery.com', array('target'=>'_blank')); ?> //
-			<?php echo CHtml::link('Yii-Bootstrap 0.9.9', 'http://www.yiiframework.com/extension/bootstrap', array('target'=>'_blank')); ?> //
+			<?php echo CHtml::link('Yii-Bootstrap 0.9.10', 'http://www.yiiframework.com/extension/bootstrap', array('target'=>'_blank')); ?> //
 			<?php echo CHtml::link('Yii-LESS 0.9.1', 'http://www.yiiframework.com/extension/less', array('target'=>'_blank')); ?>  //
 			<?php echo CHtml::link('Yii-SEO 0.9.3', 'http://www.yiiframework.com/extension/seo', array('target'=>'_blank')); ?> //
 			<?php echo CHtml::link('Yii-Facebook 0.9.1', '#', array('rel'=>'tooltip', 'title'=>'Link available soon')); ?> //
-			<?php echo CHtml::link('Bootstrap 2.0.1', 'http://twitter.github.com/bootstrap', array('target'=>'_blank')); ?> //
+			<?php echo CHtml::link('Bootstrap 2.0.2', 'http://twitter.github.com/bootstrap', array('target'=>'_blank')); ?> //
 			<?php echo CHtml::link('LESS', 'http://www.lesscss.org', array('target'=>'_blank')); ?>
 		</p>
 
@@ -130,7 +131,7 @@
 
 </div>
 
-<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f362fc83fc39768"></script>
+<?php Yii::app()->clientScript->registerScript('http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f362fc83fc39768', CClientScript::POS_END); ?>
 
 </body>
 </html>
