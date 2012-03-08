@@ -1006,11 +1006,11 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		'type'=>'primary', // '', 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
 		'buttons'=>array(
 			array('label'=>'Action', 'items'=>array(
-				array('label'=>'Action'),
-				array('label'=>'Another action'),
-				array('label'=>'Something else'),
+				array('label'=>'Action', 'url'=>'#'),
+				array('label'=>'Another action', 'url'=>'#'),
+				array('label'=>'Something else', 'url'=>'#'),
 				'---',
-				array('label'=>'Separate link'),
+				array('label'=>'Separate link', 'url'=>'#'),
 			)),
 		),
 	)); ?>
@@ -1024,11 +1024,11 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 			'buttons'=>array(
 				array('label'=>'Action', 'url'=>'#'),
 				array('items'=>array(
-					array('label'=>'Action'),
-					array('label'=>'Another action'),
-					array('label'=>'Something else'),
+					array('label'=>'Action', 'url'=>'#'),
+					array('label'=>'Another action', 'url'=>'#'),
+					array('label'=>'Something else', 'url'=>'#'),
 					'---',
-					array('label'=>'Separate link'),
+					array('label'=>'Separate link', 'url'=>'#'),
 				)),
 			),
 		)); ?>
@@ -1038,10 +1038,10 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 				array('label'=>'Action', 'url'=>'#'),
 				array('items'=>array(
 					array('label'=>'Action'),
-					array('label'=>'Another action'),
-					array('label'=>'Something else'),
+					array('label'=>'Another action', 'url'=>'#'),
+					array('label'=>'Something else', 'url'=>'#'),
 					'---',
-					array('label'=>'Separate link'),
+					array('label'=>'Separate link', 'url'=>'#'),
 				)),
 			),
 		)); ?>
@@ -1050,11 +1050,11 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 			'buttons'=>array(
 				array('label'=>'Danger', 'url'=>'#'),
 				array('items'=>array(
-					array('label'=>'Action'),
-					array('label'=>'Another action'),
-					array('label'=>'Something else'),
+					array('label'=>'Action', 'url'=>'#'),
+					array('label'=>'Another action', 'url'=>'#'),
+					array('label'=>'Something else', 'url'=>'#'),
 					'---',
-					array('label'=>'Separate link'),
+					array('label'=>'Separate link', 'url'=>'#'),
 				)),
 			),
 		)); ?>
@@ -1065,11 +1065,11 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 			'buttons'=>array(
 				array('label'=>'Success', 'url'=>'#'),
 				array('items'=>array(
-					array('label'=>'Action'),
-					array('label'=>'Another action'),
-					array('label'=>'Something else'),
+					array('label'=>'Action', 'url'=>'#'),
+					array('label'=>'Another action', 'url'=>'#'),
+					array('label'=>'Something else', 'url'=>'#'),
 					'---',
-					array('label'=>'Separate link'),
+					array('label'=>'Separate link', 'url'=>'#'),
 				)),
 			),
 		)); ?>
@@ -1078,11 +1078,11 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 			'buttons'=>array(
 				array('label'=>'Info', 'url'=>'#'),
 				array('items'=>array(
-					array('label'=>'Action'),
-					array('label'=>'Another action'),
-					array('label'=>'Something else'),
+					array('label'=>'Action', 'url'=>'#'),
+					array('label'=>'Another action', 'url'=>'#'),
+					array('label'=>'Something else', 'url'=>'#'),
 					'---',
-					array('label'=>'Separate link'),
+					array('label'=>'Separate link', 'url'=>'#'),
 				)),
 			),
 		)); ?>
@@ -1098,11 +1098,11 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		'buttons'=>array(
 			array('label'=>'Action', 'url'=>'#'),
 			array('items'=>array(
-				array('label'=>'Action'),
-				array('label'=>'Another action'),
-				array('label'=>'Something else'),
+				array('label'=>'Action', 'url'=>'#'),
+				array('label'=>'Another action', 'url'=>'#'),
+				array('label'=>'Something else', 'url'=>'#'),
 				'---',
-				array('label'=>'Separate link'),
+				array('label'=>'Separate link', 'url'=>'#'),
 			)),
 		),
 	)); ?>
