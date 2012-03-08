@@ -1113,7 +1113,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<p>
 		<?php $this->widget('bootstrap.widgets.BootButton', array(
-			'method'=>'button',
+			'fn'=>'button',
 			'type'=>'primary',
 			'label'=>'Click me',
 			'loadingText'=>'loading...',
@@ -1136,7 +1136,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 <?php echo $parser->safeTransform("~~~
 [php]
 <?php \$this->widget('bootstrap.widgets.BootButton', array(
-	'method'=>'button',
+	'fn'=>'button',
 	'type'=>'primary',
 	'label'=>'Click me',
 	'loadingText'=>'loading...',
@@ -1159,7 +1159,7 @@ $('#buttonStateful').click(function() {
 
 	<p>
 		<?php $this->widget('bootstrap.widgets.BootButton', array(
-			'method'=>'button',
+			'fn'=>'button',
 			'type'=>'primary',
 			'label'=>'Toggle me',
 			'toggle'=>true,
@@ -1171,7 +1171,7 @@ $('#buttonStateful').click(function() {
 <?php echo $parser->safeTransform("~~~
 [php]
 <?php \$this->widget('bootstrap.widgets.BootButton', array(
-	'method'=>'button',
+	'fn'=>'button',
 	'type'=>'primary',
 	'label'=>'Toggle me',
 	'toggle'=>true,

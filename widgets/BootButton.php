@@ -15,11 +15,15 @@ Yii::import('bootstrap.widgets.BootWidget');
  */
 class BootButton extends BootWidget
 {
-	// Button methods.
-	const METHOD_LINK = 'link';
-	const METHOD_BUTTON = 'button';
-	const METHOD_AJAXLINK = 'ajaxLink';
-	const METHOD_AJAXBUTTON = 'ajaxButton';
+	// Button callback functions.
+	const FN_LINK = 'link';
+	const FN_BUTTON = 'button';
+	const FN_SUBMIT = 'submit';
+	const FN_SUBMITLINK = 'submitLink';
+	const FN_RESET = 'reset';
+	const FN_AJAXLINK = 'ajaxLink';
+	const FN_AJAXBUTTON = 'ajaxButton';
+	const FN_AJAXSUBMIT = 'ajaxSubmit';
 
 	// Button types.
 	const TYPE_NORMAL = '';
@@ -36,10 +40,10 @@ class BootButton extends BootWidget
 	const SIZE_LARGE = 'large';
 
 	/**
-	 * @var string the method to use for rendering the button.
-	 * Valid values are 'link', 'button', 'ajaxLink' and 'ajaxButton'.
+	 * @var string the callback function for rendering the button.
+	 * Valid values are 'link', 'button', 'submit', 'submitLink', 'reset', 'ajaxLink', 'ajaxButton' and 'ajaxSubmit'.
 	 */
-	public $method = self::METHOD_LINK;
+	public $fn = self::FN_LINK;
 	/**
 	 * @var string the button type.
 	 * Valid values are '', 'primary', 'info', 'success', 'warning', 'danger' and 'inverse'.
@@ -182,19 +186,31 @@ class BootButton extends BootWidget
 	 */
 	protected function createButton()
 	{
-		switch ($this->method)
+		switch ($this->fn)
 		{
-			case self::METHOD_BUTTON:
+			case self::FN_BUTTON:
 				return CHtml::htmlButton($this->label, $this->htmlOptions);
 
-			case self::METHOD_AJAXLINK:
+			case self::FN_SUBMIT:
+				return CHtml::submitButton($this->label, $this->htmlOptions);
+
+			case self::FN_RESET:
+				return CHtml::resetButton($this->label, $this->htmlOptions);
+
+			case self::FN_SUBMITLINK:
+				return CHtml::linkButton($this->label, $this->htmlOptions);
+
+			case self::FN_AJAXLINK:
 				return CHtml::ajaxLink($this->label, $this->url, $this->ajaxOptions, $this->htmlOptions);
 
-			case self::METHOD_AJAXBUTTON:
+			case self::FN_AJAXBUTTON:
 				return CHtml::ajaxButton($this->label, $this->url, $this->ajaxOptions, $this->htmlOptions);
 
+			case self::FN_AJAXSUBMIT:
+				return CHtml::ajaxSubmitButton($this->label, $this->ajaxOptions, $this->htmlOptions);
+
 			default:
-			case self::METHOD_LINK:
+			case self::FN_LINK:
 				return CHtml::link($this->label, $this->url, $this->htmlOptions);
 		}
 	}

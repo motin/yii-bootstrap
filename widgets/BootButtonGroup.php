@@ -21,10 +21,10 @@ class BootButtonGroup extends BootWidget
 	const TOGGLE_RADIO = 'radio';
 
 	/**
-	 * @var string the button method.
-	 * @see BootButton::method
+	 * @var string the button function.
+	 * @see BootButton::fn
 	 */
-	public $method = BootButton::METHOD_LINK;
+	public $fn = BootButton::FN_LINK;
 	/**
 	 * @var string the button type.
 	 * @see BootButton::type
@@ -78,7 +78,7 @@ class BootButtonGroup extends BootWidget
 		foreach ($this->buttons as $button)
 		{
 			$this->controller->widget('bootstrap.widgets.BootButton', array(
-				'method'=>isset($button['method']) ? $button['method'] : $this->method,
+				'fn'=>isset($button['fn']) ? $button['fn'] : $this->fn,
 				'type'=>isset($button['type']) ? $button['type'] : $this->type,
 				'size'=>$this->size,
 				'icon'=>isset($button['icon']) ? $button['icon'] : null,
