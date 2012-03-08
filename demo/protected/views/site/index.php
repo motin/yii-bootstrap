@@ -346,7 +346,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 [php]
 <?php \$this->widget('bootstrap.widgets.BootTabbed', array(
 	'type'=>'tabs',
-	'placement'=>'below', // 'top ', 'right', 'bottom' or 'left'
+	'placement'=>'below', // '', 'right', 'below' or 'left'
 	'tabs'=>array(
 		array('label'=>'Section 1', 'content'=>'<p>I\'m in Section 1.</p>'),
 		array('label'=>'Section 2', 'content'=>'<p>Howdy, I\'m in Section 2.</p>'),
@@ -937,11 +937,11 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
 			'buttons'=>array(
 				array('label'=>'Action', 'items'=>array(
-					array('label'=>'Action'),
-					array('label'=>'Another action'),
-					array('label'=>'Something else'),
+					array('label'=>'Action', 'url'=>'#'),
+					array('label'=>'Another action', 'url'=>'#'),
+					array('label'=>'Something else', 'url'=>'#'),
 					'---',
-					array('label'=>'Separate link'),
+					array('label'=>'Separate link', 'url'=>'#'),
 				)),
 			),
 		)); ?>
@@ -949,11 +949,11 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 			'type'=>'primary',
 			'buttons'=>array(
 				array('label'=>'Action', 'items'=>array(
-					array('label'=>'Action'),
-					array('label'=>'Another action'),
-					array('label'=>'Something else'),
+					array('label'=>'Action', 'url'=>'#'),
+					array('label'=>'Another action', 'url'=>'#'),
+					array('label'=>'Something else', 'url'=>'#'),
 					'---',
-					array('label'=>'Separate link'),
+					array('label'=>'Separate link', 'url'=>'#'),
 				)),
 			),
 		)); ?>
@@ -961,11 +961,11 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 			'type'=>'danger',
 			'buttons'=>array(
 				array('label'=>'Danger', 'items'=>array(
-					array('label'=>'Action'),
-					array('label'=>'Another action'),
-					array('label'=>'Something else'),
+					array('label'=>'Action', 'url'=>'#'),
+					array('label'=>'Another action', 'url'=>'#'),
+					array('label'=>'Something else', 'url'=>'#'),
 					'---',
-					array('label'=>'Separate link'),
+					array('label'=>'Separate link', 'url'=>'#'),
 				)),
 			),
 		)); ?>
@@ -975,11 +975,11 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 			'type'=>'success',
 			'buttons'=>array(
 				array('label'=>'Success', 'items'=>array(
-					array('label'=>'Action'),
-					array('label'=>'Another action'),
-					array('label'=>'Something else'),
+					array('label'=>'Action', 'url'=>'#'),
+					array('label'=>'Another action', 'url'=>'#'),
+					array('label'=>'Something else', 'url'=>'#'),
 					'---',
-					array('label'=>'Separate link'),
+					array('label'=>'Separate link', 'url'=>'#'),
 				)),
 			),
 		)); ?>
@@ -987,11 +987,11 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 			'type'=>'info',
 			'buttons'=>array(
 				array('label'=>'Info', 'items'=>array(
-					array('label'=>'Action'),
-					array('label'=>'Another action'),
-					array('label'=>'Something else'),
+					array('label'=>'Action', 'url'=>'#'),
+					array('label'=>'Another action', 'url'=>'#'),
+					array('label'=>'Something else', 'url'=>'#'),
 					'---',
-					array('label'=>'Separate link'),
+					array('label'=>'Separate link', 'url'=>'#'),
 				)),
 			),
 		)); ?>
