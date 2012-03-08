@@ -230,11 +230,11 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		<?php $this->widget('bootstrap.widgets.BootMenu', array(
 			'type'=>'list',
 			'items'=>array(
-				array('label'=>'LIST HEADER', 'itemOptions'=>array('class'=>'nav-header')),
+				array('label'=>'LIST HEADER'),
 				array('label'=>'Home', 'icon'=>'home', 'url'=>'#', 'active'=>true),
 				array('label'=>'Library', 'icon'=>'book', 'url'=>'#'),
 				array('label'=>'Application', 'icon'=>'pencil', 'url'=>'#'),
-				array('label'=>'ANOTHER LIST HEADER', 'itemOptions'=>array('class'=>'nav-header')),
+				array('label'=>'ANOTHER LIST HEADER'),
 				array('label'=>'Profile', 'icon'=>'user', 'url'=>'#'),
 				array('label'=>'Settings', 'icon'=>'cog', 'url'=>'#'),
 				array('label'=>'Help', 'icon'=>'flag', 'url'=>'#'),
@@ -250,11 +250,11 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 <?php \$this->widget('bootstrap.widgets.BootMenu', array(
 	'type'=>'list',
 	'items'=>array(
-		array('label'=>'LIST HEADER', 'itemOptions'=>array('class'=>'nav-header')),
+		array('label'=>'LIST HEADER'),
 		array('label'=>'Home', 'icon'=>'home', 'url'=>'#', 'active'=>true),
 		array('label'=>'Library', 'icon'=>'book', 'url'=>'#'),
 		array('label'=>'Application', 'icon'=>'pencil', 'url'=>'#'),
-		array('label'=>'ANOTHER LIST HEADER', 'itemOptions'=>array('class'=>'nav-header')),
+		array('label'=>'ANOTHER LIST HEADER'),
 		array('label'=>'Profile', 'icon'=>'user', 'url'=>'#'),
 		array('label'=>'Settings', 'icon'=>'cog', 'url'=>'#'),
 		array('label'=>'Help', 'icon'=>'flag', 'url'=>'#'),

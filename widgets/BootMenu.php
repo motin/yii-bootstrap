@@ -151,9 +151,6 @@ class BootMenu extends BootBaseMenu
 			$item['label'] .= ' <span class="caret"></span>';
 		}
 
-		if (!isset($item['url']))
-			$item['url'] = '#';
-
 		return parent::renderItem($item);
 	}
 
