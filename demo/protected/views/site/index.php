@@ -1037,7 +1037,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 			'buttons'=>array(
 				array('label'=>'Action', 'url'=>'#'),
 				array('items'=>array(
-					array('label'=>'Action'),
+					array('label'=>'Action', 'url'=>'#'),
 					array('label'=>'Another action', 'url'=>'#'),
 					array('label'=>'Something else', 'url'=>'#'),
 					'---',
