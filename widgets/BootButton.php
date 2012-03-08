@@ -10,13 +10,18 @@
 
 Yii::import('bootstrap.widgets.BootWidget');
 
+/**
+ * Bootstrap button widget.
+ */
 class BootButton extends BootWidget
 {
+	// Button methods.
 	const METHOD_LINK = 'link';
 	const METHOD_BUTTON = 'button';
 	const METHOD_AJAXLINK = 'ajaxLink';
 	const METHOD_AJAXBUTTON = 'ajaxButton';
 
+	// Button types.
 	const TYPE_NORMAL = '';
 	const TYPE_PRIMARY = 'primary';
 	const TYPE_INFO = 'info';
@@ -25,22 +30,65 @@ class BootButton extends BootWidget
 	const TYPE_DANGER = 'danger';
 	const TYPE_INVERSE = 'inverse';
 
+	// Button sizes.
 	const SIZE_SMALL = 'small';
 	const SIZE_NORMAL = '';
 	const SIZE_LARGE = 'large';
 
+	/**
+	 * @var string the method to use for rendering the button.
+	 * Valid values are 'link', 'button', 'ajaxLink' and 'ajaxButton'.
+	 */
 	public $method = self::METHOD_LINK;
+	/**
+	 * @var string the button type.
+	 * Valid values are '', 'primary', 'info', 'success', 'warning', 'danger' and 'inverse'.
+	 */
 	public $type = self::TYPE_NORMAL;
+	/**
+	 * @var string the button size.
+	 * Valid values are '', 'small' and 'large'.
+	 */
 	public $size = self::SIZE_NORMAL;
+	/**
+	 * @var string the button icon, e.g. 'ok' or 'remove white'.
+	 */
 	public $icon;
+	/**
+	 * @var string the button label.
+	 */
 	public $label;
+	/**
+	 * @var string the button URL.
+	 */
 	public $url;
+	/**
+	 * @var boolean indicates whether the button is active.
+	 */
 	public $active = false;
+	/**
+	 * @var array the dropdown button items.
+	 */
 	public $items;
+	/**
+	 * @var boolean indicates whether to enable toggle.
+	 */
 	public $toggle;
+	/**
+	 * @var string the loading text.
+	 */
 	public $loadingText;
+	/**
+	 * @var string the complete text.
+	 */
 	public $completeText;
+	/**
+	 * @var boolean indicates whether to encode the label.
+	 */
 	public $encodeLabel = true;
+	/**
+	 * @var array the button ajax options (used by 'ajaxLink' and 'ajaxButton').
+	 */
 	public $ajaxOptions = array();
 
 	/**
@@ -70,6 +118,9 @@ class BootButton extends BootWidget
 
 		if ($this->hasDropdown())
 		{
+			if (!isset($this->url))
+				$this->url = '#';
+
 			$class[] = 'dropdown-toggle';
 			$this->label .= ' <span class="caret"></span>';
 			$this->htmlOptions['data-toggle'] = 'dropdown';

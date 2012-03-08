@@ -101,7 +101,7 @@
 	)); ?>
 
 	<?php if (!empty($this->breadcrumbs)):?>
-		<?php $this->widget('bootstrap.widgets.BootCrumb', array(
+		<?php $this->widget('bootstrap.widgets.BootBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
 		)); ?>
 	<?php endif?>

@@ -55,9 +55,6 @@ abstract class BootBaseMenu extends BootWidget
 			$item['label'] = '<i class="'.$item['icon'].'"></i> '.$item['label'];
 		}
 
-		if (!isset($item['header']) && !isset($item['url']))
-			$item['url'] = '#';
-
 		if (isset($item['url']))
 			return CHtml::link($item['label'], $item['url'], $item['linkOptions']);
 		else

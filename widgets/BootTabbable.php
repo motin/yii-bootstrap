@@ -17,7 +17,7 @@ Yii::import('bootstrap.widgets.BootWidget');
  */
 class BootTabbable extends BootWidget
 {
-	// The valid placements.
+	// Tab placements.
 	const PLACEMENT_ABOVE = 'above';
 	const PLACEMENT_BELOW = 'below';
 	const PLACEMENT_LEFT = 'left';

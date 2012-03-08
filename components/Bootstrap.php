@@ -38,6 +38,10 @@ class Bootstrap extends CApplicationComponent
 	 */
 	public $responsiveCss = false;
 	/**
+	 * @var boolean whether to register jQuery and the Bootstrap JavaScript.
+	 */
+	public $enableJS = true;
+	/**
 	 * @var array the plugin options (name=>options).
 	 * @since 0.9.8
 	 */
@@ -60,8 +64,11 @@ class Bootstrap extends CApplicationComponent
 		if ($this->responsiveCss)
 			$this->registerResponsiveCss();
 
-		Yii::app()->clientScript->registerCoreScript('jquery');
-		$this->registerCorePlugins();
+		if ($this->enableJS)
+		{
+			Yii::app()->clientScript->registerCoreScript('jquery');
+			$this->registerCorePlugins();
+		}
 	}
 
 	/**

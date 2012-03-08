@@ -5,13 +5,13 @@
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  * @package bootstrap.widgets
+ * @since 0.9.3
  */
 
 Yii::import('bootstrap.widgets.BootWidget');
 
 /**
  * Bootstrap modal widget.
- * @since 0.9.3
  */
 class BootModal extends BootWidget
 {

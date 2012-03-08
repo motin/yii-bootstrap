@@ -42,11 +42,11 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
-<section id="bootCrumb">
+<section id="bootBreadcrumbs">
 
 	<h2>Breadcrumbs</h2>
 
-	<?php $this->widget('bootstrap.widgets.BootCrumb', array(
+	<?php $this->widget('bootstrap.widgets.BootBreadcrumbs', array(
 		'links'=>array('Library'=>'#', 'Data'),
 	)); ?>
 
@@ -54,7 +54,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 <?php echo $parser->safeTransform("~~~
 [php]
-<?php \$this->widget('bootstrap.widgets.BootCrumb', array(
+<?php \$this->widget('bootstrap.widgets.BootBreadcrumbs', array(
 	'links'=>array('Library'=>'#', 'Data'),
 )); ?>
 ~~~"); ?>
@@ -81,7 +81,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 					array('label'=>'Link', 'url'=>'#'),
 					array('label'=>'Link', 'url'=>'#'),
 					array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
-						array('label'=>'DROPDOWN HEADER', 'header'=>true),
+						array('label'=>'DROPDOWN HEADER'),
 						array('label'=>'Action', 'url'=>'#'),
 						array('label'=>'Another action', 'url'=>'#'),
 						array('label'=>'Something else here', 'url'=>'#'),
@@ -97,6 +97,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 				'items'=>array(
 					array('label'=>'Link', 'url'=>'#'),
 					array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
+						array('label'=>'DROPDOWN HEADER'),
 						array('label'=>'Action', 'url'=>'#'),
 						array('label'=>'Another action', 'url'=>'#'),
 						array('label'=>'Something else here', 'url'=>'#'),
@@ -124,7 +125,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 				array('label'=>'Home', 'url'=>'#', 'active'=>true),
 				array('label'=>'Link', 'url'=>'#'),
 				array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
-					array('label'=>'DROPDOWN HEADER', 'itemOptions'=>array('class'=>'nav-header')),
+					array('label'=>'DROPDOWN HEADER'),
 					array('label'=>'Action', 'url'=>'#'),
 					array('label'=>'Another action', 'url'=>'#'),
 					array('label'=>'Something else here', 'url'=>'#'),
@@ -140,6 +141,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 			'items'=>array(
 				array('label'=>'Link', 'url'=>'#'),
 				array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
+					array('label'=>'DROPDOWN HEADER'),
 					array('label'=>'Action', 'url'=>'#'),
 					array('label'=>'Another action', 'url'=>'#'),
 					array('label'=>'Something else here', 'url'=>'#'),
@@ -470,11 +472,11 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
-<section id="bootThumbs">
+<section id="bootThumbnails">
 
 	<h2>Thumbnails</h2>
 
-	<?php $this->widget('bootstrap.widgets.BootThumbs', array(
+	<?php $this->widget('bootstrap.widgets.BootThumbnails', array(
 		'dataProvider'=>$listDataProvider,
 		'template'=>"{items}\n{pager}",
 		'itemView'=>'_thumb',
@@ -489,7 +491,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 <?php echo $parser->safeTransform("~~~
 [php]
-<?php \$this->widget('bootstrap.widgets.BootThumbs', array(
+<?php \$this->widget('bootstrap.widgets.BootThumbnails', array(
 	'dataProvider'=>\$listDataProvider,
 	'template'=>\"{items}\\n{pager}\",
 	'itemView'=>'_thumb',
@@ -700,10 +702,6 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	<?php echo CHtml::htmlButton('Go', array('class'=>'btn', 'type'=>'submit')); ?>
 
 	<?php $this->endWidget(); ?>
-
-	<div class="alert alert-block alert-warning">
-
-	</div>
 
 	<h3>Horizontal</h3>
 
@@ -1367,13 +1365,13 @@ $('#buttonStateful').click(function() {
 		'scrollspy'=>array('spy'=>'.subnav', 'offset'=>50),
 		'items'=>array(
 			array('label'=>'Alert', 'url'=>'#bootAlert'),
-			array('label'=>'Breadcrumb', 'url'=>'#bootCrumb'),
+			array('label'=>'Breadcrumb', 'url'=>'#bootBreadcrumbs'),
 			array('label'=>'Navbar', 'url'=>'#bootNavbar'),
 			array('label'=>'Menu', 'url'=>'#bootMenu'),
 			array('label'=>'Tabbable', 'url'=>'#bootTabbable'),
 			array('label'=>'Detail view', 'url'=>'#bootDetailView'),
 			array('label'=>'Grid view', 'url'=>'#bootGridView'),
-			array('label'=>'Thumbnail', 'url'=>'#bootThumbs'),
+			array('label'=>'Thumbnail', 'url'=>'#bootThumbnails'),
 			array('label'=>'Tooltip', 'url'=>'#bootTooltip'),
 			array('label'=>'Popover', 'url'=>'#bootPopover'),
 			array('label'=>'Modal', 'url'=>'#bootModal'),

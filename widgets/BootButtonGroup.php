@@ -11,18 +11,46 @@
 Yii::import('bootstrap.widgets.BootButton');
 Yii::import('bootstrap.widgets.BootWidget');
 
+/**
+ * Bootstrap button group widget.
+ */
 class BootButtonGroup extends BootWidget
 {
+	// Toggle options.
 	const TOGGLE_CHECKBOX = 'checkbox';
 	const TOGGLE_RADIO = 'radio';
 
+	/**
+	 * @var string the button method.
+	 * @see BootButton::method
+	 */
 	public $method = BootButton::METHOD_LINK;
+	/**
+	 * @var string the button type.
+	 * @see BootButton::type
+	 */
 	public $type = BootButton::TYPE_NORMAL;
+	/**
+	 * @var string the button size.
+	 * @see BootButton::size
+	 */
 	public $size = BootButton::SIZE_NORMAL;
+	/**
+	 * @var boolean indicates whether to encode the button labels.
+	 */
 	public $encodeLabel = true;
+	/**
+	 * @var array the button configuration.
+	 */
 	public $buttons = array();
+	/**
+	 * @var boolean indicates whether to enable button toggling.
+	 */
 	public $toggle;
 
+	/**
+	 * Initializes the widget.
+	 */
 	public function init()
 	{
 		$cssClass = 'btn-group';
@@ -40,6 +68,9 @@ class BootButtonGroup extends BootWidget
 		}
 	}
 
+	/**
+	 * Runs the widget.
+	 */
 	public function run()
 	{
 		echo CHtml::openTag('div', $this->htmlOptions);

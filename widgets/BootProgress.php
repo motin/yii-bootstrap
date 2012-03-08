@@ -15,7 +15,7 @@ Yii::import('bootstrap.widgets.BootWidget');
  */
 class BootProgress extends BootWidget
 {
-	// The different progress bar types.
+	// Progress bar types.
 	const TYPE_DEFAULT = '';
 	const TYPE_INFO = 'info';
 	const TYPE_SUCCESS = 'success';

@@ -10,6 +10,9 @@
 
 Yii::import('bootstrap.widgets.BootBaseMenu');
 
+/**
+ * Bootstrap dropdown menu widget.
+ */
 class BootDropdown extends BootBaseMenu
 {
 	/**
@@ -45,7 +48,7 @@ class BootDropdown extends BootBaseMenu
 					$item['itemOptions'] = array();
 
 				$class = array();
-				if (isset($item['header']))
+				if (!isset($item['url']))
 					$class[] = 'nav-header';
 
 				if ($item['active'])

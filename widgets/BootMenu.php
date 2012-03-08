@@ -16,7 +16,7 @@ Yii::import('bootstrap.widgets.BootBaseMenu');
  */
 class BootMenu extends BootBaseMenu
 {
-	// The different menu types.
+	// Menu types.
 	const TYPE_UNSTYLED = '';
 	const TYPE_TABS = 'tabs';
 	const TYPE_PILLS = 'pills';
@@ -150,6 +150,9 @@ class BootMenu extends BootBaseMenu
 			$item['linkOptions']['data-toggle'] = 'dropdown';
 			$item['label'] .= ' <span class="caret"></span>';
 		}
+
+		if (!isset($item['url']))
+			$item['url'] = '#';
 
 		return parent::renderItem($item);
 	}
