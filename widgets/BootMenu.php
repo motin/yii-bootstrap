@@ -108,7 +108,7 @@ class BootMenu extends BootBaseMenu
 
 				$cssClass = implode(' ', $class);
 				if(isset($item['itemOptions']['class']))
-					$item['itemOptions']['class'] .= $cssClass;
+					$item['itemOptions']['class'] .= ' '.$cssClass;
 				else
 					$item['itemOptions']['class'] = $cssClass;
 
