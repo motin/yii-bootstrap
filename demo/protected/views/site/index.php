@@ -724,6 +724,8 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		<?php echo $form->textAreaRow($model, 'textarea', array('class'=>'span8', 'rows'=>5)); ?>
 		<?php echo $form->uneditableRow($model, 'uneditable'); ?>
 		<?php echo $form->textFieldRow($model, 'disabled', array('disabled'=>true)); ?>
+		<?php echo $form->textFieldRow($model, 'prepend', array('prepend'=>'@', 'hint'=>'Coming in version 0.9.10')); ?>
+		<?php echo $form->textFieldRow($model, 'append', array('append'=>'.00', 'hint'=>'Coming in version 0.9.10')); ?>
 		<?php echo $form->checkBoxRow($model, 'disabledCheckbox', array('disabled'=>true)); ?>
 		<?php echo $form->checkBoxListInlineRow($model, 'inlineCheckboxes', array('1', '2', '3')); ?>
 		<?php echo $form->checkBoxListRow($model, 'checkboxes', array(
@@ -811,6 +813,8 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	<?php echo \$form->textAreaRow(\$model, 'textarea', array('class'=>'span8', 'rows'=>5)); ?>
 	<?php echo \$form->uneditableRow(\$model, 'uneditable'); ?>
 	<?php echo \$form->textFieldRow(\$model, 'disabled', array('disabled'=>true)); ?>
+	<?php echo \$form->textFieldRow(\$model, 'prepend', array('prepend'=>'@', 'hint'=>'Coming in version 0.9.10')); ?>
+	<?php echo \$form->textFieldRow(\$model, 'append', array('append'=>'.00', 'hint'=>'Coming in version 0.9.10')); ?>
 	<?php echo \$form->checkBoxRow(\$model, 'disabledCheckbox', array('disabled'=>true)); ?>
 	<?php echo \$form->checkBoxListInlineRow(\$model, 'inlineCheckboxes', array('1', '2', '3')); ?>
 	<?php echo \$form->checkBoxListRow(\$model, 'checkboxes', array(
