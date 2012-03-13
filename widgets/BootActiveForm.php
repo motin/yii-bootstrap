@@ -196,12 +196,12 @@ class BootActiveForm extends CActiveForm
 	 * Renders a captcha row.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
-	 * @param array $captchaOptions the captcha options
 	 * @param array $htmlOptions additional HTML attributes
+	 * @param array $captchaOptions the captcha options
 	 * @return string the generated row
 	 * @since 0.9.3
 	 */
-	public function captchaRow($model, $attribute, $captchaOptions = array(), $htmlOptions = array())
+	public function captchaRow($model, $attribute, $htmlOptions = array(), $captchaOptions = array())
 	{
 		return $this->inputRow(BootInput::TYPE_CAPTCHA, $model, $attribute, $captchaOptions, $htmlOptions);
 	}

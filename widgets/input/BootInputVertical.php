@@ -147,7 +147,9 @@ class BootInputVertical extends BootInput
 	protected function textField()
 	{
 		echo $this->getLabel();
+		echo $this->getPrepend();
 		echo $this->form->textField($this->model, $this->attribute, $this->htmlOptions);
+		echo $this->getAppend();
 		echo $this->getError().$this->getHint();
 	}
 
