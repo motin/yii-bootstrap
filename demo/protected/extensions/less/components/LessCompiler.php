@@ -6,7 +6,12 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
 
-Yii::setPathOfAlias('Less', realpath(dirname(__FILE__).'/../lib/lessphp/lib/Less'));
+Yii::setPathOfAlias('Less', dirname(__FILE__).'/../lib/lessphp/lib/Less');
+
+/**
+ * Less compiler application component.
+ * Preload the component to enable auto compiling.
+ */
 class LessCompiler extends CApplicationComponent
 {
 	/**
@@ -18,29 +23,37 @@ class LessCompiler extends CApplicationComponent
 	 */
 	public $paths = array();
 	/**
-	 * @var bool
+	 * @var boolean indicates whether to force compiling.
 	 */
-	public $autoCompile = false;
+	public $forceCompile = false;
 	/**
-	 * @var \Less\Parser the less parser.
+	 * @var boolean compiler debug mode.
 	 */
+	public $debug = false;
+	/**
+	 * @var boolean whether to compress css or not.
+	 */
+	public $compress = false;
+
 	protected $_parser;
 
 	/**
 	 * Initializes the component.
-	 * @throws CException if the base path does not exist
 	 */
 	public function init()
 	{
-		if (!isset($this->basePath))
+		if ($this->basePath === null)
 			$this->basePath = Yii::getPathOfAlias('webroot');
 
 		if (!file_exists($this->basePath))
-			throw new CException(__CLASS__.': Failed to initialize compiler. Base path does not exist!');
+			throw new CException(__CLASS__.': Failed to initialize compiler. Base path does not exist.');
 
-		$this->_parser = new \Less\Parser();
+		$env = new \Less\Environment();
+		$env->setDebug($this->debug);
+		$env->setCompress($this->compress);
+		$this->_parser = new \Less\Parser($env);
 
-		if ($this->autoCompile)
+		if ($this->forceCompile || $this->hasChanges())
 			$this->compile();
 	}
 
@@ -52,22 +65,22 @@ class LessCompiler extends CApplicationComponent
 	{
 		foreach ($this->paths as $lessPath => $cssPath)
 		{
-			$toPath = $this->basePath.'/'.$cssPath;
 			$fromPath = $this->basePath.'/'.$lessPath;
+			$toPath = $this->basePath.'/'.$cssPath;
 
 			if (file_exists($fromPath))
 				file_put_contents($toPath, $this->parse($fromPath));
 			else
-				throw new CException(__CLASS__.': Failed to compile less file. Source path does not exist!');
+				throw new CException(__CLASS__.': Failed to compile less file. Source path does not exist.');
 
 			$this->_parser->clearCss();
 		}
 	}
 
 	/**
-	 * Parses the less code to css.
+	 * Parses the less code to CSS.
 	 * @param string $filename the file path to the less file
-	 * @return string the css
+	 * @return string the CSS
 	 */
 	public function parse($filename)
 	{
@@ -77,8 +90,7 @@ class LessCompiler extends CApplicationComponent
 		}
 		catch (\Less\Exception\ParserException $e)
 		{
-			throw new CException(__CLASS__.': '.Yii::t('less','Failed to compile less file with message: `{message}`.',
-					array('{message}'=>$e->getMessage())));
+			throw new CException(__CLASS__.': Failed to parse less file. "'.$e->getMessage().'".');
 		}
 
 		return $css;
@@ -88,16 +100,18 @@ class LessCompiler extends CApplicationComponent
 	 * Returns whether any of files configured to be compiled has changed.
 	 * @return boolean the result
 	 */
-	public function hasChanges()
+	protected function hasChanges()
 	{
 		$dirs = array();
 		foreach ($this->paths as $source => $destination)
 		{
+			$destination = realpath($destination);
 			$compiled = $this->getLastModified($destination);
 			if (!isset($lastCompiled) || $compiled < $lastCompiled )
 				$lastCompiled = $compiled;
 
-			if (!in_array(dirname($source), $dirs))
+			$source = realpath($source);
+			if (!in_array($source, $dirs))
 				$dirs[] = $source;
 		}
 
@@ -130,20 +144,19 @@ class LessCompiler extends CApplicationComponent
 			{
 				$lastModified = null;
 
-				/** @var Directory $dir */
 				$dir = dir($path);
 				while ($entry = $dir->read())
 				{
 					if (strpos($entry, '.') === 0)
 						continue;
 
-					$path .= '/'.$entry;
+					$entry = $path.'/'.$entry;
 
-					if( is_dir($path) )
-						$modified = $this->getLastModified($path);
+					if( is_dir($entry) )
+						$modified = $this->getLastModified($entry);
 					else
 					{
-						$stat = stat($path);
+						$stat = stat($entry);
 						$modified = $stat['mtime'];
 					}
 

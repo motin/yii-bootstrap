@@ -7,12 +7,11 @@
 		'title'=>array('class'=>'ext.seo.widgets.SeoTitle', 'separator'=>' :: '),
 	)); ?>
 	<link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/favicon.ico">
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/styles.css" />
+	<?php Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl.'/css/styles.css'); ?>
 	<!--[if lt IE 9]>
 		<script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 	<script type="text/javascript">
-
 		var _gaq = _gaq || [];
 		_gaq.push(['_setAccount', 'UA-29040179-1']);
 		_gaq.push(['_trackPageview']);
@@ -22,7 +21,6 @@
 			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 		})();
-
 	</script>
 </head>
 
@@ -60,8 +58,8 @@
 				array('label'=>'Demo', 'url'=>Yii::app()->homeUrl,
 						'active'=>Yii::app()->controller->id === 'site' && Yii::app()->controller->action->id === 'index'),
 				array('label'=>'Setup', 'url'=>array('site/setup')),
-				array('label'=>'@Crisu83', 'url'=>'http://www.twitter.com/Crisu83', 'linkOptions'=>array('target'=>'_blank')),
 			),
+			'htmlOptions'=>array('class'=>'pull-left'),
 		),
 		'<div class="add-this pull-right">
 			<!-- AddThis Button BEGIN -->
@@ -74,27 +72,36 @@
 			<a class="addthis_counter addthis_bubble_style"></a>
 			</div>
 			<!-- AddThis Button END -->
-		</div>'
+		</div>',
+		array(
+			'class'=>'bootstrap.widgets.BootMenu',
+			'items'=>array(
+				array('label'=>'Bootstrap Docs', 'url'=>'http://twitter.github.com/bootstrap', 'linkOptions'=>array('target'=>'_blank')),
+				array('label'=>'Fork me on Bitbucket', 'url'=>'http://www.bitbucket.org/Crisu83/yii-bootstrap', 'linkOptions'=>array('target'=>'_blank')),
+				array('label'=>'Follow me on Twitter', 'url'=>'http://www.twitter.com/Crisu83', 'linkOptions'=>array('target'=>'_blank')),
+			),
+			'htmlOptions'=>array('class'=>'pull-right'),
+		),
 	),
 )); ?>
 
 <div class="container">
 
-	<div class="hero-unit">
-		<h1><?php echo CHtml::encode(Yii::app()->name); ?></h1>
+	<?php $this->beginWidget('bootstrap.widgets.BootHero', array(
+		'heading'=>Yii::app()->name,
+	)); ?>
 		<p>
-			Bringing together the
-			<?php echo CHtml::link('Yii PHP framework', 'http://www.yiiframework.com'); ?> and
-			<?php echo CHtml::link('Bootstrap', 'http://twitter.github.com/bootstrap/'); ?>, Twitter's new web development toolkit.
+			Bringing together the <?php echo CHtml::link('Yii PHP framework', 'http://www.yiiframework.com'); ?> and
+			<?php echo CHtml::link('Bootstrap', 'http://twitter.github.com/bootstrap/'); ?> Twitter's new web development toolkit.
 			Now with support for Bootstrap 2!
 			<?php echo CHtml::link('Yii-Bootstrap', 'http://www.yiiframework.com/extension/bootstrap/'); ?>
 			is an extension for Yii that provides a wide range of server-side widgets that allow you to easily use Bootstrap with Yii.
-			All widgets have been developed following Yii's conventions and work seemlessly together with Bootstrap and its jQuery plugins.
+			All widgets have been developed following Yii's conventions and work seamlessly together with Bootstrap and its jQuery plugins.
 		</p>
-	</div>
+	<?php $this->endWidget(); ?>
 
 	<?php if (!empty($this->breadcrumbs)):?>
-		<?php $this->widget('bootstrap.widgets.BootCrumb', array(
+		<?php $this->widget('bootstrap.widgets.BootBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
 		)); ?>
 	<?php endif?>
@@ -106,13 +113,13 @@
 	<footer>
 
 		<p class="powered">
-			Powered by <?php echo CHtml::link('Yii PHP framework 1.1.10', 'http://www.yiiframework.com', array('target'=>'_blank')); ?> //
-			<?php echo CHtml::link('jQuery 1.7.1', 'http://www.jquery.com', array('target'=>'_blank')); ?> //
-			<?php echo CHtml::link('Yii-Bootstrap 0.9.9', 'http://www.yiiframework.com/extension/bootstrap', array('target'=>'_blank')); ?> //
-			<?php echo CHtml::link('Yii-LESS 0.9.1', 'http://www.yiiframework.com/extension/less', array('target'=>'_blank')); ?>  //
-			<?php echo CHtml::link('Yii-SEO 0.9.3', 'http://www.yiiframework.com/extension/seo', array('target'=>'_blank')); ?> //
-			<?php echo CHtml::link('Yii-Facebook 0.9.1', '#', array('rel'=>'tooltip', 'title'=>'Link available soon')); ?> //
-			<?php echo CHtml::link('Bootstrap 2.0.1', 'http://twitter.github.com/bootstrap', array('target'=>'_blank')); ?> //
+			Powered by <?php echo CHtml::link('Yii PHP framework 1.1.10', 'http://www.yiiframework.com', array('target'=>'_blank')); ?> /
+			<?php echo CHtml::link('jQuery 1.7.1', 'http://www.jquery.com', array('target'=>'_blank')); ?> /
+			<?php echo CHtml::link('Yii-Bootstrap 0.9.10', 'http://www.yiiframework.com/extension/bootstrap', array('target'=>'_blank')); ?> /
+			<?php echo CHtml::link('Yii-LESS 0.9.1', 'http://www.yiiframework.com/extension/less', array('target'=>'_blank')); ?>  /
+			<?php echo CHtml::link('Yii-SEO 0.9.3', 'http://www.yiiframework.com/extension/seo', array('target'=>'_blank')); ?> /
+			<?php echo CHtml::link('Yii-Facebook 0.9.1', '#', array('rel'=>'tooltip', 'title'=>'Link available soon')); ?> /
+			<?php echo CHtml::link('Bootstrap 2.0.2', 'http://twitter.github.com/bootstrap', array('target'=>'_blank')); ?> /
 			<?php echo CHtml::link('LESS', 'http://www.lesscss.org', array('target'=>'_blank')); ?>
 		</p>
 
@@ -124,7 +131,7 @@
 
 </div>
 
-<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f362fc83fc39768"></script>
+<?php Yii::app()->clientScript->registerScriptFile('http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f362fc83fc39768', CClientScript::POS_END); ?>
 
 </body>
 </html>

@@ -4,6 +4,7 @@
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
+ * @version 0.9.10
  */
 
 /**
@@ -37,6 +38,10 @@ class Bootstrap extends CApplicationComponent
 	 */
 	public $responsiveCss = false;
 	/**
+	 * @var boolean whether to register jQuery and the Bootstrap JavaScript.
+	 */
+	public $enableJS = true;
+	/**
 	 * @var array the plugin options (name=>options).
 	 * @since 0.9.8
 	 */
@@ -59,8 +64,11 @@ class Bootstrap extends CApplicationComponent
 		if ($this->responsiveCss)
 			$this->registerResponsiveCss();
 
-		Yii::app()->clientScript->registerCoreScript('jquery');
-		$this->registerCorePlugins();
+		if ($this->enableJS)
+		{
+			Yii::app()->clientScript->registerCoreScript('jquery');
+			$this->registerCorePlugins();
+		}
 	}
 
 	/**
@@ -98,9 +106,6 @@ class Bootstrap extends CApplicationComponent
 	{
 		if (!$this->isPluginDisabled(self::PLUGIN_TRANSITION))
 			$this->enableTransitions();
-
-		if (!$this->isPluginDisabled(self::PLUGIN_BUTTON))
-			$this->registerButton();
 
 		if (!$this->isPluginDisabled(self::PLUGIN_TOOLTIP))
 			$this->registerTooltip();

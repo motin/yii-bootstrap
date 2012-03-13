@@ -15,6 +15,8 @@ class TestForm extends CFormModel
 	public $fileField;
 	public $uneditable;
 	public $disabled;
+	public $prepend;
+	public $append;
 	public $disabledCheckbox;
 	public $captcha;
 
@@ -30,6 +32,8 @@ class TestForm extends CFormModel
 			'fileField'=>'File input',
 			'uneditable'=>'Uneditable input',
 			'disabled'=>'Disabled input',
+			'prepend'=>'Prepend text',
+			'append'=>'Append text',
 			'disabledCheckbox'=>'Disabled checkbox',
 		);
 	}

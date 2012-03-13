@@ -3,23 +3,18 @@
 // Set the path of Bootstrap to be the root of the project.
 Yii::setPathOfAlias('bootstrap', realpath(dirname(__FILE__).'/../../../'));
 
-$path = dirname(__FILE__);
 $config = array(
-	'basePath'=>realpath($path.'/..'),
+	'basePath'=>realpath(dirname(__FILE__).'/..'),
 	'name'=>'Yii-Bootstrap',
 
-	'preload'=>array('bootstrap', 'log'),
+	'preload'=>array(
+		'bootstrap',
+		'log',
+	),
 
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
-	),
-
-	'behaviors'=>array(
-		'maintenance'=>array(
-			'class'=>'ext.maintenance.components.Maintenance',
-			'route'=>array('site/maintenance'),
-		),
 	),
 
 	'modules'=>array(
@@ -51,12 +46,6 @@ $config = array(
 					'class'=>'CFileLogRoute',
 					'levels'=>'error, warning',
 				),
-				// uncomment the following to show log messages on web pages
-				/*
-				array(
-					'class'=>'CWebLogRoute',
-				),
-				*/
 			),
 		),
 		'urlManager'=>array(
@@ -80,7 +69,6 @@ $config = array(
 	),
 );
 
-if (file_exists($path.'/local.php'))
-	$local = require($path.'/local.php');
-
-return isset($local) ? CMap::mergeArray($config, $local) : $config;
+return file_exists(dirname(__FILE__).'/local.php')
+		? CMap::mergeArray($config, require('local.php'))
+		: $config;

@@ -10,7 +10,6 @@
 /**
  * Bootstrap input widget.
  * Used for rendering inputs according to Bootstrap standards.
- * @todo Implement BootInputInline and BootInputVertical. http://twitter.github.com/bootstrap/base-css.html#forms
  */
 abstract class BootInput extends CInputWidget
 {
@@ -50,21 +49,32 @@ abstract class BootInput extends CInputWidget
 
 	/**
 	 * Initializes the widget.
+	 * @throws CException if the widget could not be initialized.
 	 */
 	public function init()
 	{
-		if ($this->form === null)
+		if (!isset($this->form))
 			throw new CException(__CLASS__.': Failed to initialize widget! Form is not set.');
 
-		if ($this->model === null)
+		if (!isset($this->model))
 			throw new CException(__CLASS__.': Failed to initialize widget! Model is not set.');
 
-		if ($this->type === null)
+		if (!isset($this->type))
 			throw new CException(__CLASS__.': Failed to initialize widget! Input type is not set.');
+
+		if ($this->type === self::TYPE_UNEDITABLE)
+		{
+			$cssClass = 'uneditable-input';
+			if (isset($this->htmlOptions['class']))
+				$this->htmlOptions['class'] .= ' '.$cssClass;
+			else
+				$this->htmlOptions['class'] = $cssClass;
+		}
 	}
 
 	/**
 	 * Runs the widget.
+	 * @throws CException if the widget type is invalid.
 	 */
 	public function run()
 	{
@@ -128,7 +138,78 @@ abstract class BootInput extends CInputWidget
 	}
 
 	/**
-	 * Returns the error text for this block.
+	 * Returns the label for the input.
+	 * @param array $htmlOptions additional HTML attributes
+	 * @return string the label
+	 */
+	protected function getLabel($htmlOptions = array())
+	{
+		if ($this->label !== false && !in_array($this->type, array('checkbox', 'radio')) && $this->hasModel())
+			return $this->form->labelEx($this->model, $this->attribute, $htmlOptions);
+		else if ($this->label !== null)
+			return $this->label;
+		else
+			return '';
+	}
+
+	protected function getPrepend($htmlOptions = array())
+	{
+		if ($this->hasAddOn())
+		{
+			$cssClass = 'add-on';
+			if (isset($htmlOptions['class']))
+				$htmlOptions['class'] .= ' '.$cssClass;
+			else
+				$htmlOptions['class'] = $cssClass;
+
+			$cssClass = $this->getInputContainerCssClass();
+			ob_start();
+			echo '<div class="'.$cssClass.'">';
+			if (isset($this->htmlOptions['prepend']))
+				echo CHtml::tag('span', $htmlOptions, $this->htmlOptions['prepend']);
+			return ob_get_clean();
+		}
+		else
+			return '';
+	}
+
+	protected function getAppend($htmlOptions = array())
+	{
+		if ($this->hasAddOn())
+		{
+			$cssClass = 'add-on';
+			if (isset($htmlOptions['class']))
+				$htmlOptions['class'] .= ' '.$cssClass;
+			else
+				$htmlOptions['class'] = $cssClass;
+
+			ob_start();
+			if (isset($this->htmlOptions['append']))
+				echo CHtml::tag('span', $htmlOptions, $this->htmlOptions['append']);
+			echo '</div>';
+			return ob_get_clean();
+		}
+		else
+			return '';
+	}
+
+	protected function getInputContainerCssClass()
+	{
+		if (isset($this->htmlOptions['prepend']))
+			return 'input-prepend';
+		else if (isset($this->htmlOptions['append']))
+			return 'input-append';
+		else
+			return '';
+	}
+
+	protected function hasAddOn()
+	{
+		return isset($this->htmlOptions['prepend']) || isset($this->htmlOptions['append']);
+	}
+
+	/**
+	 * Returns the error text for the input.
 	 * @param array $htmlOptions additional HTML attributes
 	 * @return string the error text
 	 */
@@ -138,7 +219,7 @@ abstract class BootInput extends CInputWidget
 	}
 
 	/**
-	 * Returns the hint text for this block.
+	 * Returns the hint text for the input.
 	 * @return string the hint text
 	 */
 	protected function getHint()
@@ -154,16 +235,13 @@ abstract class BootInput extends CInputWidget
 	}
 
 	/**
-	 * Returns the label for this block.
-	 * @param array $htmlOptions additional HTML attributes
-	 * @return string the label
+	 * Returns the container CSS class for the input.
+	 * @return string the CSS class.
 	 */
-	protected function getLabel($htmlOptions = array())
+	protected function getContainerCssClass()
 	{
-		if ($this->label !== false && !in_array($this->type, array('checkbox', 'radio')) && $this->hasModel())
-			return $this->form->labelEx($this->model, $this->attribute, $htmlOptions);
-		else if ($this->label !== null)
-			return $this->label;
+		if ($this->model->hasErrors($this->attribute))
+			return CHtml::$errorCss;
 		else
 			return '';
 	}

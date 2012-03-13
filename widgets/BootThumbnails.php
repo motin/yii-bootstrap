@@ -12,7 +12,7 @@ Yii::import('bootstrap.widgets.BootListView');
 /**
  * Bootstrap thumbnails widget.
  */
-class BootThumbs extends BootListView
+class BootThumbnails extends BootListView
 {
 	/**
 	 * Renders the data items for the view.

@@ -1,7 +1,7 @@
 // IMPORTS
 
 @import "../../lib/bootstrap/less/mixins.less";
-@import "../css/highlight.css";
+@import "highlight.less";
 
 // VARIABLES
 
@@ -32,10 +32,8 @@ p {
 
 .navbar {
 	.add-this {
-	    background: #EEE;
-	    margin: 6px 0;
-		padding: 6px 12px;
-		.border-radius(16px);
+	    margin: 6px 0 6px 10px;
+		padding: 6px 0;
 	}
 }
 
@@ -123,16 +121,48 @@ section {
 	min-height: 140px;
 }
 
-#bootTabbed .tabbed {
+#bootTabbable .tabbable {
 	margin-bottom: 20px;
+
+	&.tabbable-placed {
+		width: 340px;
+	}
 }
 
-#bootThumbs .list-view {
+#bootThumbnails .list-view {
 	padding-top: 30px;
 }
 
 #bootActiveForm .form-vertical .control-group > label {
 	font-weight: bold;
+}
+
+#bootHero .hero-unit {
+	width: 650px;
+
+	h1 {
+		margin-bottom: 0;
+	}
+
+	p {
+		margin-bottom: 9px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+#bootCarousel .carousel {
+	width: 770px;
+
+	.carousel-caption p {
+		margin-bottom: 9px;
+	}
+}
+
+#bootTypeahead input {
+	margin-bottom: 0;
 }
 
 .hl-code {

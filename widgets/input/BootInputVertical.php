@@ -22,7 +22,7 @@ class BootInputVertical extends BootInput
 	protected function captcha()
 	{
 		echo $this->getLabel().'<div class="captcha">';
-		echo '<div class="widget">'.$this->widget('CCaptcha', array('showRefreshButton'=>false), true).'</div>';
+		echo '<div class="widget">'.$this->widget('CCaptcha', $this->data, true).'</div>';
 		echo $this->form->textField($this->model, $this->attribute, $this->htmlOptions);
 		echo $this->getError().$this->getHint();
 		echo '</div>';
@@ -147,7 +147,9 @@ class BootInputVertical extends BootInput
 	protected function textField()
 	{
 		echo $this->getLabel();
+		echo $this->getPrepend();
 		echo $this->form->textField($this->model, $this->attribute, $this->htmlOptions);
+		echo $this->getAppend();
 		echo $this->getError().$this->getHint();
 	}
 
@@ -158,7 +160,7 @@ class BootInputVertical extends BootInput
 	protected function uneditableField()
 	{
 		echo $this->getLabel();
-		echo '<span class="uneditable-input">'.$this->model->{$this->attribute}.'</span>';
+		echo CHtml::tag('span', $this->htmlOptions, $this->model->{$this->attribute});
 		echo $this->getError().$this->getHint();
 	}
 }

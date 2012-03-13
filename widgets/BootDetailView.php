@@ -18,7 +18,7 @@ class BootDetailView extends CDetailView
 	/**
 	 * @var string the template used to render a single attribute. Defaults to a table row.
 	 */
-	public $itemTemplate="<tr class=\"{class}\"><th style=\"width: 160px\">{label}</th><td>{value}</td></tr>\n";
+	public $itemTemplate = "<tr class=\"{class}\"><th style=\"width: 160px\">{label}</th><td>{value}</td></tr>\n";
 	/**
 	 * @var array the CSS class names for the items displaying attribute values.
 	 */
