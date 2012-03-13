@@ -310,7 +310,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 				'tabs'=>$tabbable,
 			)); ?>
 
-			<h3>Tabs on the left <small>Coming in version 0.9.10</small></h3>
+			<h3>Tabs on the left</h3>
 
 			<?php $this->widget('bootstrap.widgets.BootTabbable', array(
 				'placement'=>'left',
@@ -322,7 +322,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 		<div class="span6">
 
-			<h3>Tabs on the bottom <small>Coming in version 0.9.10</small></h3>
+			<h3>Tabs on the bottom</h3>
 
 			<?php $this->widget('bootstrap.widgets.BootTabbable', array(
 				'placement'=>'below',
@@ -330,7 +330,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 				'tabs'=>$tabbable,
 			)); ?>
 
-			<h3>Tabs on the right <small>Coming in version 0.9.10</small></h3>
+			<h3>Tabs on the right</h3>
 
 			<?php $this->widget('bootstrap.widgets.BootTabbable', array(
 				'placement'=>'right',
@@ -724,8 +724,8 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		<?php echo $form->textAreaRow($model, 'textarea', array('class'=>'span8', 'rows'=>5)); ?>
 		<?php echo $form->uneditableRow($model, 'uneditable'); ?>
 		<?php echo $form->textFieldRow($model, 'disabled', array('disabled'=>true)); ?>
-		<?php echo $form->textFieldRow($model, 'prepend', array('prepend'=>'@', 'hint'=>'Coming in version 0.9.10')); ?>
-		<?php echo $form->textFieldRow($model, 'append', array('append'=>'.00', 'hint'=>'Coming in version 0.9.10')); ?>
+		<?php echo $form->textFieldRow($model, 'prepend', array('prepend'=>'@')); ?>
+		<?php echo $form->textFieldRow($model, 'append', array('append'=>'.00')); ?>
 		<?php echo $form->checkBoxRow($model, 'disabledCheckbox', array('disabled'=>true)); ?>
 		<?php echo $form->checkBoxListInlineRow($model, 'inlineCheckboxes', array('1', '2', '3')); ?>
 		<?php echo $form->checkBoxListRow($model, 'checkboxes', array(
@@ -813,8 +813,8 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	<?php echo \$form->textAreaRow(\$model, 'textarea', array('class'=>'span8', 'rows'=>5)); ?>
 	<?php echo \$form->uneditableRow(\$model, 'uneditable'); ?>
 	<?php echo \$form->textFieldRow(\$model, 'disabled', array('disabled'=>true)); ?>
-	<?php echo \$form->textFieldRow(\$model, 'prepend', array('prepend'=>'@', 'hint'=>'Coming in version 0.9.10')); ?>
-	<?php echo \$form->textFieldRow(\$model, 'append', array('append'=>'.00', 'hint'=>'Coming in version 0.9.10')); ?>
+	<?php echo \$form->textFieldRow(\$model, 'prepend', array('prepend'=>'@')); ?>
+	<?php echo \$form->textFieldRow(\$model, 'append', array('append'=>'.00')); ?>
 	<?php echo \$form->checkBoxRow(\$model, 'disabledCheckbox', array('disabled'=>true)); ?>
 	<?php echo \$form->checkBoxListInlineRow(\$model, 'inlineCheckboxes', array('1', '2', '3')); ?>
 	<?php echo \$form->checkBoxListRow(\$model, 'checkboxes', array(
@@ -844,7 +844,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 <section id="bootButton">
 
-	<h2>Buttons <small>Coming in version 0.9.10</small></h2>
+	<h2>Buttons</h2>
 
 	<div class="row">
 		<div class="span4">
@@ -1182,7 +1182,11 @@ $('#buttonStateful').click(function() {
 )); ?>
 ~~~"); ?>
 
-	<h3>Checkbox and radio</h3>
+	<h3>Checkbox</h3>
+
+	<p>@todo</p>
+
+	<h3>Radio</h3>
 
 	<p>@todo</p>
 
@@ -1192,7 +1196,7 @@ $('#buttonStateful').click(function() {
 
 <section id="bootHero">
 
-	<h2>Hero unit <small>Coming in version 0.9.10</small></h2>
+	<h2>Hero unit</h2>
 
 	<?php $this->beginWidget('bootstrap.widgets.BootHero', array(
 		'heading'=>'Hello, world!',
@@ -1225,7 +1229,7 @@ $('#buttonStateful').click(function() {
 
 <section id="bootCarousel">
 
-	<h2>Carousel <small>Coming in version 0.9.10</small></h2>
+	<h2>Carousel</h2>
 
 	<?php $this->widget('bootstrap.widgets.BootCarousel', array(
 		'items'=>array(
@@ -1262,7 +1266,7 @@ $('#buttonStateful').click(function() {
 
 <section id="bootProgress">
 
-	<h2>Progress bars <small>Coming in version 0.9.10</small></h2>
+	<h2>Progress bars</h2>
 
 	<div class="row">
 
@@ -1321,7 +1325,7 @@ $('#buttonStateful').click(function() {
 
 <section id="bootTypeahead">
 
-	<h2>Typeahead <small>Coming in version 0.9.10</small></h2>
+	<h2>Typeahead</h2>
 
 	<div class="well">
 
