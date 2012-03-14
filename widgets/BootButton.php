@@ -94,6 +94,11 @@ class BootButton extends BootWidget
 	 * @var array the button ajax options (used by 'ajaxLink' and 'ajaxButton').
 	 */
 	public $ajaxOptions = array();
+	/**
+	 * @var array the HTML options for the dropdown menu.
+	 * @since 1.0.0
+	 */
+	public $dropdownOptions = array();
 
 	/**
 	 * Initializes the widget.
@@ -113,9 +118,8 @@ class BootButton extends BootWidget
 		if (isset($this->size) && in_array($this->size, $validSizes))
 			$class[] = 'btn-'.$this->size;
 
-		if ($this->active) {
+		if ($this->active)
 			$class[] = 'active';
-		}
 
 		if ($this->encodeLabel)
 			$this->label = CHtml::encode($this->label);
@@ -128,7 +132,6 @@ class BootButton extends BootWidget
 			$class[] = 'dropdown-toggle';
 			$this->label .= ' <span class="caret"></span>';
 			$this->htmlOptions['data-toggle'] = 'dropdown';
-			Yii::app()->bootstrap->registerDropdown();
 		}
 
 		$cssClass = implode(' ', $class);
@@ -177,7 +180,11 @@ class BootButton extends BootWidget
 		echo $this->createButton();
 
 		if ($this->hasDropdown())
-			$this->controller->widget('bootstrap.widgets.BootDropdown', array('items'=>$this->items));
+			$this->controller->widget('bootstrap.widgets.BootDropdown', array(
+				'encodeLabel'=>$this->encodeLabel,
+				'items'=>$this->items,
+				'htmlOptions'=>$this->dropdownOptions,
+			));
 	}
 
 	/**

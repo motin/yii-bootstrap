@@ -4,7 +4,7 @@
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
- * @version 0.9.10
+ * @version 1.0.0
  */
 
 /**
@@ -56,13 +56,14 @@ class Bootstrap extends CApplicationComponent
 	 */
 	public function init()
 	{
+		// Register the bootstrap path alias.
+		if (!Yii::getPathOfAlias('bootstrap'))
+			Yii::setPathOfAlias('bootstrap', realpath(dirname(__FILE__).'/..'));
+
 		// Prevents the extension from registering scripts
 		// and publishing assets when ran from the command line.
 		if (php_sapi_name() === 'cli')
 			return;
-
-		if (!Yii::getPathOfAlias('bootstrap'))
-			Yii::setPathOfAlias('bootstrap', realpath(dirname(__FILE__).'/..'));
 
 		if ($this->coreCss)
 			$this->registerCss();
@@ -75,16 +76,6 @@ class Bootstrap extends CApplicationComponent
 			Yii::app()->clientScript->registerCoreScript('jquery');
 			$this->registerCorePlugins();
 		}
-	}
-
-	/**
-	 * Returns whether a plugin is registered.
-	 * @param string $name the name of the plugin
-	 * @return boolean the result
-	 */
-	public function isPluginRegistered($name)
-	{
-		return isset($this->_rp[$name]);
 	}
 
 	/**
@@ -108,7 +99,7 @@ class Bootstrap extends CApplicationComponent
 	 * Registers the core JavaScript plugins.
 	 * @since 0.9.8
 	 */
-	protected function registerCorePlugins()
+	public function registerCorePlugins()
 	{
 		if (!$this->isPluginDisabled(self::PLUGIN_TRANSITION))
 			$this->enableTransitions();
@@ -279,6 +270,16 @@ class Bootstrap extends CApplicationComponent
 			$script .= "jQuery('{$selector}').attr('data-offset', '{$offset}');";
 
 		Yii::app()->clientScript->registerScript(__CLASS__.'.spyOn.'.$selector, $script, CClientScript::POS_BEGIN);
+	}
+
+	/**
+	 * Returns whether a plugin is registered.
+	 * @param string $name the name of the plugin
+	 * @return boolean the result
+	 */
+	public function isPluginRegistered($name)
+	{
+		return isset($this->_rp[$name]);
 	}
 
 	/**
