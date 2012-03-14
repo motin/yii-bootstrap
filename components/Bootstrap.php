@@ -56,6 +56,11 @@ class Bootstrap extends CApplicationComponent
 	 */
 	public function init()
 	{
+		// Prevents the extension from registering scripts
+		// and publishing assets when ran from the command line.
+		if (php_sapi_name() === 'cli')
+			return;
+
 		if (!Yii::getPathOfAlias('bootstrap'))
 			Yii::setPathOfAlias('bootstrap', realpath(dirname(__FILE__).'/..'));
 
