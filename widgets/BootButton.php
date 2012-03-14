@@ -192,10 +192,12 @@ class BootButton extends BootWidget
 				return CHtml::htmlButton($this->label, $this->htmlOptions);
 
 			case self::FN_SUBMIT:
-				return CHtml::submitButton($this->label, $this->htmlOptions);
+				$this->htmlOptions['type'] = 'submit';
+				return CHtml::htmlButton($this->label, $this->htmlOptions);
 
 			case self::FN_RESET:
-				return CHtml::resetButton($this->label, $this->htmlOptions);
+				$this->htmlOptions['type'] = 'reset';
+				return CHtml::htmlButton($this->label, $this->htmlOptions);
 
 			case self::FN_SUBMITLINK:
 				return CHtml::linkButton($this->label, $this->htmlOptions);
@@ -204,10 +206,16 @@ class BootButton extends BootWidget
 				return CHtml::ajaxLink($this->label, $this->url, $this->ajaxOptions, $this->htmlOptions);
 
 			case self::FN_AJAXBUTTON:
-				return CHtml::ajaxButton($this->label, $this->url, $this->ajaxOptions, $this->htmlOptions);
+				$this->ajaxOptions['url'] = $this->url;
+				$this->htmlOptions['ajax'] = $this->ajaxOptions;
+				return CHtml::htmlButton($this->label, $this->htmlOptions);
 
 			case self::FN_AJAXSUBMIT:
-				return CHtml::ajaxSubmitButton($this->label, $this->ajaxOptions, $this->htmlOptions);
+				$this->ajaxOptions['type'] = 'POST';
+				$this->ajaxOptions['url'] = $this->url;
+				$this->htmlOptions['type'] = 'submit';
+				$this->htmlOptions['ajax'] = $this->ajaxOptions;
+				return CHtml::htmlButton($this->label, $this->htmlOptions);
 
 			default:
 			case self::FN_LINK:

@@ -13,7 +13,7 @@
  */
 class Bootstrap extends CApplicationComponent
 {
-	// The Bootstrap core plugins.
+	// Bootstrap plugins.
 	const PLUGIN_ALERT = 'alert';
 	const PLUGIN_BUTTON = 'button';
 	const PLUGIN_CAROUSEL = 'carousel';
@@ -39,6 +39,7 @@ class Bootstrap extends CApplicationComponent
 	public $responsiveCss = false;
 	/**
 	 * @var boolean whether to register jQuery and the Bootstrap JavaScript.
+	 * @since 0.9.10
 	 */
 	public $enableJS = true;
 	/**
