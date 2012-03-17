@@ -847,7 +847,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	<h2>Buttons</h2>
 
 	<div class="row">
-		<div class="span4">
+		<div class="span3">
 			<h3>Large</h3>
 			<p>
 				<?php $this->widget('bootstrap.widgets.BootButton', array(
@@ -860,7 +860,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 			</p>
 		</div>
 
-		<div class="span4">
+		<div class="span3">
 			<h3>Normal</h3>
 			<p>
 				<?php $this->widget('bootstrap.widgets.BootButton', array(
@@ -873,7 +873,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 			</p>
 		</div>
 
-		<div class="span4">
+		<div class="span3">
 			<h3>Small</h3>
 			<p>
 				<?php $this->widget('bootstrap.widgets.BootButton', array(
@@ -882,6 +882,19 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 				<?php $this->widget('bootstrap.widgets.BootButton', array(
 					'label'=>'Action', 'size'=>'small',
+				)); ?>
+			</p>
+		</div>
+
+		<div class="span3">
+			<h3>Mini</h3>
+			<p>
+				<?php $this->widget('bootstrap.widgets.BootButton', array(
+					'label'=>'Primary', 'type'=>'primary', 'size'=>'mini',
+				)); ?>
+
+				<?php $this->widget('bootstrap.widgets.BootButton', array(
+					'label'=>'Action', 'size'=>'mini',
 				)); ?>
 			</p>
 		</div>
@@ -895,7 +908,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	<?php \$this->widget('bootstrap.widgets.BootButton', array(
 		'label'=>'Primary',
 		'type'=>'primary', // '', 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
-		'size'=>'small', // '', 'small' or 'large'
+		'size'=>'large', // '', 'large', 'small' or 'mini'
 	)); ?>
 </p>
 ~~~"); ?>

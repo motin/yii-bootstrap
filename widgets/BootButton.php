@@ -35,6 +35,7 @@ class BootButton extends BootWidget
 	const TYPE_INVERSE = 'inverse';
 
 	// Button sizes.
+	const SIZE_MINI = 'mini';
 	const SIZE_SMALL = 'small';
 	const SIZE_NORMAL = '';
 	const SIZE_LARGE = 'large';
@@ -113,7 +114,7 @@ class BootButton extends BootWidget
 		if (isset($this->type) && in_array($this->type, $validTypes))
 			$class[] = 'btn-'.$this->type;
 
-		$validSizes = array(self::SIZE_SMALL, self::SIZE_LARGE);
+		$validSizes = array(self::SIZE_LARGE, self::SIZE_SMALL, self::SIZE_MINI);
 
 		if (isset($this->size) && in_array($this->size, $validSizes))
 			$class[] = 'btn-'.$this->size;
