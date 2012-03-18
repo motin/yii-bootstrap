@@ -15,10 +15,22 @@ Yii::import('zii.widgets.grid.CGridView');
  */
 class BootGridView extends CGridView
 {
+	// Table types.
+	const TYPE_PLAIN = '';
+	const TYPE_STRIPED = 'striped';
+	const TYPE_BORDERED = 'bordered';
+	const TYPE_CONDENSED = 'condensed';
+
 	/**
-	 * @var string the CSS class name for the container table. Defaults to 'table'.
+	 * @var string|array the table type.
+	 * Valid values are '', 'striped', 'bordered' and/or ' condensed'.
 	 */
-	public $itemsCssClass = 'table table-striped';
+	public $type = self::TYPE_PLAIN;
+	/**
+	 * @var array the CSS class names for the table body rows.
+	 * Defaults to an empty array.
+	 */
+	public $rowCssClass = array();
 	/**
 	 * @var string the CSS class name for the pager container.
 	 * Defaults to 'pagination'.
@@ -34,4 +46,25 @@ class BootGridView extends CGridView
 	 * Defaults to false, meaning that no CSS will be included.
 	 */
 	public $cssFile = false;
+
+	/**
+	 * Initializes the widget.
+	 */
+	public function init()
+	{
+		parent::init();
+
+		$class = array('table');
+
+		if (is_string($this->type))
+			$this->type = explode(' ', $this->type);
+
+		$validTypes = array(self::TYPE_STRIPED, self::TYPE_BORDERED, self::TYPE_CONDENSED);
+
+		foreach ($this->type as $type)
+			if (in_array($type, $validTypes))
+				$class[] = 'table-'.$type;
+
+		$this->itemsCssClass .= ' '.implode(' ', $class);
+	}
 }

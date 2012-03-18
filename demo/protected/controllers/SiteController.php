@@ -50,20 +50,35 @@ class SiteController extends Controller
 			array('label'=>'Section 3', 'content'=>'<p>What up girl, this is Section 3.</p>'),
 		);
 
-		$gridDataProvider = new CArrayDataProvider(array(
-			array('id'=>1, 'firstName'=>'Mark', 'lastName'=>'Otto', 'language'=>'CSS'),
-			array('id'=>2, 'firstName'=>'Jacob', 'lastName'=>'Thornton', 'language'=>'JavaScript'),
-			array('id'=>3, 'firstName'=>'Stu', 'lastName'=>'Dent', 'language'=>'HTML'),
-		));
+		$mark = new Person();
+		$mark->id = 1;
+		$mark->firstName = 'Mark';
+		$mark->lastName = 'Otto';
+		$mark->language = 'CSS';
+
+		$jacob = new Person();
+		$jacob->id = 2;
+		$jacob->firstName = 'Jacob';
+		$jacob->lastName = 'Thornton';
+		$jacob->language = 'JavaScript';
+
+		$stu = new Person();
+		$stu->id = 3;
+		$stu->firstName = 'Stu';
+		$stu->lastName = 'Dent';
+		$stu->language = 'HTML';
+
+		$persons = array($mark, $jacob, $stu);
+
+		$gridDataProvider = new CArrayDataProvider($persons);
 
 		$gridColumns = array(
-			array('name'=>'id', 'header'=>'#'),
+			array('name'=>'id', 'header'=>'#', 'htmlOptions'=>array('style'=>'width: 60px')),
 			array('name'=>'firstName', 'header'=>'First name'),
 			array('name'=>'lastName', 'header'=>'Last name'),
 			array('name'=>'language', 'header'=>'Language'),
 			array(
 				'class'=>'bootstrap.widgets.BootButtonColumn',
-				'htmlOptions'=>array('style'=>'width: 50px'),
 				'viewButtonUrl'=>null,
 				'updateButtonUrl'=>null,
 				'deleteButtonUrl'=>null,
@@ -80,6 +95,7 @@ class SiteController extends Controller
 
 		$this->render('index', array(
 			'model'=>$model,
+			'person'=>new Person(),
 			'tabs'=>$tabs,
 			'tabbable'=>$tabbable,
 			'gridDataProvider'=>$gridDataProvider,

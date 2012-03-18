@@ -399,43 +399,43 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	<?php $this->widget('bootstrap.widgets.BootGridView', array(
 		'dataProvider'=>$gridDataProvider,
 		'template'=>"{items}",
-		'itemsCssClass'=>'table',
 		'columns'=>$gridColumns,
 	)); ?>
 
 	<h3>Striped</h3>
 
 	<?php $this->widget('bootstrap.widgets.BootGridView', array(
+		'type'=>'striped',
 		'dataProvider'=>$gridDataProvider,
 		'template'=>"{items}",
-		'itemsCssClass'=>'table table-striped',
 		'columns'=>$gridColumns,
 	)); ?>
 
 	<h3>Bordered</h3>
 
 	<?php $this->widget('bootstrap.widgets.BootGridView', array(
+		'type'=>'bordered',
 		'dataProvider'=>$gridDataProvider,
 		'template'=>"{items}",
-		'itemsCssClass'=>'table table-bordered',
 		'columns'=>$gridColumns,
 	)); ?>
 
 	<h3>Condensed</h3>
 
 	<?php $this->widget('bootstrap.widgets.BootGridView', array(
+		'type'=>'condensed',
 		'dataProvider'=>$gridDataProvider,
 		'template'=>"{items}",
-		'itemsCssClass'=>'table table-condensed',
 		'columns'=>$gridColumns,
 	)); ?>
 
 	<h3>Striped, bordered and condensed</h3>
 
 	<?php $this->widget('bootstrap.widgets.BootGridView', array(
+		'type'=>'striped bordered condensed',
 		'dataProvider'=>$gridDataProvider,
-		'template'=>"{items}",
-		'itemsCssClass'=>'table table-striped table-bordered table-condensed',
+		'template'=>"{summary}\n{items}\n{pager}",
+		'filter'=>$person->search(),
 		'columns'=>$gridColumns,
 	)); ?>
 
@@ -452,9 +452,9 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 ~~~
 [php]
 <?php \$this->widget('bootstrap.widgets.BootGridView', array(
+	'type'=>'striped bordered condensed',
 	'dataProvider'=>\$gridDataProvider,
 	'template'=>\"{items}\",
-	'itemsCssClass'=>'table table-striped table-bordered table-condensed',
 	'columns'=>array(
 		array('name'=>'id', 'header'=>'#'),
 		array('name'=>'firstName', 'header'=>'First name'),

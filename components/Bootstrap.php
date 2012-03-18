@@ -71,6 +71,8 @@ class Bootstrap extends CApplicationComponent
 		if ($this->responsiveCss)
 			$this->registerResponsiveCss();
 
+		$this->registerYiiCss();
+
 		if ($this->enableJS)
 		{
 			Yii::app()->clientScript->registerCoreScript('jquery');
@@ -93,6 +95,15 @@ class Bootstrap extends CApplicationComponent
 	public function registerResponsiveCss()
 	{
 		Yii::app()->clientScript->registerCssFile($this->getAssetsUrl().'/css/bootstrap-responsive.min.css');
+	}
+
+	/**
+	 * Registers the Yii-specific CSS missing from Bootstrap.
+	 * @since 1.0.0
+	 */
+	public function registerYiiCss()
+	{
+		Yii::app()->clientScript->registerCssFile($this->getAssetsUrl().'/css/yii-bootstrap.css');
 	}
 
 	/**
