@@ -15,6 +15,10 @@ Yii::import('bootstrap.widgets.BootWidget');
  */
 class BootNavbar extends BootWidget
 {
+	// Navbar fix locations.
+	const FIXED_TOP = 'top';
+	const FIXED_BOTTOM = 'bottom';
+
 	/**
 	 * @var string the text for the brand.
 	 */
@@ -33,15 +37,15 @@ class BootNavbar extends BootWidget
 	 */
 	public $items = array();
 	/**
-	 * @var boolean whether the nav span over the full width. Defaults to false.
+	 * @var string fix location of the navbar if applicable. Valid values are 'top' and 'bottom'. Defaults to 'top'.
 	 * @since 0.9.8
 	 */
-	public $fluid = false;
+	public $fixed = self::FIXED_TOP;
 	/**
-	 * @var boolean whether the nav bar is fixed to the top of the page. Defaults to true.
-	 * @since 0.9.8
-	 */
-	public $fixed = true;
+	* @var boolean whether the nav span over the full width. Defaults to false.
+	* @since 0.9.8
+	*/
+	public $fluid = false;
 	/**
 	 * @var boolean whether to enable collapsing on narrow screens. Default to false.
 	 */
@@ -70,15 +74,18 @@ class BootNavbar extends BootWidget
 	 */
 	public function run()
 	{
-		if (isset($this->htmlOptions['class']))
-			$this->htmlOptions['class'] .= ' navbar';
-		else
-			$this->htmlOptions['class'] = 'navbar';
+		$class = array('navbar');
 
-		if ($this->fixed)
-			$this->htmlOptions['class'] .= ' navbar-fixed-top';
+		$validFixes = array(self::FIXED_TOP, self::FIXED_BOTTOM);
+
+		if (in_array($this->fixed, $validFixes))
+			$class[] = 'navbar-fixed-'.$this->fixed;
+
+		$cssClass = implode(' ', $class);
+		if (isset($this->htmlOptions['class']))
+			$this->htmlOptions['class'] .= ' '.$cssClass;
 		else
-			$this->htmlOptions['class'] .= ' navbar-static';
+			$this->htmlOptions['class'] = $cssClass;
 
 		if (isset($this->brandOptions['class']))
 			$this->brandOptions['class'] .= ' brand';
