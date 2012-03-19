@@ -299,6 +299,11 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 )); ?>
 ~~~"); ?>
 
+	<div class="alert alert-block alert-warning">
+		<strong>Note!</strong>
+		Because of a bug in the current version of Bootstrap tab-content fall below the tabs even when it shouldn't. This can be fixed by setting tab-content width to auto.
+	</div>
+
 	<div class="row">
 
 		<div class="span6">
@@ -1373,6 +1378,60 @@ $('#buttonStateful').click(function() {
 
 </section>
 
+<section id="bootLabel">
+
+	<h2>Labels</h2>
+
+	<p>
+		<?php $this->widget('bootstrap.widgets.BootLabel', array('label'=>'Default')); ?>
+		<?php $this->widget('bootstrap.widgets.BootLabel', array('type'=>'success', 'label'=>'Success')); ?>
+		<?php $this->widget('bootstrap.widgets.BootLabel', array('type'=>'warning', 'label'=>'Warning')); ?>
+		<?php $this->widget('bootstrap.widgets.BootLabel', array('type'=>'important', 'label'=>'Important')); ?>
+		<?php $this->widget('bootstrap.widgets.BootLabel', array('type'=>'info', 'label'=>'Info')); ?>
+		<?php $this->widget('bootstrap.widgets.BootLabel', array('type'=>'inverse', 'label'=>'Inverse')); ?>
+	</p>
+
+	<h4>Source code</h4>
+
+	<?php echo $parser->safeTransform("~~~
+[php]
+<?php \$this->widget('bootstrap.widgets.BootLabel', array(
+	'type'=>'success', // '', 'success', 'warning', 'important', 'info' or 'inverse'
+	'label'=>'Success',
+)); ?>
+~~~"); ?>
+
+	<a class="top" href="#top">Back to top &uarr;</a>
+
+</section>
+
+<section id="bootBadge">
+
+	<h2>Badges</h2>
+
+	<p>
+		<?php $this->widget('bootstrap.widgets.BootBadge', array('label'=>'1')); ?>
+		<?php $this->widget('bootstrap.widgets.BootBadge', array('type'=>'success', 'label'=>'2')); ?>
+		<?php $this->widget('bootstrap.widgets.BootBadge', array('type'=>'warning', 'label'=>'4')); ?>
+		<?php $this->widget('bootstrap.widgets.BootBadge', array('type'=>'error', 'label'=>'6')); ?>
+		<?php $this->widget('bootstrap.widgets.BootBadge', array('type'=>'info', 'label'=>'8')); ?>
+		<?php $this->widget('bootstrap.widgets.BootBadge', array('type'=>'inverse', 'label'=>'10')); ?>
+	</p>
+
+	<h4>Source code</h4>
+
+	<?php echo $parser->safeTransform("~~~
+[php]
+<?php \$this->widget('bootstrap.widgets.BootBadge', array(
+	'type'=>'success', // '', 'success', 'warning', 'error', 'info' or 'inverse'
+	'label'=>'2',
+)); ?>
+~~~"); ?>
+
+	<a class="top" href="#top">Back to top &uarr;</a>
+
+</section>
+
 <section id="comments">
 
 	<h2>Comments</h2>
@@ -1383,12 +1442,13 @@ $('#buttonStateful').click(function() {
 
 </section>
 
-<div class="subnav subnav-fixed">
+<div class="subnav well">
 
 	<?php $this->widget('BootMenu', array(
-		'type'=>'pills',
+		'type'=>'list',
 		'scrollspy'=>array('spy'=>'.subnav', 'offset'=>50),
 		'items'=>array(
+			array('label'=>'WIDGETS'),
 			array('label'=>'Alert', 'url'=>'#bootAlert'),
 			array('label'=>'Breadcrumb', 'url'=>'#bootBreadcrumbs'),
 			array('label'=>'Navbar', 'url'=>'#bootNavbar'),
@@ -1406,6 +1466,8 @@ $('#buttonStateful').click(function() {
 			array('label'=>'Carousel', 'url'=>'#bootCarousel'),
 			array('label'=>'Progress', 'url'=>'#bootProgress'),
 			array('label'=>'Typeahead', 'url'=>'#bootTypeahead'),
+			array('label'=>'Labels <span class="label label-inverse">New</span>', 'encodeLabel'=>false, 'url'=>'#bootLabel'),
+			array('label'=>'Badges <span class="label label-inverse">New</span>', 'encodeLabel'=>false, 'url'=>'#bootBadge'),
 		),
 	)); ?>
 

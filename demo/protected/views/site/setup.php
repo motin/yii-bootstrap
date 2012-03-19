@@ -43,22 +43,6 @@ $this->addMetaProperty('fb:app_id', Yii::app()->fb->appID);
     .....
     'bootstrap'=>array(
         'class'=>'ext.bootstrap.components.Bootstrap', // assuming you extracted bootstrap under extensions
-        'coreCss'=>true, // whether to register the Bootstrap core CSS (bootstrap.min.css), defaults to true
-        'responsiveCss'=>false, // whether to register the Bootstrap responsive CSS (bootstrap-responsive.min.css), default to false
-        'plugins'=>array(
-            // Optionally you can configure the \"global\" plugins (button, popover, tooltip and transition)
-            // To prevent a plugin from being loaded set it to false as demonstrated below
-            'transition'=>false, // disable CSS transitions
-            'tooltip'=>array(
-                'selector'=>'a.tooltip', // bind the plugin tooltip to anchor tags with the 'tooltip' class
-                'options'=>array(
-                    'placement'=>'bottom', // place the tooltips below instead
-				),
-            ),
-            .....
-            // If you need help with configuring the plugins, please refer to Bootstrap's own documentation:
-			// http://twitter.github.com/bootstrap/javascript.html
-        ),
     ),
 ),
 ~~~"); ?>
@@ -67,6 +51,14 @@ $this->addMetaProperty('fb:app_id', Yii::app()->fb->appID);
 		You're done! Now you can start using Bootstrap in your application. For examples on how to use the widgets please visit the
 		<?php echo CHtml::link('demo page', array('site/index')); ?>.
 	</p>
+
+</section>
+
+<section id="config">
+
+	<h2>Configuration</h2>
+
+	<p>@todo</p>
 
 </section>
 
@@ -184,6 +176,7 @@ Yii::app()->bootstrap->registerTypeahead('.typeahead', array(
 		'scrollspy'=>array('spy'=>'.subnav', 'offset'=>50),
 		'items'=>array(
 			array('label'=>'Setup', 'url'=>'#setup'),
+			array('label'=>'Configuration', 'url'=>'#config'),
 			array('label'=>'Using LESS', 'url'=>'#less'),
 			array('label'=>'Plugin API', 'url'=>'#api')
 		),
