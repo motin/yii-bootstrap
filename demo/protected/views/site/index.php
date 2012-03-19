@@ -1380,7 +1380,7 @@ $('#buttonStateful').click(function() {
 
 <section id="bootLabel">
 
-	<h2>Labels</h2>
+	<h2>Labels <small>Coming in 1.0.0</small></h2>
 
 	<p>
 		<?php $this->widget('bootstrap.widgets.BootLabel', array('label'=>'Default')); ?>
@@ -1407,7 +1407,7 @@ $('#buttonStateful').click(function() {
 
 <section id="bootBadge">
 
-	<h2>Badges</h2>
+	<h2>Badges <small>Coming in 1.0.0</small></h2>
 
 	<p>
 		<?php $this->widget('bootstrap.widgets.BootBadge', array('label'=>'1')); ?>
