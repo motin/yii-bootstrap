@@ -8,6 +8,7 @@
  */
 
 Yii::import('zii.widgets.grid.CGridView');
+Yii::import('bootstrap.widgets.BootDataColumn');
 
 /**
  * Bootstrap grid view widget.
@@ -66,5 +67,41 @@ class BootGridView extends CGridView
 				$class[] = 'table-'.$type;
 
 		$this->itemsCssClass .= ' '.implode(' ', $class);
+	}
+
+	/**
+	 * Creates column objects and initializes them.
+	 */
+	protected function initColumns()
+	{
+		foreach ($this->columns as $i => $column)
+		{
+			if (is_array($column) && !isset($column['class']))
+				$this->columns[$i]['class'] = 'bootstrap.widgets.BootDataColumn';
+		}
+
+		parent::initColumns();
+	}
+
+	/**
+	 * Creates a column based on a shortcut column specification string.
+	 * @param mixed $text the column specification string
+	 * @return \BootDataColumn|\CDataColumn the column instance
+	 * @throws CException if the column format is incorrect
+	 */
+	protected function createDataColumn($text)
+	{
+		if (!preg_match('/^([\w\.]+)(:(\w*))?(:(.*))?$/', $text, $matches))
+			throw new CException(Yii::t('zii', 'The column must be specified in the format of "Name:Type:Label", where "Type" and "Label" are optional.'));
+
+		$column = new BootDataColumn($this);
+		$column->name = $matches[1];
+		if (isset($matches[3]) && $matches[3] !== '')
+			$column->type = $matches[3];
+
+		if (isset($matches[5]))
+			$column->header = $matches[5];
+
+		return $column;
 	}
 }

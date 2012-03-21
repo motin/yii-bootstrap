@@ -24,14 +24,20 @@ span.required {
 }
 
 .grid-view table.items th a .caret {
+	display: none;
 	position: absolute;
 	right: 5px;
 	top: 7px;
 }
 
+.grid-view table.items th a.asc .caret {
+	display: block;
+}
+
 .grid-view table.items th a.desc .caret {
 	border-bottom: 4px solid #000;
 	border-top: none;
+	display: block;
 }
 
 .grid-view table.items tr.selected td {
@@ -60,13 +66,14 @@ span.required {
 	font-style: italic;
 }
 
+.grid-view .filters .filter-container {
+	padding: 0 10px 0 0;
+}
+
 .grid-view .filters input,
 .grid-view .filters select {
-	border: none;
 	margin-bottom: 0;
-	padding: 0;
 	width: 100%;
-	box-shadow: none; -o-box-shadow: none; -moz-box-shadow: none; -ms-box-shadow: none; -webkit-box-shadow: none;
 }
 
 /*
