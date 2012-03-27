@@ -22,9 +22,13 @@ class BootDataColumn extends CDataColumn
 	{
 		if ($this->grid->enableSorting && $this->sortable && $this->name !== null)
 		{
-			$label = isset($this->header) ? $this->header : $this->grid->dataProvider->getSort()->resolveLabel($this->name);
-			$label .= '<span class="caret"></span>';
-			echo $this->grid->dataProvider->getSort()->link($this->name, $label);
+			$sort = $this->grid->dataProvider->getSort();
+			$label = isset($this->header) ? $this->header : $sort->resolveLabel($this->name);
+
+			if ($sort->resolveAttribute($this->name) !== false)
+				$label .= '<span class="caret"></span>';
+
+			echo $sort->link($this->name, $label);
 		}
 		else
 		{
