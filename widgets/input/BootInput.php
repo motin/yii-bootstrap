@@ -152,6 +152,11 @@ abstract class BootInput extends CInputWidget
 			return '';
 	}
 
+	/**
+	 * Returns the prepend element for the input.
+	 * @param array $htmlOptions additional HTML attributes
+	 * @return string the element
+	 */
 	protected function getPrepend($htmlOptions = array())
 	{
 		if ($this->hasAddOn())
@@ -173,6 +178,11 @@ abstract class BootInput extends CInputWidget
 			return '';
 	}
 
+	/**
+	 * Returns the append element for the input.
+	 * @param array $htmlOptions additional HTML attributes
+	 * @return string the element
+	 */
 	protected function getAppend($htmlOptions = array())
 	{
 		if ($this->hasAddOn())
@@ -193,16 +203,25 @@ abstract class BootInput extends CInputWidget
 			return '';
 	}
 
+	/**
+	 * Returns the input container CSS classes.
+	 * @return string the classes
+	 */
 	protected function getInputContainerCssClass()
 	{
+		$class = array();
 		if (isset($this->htmlOptions['prepend']))
-			return 'input-prepend';
-		else if (isset($this->htmlOptions['append']))
-			return 'input-append';
-		else
-			return '';
+			$class[] = 'input-prepend';
+		if (isset($this->htmlOptions['append']))
+			$class[] = 'input-append';
+
+		return implode(' ', $class);
 	}
 
+	/**
+	 * Returns whether the input has an add-on (prepend and/or append).
+	 * @return boolean the result
+	 */
 	protected function hasAddOn()
 	{
 		return isset($this->htmlOptions['prepend']) || isset($this->htmlOptions['append']);
