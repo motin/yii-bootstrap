@@ -74,10 +74,7 @@ class Bootstrap extends CApplicationComponent
 		$this->registerYiiCss();
 
 		if ($this->enableJS)
-		{
-			Yii::app()->clientScript->registerCoreScript('jquery');
 			$this->registerCorePlugins();
-		}
 	}
 
 	/**
@@ -94,7 +91,10 @@ class Bootstrap extends CApplicationComponent
 	 */
 	public function registerResponsiveCss()
 	{
-		Yii::app()->clientScript->registerCssFile($this->getAssetsUrl().'/css/bootstrap-responsive.min.css');
+		/** @var CClientScript $cs */
+		$cs = Yii::app()->getClientScript();
+		$cs->registerMetaTag('width=device-width, initial-scale=1.0', 'viewport');
+		$cs->registerCssFile($this->getAssetsUrl().'/css/bootstrap-responsive.min.css');
 	}
 
 	/**
@@ -103,7 +103,7 @@ class Bootstrap extends CApplicationComponent
 	 */
 	public function registerYiiCss()
 	{
-		Yii::app()->clientScript->registerCssFile($this->getAssetsUrl().'/css/yii-bootstrap.css');
+		Yii::app()->clientScript->registerCssFile($this->getAssetsUrl().'/css/bootstrap-yii.css');
 	}
 
 	/**
@@ -112,6 +112,8 @@ class Bootstrap extends CApplicationComponent
 	 */
 	public function registerCorePlugins()
 	{
+		Yii::app()->clientScript->registerCoreScript('jquery');
+
 		if (!$this->isPluginDisabled(self::PLUGIN_TRANSITION))
 			$this->enableTransitions();
 
