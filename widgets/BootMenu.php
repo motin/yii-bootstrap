@@ -86,7 +86,7 @@ class BootMenu extends BootBaseMenu
 		foreach ($items as $item)
 		{
 			if (!is_array($item))
-				echo '<li class="divider"></li>';
+				echo '<li class="divider-vertical"></li>';
 			else
 			{
 				if (!isset($item['itemOptions']))

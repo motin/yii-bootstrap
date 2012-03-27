@@ -81,12 +81,13 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 					array('label'=>'Link', 'url'=>'#'),
 					array('label'=>'Link', 'url'=>'#'),
 					array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
-						array('label'=>'DROPDOWN HEADER'),
 						array('label'=>'Action', 'url'=>'#'),
 						array('label'=>'Another action', 'url'=>'#'),
 						array('label'=>'Something else here', 'url'=>'#'),
 						'---',
+						array('label'=>'NAV HEADER'),
 						array('label'=>'Separated link', 'url'=>'#'),
+						array('label'=>'One more separated link', 'url'=>'#'),
 					)),
 				),
 			),
@@ -96,8 +97,8 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 				'htmlOptions'=>array('class'=>'pull-right'),
 				'items'=>array(
 					array('label'=>'Link', 'url'=>'#'),
+					'---',
 					array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
-						array('label'=>'DROPDOWN HEADER'),
 						array('label'=>'Action', 'url'=>'#'),
 						array('label'=>'Another action', 'url'=>'#'),
 						array('label'=>'Something else here', 'url'=>'#'),
@@ -125,12 +126,13 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 				array('label'=>'Home', 'url'=>'#', 'active'=>true),
 				array('label'=>'Link', 'url'=>'#'),
 				array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
-					array('label'=>'DROPDOWN HEADER'),
 					array('label'=>'Action', 'url'=>'#'),
 					array('label'=>'Another action', 'url'=>'#'),
 					array('label'=>'Something else here', 'url'=>'#'),
 					'---',
+					array('label'=>'NAV HEADER'),
 					array('label'=>'Separated link', 'url'=>'#'),
+					array('label'=>'One more separated link', 'url'=>'#'),
 				)),
 			),
 		),
@@ -140,8 +142,8 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 			'htmlOptions'=>array('class'=>'pull-right'),
 			'items'=>array(
 				array('label'=>'Link', 'url'=>'#'),
+				'---',
 				array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
-					array('label'=>'DROPDOWN HEADER'),
 					array('label'=>'Action', 'url'=>'#'),
 					array('label'=>'Another action', 'url'=>'#'),
 					array('label'=>'Something else here', 'url'=>'#'),
