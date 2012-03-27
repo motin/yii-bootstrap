@@ -457,9 +457,9 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 ~~~
 [php]
 <?php \$this->widget('bootstrap.widgets.BootGridView', array(
-	'type'=>'striped bordered condensed',
 	'dataProvider'=>\$gridDataProvider,
 	'template'=>\"{items}\",
+	'itemsCssClass'=>'table table-striped table-bordered table-condensed',
 	'columns'=>array(
 		array('name'=>'id', 'header'=>'#'),
 		array('name'=>'firstName', 'header'=>'First name'),
