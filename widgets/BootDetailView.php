@@ -27,10 +27,6 @@ class BootDetailView extends CDetailView
 	 */
 	public $type = array(self::TYPE_STRIPED, self::TYPE_CONDENSED);
 	/**
-	 * @var array the CSS class names for the items displaying attribute values.
-	 */
-	public $itemCssClass = array();
-	/**
 	 * @var string the URL of the CSS file used by this detail view.
 	 * Defaults to false, meaning that no CSS will be included.
 	 */

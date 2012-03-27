@@ -28,11 +28,6 @@ class BootGridView extends CGridView
 	 */
 	public $type = self::TYPE_PLAIN;
 	/**
-	 * @var array the CSS class names for the table body rows.
-	 * Defaults to an empty array.
-	 */
-	public $rowCssClass = array();
-	/**
 	 * @var string the CSS class name for the pager container.
 	 * Defaults to 'pagination'.
 	 */
