@@ -103,7 +103,7 @@ class BootTabbable extends BootWidget
         {
             $fn = CJavaScript::encode($this->events['show']);
 	        $cs->registerScript(__CLASS__.'#'.$id.'.show',
-	                "jQuery('#{$id} a[data-toggle=\"tab\"').on('show', {$fn});");
+	                "jQuery('#{$id} a[data-toggle=\"tab\"]').on('show', {$fn});");
         }
 
         // Register the "shown" event-handler.
@@ -111,7 +111,7 @@ class BootTabbable extends BootWidget
         {
             $fn = CJavaScript::encode($this->events['shown']);
 	        $cs->registerScript(__CLASS__.'#'.$id.'.shown',
-	                "jQuery('#{$id} a[data-toggle=\"tab\"').on('shown', {$fn});");
+	                "jQuery('#{$id} a[data-toggle=\"tab\"]').on('shown', {$fn});");
         }
     }
 
