@@ -32,7 +32,7 @@ class BootHero extends BootWidget
 	{
 		$cssClass = 'hero-unit';
 		if (isset($this->htmlOptions['class']))
-			$this->htmlOptions['class'] = ' '.$cssClass;
+			$this->htmlOptions['class'] .= ' '.$cssClass;
 		else
 			$this->htmlOptions['class'] = $cssClass;
 
