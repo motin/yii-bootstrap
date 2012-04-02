@@ -131,16 +131,11 @@ class BootTabbable extends BootWidget
 	    {
 			$item = $tab;
 
+		    if (isset($item['visible']) && !$item['visible'])
+                continue;
+
 			if (!isset($item['itemOptions']))
 				$item['itemOptions'] = array();
-
-		    if ($i === 0)
-		    {
-			    if (isset($item['itemOptions']['class']))
-	                $item['itemOptions']['class'] .= ' active';
-	            else
-		            $item['itemOptions']['class'] = 'active';
-		    }
 
 			$item['linkOptions']['data-toggle'] = 'tab';
 
@@ -172,7 +167,7 @@ class BootTabbable extends BootWidget
 				if ($transitions)
 					$class[] = 'fade';
 
-				if ($i === 0)
+				if (isset($item['active']) && $item['active'])
 				{
 					$class[] = 'active';
 
