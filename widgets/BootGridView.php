@@ -38,7 +38,7 @@ class BootGridView extends CGridView
 	 */
 	public $pager = array('class'=>'bootstrap.widgets.BootPager');
 	/**
-	 * @var string the URL of the CSS file used by this detail view.
+	 * @var string the URL of the CSS file used by this grid view.
 	 * Defaults to false, meaning that no CSS will be included.
 	 */
 	public $cssFile = false;
