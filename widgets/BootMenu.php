@@ -177,6 +177,10 @@ class BootMenu extends BootBaseMenu
 				continue;
 			}
 
+			if (!is_array($item)) {
+				continue;
+			}
+
 			if (!isset($item['label']))
 				$item['label'] = '';
 
