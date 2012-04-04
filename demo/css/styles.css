@@ -7,6 +7,7 @@
 .input-block-level{display:block;width:100%;min-height:28px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box;}
 
 
+
 .php-hl-default{color:Black;}
 .php-hl-code{color:Gray;}
 .php-hl-brackets{color:Olive;}
@@ -150,7 +151,7 @@ section{padding-top:40px;}section a.top{display:block;text-align:right;}
 #bootCarousel .carousel{width:770px;}#bootCarousel .carousel .carousel-caption p{margin-bottom:9px;}
 
 #bootTypeahead input{margin-bottom:0;}
-.hl-code{margin-bottom:20px;}.hl-code pre{background:#FCFCFC;border-color:#EEE transparent #EEE;font-family:"Menlo","Consolas","Courier New",Courier,mono;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;}
+.php-hl-main,.html-hl-main,.javascript-hl-main{margin-bottom:20px;}.php-hl-main pre,.html-hl-main pre,.javascript-hl-main pre{background:#FCFCFC;border-color:#EEE transparent #EEE;font-family:"Menlo","Consolas","Courier New",Courier,mono;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;}
 
 .maintenance .hero-unit{text-align:center;}.maintenance .hero-unit p{text-align:inherit;}
 

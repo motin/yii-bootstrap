@@ -45,7 +45,7 @@ class SiteController extends Controller
 		);
 
 		$tabbable = array(
-			array('label'=>'Section 1', 'content'=>'<p>I\'m in Section 1.</p>'),
+			array('label'=>'Section 1', 'content'=>'<p>I\'m in Section 1.</p>', 'active'=>true),
 			array('label'=>'Section 2', 'content'=>'<p>Howdy, I\'m in Section 2.</p>'),
 			array('label'=>'Section 3', 'content'=>'<p>What up girl, this is Section 3.</p>'),
 		);
@@ -93,6 +93,15 @@ class SiteController extends Controller
 			'pagination'=>array('pageSize'=>8),
 		));
 
+		$phpLighter = new CTextHighlighter();
+		$phpLighter->language = 'PHP';
+
+		$jsLighter = new CTextHighlighter();
+		$jsLighter->language = 'JAVASCRIPT';
+
+		$htmlLighter = new CTextHighlighter();
+		$htmlLighter->language = 'HTML';
+
 		$this->render('index', array(
 			'model'=>$model,
 			'person'=>new Person(),
@@ -101,7 +110,9 @@ class SiteController extends Controller
 			'gridDataProvider'=>$gridDataProvider,
 			'gridColumns'=>$gridColumns,
 			'listDataProvider'=>$listDataProvider,
-			'parser'=>new CMarkdownParser(),
+			'phpLighter'=>$phpLighter,
+			'jsLighter'=>$jsLighter,
+			'htmlLighter'=>$htmlLighter,
 		));
 	}
 
