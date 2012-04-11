@@ -1213,19 +1213,25 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		'heading'=>'Hello, world!',
 	)); ?>
 		<p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-		<p><a class="btn btn-primary btn-large">Learn more</a></p>
+		<p><?php $this->widget('bootstrap.widgets.BootButton', array(
+			'type'=>'primary',
+			'size'=>'large',
+			'label'=>'Learn more',
+		)); ?></p>
 	<?php $this->endWidget(); ?>
 
 	<h4>Source code</h4>
 
 <?php echo $phpLighter->highlight("<?php \$this->beginWidget('bootstrap.widgets.BootHero', array(
 	'heading'=>'Hello, world!',
-)); ?>"); ?>
-
-<?php echo $htmlLighter->highlight("<p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-<p><a class=\"btn btn-primary btn-large\">Learn more</a></p>"); ?>
-
-<?php echo $phpLighter->highlight("<?php \$this->endWidget(); ?>"); ?>
+)); ?>
+	<p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+	<p><?php \$this->widget('bootstrap.widgets.BootButton', array(
+		'type'=>'primary',
+		'size'=>'large',
+		'label'=>'Learn more',
+	)); ?></p>
+<?php \$this->endWidget(); ?>"); ?>
 
 		<a class="top" href="#top">Back to top &uarr;</a>
 

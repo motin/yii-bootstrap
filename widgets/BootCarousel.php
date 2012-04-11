@@ -71,7 +71,7 @@ class BootCarousel extends BootWidget
         if (isset($this->events['slide']))
         {
             $fn = CJavaScript::encode($this->events['slide']);
-	        $cs->registerScript(__CLASS__.'#'.$this->id.'.slide',
+	        $cs->registerScript(__CLASS__.'#'.$id.'.slide',
 	                "jQuery('#{$id}').on('slide', {$fn});");
         }
 
@@ -79,7 +79,7 @@ class BootCarousel extends BootWidget
         if (isset($this->events['slid']))
         {
             $fn = CJavaScript::encode($this->events['slid']);
-	        $cs->registerScript(__CLASS__.'#'.$this->id.'.slid',
+	        $cs->registerScript(__CLASS__.'#'.$id.'.slid',
 	                "jQuery('#{$id}').on('slid', {$fn});");
         }
 	}
