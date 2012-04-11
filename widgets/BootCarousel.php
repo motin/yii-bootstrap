@@ -42,7 +42,9 @@ class BootCarousel extends BootWidget
 		else
 			$this->htmlOptions['class'] = $cssClass;
 
-		Yii::app()->bootstrap->registerCarousel();
+		$bootstrap = Yii::app()->bootstrap;
+		$bootstrap->registerCarousel();
+		$bootstrap->enableTransitions(); // Carousel requires transitions to work.
 	}
 
 	/**
