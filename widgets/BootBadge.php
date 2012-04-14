@@ -7,12 +7,10 @@
  * @package bootstrap.widgets
  */
 
-Yii::import('bootstrap.widgets.BootWidget');
-
 /**
  * Bootstrap badge widget.
  */
-class BootBadge extends BootWidget
+class BootBadge extends CWidget
 {
 	// Badge types.
 	const TYPE_DEFAULT = '';
@@ -35,6 +33,10 @@ class BootBadge extends BootWidget
 	 * @var boolean whether to encode the label.
 	 */
 	public $encodeLabel = true;
+	/**
+	 * @var array the HTML attributes for the widget container.
+	 */
+	public $htmlOptions = array();
 
 	/**
 	 * Initializes the widget.

@@ -9,12 +9,11 @@
  */
 
 Yii::import('bootstrap.widgets.BootButton');
-Yii::import('bootstrap.widgets.BootWidget');
 
 /**
  * Bootstrap button group widget.
  */
-class BootButtonGroup extends BootWidget
+class BootButtonGroup extends CWidget
 {
 	// Toggle options.
 	const TOGGLE_CHECKBOX = 'checkbox';
@@ -39,6 +38,10 @@ class BootButtonGroup extends BootWidget
 	 * @var boolean indicates whether to encode the button labels.
 	 */
 	public $encodeLabel = true;
+	/**
+	 * @var array the HTML attributes for the widget container.
+	 */
+	public $htmlOptions = array();
 	/**
 	 * @var array the button configuration.
 	 */

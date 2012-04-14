@@ -8,14 +8,12 @@
  */
 
 Yii::import('bootstrap.widgets.BootMenu');
-Yii::import('bootstrap.widgets.BootWidget');
 
 /**
  * Bootstrap JavaScript tabs widget.
  * @since 0.9.8
- * @todo Fix event support. http://twitter.github.com/bootstrap/javascript.html#tabs
  */
-class BootTabbable extends BootWidget
+class BootTabbable extends CWidget
 {
 	// Tab placements.
 	const PLACEMENT_ABOVE = 'above';
@@ -42,6 +40,14 @@ class BootTabbable extends BootWidget
 	 * @var boolean whether to encode item labels.
 	 */
 	public $encodeLabel = true;
+	/**
+	 * @var string[] the JavaScript event handlers.
+	 */
+	public $events = array();
+	/**
+	 * @var array the HTML attributes for the widget container.
+	 */
+	public $htmlOptions = array();
 
     /**
      * Initializes the widget.
@@ -70,7 +76,6 @@ class BootTabbable extends BootWidget
      */
     public function run()
     {
-	    $id = $this->id;
 	    $content = array();
 	    $items = $this->normalizeTabs($this->tabs, $content);
 
@@ -94,22 +99,22 @@ class BootTabbable extends BootWidget
 
 	    /** @var CClientScript $cs */
 	    $cs = Yii::app()->getClientScript();
-	    $cs->registerScript(__CLASS__.'#'.$id, "jQuery('#{$id}').tab('show');");
+	    $cs->registerScript(__CLASS__.'#'.$this->id, "jQuery('#{$this->id}').tab('show');");
 
         // Register the "show" event-handler.
         if (isset($this->events['show']))
         {
             $fn = CJavaScript::encode($this->events['show']);
-	        $cs->registerScript(__CLASS__.'#'.$id.'.show',
-	                "jQuery('#{$id} a[data-toggle=\"tab\"]').on('show', {$fn});");
+	        $cs->registerScript(__CLASS__.'#'.$this->id.'.show',
+	                "jQuery('#{$this->id} a[data-toggle=\"tab\"]').on('show', {$fn});");
         }
 
         // Register the "shown" event-handler.
         if (isset($this->events['shown']))
         {
             $fn = CJavaScript::encode($this->events['shown']);
-	        $cs->registerScript(__CLASS__.'#'.$id.'.shown',
-	                "jQuery('#{$id} a[data-toggle=\"tab\"]').on('shown', {$fn});");
+	        $cs->registerScript(__CLASS__.'#'.$this->id.'.shown',
+	                "jQuery('#{$this->id} a[data-toggle=\"tab\"]').on('shown', {$fn});");
         }
     }
 

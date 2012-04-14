@@ -7,12 +7,10 @@
  * @package bootstrap.widgets
  */
 
-Yii::import('bootstrap.widgets.BootWidget');
-
 /**
  * Bootstrap label widget.
  */
-class BootLabel extends BootWidget
+class BootLabel extends CWidget
 {
 	// Label types.
 	const TYPE_DEFAULT = '';
@@ -35,6 +33,10 @@ class BootLabel extends BootWidget
 	 * @var boolean whether to encode the label.
 	 */
 	public $encodeLabel = true;
+	/**
+	 * @var array the HTML attributes for the widget container.
+	 */
+	public $htmlOptions = array();
 
 	/**
 	 * Initializes the widget.

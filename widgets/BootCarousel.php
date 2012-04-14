@@ -8,12 +8,10 @@
  * @since 0.9.10
  */
 
-Yii::import('bootstrap.widgets.BootWidget');
-
 /**
  * Bootstrap carousel widget.
  */
-class BootCarousel extends BootWidget
+class BootCarousel extends CWidget
 {
 	/**
 	 * @var string the previous button content.
@@ -27,6 +25,18 @@ class BootCarousel extends BootWidget
 	 * @var array the carousel items configuration.
 	 */
 	public $items = array();
+	/**
+	 * @var array the options for the Bootstrap JavaScript plugin.
+	 */
+	public $options = array();
+	/**
+	 * @var string[] the JavaScript event handlers.
+	 */
+	public $events = array();
+	/**
+	 * @var array the HTML attributes for the widget container.
+	 */
+	public $htmlOptions = array();
 
 	/**
 	 * Initializes the widget.

@@ -13,8 +13,17 @@ Yii::import('bootstrap.widgets.BootWidget');
 /**
  * Bootstrap type-a-head widget.
  */
-class BootTypeahead extends BootWidget
+class BootTypeahead extends CWidget
 {
+	/**
+	 * @var array the options for the Bootstrap JavaScript plugin.
+	 */
+	public $options = array();
+	/**
+	 * @var array the HTML attributes for the widget container.
+	 */
+	public $htmlOptions = array();
+
 	/**
 	 * Initializes the widget.
 	 */

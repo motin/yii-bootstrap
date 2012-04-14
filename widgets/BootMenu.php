@@ -171,6 +171,9 @@ class BootMenu extends BootBaseMenu
 	{
 		foreach ($items as $i => $item)
 		{
+			if (!is_array($item))
+				continue;
+
 			if (isset($item['visible']) && !$item['visible'])
 			{
 				unset($items[$i]);

@@ -7,9 +7,7 @@
  * @package bootstrap.widgets
  */
 
-Yii::import('bootstrap.widgets.BootWidget');
-
-abstract class BootBaseMenu extends BootWidget
+abstract class BootBaseMenu extends CWidget
 {
 	/**
 	 * @var array the menu items.
@@ -23,6 +21,10 @@ abstract class BootBaseMenu extends BootWidget
 	 * @var boolean whether to encode item labels.
 	 */
 	public $encodeLabel = true;
+	/**
+	 * @var array the HTML attributes for the widget container.
+	 */
+	public $htmlOptions = array();
 
 	/**
 	 * Runs the widget.
@@ -58,10 +60,7 @@ abstract class BootBaseMenu extends BootWidget
 		if (!isset($item['header']) && !isset($item['url']))
 			$item['url'] = '#';
 
-		if (isset($item['url']))
-			return CHtml::link($item['label'], $item['url'], $item['linkOptions']);
-		else
-			return $item['label'];
+		return isset($item['url']) ? CHtml::link($item['label'], $item['url'], $item['linkOptions']) : $item['label'];
 	}
 
 	/**

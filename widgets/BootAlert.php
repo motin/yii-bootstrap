@@ -7,13 +7,10 @@
  * @package bootstrap.widgets
  */
 
-Yii::import('bootstrap.widgets.BootWidget');
-
 /**
  * Bootstrap alert widget.
- * @todo Fix event support. http://twitter.github.com/bootstrap/javascript.html#alerts
  */
-class BootAlert extends BootWidget
+class BootAlert extends CWidget
 {
 	/**
 	 * @var array the keys for which to get flash messages.
@@ -24,7 +21,11 @@ class BootAlert extends BootWidget
 	 */
 	public $template = '<div class="alert alert-block alert-{key}{class}"><a class="close" data-dismiss="alert">&times;</a>{message}</div>';
 	/**
-	 * @var array the html options.
+	 * @var string[] the JavaScript event handlers.
+	 */
+	public $events = array();
+	/**
+	 * @var array the HTML attributes for the widget container.
 	 */
 	public $htmlOptions = array();
 
@@ -35,10 +36,10 @@ class BootAlert extends BootWidget
 	{
 		parent::init();
 
-		Yii::app()->bootstrap->registerAlert();
-
 		if (!isset($this->htmlOptions['id']))
 			$this->htmlOptions['id'] = $this->getId();
+
+		Yii::app()->bootstrap->registerAlert();
 	}
 
 	/**
@@ -68,22 +69,22 @@ class BootAlert extends BootWidget
 		echo '</div>';
 
 		$selector = "#{$this->id} .alert";
-		Yii::app()->clientScript->registerScript(__CLASS__.'#'.$this->id, "jQuery('{$selector}').alert();");
+		Yii::app()->clientScript->registerScript(__CLASS__."#{$this->id}", "jQuery('{$selector}').alert();");
 
-		/*
 		// Register the "close" event-handler.
 		if (isset($this->events['close']))
 		{
 			$fn = CJavaScript::encode($this->events['close']);
-			Yii::app()->clientScript->registerScript(__CLASS__.'#'.$this->id.'.close', "jQuery('{$selector}').bind('close', {$fn});");
+			Yii::app()->clientScript->registerScript(__CLASS__."#{$this->id}.close",
+					"jQuery('{$selector}').bind('close', {$fn});");
 		}
 
 		// Register the "closed" event-handler.
 		if (isset($this->events['closed']))
 		{
 			$fn = CJavaScript::encode($this->events['closed']);
-			Yii::app()->clientScript->registerScript(__CLASS__.'#'.$this->id.'.closed', "jQuery('{$selector}').bind('closed', {$fn});");
+			Yii::app()->clientScript->registerScript(__CLASS__."#{$this->id}.closed",
+					"jQuery('{$selector}').bind('closed', {$fn});");
 		}
-		*/
 	}
 }

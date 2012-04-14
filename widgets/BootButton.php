@@ -8,12 +8,10 @@
  * @since 0.9.10
  */
 
-Yii::import('bootstrap.widgets.BootWidget');
-
 /**
  * Bootstrap button widget.
  */
-class BootButton extends BootWidget
+class BootButton extends CWidget
 {
 	// Button callback types.
 	const BUTTON_LINK = 'link';
@@ -91,6 +89,10 @@ class BootButton extends BootWidget
 	 * @var boolean indicates whether to encode the label.
 	 */
 	public $encodeLabel = true;
+	/**
+	 * @var array the HTML attributes for the widget container.
+	 */
+	public $htmlOptions = array();
 	/**
 	 * @var array the button ajax options (used by 'ajaxLink' and 'ajaxButton').
 	 */

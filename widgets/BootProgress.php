@@ -8,12 +8,10 @@
  * @since 0.9.10
  */
 
-Yii::import('bootstrap.widgets.BootWidget');
-
 /**
  * Bootstrap progress bar widget.
  */
-class BootProgress extends BootWidget
+class BootProgress extends CWidget
 {
 	// Progress bar types.
 	const TYPE_DEFAULT = '';
@@ -38,6 +36,10 @@ class BootProgress extends BootWidget
 	 * @var integer the progress.
 	 */
 	public $percent = 0;
+	/**
+	 * @var array the HTML attributes for the widget container.
+	 */
+	public $htmlOptions = array();
 
 	/**
 	 * Initializes the widget.

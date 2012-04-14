@@ -13,7 +13,7 @@ Yii::import('bootstrap.widgets.BootWidget');
 /**
  * Bootstrap navigation bar widget.
  */
-class BootNavbar extends BootWidget
+class BootNavbar extends CWidget
 {
 	// Navbar fix locations.
 	const FIXED_TOP = 'top';
@@ -50,6 +50,10 @@ class BootNavbar extends BootWidget
 	 * @var boolean whether to enable collapsing on narrow screens. Default to false.
 	 */
 	public $collapse = false;
+	/**
+	 * @var array the HTML attributes for the widget container.
+	 */
+	public $htmlOptions = array();
 
 	/**
 	 * Initializes the widget.

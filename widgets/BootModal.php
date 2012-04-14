@@ -13,8 +13,21 @@ Yii::import('bootstrap.widgets.BootWidget');
 /**
  * Bootstrap modal widget.
  */
-class BootModal extends BootWidget
+class BootModal extends CWidget
 {
+	/**
+	 * @var array the options for the Bootstrap JavaScript plugin.
+	 */
+	public $options = array();
+	/**
+	 * @var string[] the JavaScript event handlers.
+	 */
+	public $events = array();
+	/**
+	 * @var array the HTML attributes for the widget container.
+	 */
+	public $htmlOptions = array();
+
 	/**
 	 * Initializes the widget.
 	 */
@@ -37,8 +50,6 @@ class BootModal extends BootWidget
 			$this->htmlOptions['class'] .= ' '.$cssClass;
 		else
 			$this->htmlOptions['class'] = $cssClass;
-
-
 
 		echo CHtml::openTag('div', $this->htmlOptions).PHP_EOL;
 	}
