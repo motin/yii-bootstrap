@@ -86,7 +86,7 @@ class BootMenu extends BootBaseMenu
 		foreach ($items as $item)
 		{
 			if (!is_array($item))
-				echo '<li class="divider"></li>';
+				echo '<li class="divider-vertical"></li>';
 			else
 			{
 				if (!isset($item['itemOptions']))
@@ -126,6 +126,7 @@ class BootMenu extends BootBaseMenu
 				if(isset($item['items']) && !empty($item['items']))
 				{
 					$this->controller->widget('bootstrap.widgets.BootDropdown', array(
+						'encodeLabel'=>$this->encodeLabel,
 						'items'=>$item['items'],
 						'htmlOptions'=>isset($item['dropdownOptions']) ? $item['dropdownOptions'] : $this->dropdownOptions,
 					));

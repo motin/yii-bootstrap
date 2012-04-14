@@ -27,13 +27,18 @@ class BootModal extends BootWidget
 		if (!isset($this->htmlOptions['id']))
 			$this->htmlOptions['id'] = $this->getId();
 
-		if (isset($this->htmlOptions['class']))
-			$this->htmlOptions['class'] .= ' modal';
-		else
-			$this->htmlOptions['class'] = 'modal';
+		$class = array('modal');
 
 		if (Yii::app()->bootstrap->isPluginRegistered(Bootstrap::PLUGIN_TRANSITION))
-			$this->htmlOptions['class'] .= ' fade';
+			$class[] = 'fade';
+
+		$cssClass = implode(' ', $class);
+		if (isset($this->htmlOptions['class']))
+			$this->htmlOptions['class'] .= ' '.$cssClass;
+		else
+			$this->htmlOptions['class'] = $cssClass;
+
+
 
 		echo CHtml::openTag('div', $this->htmlOptions).PHP_EOL;
 	}

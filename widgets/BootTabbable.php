@@ -51,17 +51,15 @@ class BootTabbable extends BootWidget
 		if (!isset($this->htmlOptions['id']))
 			$this->htmlOptions['id'] = $this->getId();
 
-		if (isset($this->placement))
+		$validPlacements = array(self::PLACEMENT_ABOVE, self::PLACEMENT_BELOW, self::PLACEMENT_LEFT, self::PLACEMENT_RIGHT);
+
+		if (isset($this->placement) && in_array($this->placement, $validPlacements))
 		{
-			$validPlacements = array(self::PLACEMENT_ABOVE, self::PLACEMENT_BELOW, self::PLACEMENT_LEFT, self::PLACEMENT_RIGHT);
-			if (in_array($this->placement, $validPlacements))
-			{
-				$cssClass = 'tabs-'.$this->placement;
-				if (isset($this->htmlOptions['class']))
-					$this->htmlOptions['class'] .= ' '.$cssClass;
-				else
-					$this->htmlOptions['class'] = $cssClass;
-			}
+			$cssClass = 'tabs-'.$this->placement;
+			if (isset($this->htmlOptions['class']))
+				$this->htmlOptions['class'] .= ' '.$cssClass;
+			else
+				$this->htmlOptions['class'] = $cssClass;
 		}
 
 		Yii::app()->bootstrap->registerTabs();
@@ -133,16 +131,11 @@ class BootTabbable extends BootWidget
 	    {
 			$item = $tab;
 
+		    if (isset($item['visible']) && !$item['visible'])
+                continue;
+
 			if (!isset($item['itemOptions']))
 				$item['itemOptions'] = array();
-
-		    if ($i === 0)
-		    {
-			    if (isset($item['itemOptions']['class']))
-	                $item['itemOptions']['class'] .= ' active';
-	            else
-		            $item['itemOptions']['class'] = 'active';
-		    }
 
 			$item['linkOptions']['data-toggle'] = 'tab';
 
@@ -151,7 +144,7 @@ class BootTabbable extends BootWidget
 			else
 			{
 				if (!isset($item['id']))
-					$item['id'] = $id.'_tab_'.++$i;
+					$item['id'] = $id.'_tab_'.($i + 1);
 
 				$item['url'] = '#'.$item['id'];
 
@@ -169,23 +162,28 @@ class BootTabbable extends BootWidget
 
 				$paneOptions['id'] = $item['id'];
 
-				if (isset($tab['paneOptions']['class']))
-					$paneOptions['class'] .= ' tab-pane';
-				else
-					$paneOptions['class'] = 'tab-pane';
+				$class = array('tab-pane');
 
 				if ($transitions)
-					$paneOptions['class'] .= ' fade';
+					$class[] = 'fade';
 
-				if ($i === 1)
+				if (isset($item['active']) && $item['active'])
 				{
-					if ($transitions)
-						$paneOptions['class'] .= ' in';
+					$class[] = 'active';
 
-					$paneOptions['class'] .= ' active';
+					if ($transitions)
+						$class[] = 'in';
 				}
 
+				$cssClass = implode(' ', $class);
+				if (isset($paneOptions['class']))
+					$paneOptions['class'] .= $cssClass;
+				else
+					$paneOptions['class'] = $cssClass;
+
 				$panes[] = CHtml::tag('div', $paneOptions, $content);
+
+				$i++; // increment the tab-index
 			}
 
 			$items[] = $item;

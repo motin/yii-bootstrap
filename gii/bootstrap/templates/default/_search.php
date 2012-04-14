@@ -4,7 +4,7 @@
  * - $this: the BootCrudCode object
  */
 ?>
-<?php echo "<?php \$form=\$this->beginWidget('ext.bootstrap.widgets.BootActiveForm',array(
+<?php echo "<?php \$form=\$this->beginWidget('bootstrap.widgets.BootActiveForm',array(
 	'action'=>Yii::app()->createUrl(\$this->route),
 	'method'=>'get',
 )); ?>\n"; ?>
@@ -18,8 +18,11 @@
 	<?php echo "<?php echo ".$this->generateActiveRow($this->modelClass,$column)."; ?>\n"; ?>
 
 <?php endforeach; ?>
-	<div class="actions">
-		<?php echo "<?php echo CHtml::submitButton('Search',array('class'=>'btn primary')); ?>\n"; ?>
+	<div class="form-actions">
+		<?php echo "<?php \$this->widget('bootstrap.widgets.BootButton', array(
+			'type'=>'primary',
+			'label'=>'Search',
+		)); ?>\n"; ?>
 	</div>
 
 <?php echo "<?php \$this->endWidget(); ?>\n"; ?>

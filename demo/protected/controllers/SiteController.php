@@ -36,7 +36,7 @@ class SiteController extends Controller
 		$model = new TestForm();
 
 		$tabs = array(
-			array('label'=>'Home', 'content'=>'<p>Raw denim you probably haven\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>'),
+			array('label'=>'Home', 'content'=>'<p>Raw denim you probably haven\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>', 'active'=>true),
 			array('label'=>'Profile', 'content'=>'<p>Food truck fixie locavore, accusamus mcsweeney\'s marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>'),
 			array('label'=>'Dropdown', 'items'=>array(
 				array('label'=>'@fat', 'content'=>'<p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney\'s organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven\'t heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p>'),
@@ -45,25 +45,40 @@ class SiteController extends Controller
 		);
 
 		$tabbable = array(
-			array('label'=>'Section 1', 'content'=>'<p>I\'m in Section 1.</p>'),
+			array('label'=>'Section 1', 'content'=>'<p>I\'m in Section 1.</p>', 'active'=>true),
 			array('label'=>'Section 2', 'content'=>'<p>Howdy, I\'m in Section 2.</p>'),
 			array('label'=>'Section 3', 'content'=>'<p>What up girl, this is Section 3.</p>'),
 		);
 
-		$gridDataProvider = new CArrayDataProvider(array(
-			array('id'=>1, 'firstName'=>'Mark', 'lastName'=>'Otto', 'language'=>'CSS'),
-			array('id'=>2, 'firstName'=>'Jacob', 'lastName'=>'Thornton', 'language'=>'JavaScript'),
-			array('id'=>3, 'firstName'=>'Stu', 'lastName'=>'Dent', 'language'=>'HTML'),
-		));
+		$mark = new Person();
+		$mark->id = 1;
+		$mark->firstName = 'Mark';
+		$mark->lastName = 'Otto';
+		$mark->language = 'CSS';
+
+		$jacob = new Person();
+		$jacob->id = 2;
+		$jacob->firstName = 'Jacob';
+		$jacob->lastName = 'Thornton';
+		$jacob->language = 'JavaScript';
+
+		$stu = new Person();
+		$stu->id = 3;
+		$stu->firstName = 'Stu';
+		$stu->lastName = 'Dent';
+		$stu->language = 'HTML';
+
+		$persons = array($mark, $jacob, $stu);
+
+		$gridDataProvider = new CArrayDataProvider($persons);
 
 		$gridColumns = array(
-			array('name'=>'id', 'header'=>'#'),
+			array('name'=>'id', 'header'=>'#', 'htmlOptions'=>array('style'=>'width: 60px')),
 			array('name'=>'firstName', 'header'=>'First name'),
 			array('name'=>'lastName', 'header'=>'Last name'),
 			array('name'=>'language', 'header'=>'Language'),
 			array(
 				'class'=>'bootstrap.widgets.BootButtonColumn',
-				'htmlOptions'=>array('style'=>'width: 50px'),
 				'viewButtonUrl'=>null,
 				'updateButtonUrl'=>null,
 				'deleteButtonUrl'=>null,
@@ -78,14 +93,26 @@ class SiteController extends Controller
 			'pagination'=>array('pageSize'=>8),
 		));
 
+		$phpLighter = new CTextHighlighter();
+		$phpLighter->language = 'PHP';
+
+		$jsLighter = new CTextHighlighter();
+		$jsLighter->language = 'JAVASCRIPT';
+
+		$htmlLighter = new CTextHighlighter();
+		$htmlLighter->language = 'HTML';
+
 		$this->render('index', array(
 			'model'=>$model,
+			'person'=>new Person(),
 			'tabs'=>$tabs,
 			'tabbable'=>$tabbable,
 			'gridDataProvider'=>$gridDataProvider,
 			'gridColumns'=>$gridColumns,
 			'listDataProvider'=>$listDataProvider,
-			'parser'=>new CMarkdownParser(),
+			'phpLighter'=>$phpLighter,
+			'jsLighter'=>$jsLighter,
+			'htmlLighter'=>$htmlLighter,
 		));
 	}
 

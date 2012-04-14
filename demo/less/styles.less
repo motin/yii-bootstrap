@@ -38,50 +38,19 @@ p {
 }
 
 .subnav {
-	border: 1px solid #E5E5E5;
 	font-size: 12px;
+	padding: 9px 0;
+	position: fixed;
+	right: 20px;
+	top: 60px;
+	width: 160px;
+	z-index: 1030;
 	.border-radius(4px);
-	.size(36px, 100%);
-	#gradient > .vertical(#F5F5F5, #EEE);
 
-	&.subnav-fixed {
-		border-color: #D5D5D5;
-		border-width: 1px 0 0;
-		bottom: 0;
-		left: 0;
-		position: fixed;
-		right: 0;
-		z-index: 1030;
-		.border-radius(0);
-		.box-shadow(inset 0 1px 0 #FFF, 0 1px 5px rgba(0, 0, 0, .1));
-	}
-
-	.nav {
-        margin: 0 auto;
-        max-width: 1170px;
-
-		& > li > a {
-			margin: 0;
-			padding: 11px;
-			border-left: 1px solid whiteSmoke;
-			border-right: 1px solid #E5E5E5;
-			.border-radius(0);
-		}
-
-		& > li:first-child > a {
-			border-left: 0;
-		}
-
-		& > li:last-child > a {
-			border-right: 0;
-		}
-
-		& > .active >a, & .action > a:hover {
-			background-color: #E9E9E9;
-			border-right-color: #DDD;
-			color: #777;
-			.box-shadow(inset 0 3px 5px rgba(0, 0, 0, .05));
-		}
+	.label {
+	    font-size: 0.8em;
+	    line-height: 16px;
+		vertical-align: top;
 	}
 }
 
@@ -124,6 +93,10 @@ section {
 #bootTabbable .tabbable {
 	margin-bottom: 20px;
 
+	.tab-content {
+		width: auto;
+	}
+
 	&.tabbable-placed {
 		width: 340px;
 	}
@@ -165,7 +138,9 @@ section {
 	margin-bottom: 0;
 }
 
-.hl-code {
+.php-hl-main,
+.html-hl-main,
+.javascript-hl-main {
 	margin-bottom: 20px;
 
 	pre {
