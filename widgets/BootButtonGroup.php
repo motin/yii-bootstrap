@@ -56,19 +56,16 @@ class BootButtonGroup extends CWidget
 	 */
 	public function init()
 	{
-		$cssClass = 'btn-group';
+		$classes = 'btn-group';
 		if (isset($this->htmlOptions['class']))
-			$this->htmlOptions['class'] .= ' '.$cssClass;
+			$this->htmlOptions['class'] .= ' '.$classes;
 		else
-			$this->htmlOptions['class'] = $cssClass;
+			$this->htmlOptions['class'] = $classes;
 
 		$validToggles = array(self::TOGGLE_CHECKBOX, self::TOGGLE_RADIO);
 
 		if (isset($this->toggle) && in_array($this->toggle, $validToggles))
-		{
 			$this->htmlOptions['data-toggle'] = 'buttons-'.$this->toggle;
-			Yii::app()->bootstrap->registerButton();
-		}
 	}
 
 	/**

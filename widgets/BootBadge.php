@@ -45,17 +45,16 @@ class BootBadge extends CWidget
 	{
 		$classes = array('badge');
 
-		$validTypes = array(self::TYPE_SUCCESS, self::TYPE_WARNING,
-				self::TYPE_ERROR, self::TYPE_INFO, self::TYPE_INVERSE);
+		$validTypes = array(self::TYPE_SUCCESS, self::TYPE_WARNING, self::TYPE_ERROR, self::TYPE_INFO, self::TYPE_INVERSE);
 
 		if (in_array($this->type, $validTypes))
 			$classes[] = 'badge-'.$this->type;
 
-		$cssClass = implode(' ', $classes);
+		$classes = implode(' ', $classes);
 		if (isset($this->htmlOptions['class']))
-			$this->htmlOptions['class'] .= ' '.$cssClass;
+			$this->htmlOptions['class'] .= ' '.$classes;
 		else
-			$this->htmlOptions['class'] = $cssClass;
+			$this->htmlOptions['class'] = $classes;
 
 		if ($this->encodeLabel === true)
 			$this->label = CHtml::encode($this->label);

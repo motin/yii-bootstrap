@@ -68,9 +68,6 @@ class BootNavbar extends CWidget
 			if (!isset($this->brandUrl))
 				$this->brandUrl = Yii::app()->homeUrl;
 		}
-
-		if ($this->collapse)
-			Yii::app()->bootstrap->registerCollapse();
 	}
 
 	/**
@@ -78,18 +75,18 @@ class BootNavbar extends CWidget
 	 */
 	public function run()
 	{
-		$class = array('navbar');
+		$classes = array('navbar');
 
 		$validFixes = array(self::FIXED_TOP, self::FIXED_BOTTOM);
 
 		if (in_array($this->fixed, $validFixes))
-			$class[] = 'navbar-fixed-'.$this->fixed;
+			$classes[] = 'navbar-fixed-'.$this->fixed;
 
-		$cssClass = implode(' ', $class);
+		$classes = implode(' ', $classes);
 		if (isset($this->htmlOptions['class']))
-			$this->htmlOptions['class'] .= ' '.$cssClass;
+			$this->htmlOptions['class'] .= ' '.$classes;
 		else
-			$this->htmlOptions['class'] = $cssClass;
+			$this->htmlOptions['class'] = $classes;
 
 		if (isset($this->brandOptions['class']))
 			$this->brandOptions['class'] .= ' brand';

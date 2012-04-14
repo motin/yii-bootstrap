@@ -32,11 +32,11 @@ class BootInputHorizontal extends BootInput
 	 */
 	protected function getLabel($htmlOptions = array())
 	{
-		$cssClass = 'control-label';
+		$classes = 'control-label';
 		if (isset($htmlOptions['class']))
-			$htmlOptions['class'] .= ' '.$cssClass;
+			$htmlOptions['class'] .= ' '.$classes;
 		else
-			$htmlOptions['class'] = $cssClass;
+			$htmlOptions['class'] = $classes;
 
 		return parent::getLabel($htmlOptions);
 	}

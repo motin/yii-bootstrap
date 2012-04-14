@@ -60,7 +60,10 @@ abstract class BootBaseMenu extends CWidget
 		if (!isset($item['header']) && !isset($item['url']))
 			$item['url'] = '#';
 
-		return isset($item['url']) ? CHtml::link($item['label'], $item['url'], $item['linkOptions']) : $item['label'];
+		if (isset($item['url']))
+			return CHtml::link($item['label'], $item['url'], $item['linkOptions']);
+		else
+			return $item['label'];
 	}
 
 	/**

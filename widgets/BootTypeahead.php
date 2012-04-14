@@ -8,8 +8,6 @@
  * @since 0.9.10
  */
 
-Yii::import('bootstrap.widgets.BootWidget');
-
 /**
  * Bootstrap type-a-head widget.
  */
@@ -34,8 +32,6 @@ class BootTypeahead extends CWidget
 
 		$this->htmlOptions['type'] = 'text';
 		$this->htmlOptions['data-provide'] = 'typeahead';
-
-		Yii::app()->bootstrap->registerTypeahead();
 	}
 
 	/**
@@ -43,9 +39,10 @@ class BootTypeahead extends CWidget
 	 */
 	public function run()
 	{
+		$id = $this->id;
+
 		echo CHtml::tag('input', $this->htmlOptions);
 
-		$id = $this->id;
 		$options = !empty($this->options) ? CJavaScript::encode($this->options) : '';
 		Yii::app()->clientScript->registerScript(__CLASS__.'#'.$id, "jQuery('#{$id}').typeahead({$options});");
 	}

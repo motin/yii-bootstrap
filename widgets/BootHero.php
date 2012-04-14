@@ -32,11 +32,11 @@ class BootHero extends CWidget
 	 */
 	public function init()
 	{
-		$cssClass = 'hero-unit';
+		$classes = 'hero-unit';
 		if (isset($this->htmlOptions['class']))
-			$this->htmlOptions['class'] .= ' '.$cssClass;
+			$this->htmlOptions['class'] .= ' '.$classes;
 		else
-			$this->htmlOptions['class'] = $cssClass;
+			$this->htmlOptions['class'] = $classes;
 
 		if ($this->encodeHeading)
 			$this->heading = CHtml::encode($this->heading);

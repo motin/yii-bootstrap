@@ -51,11 +51,11 @@ class BootLabel extends CWidget
 		if (in_array($this->type, $validTypes))
 			$classes[] = 'label-'.$this->type;
 
-		$cssClass = implode(' ', $classes);
+		$classes = implode(' ', $classes);
 		if (isset($this->htmlOptions['class']))
-			$this->htmlOptions['class'] .= ' '.$cssClass;
+			$this->htmlOptions['class'] .= ' '.$classes;
 		else
-			$this->htmlOptions['class'] = $cssClass;
+			$this->htmlOptions['class'] = $classes;
 
 		if ($this->encodeLabel === true)
 			$this->label = CHtml::encode($this->label);

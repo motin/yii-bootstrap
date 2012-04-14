@@ -46,23 +46,23 @@ class BootProgress extends CWidget
 	 */
 	public function init()
 	{
-		$class = array('progress');
+		$classes = array('progress');
 
 		$validTypes = array(self::TYPE_DEFAULT, self::TYPE_INFO, self::TYPE_SUCCESS, self::TYPE_DANGER);
 		if ($this->type !== self::TYPE_DEFAULT && in_array($this->type, $validTypes))
-			$class[] = 'progress-'.$this->type;
+			$classes[] = 'progress-'.$this->type;
 
 		if ($this->striped)
-			$class[] = 'progress-striped';
+			$classes[] = 'progress-striped';
 
 		if ($this->animated)
-			$class[] = 'active';
+			$classes[] = 'active';
 
-		$cssClass = implode(' ', $class);
+		$classes = implode(' ', $classes);
 		if (isset($this->htmlOptions['class']))
-			$this->htmlOptions['class'] .= ' '.$cssClass;
+			$this->htmlOptions['class'] .= ' '.$classes;
 		else
-			$this->htmlOptions['class'] = $cssClass;
+			$this->htmlOptions['class'] = $classes;
 
 		if ($this->percent < 0)
 			$this->percent = 0;

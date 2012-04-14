@@ -108,21 +108,21 @@ class BootButton extends CWidget
 	 */
 	public function init()
 	{
-		$class = array('btn');
+		$classes = array('btn');
 
 		$validTypes = array(self::TYPE_PRIMARY, self::TYPE_INFO, self::TYPE_SUCCESS,
 				self::TYPE_WARNING, self::TYPE_DANGER, self::TYPE_INVERSE);
 
 		if (isset($this->type) && in_array($this->type, $validTypes))
-			$class[] = 'btn-'.$this->type;
+			$classes[] = 'btn-'.$this->type;
 
 		$validSizes = array(self::SIZE_LARGE, self::SIZE_SMALL, self::SIZE_MINI);
 
 		if (isset($this->size) && in_array($this->size, $validSizes))
-			$class[] = 'btn-'.$this->size;
+			$classes[] = 'btn-'.$this->size;
 
 		if ($this->active)
-			$class[] = 'active';
+			$classes[] = 'active';
 
 		if ($this->encodeLabel)
 			$this->label = CHtml::encode($this->label);
@@ -132,17 +132,17 @@ class BootButton extends CWidget
 			if (!isset($this->url))
 				$this->url = '#';
 
-			$class[] = 'dropdown-toggle';
+			$classes[] = 'dropdown-toggle';
 			$this->label .= ' <span class="caret"></span>';
 			$this->htmlOptions['data-toggle'] = 'dropdown';
 		}
 
-		$cssClass = implode(' ', $class);
+		$classes = implode(' ', $classes);
 
 		if (isset($this->htmlOptions['class']))
-			$this->htmlOptions['class'] .= ' '.$cssClass;
+			$this->htmlOptions['class'] .= ' '.$classes;
 		else
-			$this->htmlOptions['class'] = $cssClass;
+			$this->htmlOptions['class'] = $classes;
 
 		if (isset($this->icon))
 		{
@@ -170,8 +170,6 @@ class BootButton extends CWidget
 
 			if (isset($this->completeText))
 				$this->htmlOptions['data-complete-text'] = $this->completeText;
-
-			Yii::app()->bootstrap->registerButton();
 		}
 	}
 
