@@ -38,17 +38,17 @@ class BootBreadcrumbs extends CBreadcrumbs
 	{
 		$links = array();
 
-		if ($this->homeLink === null || !(isset($this->homeLink['label']) && isset($this->homeLink['url'])))
-			$this->homeLink = array('label'=>Yii::t('bootstrap', 'Home'),'url'=>Yii::app()->homeUrl);
+		if ($this->homeLink === null)
+			$this->homeLink = array('label'=>Yii::t('bootstrap', 'Home'), 'url'=>Yii::app()->homeUrl);
 
-		if (!empty($this->links))
+		if ($this->homeLink !== false)
 		{
-			$content = CHtml::link($this->homeLink['label'], $this->homeLink['url']);
-			$links[] = $this->renderItem($content);
+			if (is_array($this->homeLink))
+				$this->homeLink = CHtml::link($this->homeLink['label'], $this->homeLink['url']);
+			
+			$links[] = $this->renderItem($this->homeLink);
 		}
-		else
-			$links[] = $this->renderItem($this->homeLink['label'], true);
-
+		
 		foreach ($this->links as $label=>$url)
 		{
 			if (is_string($label) || is_array($url))
