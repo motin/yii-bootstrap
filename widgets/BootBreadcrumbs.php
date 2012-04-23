@@ -36,6 +36,9 @@ class BootBreadcrumbs extends CBreadcrumbs
 	 */
 	public function run()
 	{
+		if (empty($this->links))
+			return;
+		
 		$links = array();
 
 		if ($this->homeLink === null)
