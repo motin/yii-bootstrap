@@ -113,7 +113,9 @@ class BootInputHorizontal extends BootInput
 	{
 		echo $this->getLabel();
 		echo '<div class="controls">';
+		echo $this->getPrepend();
 		echo $this->form->passwordField($this->model, $this->attribute, $this->htmlOptions);
+		echo $this->getAppend();
 		echo $this->getError().$this->getHint();
 		echo '</div>';
 	}

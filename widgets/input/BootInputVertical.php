@@ -92,7 +92,9 @@ class BootInputVertical extends BootInput
 	protected function passwordField()
 	{
 		echo $this->getLabel();
+		echo $this->getPrepend();
 		echo $this->form->passwordField($this->model, $this->attribute, $this->htmlOptions);
+		echo $this->getAppend();
 		echo $this->getError().$this->getHint();
 	}
 
