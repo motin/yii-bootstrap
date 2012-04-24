@@ -34,9 +34,10 @@ class BootInputVertical extends BootInput
 	 */
 	protected function checkBox()
 	{
-		echo '<label class="checkbox" for="'.CHtml::getIdByName(CHtml::resolveName($this->model, $this->attribute)).'">';
+		$attribute = $this->attribute;
+		echo '<label class="checkbox" for="'.CHtml::getIdByName(CHtml::resolveName($this->model, $attribute)).'">';
 		echo $this->form->checkBox($this->model, $this->attribute, $this->htmlOptions).PHP_EOL;
-		echo $this->model->getAttributeLabel($this->attribute);
+		echo $this->model->getAttributeLabel($attribute);
 		echo $this->getError().$this->getHint();
 		echo '</label>';
 	}
@@ -101,9 +102,10 @@ class BootInputVertical extends BootInput
 	 */
 	protected function radioButton()
 	{
-		echo '<label class="radio" for="'.CHtml::getIdByName(CHtml::resolveName($this->model, $this->attribute)).'">';
+		$attribute = $this->attribute;
+		echo '<label class="radio" for="'.CHtml::getIdByName(CHtml::resolveName($this->model, $attribute)).'">';
 		echo $this->form->radioButton($this->model, $this->attribute, $this->htmlOptions).PHP_EOL;
-		echo $this->model->getAttributeLabel($this->attribute);
+		echo $this->model->getAttributeLabel($attribute);
 		echo $this->getError().$this->getHint();
 		echo '</label>';
 	}

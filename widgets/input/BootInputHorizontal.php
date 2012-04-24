@@ -47,10 +47,11 @@ class BootInputHorizontal extends BootInput
 	 */
 	protected function checkBox()
 	{
+		$attribute = $this->attribute;
 		echo '<div class="controls">';
-		echo '<label class="checkbox" for="'.CHtml::getIdByName(CHtml::resolveName($this->model, $this->attribute)).'">';
-		echo $this->form->checkBox($this->model, $this->attribute, $this->htmlOptions).PHP_EOL;
-		echo $this->model->getAttributeLabel($this->attribute);
+		echo '<label class="checkbox" for="'.CHtml::getIdByName(CHtml::resolveName($this->model, $attribute)).'">';
+		echo $this->form->checkBox($this->model, $attribute, $this->htmlOptions).PHP_EOL;
+		echo $this->model->getAttributeLabel($attribute);
 		echo $this->getError().$this->getHint();
 		echo '</label></div>';
 	}
@@ -123,10 +124,11 @@ class BootInputHorizontal extends BootInput
 	 */
 	protected function radioButton()
 	{
+		$attribute = $this->attribute;
 		echo '<div class="controls">';
-		echo '<label class="radio" for="'.CHtml::getIdByName(CHtml::resolveName($this->model, $this->attribute)).'">';
-		echo $this->form->radioButton($this->model, $this->attribute, $this->htmlOptions).PHP_EOL;
-		echo $this->model->getAttributeLabel($this->attribute);
+		echo '<label class="radio" for="'.CHtml::getIdByName(CHtml::resolveName($this->model, $attribute)).'">';
+		echo $this->form->radioButton($this->model, $attribute, $this->htmlOptions).PHP_EOL;
+		echo $this->model->getAttributeLabel($attribute);
 		echo $this->getError().$this->getHint();
 		echo '</label></div>';
 	}
