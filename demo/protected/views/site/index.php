@@ -556,7 +556,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	<h2>Modals</h2>
 
 	<?php $this->beginWidget('bootstrap.widgets.BootModal', array(
-		'id'=>'modal',
+		'id'=>'myModal',
 		'events'=>array(
 			'show'=>"js:function() { console.log('Modal show.'); }",
 			'shown'=>"js:function() { console.log('Modal shown.'); }",
@@ -582,7 +582,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	<?php $this->endWidget(); ?>
 
 	<div class="well">
-		<?php echo CHtml::link('Click me','#modal', array(
+		<?php echo CHtml::link('Click me','#myModal', array(
 			'class'=>'btn btn-primary',
 			'data-toggle'=>'modal',
 		)); ?>
@@ -590,7 +590,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h4>Source code</h4>
 
-<?php echo $phpLighter->highlight("<?php \$this->beginWidget('bootstrap.widgets.BootModal', array('id'=>'modal')); ?>
+<?php echo $phpLighter->highlight("<?php \$this->beginWidget('bootstrap.widgets.BootModal', array('id'=>'myModal')); ?>
 
 <div class=\"modal-header\">
 	<a class=\"close\" data-dismiss=\"modal\">&times;</a>
@@ -617,7 +617,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 <?php \$this->endWidget(); ?>
 
-<?php echo CHtml::link('Click me','#modal', array('class'=>'btn btn-primary', 'data-toggle'=>'modal')); ?>"); ?>
+<?php echo CHtml::link('Click me','#myModal', array('class'=>'btn btn-primary', 'data-toggle'=>'modal')); ?>"); ?>
 
 	<a class="top" href="#top">Back to top &uarr;</a>
 
