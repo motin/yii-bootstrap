@@ -22,7 +22,7 @@ $config = array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'boot',
 			'ipFilters'=>array('127.0.0.1','::1'),
-			'generatorPaths'=>array('ext.bootstrap.gii'),
+			'generatorPaths'=>array('bootstrap.gii'),
 		),
 	),
 
