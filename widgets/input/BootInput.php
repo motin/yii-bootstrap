@@ -259,7 +259,7 @@ abstract class BootInput extends CInputWidget
 	 */
 	protected function getContainerCssClass()
 	{
-		if ($this->model->hasErrors($this->attribute))
+		if ($this->model->hasErrors(CHtml::resolveName($this->model, $this->attribute)))
 			return CHtml::$errorCss;
 		else
 			return '';
