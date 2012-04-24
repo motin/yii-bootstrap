@@ -37,7 +37,9 @@ class BootNavbar extends CWidget
 	 */
 	public $items = array();
 	/**
-	 * @var string fix location of the navbar if applicable. Valid values are 'top' and 'bottom'. Defaults to 'top'.
+	 * @var mixed fix location of the navbar if applicable.
+	 * Valid values are 'top' and 'bottom'. Defaults to 'top'.
+	 * Setting the value to false will make the navbar static.
 	 * @since 0.9.8
 	 */
 	public $fixed = self::FIXED_TOP;
@@ -77,10 +79,12 @@ class BootNavbar extends CWidget
 	{
 		$classes = array('navbar');
 
-		$validFixes = array(self::FIXED_TOP, self::FIXED_BOTTOM);
-
-		if (in_array($this->fixed, $validFixes))
-			$classes[] = 'navbar-fixed-'.$this->fixed;
+		if ($this->fixed !== false)
+		{
+			$validFixes = array(self::FIXED_TOP, self::FIXED_BOTTOM);
+			if (in_array($this->fixed, $validFixes))
+				$classes[] = 'navbar-fixed-'.$this->fixed;
+		}
 
 		$classes = implode(' ', $classes);
 		if (isset($this->htmlOptions['class']))

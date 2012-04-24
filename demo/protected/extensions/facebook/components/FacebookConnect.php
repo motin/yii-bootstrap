@@ -61,7 +61,7 @@ class FacebookConnect extends CApplicationComponent
 	/**
 	 * Calls the Facebook API.
 	 * @param string $query the query to send.
-	 * @param array $params the query paramters.
+	 * @param array $params the query parameters.
 	 * @return array the response.
 	 */
 	public function api($query, $params=array())
@@ -102,7 +102,7 @@ class FacebookConnect extends CApplicationComponent
 
 	/**
 	 * Returns the Facebook application instance.
-	 * @return Facebook the instance
+	 * @return Facebook the instance.
 	 */
 	public function getFacebook()
 	{
