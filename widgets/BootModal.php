@@ -16,6 +16,10 @@ Yii::import('bootstrap.widgets.BootWidget');
 class BootModal extends CWidget
 {
 	/**
+	 * @var boolean whether to automatically open the modal when initialized.
+	 */
+	public $autoOpen = false;
+	/**
 	 * @var array the options for the Bootstrap JavaScript plugin.
 	 */
 	public $options = array();
@@ -34,6 +38,9 @@ class BootModal extends CWidget
 	public function init()
 	{
 		parent::init();
+
+		if (!$this->autoOpen && !isset($this->options['show']))
+			$this->options['show'] = false;
 
 		if (!isset($this->htmlOptions['id']))
 			$this->htmlOptions['id'] = $this->getId();
@@ -58,6 +65,9 @@ class BootModal extends CWidget
 
 		/** @var CClientScript $cs */
 		$cs = Yii::app()->getClientScript();
+
+		$options = CJavaScript::encode($this->options);
+		$cs->registerScript(__CLASS__.'#'.$id, "jQuery('#{$id}').modal({$options});");
 
 		// Register the "show" event-handler.
 		if (isset($this->events['show']))
