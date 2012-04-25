@@ -7,6 +7,13 @@ $this->addMetaProperty('og:image', Yii::app()->request->getBaseUrl(true).'/image
 $this->addMetaProperty('og:site_name', Yii::app()->name);
 $this->addMetaProperty('og:locale',Yii::app()->fb->locale);
 $this->addMetaProperty('fb:app_id', Yii::app()->fb->appID);
+
+Yii::app()->clientScript->registerScript('ConsolePolyfill', "
+	if (!console) {
+		console = {};
+		console.log = function() {};
+	}
+");
 ?>
 
 <section id="bootAlert">
@@ -20,7 +27,12 @@ $this->addMetaProperty('fb:app_id', Yii::app()->fb->appID);
 	Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few things up and try submitting again.');
 	?>
 
-	<?php $this->widget('bootstrap.widgets.BootAlert'); ?>
+	<?php $this->widget('bootstrap.widgets.BootAlert', array(
+		'events'=>array(
+			'close'=>"js:function() { console.log('Alert close.'); }",
+			'closed'=>"js:function() { console.log('Alert closed.'); }",
+		),
+	)); ?>
 
 	<h4>Source code</h4>
 
@@ -276,10 +288,6 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 			array('label'=>'@fat', 'content'=>'Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney\'s organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven\'t heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.'),
 			array('label'=>'@mdo', 'content'=>'Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.'),
 		)),
-		'events'=>array(
-			'show'=>\"js:function() { console.log('Tabbable show.'); }\",
-			'shown'=>\"js:function() { console.log('Tabbable shown.'); }\",
-		),
 	),
 )); ?>"); ?>
 
@@ -335,7 +343,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	'type'=>'tabs',
 	'placement'=>'below', // 'above', 'right', 'below' or 'left'
 	'tabs'=>array(
-		array('label'=>'Section 1', 'content'=>'<p>I\'m in Section 1.</p>'),
+		array('label'=>'Section 1', 'content'=>'<p>I\'m in Section 1.</p>', 'active'=>true),
 		array('label'=>'Section 2', 'content'=>'<p>Howdy, I\'m in Section 2.</p>'),
 		array('label'=>'Section 3', 'content'=>'<p>What up girl, this is Section 3.</p>'),
 	),
@@ -548,7 +556,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	<h2>Modals</h2>
 
 	<?php $this->beginWidget('bootstrap.widgets.BootModal', array(
-		'id'=>'modal',
+		'id'=>'myModal',
 		'events'=>array(
 			'show'=>"js:function() { console.log('Modal show.'); }",
 			'shown'=>"js:function() { console.log('Modal shown.'); }",
@@ -574,7 +582,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	<?php $this->endWidget(); ?>
 
 	<div class="well">
-		<?php echo CHtml::link('Click me','#modal', array(
+		<?php echo CHtml::link('Click me','#myModal', array(
 			'class'=>'btn btn-primary',
 			'data-toggle'=>'modal',
 		)); ?>
@@ -582,15 +590,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h4>Source code</h4>
 
-<?php echo $phpLighter->highlight("<?php \$this->beginWidget('bootstrap.widgets.BootModal', array(
-	'id'=>'modal',
-	'events'=>array(
-		'show'=>\"js:function() { console.log('Modal show.'); }\",
-		'shown'=>\"js:function() { console.log('Modal shown.'); }\",
-		'hide'=>\"js:function() { console.log('Modal hide.'); }\",
-		'hidden'=>\"js:function() { console.log('Modal hidden.'); }\",
-	),
-)); ?>
+<?php echo $phpLighter->highlight("<?php \$this->beginWidget('bootstrap.widgets.BootModal', array('id'=>'myModal')); ?>
 
 <div class=\"modal-header\">
 	<a class=\"close\" data-dismiss=\"modal\">&times;</a>
@@ -617,7 +617,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 <?php \$this->endWidget(); ?>
 
-<?php echo CHtml::link('Click me','#modal', array('class'=>'btn btn-primary', 'data-toggle'=>'modal')); ?>"); ?>
+<?php echo CHtml::link('Click me','#myModal', array('class'=>'btn btn-primary', 'data-toggle'=>'modal')); ?>"); ?>
 
 	<a class="top" href="#top">Back to top &uarr;</a>
 
@@ -1213,19 +1213,25 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		'heading'=>'Hello, world!',
 	)); ?>
 		<p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-		<p><a class="btn btn-primary btn-large">Learn more</a></p>
+		<p><?php $this->widget('bootstrap.widgets.BootButton', array(
+			'type'=>'primary',
+			'size'=>'large',
+			'label'=>'Learn more',
+		)); ?></p>
 	<?php $this->endWidget(); ?>
 
 	<h4>Source code</h4>
 
 <?php echo $phpLighter->highlight("<?php \$this->beginWidget('bootstrap.widgets.BootHero', array(
 	'heading'=>'Hello, world!',
-)); ?>"); ?>
-
-<?php echo $htmlLighter->highlight("<p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-<p><a class=\"btn btn-primary btn-large\">Learn more</a></p>"); ?>
-
-<?php echo $phpLighter->highlight("<?php \$this->endWidget(); ?>"); ?>
+)); ?>
+	<p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+	<p><?php \$this->widget('bootstrap.widgets.BootButton', array(
+		'type'=>'primary',
+		'size'=>'large',
+		'label'=>'Learn more',
+	)); ?></p>
+<?php \$this->endWidget(); ?>"); ?>
 
 		<a class="top" href="#top">Back to top &uarr;</a>
 
@@ -1254,10 +1260,6 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		array('image'=>'http://placehold.it/770x400&text=First+thumbnail', 'label'=>'First Thumbnail label', 'caption'=>'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.'),
 		array('image'=>'http://placehold.it/770x400&text=Second+thumbnail', 'label'=>'Second Thumbnail label', 'caption'=>'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.'),
 		array('image'=>'http://placehold.it/770x400&text=Third+thumbnail', 'label'=>'Third Thumbnail label', 'caption'=>'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.'),
-	),
-	'events'=>array(
-		'slide'=>\"js:function() { console.log('Carousel slide.'); }\",
-		'slid'=>\"js:function() { console.log('Carousel slid.'); }\",
 	),
 )); ?>"); ?>
 
@@ -1437,8 +1439,8 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 			array('label'=>'Carousel', 'url'=>'#bootCarousel'),
 			array('label'=>'Progress', 'url'=>'#bootProgress'),
 			array('label'=>'Typeahead', 'url'=>'#bootTypeahead'),
-			array('label'=>'Labels <span class="label label-inverse">New</span>', 'encodeLabel'=>false, 'url'=>'#bootLabel'),
-			array('label'=>'Badges <span class="label label-inverse">New</span>', 'encodeLabel'=>false, 'url'=>'#bootBadge'),
+			array('label'=>'Labels', 'url'=>'#bootLabel'),
+			array('label'=>'Badges', 'url'=>'#bootBadge'),
 		),
 	)); ?>
 
