@@ -83,7 +83,7 @@ class Bootstrap extends CApplicationComponent
 			$this->registerYiiCss();
 
 		if ($this->enableJS)
-			$this->registerCorePlugins();
+			$this->registerCoreScripts();
 	}
 
 	/**
@@ -116,18 +116,27 @@ class Bootstrap extends CApplicationComponent
 	}
 
 	/**
-	 * Registers the core JavaScript plugins.
+	 * Registers the core JavaScript.
 	 * @since 0.9.8
 	 */
-	public function registerCorePlugins()
+	public function registerCoreScripts()
+	{
+		$this->registerJS();
+		$this->registerTooltip();
+		$this->registerPopover();
+	}
+
+	/**
+	 * Registers the Bootstrap JavaScript.
+	 * @param int $position the position of the JavaScript code.
+	 * @see CClientScript::registerScriptFile
+	 */
+	public function registerJS($position = CClientScript::POS_HEAD)
 	{
 		/** @var CClientScript $cs */
 		$cs = Yii::app()->getClientScript();
 		$cs->registerCoreScript('jquery');
-		$cs->registerScriptFile($this->getAssetsUrl().'/js/bootstrap.min.js');
-
-		$this->registerTooltip();
-		$this->registerPopover();
+		$cs->registerScriptFile($this->getAssetsUrl().'/js/bootstrap.min.js', $position);
 	}
 
 	/**
