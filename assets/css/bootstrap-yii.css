@@ -93,6 +93,11 @@ span.required {
 	margin-top: 5px;
 }
 
+.list-view .sorter {
+	margin: 0 0 5px 0;
+	text-align: right;
+}
+
 .list-view .sorter ul {
 	display: inline;
 	list-style: none outside none;
