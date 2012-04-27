@@ -8,8 +8,6 @@
  * @since 0.9.3
  */
 
-Yii::import('bootstrap.widgets.BootWidget');
-
 /**
  * Bootstrap modal widget.
  */

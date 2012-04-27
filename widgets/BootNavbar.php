@@ -8,8 +8,6 @@
  * @since 0.9.7
  */
 
-Yii::import('bootstrap.widgets.BootWidget');
-
 /**
  * Bootstrap navigation bar widget.
  */
