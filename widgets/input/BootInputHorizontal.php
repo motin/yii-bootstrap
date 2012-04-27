@@ -37,6 +37,9 @@ class BootInputHorizontal extends BootInput
 			$htmlOptions['class'] .= ' '.$classes;
 		else
 			$htmlOptions['class'] = $classes;
+		
+		if(isset($this->htmlOptions['id']))
+			$htmlOptions['for'] = $this->htmlOptions['id'];
 
 		return parent::getLabel($htmlOptions);
 	}
@@ -49,7 +52,7 @@ class BootInputHorizontal extends BootInput
 	{
 		$attribute = $this->attribute;
 		echo '<div class="controls">';
-		echo '<label class="checkbox" for="'.CHtml::getIdByName(CHtml::resolveName($this->model, $attribute)).'">';
+		echo '<label class="checkbox" for="'.$this->getAttributeId($attribute).'">';
 		echo $this->form->checkBox($this->model, $attribute, $this->htmlOptions).PHP_EOL;
 		echo $this->model->getAttributeLabel($attribute);
 		echo $this->getError().$this->getHint();
