@@ -1220,12 +1220,14 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	<?php $this->beginWidget('bootstrap.widgets.BootHero', array(
 		'heading'=>'Hello, world!',
 	)); ?>
+	
 		<p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
 		<p><?php $this->widget('bootstrap.widgets.BootButton', array(
 			'type'=>'primary',
 			'size'=>'large',
 			'label'=>'Learn more',
 		)); ?></p>
+
 	<?php $this->endWidget(); ?>
 
 	<h4>Source code</h4>
@@ -1233,12 +1235,14 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 <?php echo $phpLighter->highlight("<?php \$this->beginWidget('bootstrap.widgets.BootHero', array(
 	'heading'=>'Hello, world!',
 )); ?>
+
 	<p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
 	<p><?php \$this->widget('bootstrap.widgets.BootButton', array(
 		'type'=>'primary',
 		'size'=>'large',
 		'label'=>'Learn more',
 	)); ?></p>
+
 <?php \$this->endWidget(); ?>"); ?>
 
 		<a class="top" href="#top">Back to top &uarr;</a>
