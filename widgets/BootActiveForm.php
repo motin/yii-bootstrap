@@ -200,13 +200,12 @@ class BootActiveForm extends CActiveForm
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array $htmlOptions additional HTML attributes
-	 * @param array $captchaOptions the captcha options
 	 * @return string the generated row
 	 * @since 0.9.3
 	 */
-	public function captchaRow($model, $attribute, $htmlOptions = array(), $captchaOptions = array())
+	public function captchaRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputRow(BootInput::TYPE_CAPTCHA, $model, $attribute, $captchaOptions, $htmlOptions);
+		return $this->inputRow(BootInput::TYPE_CAPTCHA, $model, $attribute, $htmlOptions);
 	}
 
 	/**
