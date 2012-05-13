@@ -54,6 +54,14 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	<h2>Breadcrumbs</h2>
 
 	<?php $this->widget('bootstrap.widgets.BootBreadcrumbs', array(
+		'links'=>array(),
+	)); ?>
+
+	<?php $this->widget('bootstrap.widgets.BootBreadcrumbs', array(
+		'links'=>array('Library'),
+	)); ?>
+
+	<?php $this->widget('bootstrap.widgets.BootBreadcrumbs', array(
 		'links'=>array('Library'=>'#', 'Data'),
 	)); ?>
 
@@ -466,11 +474,6 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		'dataProvider'=>$listDataProvider,
 		'template'=>"{items}\n{pager}",
 		'itemView'=>'_thumb',
-		// Remove the existing tooltips and rebind the plugin after each ajax-call.
-		'afterAjaxUpdate'=>"js:function() {
-			jQuery('.tooltip').remove();
-			jQuery('a[rel=tooltip]').tooltip();
-		}",
 	)); ?>
 
 	<h4>Source code</h4>
@@ -598,7 +601,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 </div>
 
 <div class=\"modal-body\">
-	<p>One fine body…</p>
+	<p>One fine body...</p>
 </div>
 
 <div class=\"modal-footer\">
