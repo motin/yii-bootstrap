@@ -210,8 +210,9 @@ abstract class BootInput extends CInputWidget
 	 */
 	protected function getAttributeId($attribute) 
 	{
-		return isset($this->htmlOptions['id']) ? $this->htmlOptions['id'] : 
-			CHtml::getIdByName(CHtml::resolveName($this->model, $attribute));
+		return isset($this->htmlOptions['id'])
+				? $this->htmlOptions['id']
+				: CHtml::getIdByName(CHtml::resolveName($this->model, $attribute));
 	}
 
 	/**
@@ -270,10 +271,8 @@ abstract class BootInput extends CInputWidget
 	 */
 	protected function getContainerCssClass()
 	{
-		if ($this->model->hasErrors(CHtml::resolveName($this->model, $this->attribute)))
-			return CHtml::$errorCss;
-		else
-			return '';
+		$attribute = $this->attribute;
+		return $this->model->hasErrors(CHtml::resolveName($this->model, $attribute)) ? CHtml::$errorCss : '';
 	}
 
 	/**

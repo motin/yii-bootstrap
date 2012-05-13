@@ -131,7 +131,7 @@ class BootInputHorizontal extends BootInput
 	{
 		$attribute = $this->attribute;
 		echo '<div class="controls">';
-		echo '<label class="radio" for="'.CHtml::getIdByName(CHtml::resolveName($this->model, $attribute)).'">';
+		echo '<label class="radio" for="'.$this->getAttributeId($attribute).'">';
 		echo $this->form->radioButton($this->model, $attribute, $this->htmlOptions).PHP_EOL;
 		echo $this->model->getAttributeLabel($attribute);
 		echo $this->getError().$this->getHint();
