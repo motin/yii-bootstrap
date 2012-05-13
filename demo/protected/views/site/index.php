@@ -482,11 +482,6 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	'dataProvider'=>\$listDataProvider,
 	'template'=>\"{items}\\n{pager}\",
 	'itemView'=>'_thumb',
-	// Remove the existing tooltips and rebind the plugin after each ajax-call.
-	'afterAjaxUpdate'=>\"js:function() {
-		jQuery('.tooltip').remove();
-		jQuery('a[rel=tooltip]').tooltip();
-	}\",
 )); ?>"); ?>
 
 <?php echo $htmlLighter->highlight("<li class=\"span3\">
@@ -538,17 +533,20 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	<h2>Popovers</h2>
 
 	<div class="well">
-		<?php echo CHtml::link('Hover me', '#', array(
-			'class'=>'btn btn-primary btn-danger',
-			'data-title'=>'Heading',
-			'data-content'=>'Content ...',
-			'rel'=>'popover'
+		<?php $this->widget('bootstrap.widgets.BootButton', array(
+			'label'=>'Hover me',
+			'type'=>'danger',
+			'htmlOptions'=>array('data-title'=>'Heading', 'data-content'=>'Content ...', 'rel'=>'popover'),
 		)); ?>
 	</div>
 
 	<h4>Source code</h4>
 
-<?php echo $phpLighter->highlight("<?php echo CHtml::link('Hover me', '#', array('class'=>'btn btn-primary btn-danger', 'data-title'=>'Heading', 'data-content'=>'Content ...', 'rel'=>'popover')); ?>"); ?>
+<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.BootButton', array(
+	'label'=>'Hover me',
+	'type'=>'danger',
+	'htmlOptions'=>array('data-title'=>'Heading', 'data-content'=>'Content ...', 'rel'=>'popover'),
+)); ?>"); ?>
 
 	<a class="top" href="#top">Back to top &uarr;</a>
 
@@ -585,9 +583,11 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	<?php $this->endWidget(); ?>
 
 	<div class="well">
-		<?php echo CHtml::link('Click me','#myModal', array(
-			'class'=>'btn btn-primary',
-			'data-toggle'=>'modal',
+		<?php $this->widget('bootstrap.widgets.BootButton', array(
+			'label'=>'Click me',
+			'url'=>'#myModal',
+			'type'=>'primary',
+			'htmlOptions'=>array('data-toggle'=>'modal'),
 		)); ?>
 	</div>
 
@@ -618,9 +618,14 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	)); ?>
 </div>
 
-<?php \$this->endWidget(); ?>
+<?php \$this->endWidget(); ?>"); ?>
 
-<?php echo CHtml::link('Click me','#myModal', array('class'=>'btn btn-primary', 'data-toggle'=>'modal')); ?>"); ?>
+<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.BootButton', array(
+	'label'=>'Click me',
+	'url'=>'#myModal',
+	'type'=>'primary',
+	'htmlOptions'=>array('data-toggle'=>'modal'),
+)); ?>"); ?>
 
 	<a class="top" href="#top">Back to top &uarr;</a>
 

@@ -47,6 +47,8 @@ abstract class BootInput extends CInputWidget
 	 */
 	public $data = array();
 
+	private $_addon = false;
+
 	/**
 	 * Initializes the widget.
 	 * @throws CException if the widget could not be initialized.
@@ -184,6 +186,7 @@ abstract class BootInput extends CInputWidget
 			echo '<div class="'.$classes.'">';
 			if (isset($this->htmlOptions['prepend']))
 			{
+				$this->_addon = true;
 				echo CHtml::tag('span', $htmlOptions, $this->htmlOptions['prepend']);
 				unset($this->htmlOptions['prepend']);
 			}
@@ -217,6 +220,7 @@ abstract class BootInput extends CInputWidget
 			ob_start();
 			if (isset($this->htmlOptions['append']))
 			{
+				$this->_addon = true;
 				echo CHtml::tag('span', $htmlOptions, $this->htmlOptions['append']);
 				unset($this->htmlOptions['append']);
 			}
@@ -335,7 +339,7 @@ abstract class BootInput extends CInputWidget
 	 */
 	protected function hasAddOn()
 	{
-		return isset($this->htmlOptions['prepend']) || isset($this->htmlOptions['append']);
+		return $this->_addon || isset($this->htmlOptions['prepend']) || isset($this->htmlOptions['append']);
 	}
 
 	/**
