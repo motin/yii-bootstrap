@@ -33,28 +33,28 @@ class BootBreadcrumbs extends CBreadcrumbs
 
 	/**
 	 * Renders the content of the widget.
+	 * @throws CException
 	 */
 	public function run()
 	{
+		if (empty($this->links))
+			return;
+
 		$links = array();
 
 		if (!isset($this->homeLink))
-			$this->homeLink = array('label'=>Yii::t('bootstrap', 'Home'), 'url'=>Yii::app()->homeUrl);
-
-		if ($this->homeLink !== false)
 		{
-			if (is_array($this->homeLink))
-				$this->homeLink = CHtml::link($this->homeLink['label'], $this->homeLink['url']);
-			
-			$links[] = $this->renderItem($this->homeLink, Yii::app()->request->requestUri === Yii::app()->homeUrl);
+			$content = CHtml::link(Yii::t('bootstrap', 'Home'), Yii::app()->homeUrl);
+			$links[] = $this->renderItem($content);
 		}
-		
-		foreach ($this->links as $label=>$url)
+		else if ($this->homeLink !== false)
+			$links[] = $this->renderItem($this->homeLink);
+
+		foreach ($this->links as $label => $url)
 		{
 			if (is_string($label) || is_array($url))
 			{
-				$label = $this->encodeLabel ? CHtml::encode($label) : $label;
-				$content = CHtml::link($label, $url);
+				$content = CHtml::link($this->encodeLabel ? CHtml::encode($label) : $label, $url);
 				$links[] = $this->renderItem($content);
 			}
 			else
@@ -72,7 +72,7 @@ class BootBreadcrumbs extends CBreadcrumbs
 	 * @param boolean $active whether the item is active.
 	 * @return string the markup.
 	 */
-	protected function renderItem($content, $active=false)
+	protected function renderItem($content, $active = false)
 	{
 		$separator = !$active ? '<span class="divider">'.$this->separator.'</span>' : '';
 		
