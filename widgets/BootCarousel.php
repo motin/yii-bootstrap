@@ -119,7 +119,7 @@ class BootCarousel extends CWidget
 				echo CHtml::image($item['image'], $item['alt'], $item['imageOptions']);
 			}
 
-			if (isset($item['label']) || isset($item['caption']))
+			if (!empty($item['caption']) && (isset($item['label']) || isset($item['caption'])))
 			{
 				if (!isset($item['captionOptions']))
 					$item['captionOptions'] = array();
