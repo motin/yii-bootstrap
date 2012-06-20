@@ -16,13 +16,13 @@ class BootBadge extends CWidget
 	const TYPE_DEFAULT = '';
 	const TYPE_SUCCESS = 'success';
 	const TYPE_WARNING = 'warning';
-	const TYPE_ERROR = 'error';
+	const TYPE_IMPORTANT = 'important';
 	const TYPE_INFO = 'info';
 	const TYPE_INVERSE = 'inverse';
 
 	/**
 	 * @var string the badge type (defaults to '').
-	 * Valid types are '', 'success', 'warning', 'error', 'info' and 'inverse'.
+	 * Valid types are '', 'success', 'warning', 'important', 'info' and 'inverse'.
 	 */
 	public $type = self::TYPE_DEFAULT;
 	/**
@@ -45,7 +45,7 @@ class BootBadge extends CWidget
 	{
 		$classes = array('badge');
 
-		$validTypes = array(self::TYPE_SUCCESS, self::TYPE_WARNING, self::TYPE_ERROR, self::TYPE_INFO, self::TYPE_INVERSE);
+		$validTypes = array(self::TYPE_SUCCESS, self::TYPE_WARNING, self::TYPE_IMPORTANT, self::TYPE_INFO, self::TYPE_INVERSE);
 
 		if (in_array($this->type, $validTypes))
 			$classes[] = 'badge-'.$this->type;
