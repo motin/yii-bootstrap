@@ -46,9 +46,7 @@ class BootListView extends CListView
 			jQuery('{$tooltip}').tooltip();
 		}";
 
-		if (isset($this->afterAjaxUpdate))
-			$this->afterAjaxUpdate .= ' '.$afterAjaxUpdate;
-		else
+		if (!isset($this->afterAjaxUpdate))
 			$this->afterAjaxUpdate = $afterAjaxUpdate;
 	}
 
