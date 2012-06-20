@@ -17,6 +17,7 @@ class BootProgress extends CWidget
 	const TYPE_DEFAULT = '';
 	const TYPE_INFO = 'info';
 	const TYPE_SUCCESS = 'success';
+	const TYPE_WARNING = 'warning';
 	const TYPE_DANGER = 'danger';
 
 	/**
@@ -48,7 +49,7 @@ class BootProgress extends CWidget
 	{
 		$classes = array('progress');
 
-		$validTypes = array(self::TYPE_DEFAULT, self::TYPE_INFO, self::TYPE_SUCCESS, self::TYPE_DANGER);
+		$validTypes = array(self::TYPE_DEFAULT, self::TYPE_INFO, self::TYPE_SUCCESS, self::TYPE_WARNING, self::TYPE_DANGER);
 		if ($this->type !== self::TYPE_DEFAULT && in_array($this->type, $validTypes))
 			$classes[] = 'progress-'.$this->type;
 
