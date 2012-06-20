@@ -27,10 +27,9 @@ class BootInputHorizontal extends BootInput
 
 	/**
 	 * Returns the label for this block.
-	 * @param array $htmlOptions additional HTML attributes
 	 * @return string the label
 	 */
-	protected function getLabel($htmlOptions = array())
+	protected function getLabel()
 	{
 		if (!isset($this->htmlOptions['labelOptions']))
 			$this->htmlOptions['labelOptions'] = array();
