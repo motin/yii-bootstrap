@@ -22,6 +22,10 @@ class BootCarousel extends CWidget
 	 */
 	public $next = '&rsaquo;';
 	/**
+	 * @var boolean whether to display the previous and next links.
+	 */
+	public $displayPrevAndNext = true;
+	/**
 	 * @var array the carousel items configuration.
 	 */
 	public $items = array();
@@ -64,10 +68,14 @@ class BootCarousel extends CWidget
 		echo CHtml::openTag('div', $this->htmlOptions);
 		echo '<div class="carousel-inner">';
 		$this->renderItems($this->items);
-		echo '</div>';
-		echo '<a class="carousel-control left" href="#'.$id.'" data-slide="prev">'.$this->prev.'</a>';
-		echo '<a class="carousel-control right" href="#'.$id.'" data-slide="next">'.$this->next.'</a>';
-		echo '</div>';
+
+		if ($this->displayPrevAndNext)
+		{
+			echo '</div>';
+			echo '<a class="carousel-control left" href="#'.$id.'" data-slide="prev">'.$this->prev.'</a>';
+			echo '<a class="carousel-control right" href="#'.$id.'" data-slide="next">'.$this->next.'</a>';
+			echo '</div>';
+		}
 
 		/** @var CClientScript $cs */
 		$cs = Yii::app()->getClientScript();
