@@ -12,8 +12,18 @@
  */
 class BootPager extends CLinkPager
 {
+	// Pager alignments.
+	const ALIGNMENT_LEFT = '';
+	const ALIGNMENT_CENTER = 'centered';
+	const ALIGNMENT_RIGHT = 'right';
+
 	/**
-	 * @var string the text shown before page buttons. Defaults to ''.
+	 * @var string the pager alignment (default to '').
+	 * Valid values are 'left', 'centered' and 'right'.
+	 */
+	public $alignment = self::ALIGNMENT_LEFT;
+	/**
+	 * @var string the text shown before page buttons (defaults to '').
 	 */
 	public $header = '';
 	/**
@@ -43,8 +53,17 @@ class BootPager extends CLinkPager
 		if ($this->lastPageLabel === null)
 			$this->lastPageLabel = Yii::t('bootstrap','Last');
 
-		if (!isset($this->htmlOptions['class']))
-			$this->htmlOptions['class'] = ''; // would default to yiiPager
+		$classes = array();
+
+		$validAlignments = array(self::ALIGNMENT_LEFT, self::ALIGNMENT_CENTER, self::ALIGNMENT_RIGHT);
+		if (in_array($this->alignment, $validAlignments))
+			$classes[] = 'pagination-'.$this->alignment;
+
+		$classes = implode(' ', $classes);
+		if (isset($this->htmlOptions['class']))
+			$this->htmlOptions['class'] = ' '.$classes;
+		else
+			$this->htmlOptions['class'] = $classes;
 
 		parent::init();
 	}
