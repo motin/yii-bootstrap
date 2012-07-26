@@ -128,7 +128,7 @@ class Bootstrap extends CApplicationComponent
 	 */
 	public function registerCoreScripts()
 	{
-		$this->registerJS();
+		$this->registerJS(Yii::app()->clientScript->coreScriptPosition);
 		$this->registerTooltip();
 		$this->registerPopover();
 	}
