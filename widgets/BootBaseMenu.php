@@ -27,6 +27,14 @@ abstract class BootBaseMenu extends CWidget
 	public $htmlOptions = array();
 
 	/**
+	 * Initializes the widget.
+	 */
+	public function init()
+	{
+		$this->htmlOptions['id'] = $this->getId();
+	}
+
+	/**
 	 * Runs the widget.
 	 */
 	public function run()

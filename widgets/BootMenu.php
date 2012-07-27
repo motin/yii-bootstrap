@@ -85,7 +85,10 @@ class BootMenu extends BootBaseMenu
 		foreach ($items as $item)
 		{
 			if (!is_array($item))
-				echo '<li class="divider-vertical"></li>';
+			{
+				$class = $this->type !== self::TYPE_LIST ? 'divider-vertical' : 'divider';
+				echo '<li class="'.$class.'"></li>';
+			}
 			else
 			{
 				if (!isset($item['itemOptions']))
