@@ -31,13 +31,10 @@ class TbInputHorizontal extends TbInput
 	 */
 	protected function getLabel()
 	{
-		if (!isset($this->htmlOptions['labelOptions']))
-			$this->htmlOptions['labelOptions'] = array();
-
-		if (isset($this->htmlOptions['labelOptions']['class']))
-			$this->htmlOptions['labelOptions']['class'] .= ' control-label';
+		if (isset($this->labelOptions['class']))
+			$this->labelOptions['class'] .= ' control-label';
 		else
-			$this->htmlOptions['labelOptions']['class'] = 'control-label';
+			$this->labelOptions['class'] = 'control-label';
 
 		return parent::getLabel();
 	}
@@ -195,7 +192,7 @@ class TbInputHorizontal extends TbInput
 	{
 		echo $this->getLabel();
 		echo '<div class="controls"><div class="captcha">';
-		echo '<div class="widget">'.$this->widget('CCaptcha', $this->getCaptchaOptions(), true).'</div>';
+		echo '<div class="widget">'.$this->widget('CCaptcha', $this->captchaOptions, true).'</div>';
 		echo $this->form->textField($this->model, $this->attribute, $this->htmlOptions);
 		echo $this->getError().$this->getHint();
 		echo '</div></div>';
