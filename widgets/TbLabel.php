@@ -10,7 +10,7 @@
 /**
  * Bootstrap label widget.
  */
-class BootLabel extends CWidget
+class TbLabel extends CWidget
 {
 	// Label types.
 	const TYPE_DEFAULT = '';

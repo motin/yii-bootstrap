@@ -7,12 +7,12 @@
  * @package bootstrap.widgets
  */
 
-Yii::import('bootstrap.widgets.input.BootInput');
+Yii::import('bootstrap.widgets.input.TbInput');
 
 /**
  * Bootstrap active form widget.
  */
-class BootActiveForm extends CActiveForm
+class TbActiveForm extends CActiveForm
 {
 	// Form types.
 	const TYPE_VERTICAL = 'vertical';
@@ -21,10 +21,10 @@ class BootActiveForm extends CActiveForm
 	const TYPE_SEARCH = 'search';
 
 	// Input classes.
-	const INPUT_HORIZONTAL = 'bootstrap.widgets.input.BootInputHorizontal';
-	const INPUT_INLINE = 'bootstrap.widgets.input.BootInputInline';
-	const INPUT_SEARCH = 'bootstrap.widgets.input.BootInputSearch';
-	const INPUT_VERTICAL = 'bootstrap.widgets.input.BootInputVertical';
+	const INPUT_HORIZONTAL = 'bootstrap.widgets.input.TbInputHorizontal';
+	const INPUT_INLINE = 'bootstrap.widgets.input.TbInputInline';
+	const INPUT_SEARCH = 'bootstrap.widgets.input.TbInputSearch';
+	const INPUT_VERTICAL = 'bootstrap.widgets.input.TbInputVertical';
 
 	/**
 	 * @var string the form type. See class constants.
@@ -67,7 +67,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function checkBoxRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputRow(BootInput::TYPE_CHECKBOX, $model, $attribute, null, $htmlOptions);
+		return $this->inputRow(TbInput::TYPE_CHECKBOX, $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
@@ -80,7 +80,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function checkBoxListRow($model, $attribute, $data = array(), $htmlOptions = array())
 	{
-		return $this->inputRow(BootInput::TYPE_CHECKBOXLIST, $model, $attribute, $data, $htmlOptions);
+		return $this->inputRow(TbInput::TYPE_CHECKBOXLIST, $model, $attribute, $data, $htmlOptions);
 	}
 
 	/**
@@ -93,7 +93,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function checkBoxListInlineRow($model, $attribute, $data = array(), $htmlOptions = array())
 	{
-		return $this->inputRow(BootInput::TYPE_CHECKBOXLIST_INLINE, $model, $attribute, $data, $htmlOptions);
+		return $this->inputRow(TbInput::TYPE_CHECKBOXLIST_INLINE, $model, $attribute, $data, $htmlOptions);
 	}
 
 	/**
@@ -106,7 +106,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function dropDownListRow($model, $attribute, $data = array(), $htmlOptions = array())
 	{
-		return $this->inputRow(BootInput::TYPE_DROPDOWN, $model, $attribute, $data, $htmlOptions);
+		return $this->inputRow(TbInput::TYPE_DROPDOWN, $model, $attribute, $data, $htmlOptions);
 	}
 
 	/**
@@ -118,7 +118,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function fileFieldRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputRow(BootInput::TYPE_FILE, $model, $attribute, null, $htmlOptions);
+		return $this->inputRow(TbInput::TYPE_FILE, $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
@@ -130,7 +130,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function passwordFieldRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputRow(BootInput::TYPE_PASSWORD, $model, $attribute, null, $htmlOptions);
+		return $this->inputRow(TbInput::TYPE_PASSWORD, $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
@@ -142,7 +142,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function radioButtonRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputRow(BootInput::TYPE_RADIO, $model, $attribute, null, $htmlOptions);
+		return $this->inputRow(TbInput::TYPE_RADIO, $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
@@ -155,7 +155,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function radioButtonListRow($model, $attribute, $data = array(), $htmlOptions = array())
 	{
-		return $this->inputRow(BootInput::TYPE_RADIOLIST, $model, $attribute, $data, $htmlOptions);
+		return $this->inputRow(TbInput::TYPE_RADIOLIST, $model, $attribute, $data, $htmlOptions);
 	}
 
 	/**
@@ -168,7 +168,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function radioButtonListInlineRow($model, $attribute, $data = array(), $htmlOptions = array())
 	{
-		return $this->inputRow(BootInput::TYPE_RADIOLIST_INLINE, $model, $attribute, $data, $htmlOptions);
+		return $this->inputRow(TbInput::TYPE_RADIOLIST_INLINE, $model, $attribute, $data, $htmlOptions);
 	}
 
 	/**
@@ -180,7 +180,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function textFieldRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputRow(BootInput::TYPE_TEXT, $model, $attribute, null, $htmlOptions);
+		return $this->inputRow(TbInput::TYPE_TEXT, $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
@@ -192,7 +192,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function textAreaRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputRow(BootInput::TYPE_TEXTAREA, $model, $attribute, null, $htmlOptions);
+		return $this->inputRow(TbInput::TYPE_TEXTAREA, $model, $attribute, null, $htmlOptions);
 	}
 
 	/**
@@ -205,7 +205,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function captchaRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputRow(BootInput::TYPE_CAPTCHA, $model, $attribute, $htmlOptions);
+		return $this->inputRow(TbInput::TYPE_CAPTCHA, $model, $attribute, $htmlOptions);
 	}
 
 	/**
@@ -218,7 +218,7 @@ class BootActiveForm extends CActiveForm
 	 */
 	public function uneditableRow($model, $attribute, $htmlOptions = array())
 	{
-		return $this->inputRow(BootInput::TYPE_UNEDITABLE, $model, $attribute, null, $htmlOptions);
+		return $this->inputRow(TbInput::TYPE_UNEDITABLE, $model, $attribute, null, $htmlOptions);
 	}
 
 	/**

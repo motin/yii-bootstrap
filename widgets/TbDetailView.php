@@ -13,7 +13,7 @@ Yii::import('zii.widgets.CDetailView');
  * Bootstrap detail view widget.
  * Used for setting default HTML classes and disabling the default CSS.
  */
-class BootDetailView extends CDetailView
+class TbDetailView extends CDetailView
 {
 	// Table types.
 	const TYPE_PLAIN = '';

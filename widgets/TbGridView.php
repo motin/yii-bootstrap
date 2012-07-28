@@ -8,13 +8,13 @@
  */
 
 Yii::import('zii.widgets.grid.CGridView');
-Yii::import('bootstrap.widgets.BootDataColumn');
+Yii::import('bootstrap.widgets.TbDataColumn');
 
 /**
  * Bootstrap grid view widget.
  * Used for setting default HTML classes, disabling the default CSS and enable the bootstrap pager.
  */
-class BootGridView extends CGridView
+class TbGridView extends CGridView
 {
 	// Table types.
 	const TYPE_PLAIN = '';
@@ -34,9 +34,9 @@ class BootGridView extends CGridView
 	public $pagerCssClass = 'pagination';
 	/**
 	 * @var array the configuration for the pager.
-	 * Defaults to <code>array('class'=>'ext.bootstrap.widgets.BootPager')</code>.
+	 * Defaults to <code>array('class'=>'ext.bootstrap.widgets.TbPager')</code>.
 	 */
-	public $pager = array('class'=>'bootstrap.widgets.BootPager');
+	public $pager = array('class'=>'bootstrap.widgets.TbPager');
 	/**
 	 * @var string the URL of the CSS file used by this grid view.
 	 * Defaults to false, meaning that no CSS will be included.
@@ -87,7 +87,7 @@ class BootGridView extends CGridView
 		foreach ($this->columns as $i => $column)
 		{
 			if (is_array($column) && !isset($column['class']))
-				$this->columns[$i]['class'] = 'bootstrap.widgets.BootDataColumn';
+				$this->columns[$i]['class'] = 'bootstrap.widgets.TbDataColumn';
 		}
 
 		parent::initColumns();
@@ -96,7 +96,7 @@ class BootGridView extends CGridView
 	/**
 	 * Creates a column based on a shortcut column specification string.
 	 * @param mixed $text the column specification string
-	 * @return \BootDataColumn|\CDataColumn the column instance
+	 * @return \TbDataColumn|\CDataColumn the column instance
 	 * @throws CException if the column format is incorrect
 	 */
 	protected function createDataColumn($text)
@@ -104,7 +104,7 @@ class BootGridView extends CGridView
 		if (!preg_match('/^([\w\.]+)(:(\w*))?(:(.*))?$/', $text, $matches))
 			throw new CException(Yii::t('zii', 'The column must be specified in the format of "Name:Type:Label", where "Type" and "Label" are optional.'));
 
-		$column = new BootDataColumn($this);
+		$column = new TbDataColumn($this);
 		$column->name = $matches[1];
 		if (isset($matches[3]) && $matches[3] !== '')
 			$column->type = $matches[3];

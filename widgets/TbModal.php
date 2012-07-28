@@ -11,7 +11,7 @@
 /**
  * Bootstrap modal widget.
  */
-class BootModal extends CWidget
+class TbModal extends CWidget
 {
 	/**
 	 * @var boolean whether to automatically open the modal when initialized.

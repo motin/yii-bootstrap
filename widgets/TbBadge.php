@@ -10,7 +10,7 @@
 /**
  * Bootstrap badge widget.
  */
-class BootBadge extends CWidget
+class TbBadge extends CWidget
 {
 	// Badge types.
 	const TYPE_DEFAULT = '';

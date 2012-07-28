@@ -11,7 +11,7 @@
  * Bootstrap input widget.
  * Used for rendering inputs according to Bootstrap standards.
  */
-abstract class BootInput extends CInputWidget
+abstract class TbInput extends CInputWidget
 {
 	// The different input types.
 	const TYPE_CHECKBOX = 'checkbox';
@@ -29,7 +29,7 @@ abstract class BootInput extends CInputWidget
 	const TYPE_UNEDITABLE = 'uneditable';
 
 	/**
-	 * @var BootActiveForm the associated form widget.
+	 * @var TbActiveForm the associated form widget.
 	 */
 	public $form;
 	/**

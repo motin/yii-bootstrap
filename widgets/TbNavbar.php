@@ -11,7 +11,7 @@
 /**
  * Bootstrap navigation bar widget.
  */
-class BootNavbar extends CWidget
+class TbNavbar extends CWidget
 {
 	// Navbar fix locations.
 	const FIXED_TOP = 'top';

@@ -13,7 +13,7 @@ Yii::import('bootstrap.widgets.input.BootInput');
  * Bootstrap horizontal form input widget.
  * @since 0.9.8
  */
-class BootInputHorizontal extends BootInput
+class TbInputHorizontal extends TbInput
 {
 	/**
 	 * Runs the widget.

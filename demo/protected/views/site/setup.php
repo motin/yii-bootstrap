@@ -171,7 +171,7 @@ Yii::app()->bootstrap->registerTypeahead('.typeahead', array(
 
 <div class="subnav well">
 
-	<?php $this->widget('bootstrap.widgets.BootMenu', array(
+	<?php $this->widget('bootstrap.widgets.TbMenu', array(
 		'type'=>'list',
 		'scrollspy'=>array('spy'=>'.subnav', 'offset'=>50),
 		'items'=>array(

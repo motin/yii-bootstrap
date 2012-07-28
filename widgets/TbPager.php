@@ -10,7 +10,7 @@
 /**
  * Bootstrap pager widget.
  */
-class BootPager extends CLinkPager
+class TbPager extends CLinkPager
 {
 	// Pager alignments.
 	const ALIGNMENT_LEFT = '';

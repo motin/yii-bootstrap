@@ -11,7 +11,7 @@
 /**
  * Bootstrap progress bar widget.
  */
-class BootProgress extends CWidget
+class TbProgress extends CWidget
 {
 	// Progress bar types.
 	const TYPE_DEFAULT = '';

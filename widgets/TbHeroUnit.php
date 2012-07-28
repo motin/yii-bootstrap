@@ -12,7 +12,7 @@
  * Modest bootstrap hero widget.
  * Thanks to Christphe Boulain for suggesting content capturing.
  */
-class BootHero extends CWidget
+class TbHeroUnit extends CWidget
 {
 	/**
 	 * @var string the heading text.

@@ -11,7 +11,7 @@
 /**
  * Bootstrap button widget.
  */
-class BootButton extends CWidget
+class TbButton extends CWidget
 {
 	// Button callback types.
 	const BUTTON_LINK = 'link';
@@ -182,7 +182,7 @@ class BootButton extends CWidget
 
 		if ($this->hasDropdown())
 		{
-			$this->controller->widget('bootstrap.widgets.BootDropdown', array(
+			$this->controller->widget('bootstrap.widgets.TbDropdown', array(
 				'encodeLabel'=>$this->encodeLabel,
 				'items'=>$this->items,
 				'htmlOptions'=>$this->dropdownOptions,

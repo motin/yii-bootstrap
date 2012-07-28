@@ -7,13 +7,13 @@
  * @package bootstrap.widgets.input
  */
 
-Yii::import('bootstrap.widgets.input.BootInputInline');
+Yii::import('bootstrap.widgets.input.TbInputInline');
 
 /**
  * Bootstrap vertical form input widget.
  * @since 0.9.8
  */
-class BootInputSearch extends BootInputInline
+class TbInputSearch extends TbInputInline
 {
 	/**
 	 * Renders a text field.

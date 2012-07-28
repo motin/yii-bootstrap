@@ -8,12 +8,12 @@
  * @since 0.9.10
  */
 
-Yii::import('bootstrap.widgets.BootButton');
+Yii::import('bootstrap.widgets.TbButton');
 
 /**
  * Bootstrap button group widget.
  */
-class BootButtonGroup extends CWidget
+class TbButtonGroup extends CWidget
 {
 	// Toggle options.
 	const TOGGLE_CHECKBOX = 'checkbox';
@@ -23,17 +23,17 @@ class BootButtonGroup extends CWidget
 	 * @var string the button callback type.
 	 * @see BootButton::buttonType
 	 */
-	public $buttonType = BootButton::BUTTON_LINK;
+	public $buttonType = TbButton::BUTTON_LINK;
 	/**
 	 * @var string the button type.
 	 * @see BootButton::type
 	 */
-	public $type = BootButton::TYPE_NORMAL;
+	public $type = TbButton::TYPE_NORMAL;
 	/**
 	 * @var string the button size.
 	 * @see BootButton::size
 	 */
-	public $size = BootButton::SIZE_NORMAL;
+	public $size = TbButton::SIZE_NORMAL;
 	/**
 	 * @var boolean indicates whether to encode the button labels.
 	 */
@@ -77,7 +77,7 @@ class BootButtonGroup extends CWidget
 
 		foreach ($this->buttons as $button)
 		{
-			$this->controller->widget('bootstrap.widgets.BootButton', array(
+			$this->controller->widget('bootstrap.widgets.TbButton', array(
 				'buttonType'=>isset($button['buttonType']) ? $button['buttonType'] : $this->buttonType,
 				'type'=>isset($button['type']) ? $button['type'] : $this->type,
 				'size'=>$this->size,

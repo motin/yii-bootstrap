@@ -78,7 +78,7 @@ class SiteController extends Controller
 			array('name'=>'lastName', 'header'=>'Last name'),
 			array('name'=>'language', 'header'=>'Language'),
 			array(
-				'class'=>'bootstrap.widgets.BootButtonColumn',
+				'class'=>'bootstrap.widgets.TbButtonColumn',
 				'viewButtonUrl'=>null,
 				'updateButtonUrl'=>null,
 				'deleteButtonUrl'=>null,

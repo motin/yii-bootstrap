@@ -12,7 +12,7 @@ Yii::import('zii.widgets.grid.CDataColumn');
 /**
  * Bootstrap grid data column
  */
-class BootDataColumn extends CDataColumn
+class TbDataColumn extends CDataColumn
 {
 	/**
 	 * Renders the header cell content.

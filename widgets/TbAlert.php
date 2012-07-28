@@ -10,7 +10,7 @@
 /**
  * Bootstrap alert widget.
  */
-class BootAlert extends CWidget
+class TbAlert extends CWidget
 {
 	/**
 	 * @var array the keys for which to get flash messages.

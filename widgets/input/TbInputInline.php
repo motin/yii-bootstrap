@@ -7,13 +7,13 @@
  * @package bootstrap.widgets.input
  */
 
-Yii::import('bootstrap.widgets.input.BootInputVertical');
+Yii::import('bootstrap.widgets.input.TbInputVertical');
 
 /**
  * Bootstrap vertical form input widget.
  * @since 0.9.8
  */
-class BootInputInline extends BootInputVertical
+class TbInputInline extends TbInputVertical
 {
 	/**
 	 * Renders a drop down list (select).

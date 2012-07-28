@@ -8,12 +8,12 @@
  * @since 0.9.10
  */
 
-Yii::import('bootstrap.widgets.BootBaseMenu');
+Yii::import('bootstrap.widgets.TbBaseMenu');
 
 /**
  * Bootstrap dropdown menu widget.
  */
-class BootDropdown extends BootBaseMenu
+class TbDropdown extends TbBaseMenu
 {
 	/**
 	 * Initializes the widget.

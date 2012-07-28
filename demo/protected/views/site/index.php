@@ -27,7 +27,7 @@ Yii::app()->clientScript->registerScript('ConsolePolyfill', "
 	Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few things up and try submitting again.');
 	?>
 
-	<?php $this->widget('bootstrap.widgets.BootAlert', array(
+	<?php $this->widget('bootstrap.widgets.TbAlert', array(
 		'events'=>array(
 			'close'=>"js:function() { console.log('Alert close.'); }",
 			'closed'=>"js:function() { console.log('Alert closed.'); }",
@@ -43,7 +43,7 @@ Yii::app()->user->setFlash('warning', '<strong>Warning!</strong> Best check yo s
 Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few things up and try submitting again.');
 ?>"); ?>
 
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.BootAlert'); ?>"); ?>
+<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbAlert'); ?>"); ?>
 
 	<a class="top" href="#top">Back to top &uarr;</a>
 
@@ -53,21 +53,21 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h2>Breadcrumbs</h2>
 
-	<?php $this->widget('bootstrap.widgets.BootBreadcrumbs', array(
+	<?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
 		'links'=>array(),
 	)); ?>
 
-	<?php $this->widget('bootstrap.widgets.BootBreadcrumbs', array(
+	<?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
 		'links'=>array('Library'),
 	)); ?>
 
-	<?php $this->widget('bootstrap.widgets.BootBreadcrumbs', array(
+	<?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
 		'links'=>array('Library'=>'#', 'Data'),
 	)); ?>
 
 	<h4>Source code</h4>
 
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.BootBreadcrumbs', array(
+<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbBreadcrumbs', array(
 	'links'=>array('Library'=>'#', 'Data'),
 )); ?>"); ?>
 
@@ -79,14 +79,14 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h2>Navbar</h2>
 
-	<?php $this->widget('bootstrap.widgets.BootNavbar', array(
+	<?php $this->widget('bootstrap.widgets.TbNavbar', array(
 		'fixed'=>false,
 		'brand'=>'Project name',
 		'brandUrl'=>'#',
 		'collapse'=>true, // requires bootstrap-responsive.css
 		'items'=>array(
 			array(
-				'class'=>'bootstrap.widgets.BootMenu',
+				'class'=>'bootstrap.widgets.TbMenu',
 				'items'=>array(
 					array('label'=>'Home', 'url'=>'#', 'active'=>true),
 					array('label'=>'Link', 'url'=>'#'),
@@ -105,7 +105,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 			),
 			'<form class="navbar-search pull-left" action=""><input type="text" class="search-query span2" placeholder="Search"></form>',
 			array(
-				'class'=>'bootstrap.widgets.BootMenu',
+				'class'=>'bootstrap.widgets.TbMenu',
 				'htmlOptions'=>array('class'=>'pull-right'),
 				'items'=>array(
 					array('label'=>'Link', 'url'=>'#'),
@@ -124,14 +124,14 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h4>Source code</h4>
 
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.BootNavbar', array(
+<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbNavbar', array(
 	'fixed'=>false,
 	'brand'=>'Project name',
 	'brandUrl'=>'#',
 	'collapse'=>true, // requires bootstrap-responsive.css
 	'items'=>array(
 		array(
-			'class'=>'bootstrap.widgets.BootMenu',
+			'class'=>'bootstrap.widgets.TbMenu',
 			'items'=>array(
 				array('label'=>'Home', 'url'=>'#', 'active'=>true),
 				array('label'=>'Link', 'url'=>'#'),
@@ -148,7 +148,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		),
 		'<form class=\"navbar-search pull-left\" action=\"\"><input type=\"text\" class=\"search-query span2\" placeholder=\"Search\"></form>',
 		array(
-			'class'=>'bootstrap.widgets.BootMenu',
+			'class'=>'bootstrap.widgets.TbMenu',
 			'htmlOptions'=>array('class'=>'pull-right'),
 			'items'=>array(
 				array('label'=>'Link', 'url'=>'#'),
@@ -175,7 +175,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h3>Basic tabs</h3>
 
-	<?php $this->widget('bootstrap.widgets.BootMenu', array(
+	<?php $this->widget('bootstrap.widgets.TbMenu', array(
 		'type'=>'tabs',
 		'items'=>array(
 			array('label'=>'Home', 'url'=>'#', 'active'=>true),
@@ -186,7 +186,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h3>Stacked tabs</h3>
 
-	<?php $this->widget('bootstrap.widgets.BootMenu', array(
+	<?php $this->widget('bootstrap.widgets.TbMenu', array(
 		'type'=>'tabs',
 		'stacked'=>true,
 		'items'=>array(
@@ -198,7 +198,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h3>Basic pills</h3>
 
-	<?php $this->widget('bootstrap.widgets.BootMenu', array(
+	<?php $this->widget('bootstrap.widgets.TbMenu', array(
 		'type'=>'pills',
 		'items'=>array(
 			array('label'=>'Home', 'url'=>'#', 'active'=>true),
@@ -209,7 +209,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h3>Stacked pills</h3>
 
-	<?php $this->widget('bootstrap.widgets.BootMenu', array(
+	<?php $this->widget('bootstrap.widgets.TbMenu', array(
 		'type'=>'pills',
 		'stacked'=>true,
 		'items'=>array(
@@ -221,7 +221,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h4>Source code</h4>
 
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.BootMenu', array(
+<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbMenu', array(
 	'type'=>'tabs', // '', 'tabs', 'pills' (or 'list')
 	'stacked'=>false, // whether this is a stacked menu
 	'items'=>array(
@@ -235,7 +235,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<div class="well" style="padding: 8px 0;">
 
-		<?php $this->widget('bootstrap.widgets.BootMenu', array(
+		<?php $this->widget('bootstrap.widgets.TbMenu', array(
 			'type'=>'list',
 			'items'=>array(
 				array('label'=>'LIST HEADER'),
@@ -253,7 +253,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h4>Source code</h4>
 
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.BootMenu', array(
+<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbMenu', array(
 	'type'=>'list',
 	'items'=>array(
 		array('label'=>'LIST HEADER'),
@@ -275,7 +275,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h2>Tabbable</h2>
 
-	<?php $this->widget('bootstrap.widgets.BootTabbable', array(
+	<?php $this->widget('bootstrap.widgets.TbTabbable', array(
 		'type'=>'tabs', // 'tabs' or 'pills'
 		'htmlOptions'=>array('class'=>'tabbable'),
 		'tabs'=>$tabs,
@@ -287,7 +287,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h4>Source code</h4>
 
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.BootTabbable', array(
+<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbTabbable', array(
 	'type'=>'tabs', // 'tabs' or 'pills'
 	'tabs'=>array(
 		array('label'=>'Home', 'content'=>'Raw denim you probably haven\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.', 'active'=>true),
@@ -310,14 +310,14 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 			<h3>Tabs on the top</h3>
 
-			<?php $this->widget('bootstrap.widgets.BootTabbable', array(
+			<?php $this->widget('bootstrap.widgets.TbTabbable', array(
 				'htmlOptions'=>array('class'=>'tabbable tabbable-placed'),
 				'tabs'=>$tabbable,
 			)); ?>
 
 			<h3>Tabs on the left</h3>
 
-			<?php $this->widget('bootstrap.widgets.BootTabbable', array(
+			<?php $this->widget('bootstrap.widgets.TbTabbable', array(
 				'placement'=>'left',
 				'htmlOptions'=>array('class'=>'tabbable tabbable-placed'),
 				'tabs'=>$tabbable,
@@ -329,7 +329,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 			<h3>Tabs on the bottom</h3>
 
-			<?php $this->widget('bootstrap.widgets.BootTabbable', array(
+			<?php $this->widget('bootstrap.widgets.TbTabbable', array(
 				'placement'=>'below',
 				'htmlOptions'=>array('class'=>'tabbable tabbable-placed'),
 				'tabs'=>$tabbable,
@@ -337,7 +337,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 			<h3>Tabs on the right</h3>
 
-			<?php $this->widget('bootstrap.widgets.BootTabbable', array(
+			<?php $this->widget('bootstrap.widgets.TbTabbable', array(
 				'placement'=>'right',
 				'htmlOptions'=>array('class'=>'tabbable tabbable-placed'),
 				'tabs'=>$tabbable,
@@ -347,7 +347,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	</div>
 
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.BootTabbable', array(
+<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbTabbable', array(
 	'type'=>'tabs',
 	'placement'=>'below', // 'above', 'right', 'below' or 'left'
 	'tabs'=>array(
@@ -365,7 +365,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h2>Detail views</h2>
 
-	<?php $this->widget('bootstrap.widgets.BootDetailView', array(
+	<?php $this->widget('bootstrap.widgets.TbDetailView', array(
 		'data'=>array('id'=>1, 'firstName'=>'Mark', 'lastName'=>'Otto', 'language'=>'CSS'),
 		'attributes'=>array(
 			array('name'=>'firstName', 'label'=>'First name'),
@@ -376,7 +376,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h4>Source code</h4>
 
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.BootDetailView', array(
+<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbDetailView', array(
 	'data'=>array('id'=>1, 'firstName'=>'Mark', 'lastName'=>'Otto', 'language'=>'CSS'),
 	'attributes'=>array(
 		array('name'=>'firstName', 'label'=>'First name'),
@@ -395,7 +395,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h3>Default</h3>
 
-	<?php $this->widget('bootstrap.widgets.BootGridView', array(
+	<?php $this->widget('bootstrap.widgets.TbGridView', array(
 		'dataProvider'=>$gridDataProvider,
 		'template'=>"{items}",
 		'columns'=>$gridColumns,
@@ -403,7 +403,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h3>Striped</h3>
 
-	<?php $this->widget('bootstrap.widgets.BootGridView', array(
+	<?php $this->widget('bootstrap.widgets.TbGridView', array(
 		'type'=>'striped',
 		'dataProvider'=>$gridDataProvider,
 		'template'=>"{items}",
@@ -412,7 +412,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h3>Bordered</h3>
 
-	<?php $this->widget('bootstrap.widgets.BootGridView', array(
+	<?php $this->widget('bootstrap.widgets.TbGridView', array(
 		'type'=>'bordered',
 		'dataProvider'=>$gridDataProvider,
 		'template'=>"{items}",
@@ -421,7 +421,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h3>Condensed</h3>
 
-	<?php $this->widget('bootstrap.widgets.BootGridView', array(
+	<?php $this->widget('bootstrap.widgets.TbGridView', array(
 		'type'=>'condensed',
 		'dataProvider'=>$gridDataProvider,
 		'template'=>"{items}",
@@ -430,7 +430,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h3>Striped, bordered and condensed</h3>
 
-	<?php $this->widget('bootstrap.widgets.BootGridView', array(
+	<?php $this->widget('bootstrap.widgets.TbGridView', array(
 		'type'=>'striped bordered condensed',
 		'dataProvider'=>$gridDataProvider,
 		'template'=>"{items}",
@@ -446,7 +446,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	array('id'=>3, 'firstName'=>'Stu', 'lastName'=>'Dent', 'language'=>'HTML'),
 ));"); ?>
 
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.BootGridView', array(
+<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbGridView', array(
 	'type'=>'striped bordered condensed',
 	'dataProvider'=>\$gridDataProvider,
 	'template'=>\"{items}\",
@@ -456,7 +456,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		array('name'=>'lastName', 'header'=>'Last name'),
 		array('name'=>'language', 'header'=>'Language'),
 		array(
-			'class'=>'bootstrap.widgets.BootButtonColumn',
+			'class'=>'bootstrap.widgets.TbButtonColumn',
 			'htmlOptions'=>array('style'=>'width: 50px'),
 		),
 	),
@@ -470,7 +470,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h2>Thumbnails</h2>
 
-	<?php $this->widget('bootstrap.widgets.BootThumbnails', array(
+	<?php $this->widget('bootstrap.widgets.TbThumbnails', array(
 		'dataProvider'=>$listDataProvider,
 		'template'=>"{items}\n{pager}",
 		'itemView'=>'_thumb',
@@ -478,7 +478,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h4>Source code</h4>
 
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.BootThumbnails', array(
+<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbThumbnails', array(
 	'dataProvider'=>\$listDataProvider,
 	'template'=>\"{items}\\n{pager}\",
 	'itemView'=>'_thumb',
@@ -533,7 +533,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	<h2>Popovers</h2>
 
 	<div class="well">
-		<?php $this->widget('bootstrap.widgets.BootButton', array(
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'label'=>'Hover me',
 			'type'=>'danger',
 			'htmlOptions'=>array('data-title'=>'Heading', 'data-content'=>'Content ...', 'rel'=>'popover'),
@@ -542,7 +542,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h4>Source code</h4>
 
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.BootButton', array(
+<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbButton', array(
 	'label'=>'Hover me',
 	'type'=>'danger',
 	'htmlOptions'=>array('data-title'=>'Heading', 'data-content'=>'Content ...', 'rel'=>'popover'),
@@ -556,7 +556,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h2>Modals</h2>
 
-	<?php $this->beginWidget('bootstrap.widgets.BootModal', array(
+	<?php $this->beginWidget('bootstrap.widgets.TbModal', array(
 		'id'=>'myModal',
 		'events'=>array(
 			'show'=>"js:function() { console.log('Modal show.'); }",
@@ -576,14 +576,14 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	</div>
 
 	<div class="modal-footer">
-		<?php $this->widget('bootstrap.widgets.BootButton', array('type'=>'primary', 'label'=>'Save changes', 'url'=>'#', 'htmlOptions'=>array('data-dismiss'=>'modal'))); ?>
-		<?php $this->widget('bootstrap.widgets.BootButton', array('label'=>'Close', 'url'=>'#', 'htmlOptions'=>array('data-dismiss'=>'modal'))); ?>
+		<?php $this->widget('bootstrap.widgets.TbButton', array('type'=>'primary', 'label'=>'Save changes', 'url'=>'#', 'htmlOptions'=>array('data-dismiss'=>'modal'))); ?>
+		<?php $this->widget('bootstrap.widgets.TbButton', array('label'=>'Close', 'url'=>'#', 'htmlOptions'=>array('data-dismiss'=>'modal'))); ?>
 	</div>
 
 	<?php $this->endWidget(); ?>
 
 	<div class="well">
-		<?php $this->widget('bootstrap.widgets.BootButton', array(
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'label'=>'Click me',
 			'url'=>'#myModal',
 			'type'=>'primary',
@@ -593,7 +593,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h4>Source code</h4>
 
-<?php echo $phpLighter->highlight("<?php \$this->beginWidget('bootstrap.widgets.BootModal', array('id'=>'myModal')); ?>
+<?php echo $phpLighter->highlight("<?php \$this->beginWidget('bootstrap.widgets.TbModal', array('id'=>'myModal')); ?>
 
 <div class=\"modal-header\">
 	<a class=\"close\" data-dismiss=\"modal\">&times;</a>
@@ -605,13 +605,13 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 </div>
 
 <div class=\"modal-footer\">
-	<?php \$this->widget('bootstrap.widgets.BootButton', array(
+	<?php \$this->widget('bootstrap.widgets.TbButton', array(
 		'type'=>'primary',
 		'label'=>'Save changes',
 		'url'=>'#',
 		'htmlOptions'=>array('data-dismiss'=>'modal'),
 	)); ?>
-	<?php \$this->widget('bootstrap.widgets.BootButton', array(
+	<?php \$this->widget('bootstrap.widgets.TbButton', array(
 		'label'=>'Close',
 		'url'=>'#',
 		'htmlOptions'=>array('data-dismiss'=>'modal'),
@@ -620,7 +620,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 <?php \$this->endWidget(); ?>"); ?>
 
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.BootButton', array(
+<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbButton', array(
 	'label'=>'Click me',
 	'url'=>'#myModal',
 	'type'=>'primary',
@@ -637,8 +637,8 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h3>Vertical</h3>
 
-	<?php /** @var BootActiveForm $form */
-	$form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
+	<?php /** @var TbActiveForm $form */
+	$form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 		'id'=>'verticalForm',
 		'htmlOptions'=>array('class'=>'well'),
 	)); ?>
@@ -646,14 +646,14 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	<?php echo $form->textFieldRow($model, 'textField', array('class'=>'span3')); ?>
 	<?php echo $form->passwordFieldRow($model, 'password', array('class'=>'span3')); ?>
 	<?php echo $form->checkboxRow($model, 'checkbox'); ?>
-	<?php $this->widget('bootstrap.widgets.BootButton', array('buttonType'=>'submit', 'icon'=>'ok', 'label'=>'Submit')); ?>
+	<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'icon'=>'ok', 'label'=>'Submit')); ?>
 
 	<?php $this->endWidget(); ?>
 
 	<h4>Source code</h4>
 
 <?php echo $phpLighter->highlight("<?php /** @var BootActiveForm \$form */
-\$form = \$this->beginWidget('bootstrap.widgets.BootActiveForm', array(
+\$form = \$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'verticalForm',
 	'htmlOptions'=>array('class'=>'well'),
 )); ?>
@@ -661,42 +661,42 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 <?php echo \$form->textFieldRow(\$model, 'textField', array('class'=>'span3')); ?>
 <?php echo \$form->passwordFieldRow(\$model, 'password', array('class'=>'span3')); ?>
 <?php echo \$form->checkboxRow(\$model, 'checkbox'); ?>
-<?php \$this->widget('bootstrap.widgets.BootButton', array('buttonType'=>'submit', 'icon'=>'ok', 'label'=>'Submit')); ?>
+<?php \$this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'icon'=>'ok', 'label'=>'Submit')); ?>
 
 <?php \$this->endWidget(); ?>"); ?>
 
 	<h3>Search</h3>
 
-	<?php /** @var BootActiveForm $form */
-	$form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
+	<?php /** @var TbActiveForm $form */
+	$form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 		'id'=>'searchForm',
 		'type'=>'search',
 		'htmlOptions'=>array('class'=>'well'),
 	)); ?>
 
 	<?php echo $form->textFieldRow($model, 'textField', array('class'=>'input-medium')); ?>
-	<?php $this->widget('bootstrap.widgets.BootButton', array('buttonType'=>'submit', 'icon'=>'search', 'label'=>'Search')); ?>
+	<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'icon'=>'search', 'label'=>'Search')); ?>
 
 	<?php $this->endWidget(); ?>
 
 	<h4>Source code</h4>
 
 <?php echo $phpLighter->highlight("<?php /** @var BootActiveForm \$form */
-\$form = \$this->beginWidget('bootstrap.widgets.BootActiveForm', array(
+\$form = \$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'searchForm',
 	'type'=>'search',
 	'htmlOptions'=>array('class'=>'well'),
 )); ?>
 
 <?php echo \$form->textFieldRow(\$model, 'textField', array('class'=>'input-medium')); ?>
-<?php \$this->widget('bootstrap.widgets.BootButton', array('buttonType'=>'submit', 'icon'=>'search', 'label'=>'Search')); ?>
+<?php \$this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'icon'=>'search', 'label'=>'Search')); ?>
 
 <?php \$this->endWidget(); ?>"); ?>
 
 	<h3>Inline</h3>
 
-	<?php /** @var BootActiveForm $form */
-	$form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
+	<?php /** @var TbActiveForm $form */
+	$form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 		'id'=>'inlineForm',
 		'type'=>'inline',
 		'htmlOptions'=>array('class'=>'well'),
@@ -704,14 +704,14 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<?php echo $form->textFieldRow($model, 'textField', array('class'=>'input-small')); ?>
 	<?php echo $form->passwordFieldRow($model, 'password', array('class'=>'input-small')); ?>
-	<?php $this->widget('bootstrap.widgets.BootButton', array('buttonType'=>'submit', 'icon'=>'arrow-right', 'label'=>'Log in')); ?>
+	<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'icon'=>'arrow-right', 'label'=>'Log in')); ?>
 
 	<?php $this->endWidget(); ?>
 
 	<h4>Source code</h4>
 
 <?php echo $phpLighter->highlight("<?php /** @var BootActiveForm \$form */
-\$form = \$this->beginWidget('bootstrap.widgets.BootActiveForm', array(
+\$form = \$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'inlineForm',
 	'type'=>'inline',
 	'htmlOptions'=>array('class'=>'well'),
@@ -719,14 +719,14 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 <?php echo \$form->textFieldRow(\$model, 'textField', array('class'=>'input-small')); ?>
 <?php echo \$form->passwordFieldRow(\$model, 'password', array('class'=>'input-small')); ?>
-<?php \$this->widget('bootstrap.widgets.BootButton', array('buttonType'=>'submit', 'icon'=>'arrow-right', 'label'=>'Log in')); ?>
+<?php \$this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'icon'=>'arrow-right', 'label'=>'Log in')); ?>
 
 <?php \$this->endWidget(); ?>"); ?>
 
 	<h3>Horizontal</h3>
 
-	<?php /** @var BootActiveForm $form */
-	$form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
+	<?php /** @var TbActiveForm $form */
+	$form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 		'id'=>'horizontalForm',
 		'type'=>'horizontal',
 	)); ?>
@@ -762,8 +762,8 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	</fieldset>
 
 	<div class="form-actions">
-		<?php $this->widget('bootstrap.widgets.BootButton', array('buttonType'=>'submit', 'type'=>'primary', 'icon'=>'ok white', 'label'=>'Submit')); ?>
-		<?php $this->widget('bootstrap.widgets.BootButton', array('buttonType'=>'reset', 'icon'=>'remove', 'label'=>'Reset')); ?>
+		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'icon'=>'ok white', 'label'=>'Submit')); ?>
+		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'reset', 'icon'=>'remove', 'label'=>'Reset')); ?>
 	</div>
 
 	<?php $this->endWidget(); ?>
@@ -771,7 +771,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	<h4>Source code</h4>
 
 <?php echo $phpLighter->highlight("<?php /** @var BootActiveForm \$form */
-\$form = \$this->beginWidget('bootstrap.widgets.BootActiveForm', array(
+\$form = \$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'horizontalForm',
 	'type'=>'horizontal',
 )); ?>
@@ -805,8 +805,8 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 </fieldset>
 
 <div class=\"form-actions\">
-	<?php \$this->widget('bootstrap.widgets.BootButton', array('buttonType'=>'submit', 'type'=>'primary', 'icon'=>'ok white', 'label'=>'Submit')); ?>
-	<?php \$this->widget('bootstrap.widgets.BootButton', array('buttonType'=>'reset', 'icon'=>'remove', 'label'=>'Reset')); ?>
+	<?php \$this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'icon'=>'ok white', 'label'=>'Submit')); ?>
+	<?php \$this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'reset', 'icon'=>'remove', 'label'=>'Reset')); ?>
 </div>
 
 <?php \$this->endWidget(); ?>"); ?>
@@ -823,11 +823,11 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		<div class="span3">
 			<h3>Large</h3>
 			<p>
-				<?php $this->widget('bootstrap.widgets.BootButton', array(
+				<?php $this->widget('bootstrap.widgets.TbButton', array(
 					'label'=>'Primary', 'type'=>'primary', 'size'=>'large',
 				)); ?>
 
-				<?php $this->widget('bootstrap.widgets.BootButton', array(
+				<?php $this->widget('bootstrap.widgets.TbButton', array(
 					'label'=>'Action', 'size'=>'large',
 				)); ?>
 			</p>
@@ -836,11 +836,11 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		<div class="span3">
 			<h3>Normal</h3>
 			<p>
-				<?php $this->widget('bootstrap.widgets.BootButton', array(
+				<?php $this->widget('bootstrap.widgets.TbButton', array(
 					'label'=>'Primary', 'type'=>'primary',
 				)); ?>
 
-				<?php $this->widget('bootstrap.widgets.BootButton', array(
+				<?php $this->widget('bootstrap.widgets.TbButton', array(
 					'label'=>'Action',
 				)); ?>
 			</p>
@@ -849,11 +849,11 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		<div class="span3">
 			<h3>Small</h3>
 			<p>
-				<?php $this->widget('bootstrap.widgets.BootButton', array(
+				<?php $this->widget('bootstrap.widgets.TbButton', array(
 					'label'=>'Primary', 'type'=>'primary', 'size'=>'small',
 				)); ?>
 
-				<?php $this->widget('bootstrap.widgets.BootButton', array(
+				<?php $this->widget('bootstrap.widgets.TbButton', array(
 					'label'=>'Action', 'size'=>'small',
 				)); ?>
 			</p>
@@ -862,11 +862,11 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		<div class="span3">
 			<h3>Mini</h3>
 			<p>
-				<?php $this->widget('bootstrap.widgets.BootButton', array(
+				<?php $this->widget('bootstrap.widgets.TbButton', array(
 					'label'=>'Primary', 'type'=>'primary', 'size'=>'mini',
 				)); ?>
 
-				<?php $this->widget('bootstrap.widgets.BootButton', array(
+				<?php $this->widget('bootstrap.widgets.TbButton', array(
 					'label'=>'Action', 'size'=>'mini',
 				)); ?>
 			</p>
@@ -875,7 +875,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h4>Source code</h4>
 
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.BootButton', array(
+<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbButton', array(
 	'label'=>'Primary',
 	'type'=>'primary', // '', 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
 	'size'=>'large', // '', 'large', 'small' or 'mini'
@@ -884,7 +884,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	<h3>Button groups</h3>
 
 	<div class="btn-toolbar">
-		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
 			'buttons'=>array(
 				array('label'=>'Left', 'url'=>'#'),
 				array('label'=>'Middle', 'url'=>'#'),
@@ -894,7 +894,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	</div>
 
 	<div class="btn-toolbar">
-		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
 			'buttons'=>array(
 				array('label'=>'1', 'url'=>'#'),
 				array('label'=>'2', 'url'=>'#'),
@@ -902,14 +902,14 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 				array('label'=>'4', 'url'=>'#'),
 			),
 		)); ?>
-		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
 			'buttons'=>array(
 				array('label'=>'5', 'url'=>'#'),
 				array('label'=>'6', 'url'=>'#'),
 				array('label'=>'7', 'url'=>'#'),
 			),
 		)); ?>
-		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
 			'buttons'=>array(
 				array('label'=>'8', 'url'=>'#'),
 			),
@@ -918,7 +918,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h4>Source code</h4>
 
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.BootButtonGroup', array(
+<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbButtonGroup', array(
 	'buttons'=>array(
 		array('label'=>'1', 'url'=>'#'),
 		array('label'=>'2', 'url'=>'#'),
@@ -930,7 +930,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	<h3>Dropdowns</h3>
 
 	<div class="btn-toolbar">
-		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
 			'buttons'=>array(
 				array('label'=>'Action', 'items'=>array(
 					array('label'=>'Action', 'url'=>'#'),
@@ -941,7 +941,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 				)),
 			),
 		)); ?>
-		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
 			'type'=>'primary',
 			'buttons'=>array(
 				array('label'=>'Action', 'items'=>array(
@@ -953,7 +953,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 				)),
 			),
 		)); ?>
-		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
 			'type'=>'danger',
 			'buttons'=>array(
 				array('label'=>'Danger', 'items'=>array(
@@ -967,7 +967,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		)); ?>
 	</div>
 	<div class="btn-toolbar">
-		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
 			'type'=>'success',
 			'buttons'=>array(
 				array('label'=>'Success', 'items'=>array(
@@ -979,7 +979,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 				)),
 			),
 		)); ?>
-		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
 			'type'=>'info',
 			'buttons'=>array(
 				array('label'=>'Info', 'items'=>array(
@@ -996,7 +996,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	<h4>Source code</h4>
 
 <?php echo $phpLighter->highlight("<div class=\"btn-toolbar\">
-	<?php \$this->widget('bootstrap.widgets.BootButtonGroup', array(
+	<?php \$this->widget('bootstrap.widgets.TbButtonGroup', array(
 		'type'=>'primary', // '', 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
 		'buttons'=>array(
 			array('label'=>'Action', 'items'=>array(
@@ -1013,7 +1013,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	<h3>Split dropdowns</h3>
 
 	<div class="btn-toolbar">
-		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
 			'buttons'=>array(
 				array('label'=>'Action', 'url'=>'#'),
 				array('items'=>array(
@@ -1025,7 +1025,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 				)),
 			),
 		)); ?>
-		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
 			'type'=>'primary',
 			'buttons'=>array(
 				array('label'=>'Action', 'url'=>'#'),
@@ -1038,7 +1038,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 				)),
 			),
 		)); ?>
-		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
 			'type'=>'danger',
 			'buttons'=>array(
 				array('label'=>'Danger', 'url'=>'#'),
@@ -1053,7 +1053,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		)); ?>
 	</div>
 	<div class="btn-toolbar">
-		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
 			'type'=>'success',
 			'buttons'=>array(
 				array('label'=>'Success', 'url'=>'#'),
@@ -1066,7 +1066,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 				)),
 			),
 		)); ?>
-		<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
 			'type'=>'info',
 			'buttons'=>array(
 				array('label'=>'Info', 'url'=>'#'),
@@ -1084,7 +1084,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	<h4>Source code</h4>
 
 <?php echo $phpLighter->highlight("<div class=\"btn-toolbar\">
-	<?php \$this->widget('bootstrap.widgets.BootButtonGroup', array(
+	<?php \$this->widget('bootstrap.widgets.TbButtonGroup', array(
 	    'type'=>'primary', // '', 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
 		'buttons'=>array(
 			array('label'=>'Action', 'url'=>'#'),
@@ -1102,7 +1102,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	<h3>Stateful</h3>
 
 	<p>
-		<?php $this->widget('bootstrap.widgets.BootButton', array(
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'button',
 			'type'=>'primary',
 			'label'=>'Click me',
@@ -1123,7 +1123,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h4>Source code</h4>
 
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.BootButton', array(
+<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbButton', array(
 	'buttonType'=>'button',
 	'type'=>'primary',
 	'label'=>'Click me',
@@ -1142,7 +1142,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	<h3>Single state</h3>
 
 	<p>
-		<?php $this->widget('bootstrap.widgets.BootButton', array(
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'button',
 			'type'=>'primary',
 			'label'=>'Toggle me',
@@ -1152,7 +1152,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h4>Source code</h4>
 
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.BootButton', array(
+<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbButton', array(
 	'buttonType'=>'button',
 	'type'=>'primary',
 	'label'=>'Toggle me',
@@ -1165,7 +1165,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 			<h3>Checkbox</h3>
 
-			<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+			<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
 				'type' => 'primary',
 				'toggle' => 'checkbox',
 				'buttons' => array(
@@ -1182,7 +1182,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 			<h3>Radio</h3>
 
-			<?php $this->widget('bootstrap.widgets.BootButtonGroup', array(
+			<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
 				'type' => 'primary',
 				'toggle' => 'radio',
 				'buttons' => array(
@@ -1199,7 +1199,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h4>Source code</h4>
 
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.BootButtonGroup', array(
+<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbButtonGroup', array(
 	'type' => 'primary',
 	'toggle' => 'radio', // 'checkbox' or 'radio'
 	'buttons' => array(
@@ -1217,12 +1217,12 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h2>Hero unit</h2>
 
-	<?php $this->beginWidget('bootstrap.widgets.BootHero', array(
+	<?php $this->beginWidget('bootstrap.widgets.TbHeroUnit', array(
 		'heading'=>'Hello, world!',
 	)); ?>
 	
 		<p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-		<p><?php $this->widget('bootstrap.widgets.BootButton', array(
+		<p><?php $this->widget('bootstrap.widgets.TbButton', array(
 			'type'=>'primary',
 			'size'=>'large',
 			'label'=>'Learn more',
@@ -1232,12 +1232,12 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h4>Source code</h4>
 
-<?php echo $phpLighter->highlight("<?php \$this->beginWidget('bootstrap.widgets.BootHero', array(
+<?php echo $phpLighter->highlight("<?php \$this->beginWidget('bootstrap.widgets.TbHeroUnit', array(
 	'heading'=>'Hello, world!',
 )); ?>
 
 	<p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-	<p><?php \$this->widget('bootstrap.widgets.BootButton', array(
+	<p><?php \$this->widget('bootstrap.widgets.TbButton', array(
 		'type'=>'primary',
 		'size'=>'large',
 		'label'=>'Learn more',
@@ -1253,7 +1253,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h2>Carousel</h2>
 
-	<?php $this->widget('bootstrap.widgets.BootCarousel', array(
+	<?php $this->widget('bootstrap.widgets.TbCarousel', array(
 		'items'=>array(
 			array('image'=>'http://placehold.it/770x400&text=First+thumbnail', 'label'=>'First Thumbnail label', 'caption'=>'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.'),
 			array('image'=>'http://placehold.it/770x400&text=Second+thumbnail', 'label'=>'Second Thumbnail label', 'caption'=>'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.'),
@@ -1267,7 +1267,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h4>Source code</h4>
 
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.BootCarousel', array(
+<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbCarousel', array(
 	'items'=>array(
 		array('image'=>'http://placehold.it/770x400&text=First+thumbnail', 'label'=>'First Thumbnail label', 'caption'=>'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.'),
 		array('image'=>'http://placehold.it/770x400&text=Second+thumbnail', 'label'=>'Second Thumbnail label', 'caption'=>'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.'),
@@ -1289,7 +1289,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 			<h3>Basic</h3>
 
-			<?php $this->widget('bootstrap.widgets.BootProgress', array(
+			<?php $this->widget('bootstrap.widgets.TbProgress', array(
 				'percent'=>30,
 			)); ?>
 
@@ -1299,7 +1299,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 			<h3>Striped</h3>
 
-			<?php $this->widget('bootstrap.widgets.BootProgress', array(
+			<?php $this->widget('bootstrap.widgets.TbProgress', array(
 				'type'=>'info',
 				'percent'=>20,
 				'striped'=>true,
@@ -1311,7 +1311,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 			<h3>Animated</h3>
 
-			<?php $this->widget('bootstrap.widgets.BootProgress', array(
+			<?php $this->widget('bootstrap.widgets.TbProgress', array(
 				'type'=>'danger', // '', 'info', 'success' or 'danger'
 				'percent'=>40, // the progress
 				'striped'=>true,
@@ -1324,7 +1324,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h4>Source code</h4>
 
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.BootProgress', array(
+<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbProgress', array(
 	'type'=>'danger', // '', 'info', 'success' or 'danger'
 	'percent'=>40, // the progress
 	'striped'=>true,
@@ -1341,7 +1341,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<div class="well">
 
-		<?php $this->widget('bootstrap.widgets.BootTypeahead', array(
+		<?php $this->widget('bootstrap.widgets.TbTypeahead', array(
 			'options'=>array(
 				'source'=>array('Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'),
 				'items'=>4,
@@ -1355,7 +1355,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<h4>Source code</h4>
 
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.BootTypeahead', array(
+<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbTypeahead', array(
 	'options'=>array(
 		'source'=>array('Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'),
 		'items'=>4,
@@ -1374,17 +1374,17 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	<h2>Labels</h2>
 
 	<p>
-		<?php $this->widget('bootstrap.widgets.BootLabel', array('label'=>'Default')); ?>
-		<?php $this->widget('bootstrap.widgets.BootLabel', array('type'=>'success', 'label'=>'Success')); ?>
-		<?php $this->widget('bootstrap.widgets.BootLabel', array('type'=>'warning', 'label'=>'Warning')); ?>
-		<?php $this->widget('bootstrap.widgets.BootLabel', array('type'=>'important', 'label'=>'Important')); ?>
-		<?php $this->widget('bootstrap.widgets.BootLabel', array('type'=>'info', 'label'=>'Info')); ?>
-		<?php $this->widget('bootstrap.widgets.BootLabel', array('type'=>'inverse', 'label'=>'Inverse')); ?>
+		<?php $this->widget('bootstrap.widgets.TbLabel', array('label'=>'Default')); ?>
+		<?php $this->widget('bootstrap.widgets.TbLabel', array('type'=>'success', 'label'=>'Success')); ?>
+		<?php $this->widget('bootstrap.widgets.TbLabel', array('type'=>'warning', 'label'=>'Warning')); ?>
+		<?php $this->widget('bootstrap.widgets.TbLabel', array('type'=>'important', 'label'=>'Important')); ?>
+		<?php $this->widget('bootstrap.widgets.TbLabel', array('type'=>'info', 'label'=>'Info')); ?>
+		<?php $this->widget('bootstrap.widgets.TbLabel', array('type'=>'inverse', 'label'=>'Inverse')); ?>
 	</p>
 
 	<h4>Source code</h4>
 
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.BootLabel', array(
+<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbLabel', array(
 	'type'=>'success', // '', 'success', 'warning', 'important', 'info' or 'inverse'
 	'label'=>'Success',
 )); ?>"); ?>
@@ -1398,17 +1398,17 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	<h2>Badges</h2>
 
 	<p>
-		<?php $this->widget('bootstrap.widgets.BootBadge', array('label'=>'1')); ?>
-		<?php $this->widget('bootstrap.widgets.BootBadge', array('type'=>'success', 'label'=>'2')); ?>
-		<?php $this->widget('bootstrap.widgets.BootBadge', array('type'=>'warning', 'label'=>'4')); ?>
-		<?php $this->widget('bootstrap.widgets.BootBadge', array('type'=>'error', 'label'=>'6')); ?>
-		<?php $this->widget('bootstrap.widgets.BootBadge', array('type'=>'info', 'label'=>'8')); ?>
-		<?php $this->widget('bootstrap.widgets.BootBadge', array('type'=>'inverse', 'label'=>'10')); ?>
+		<?php $this->widget('bootstrap.widgets.TbBadge', array('label'=>'1')); ?>
+		<?php $this->widget('bootstrap.widgets.TbBadge', array('type'=>'success', 'label'=>'2')); ?>
+		<?php $this->widget('bootstrap.widgets.TbBadge', array('type'=>'warning', 'label'=>'4')); ?>
+		<?php $this->widget('bootstrap.widgets.TbBadge', array('type'=>'error', 'label'=>'6')); ?>
+		<?php $this->widget('bootstrap.widgets.TbBadge', array('type'=>'info', 'label'=>'8')); ?>
+		<?php $this->widget('bootstrap.widgets.TbBadge', array('type'=>'inverse', 'label'=>'10')); ?>
 	</p>
 
 	<h4>Source code</h4>
 
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.BootBadge', array(
+<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbBadge', array(
 	'type'=>'success', // '', 'success', 'warning', 'error', 'info' or 'inverse'
 	'label'=>'2',
 )); ?>"); ?>
@@ -1429,7 +1429,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 <div class="subnav well">
 
-	<?php $this->widget('BootMenu', array(
+	<?php $this->widget('TbMenu', array(
 		'type'=>'list',
 		'scrollspy'=>array('spy'=>'.subnav', 'offset'=>50),
 		'items'=>array(

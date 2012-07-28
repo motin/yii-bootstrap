@@ -7,7 +7,7 @@
  * @package bootstrap.widgets
  */
 
-abstract class BootBaseMenu extends CWidget
+abstract class TbBaseMenu extends CWidget
 {
 	/**
 	 * @var array the menu items.

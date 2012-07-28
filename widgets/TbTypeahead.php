@@ -11,7 +11,7 @@
 /**
  * Bootstrap type-a-head widget.
  */
-class BootTypeahead extends CWidget
+class TbTypeahead extends CWidget
 {
 	/**
 	 * @var array the options for the Bootstrap JavaScript plugin.

@@ -7,14 +7,14 @@
  * @package bootstrap.widgets
  */
 
-Yii::import('bootstrap.widgets.BootBaseMenu');
+Yii::import('bootstrap.widgets.TbBaseMenu');
 
 /**
  * Bootstrap menu widget.
  * Used for rendering of bootstrap menus with support dropdown sub-menus and scroll-spying.
  * @since 0.9.8
  */
-class BootMenu extends BootBaseMenu
+class TbMenu extends TbBaseMenu
 {
 	// Menu types.
 	const TYPE_UNSTYLED = '';
@@ -127,7 +127,7 @@ class BootMenu extends BootBaseMenu
 
 				if(isset($item['items']) && !empty($item['items']))
 				{
-					$this->controller->widget('bootstrap.widgets.BootDropdown', array(
+					$this->controller->widget('bootstrap.widgets.TbDropdown', array(
 						'encodeLabel'=>$this->encodeLabel,
 						'items'=>$item['items'],
 						'htmlOptions'=>isset($item['dropdownOptions']) ? $item['dropdownOptions'] : $this->dropdownOptions,

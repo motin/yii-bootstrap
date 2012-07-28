@@ -13,7 +13,7 @@ Yii::import('bootstrap.widgets.input.BootInput');
  * Bootstrap vertical form input widget.
  * @since 0.9.8
  */
-class BootInputVertical extends BootInput
+class TbInputVertical extends TbInput
 {
 	/**
 	 * Renders a checkbox.

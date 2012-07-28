@@ -7,12 +7,12 @@
  * @package bootstrap.widgets
  */
 
-Yii::import('bootstrap.widgets.BootListView');
+Yii::import('bootstrap.widgets.TbListView');
 
 /**
  * Bootstrap thumbnails widget.
  */
-class BootThumbnails extends BootListView
+class TbThumbnails extends TbListView
 {
 	/**
 	 * Renders the data items for the view.

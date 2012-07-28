@@ -11,7 +11,7 @@
 /**
  * Bootstrap carousel widget.
  */
-class BootCarousel extends CWidget
+class TbCarousel extends CWidget
 {
 	/**
 	 * @var string the previous button content.

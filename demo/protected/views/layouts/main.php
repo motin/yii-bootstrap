@@ -51,12 +51,12 @@ mixpanel.init("733930f08f73894be317b7fdbfd15229");</script><!-- end Mixpanel -->
 	}(document));
 </script>
 
-<?php $this->widget('bootstrap.widgets.BootNavbar',array(
+<?php $this->widget('bootstrap.widgets.TbNavbar',array(
 	'brand'=>CHtml::encode(Yii::app()->name),
 	'collapse'=>true,
 	'items'=>array(
 		array(
-			'class'=>'bootstrap.widgets.BootMenu',
+			'class'=>'bootstrap.widgets.TbMenu',
 			'items'=>array(
 				array('label'=>'Demo', 'url'=>Yii::app()->homeUrl,
 						'active'=>Yii::app()->controller->id === 'site' && Yii::app()->controller->action->id === 'index'),
@@ -77,7 +77,7 @@ mixpanel.init("733930f08f73894be317b7fdbfd15229");</script><!-- end Mixpanel -->
 			<!-- AddThis Button END -->
 		</div>',
 		array(
-			'class'=>'bootstrap.widgets.BootMenu',
+			'class'=>'bootstrap.widgets.TbMenu',
 			'items'=>array(
 				array('label'=>'Bootstrap Docs', 'url'=>'http://twitter.github.com/bootstrap', 'linkOptions'=>array('target'=>'_blank')),
 				array('label'=>'Fork me on Bitbucket', 'url'=>'http://www.bitbucket.org/Crisu83/yii-bootstrap', 'linkOptions'=>array('target'=>'_blank')),
@@ -90,7 +90,7 @@ mixpanel.init("733930f08f73894be317b7fdbfd15229");</script><!-- end Mixpanel -->
 
 <div class="container">
 
-	<?php $this->beginWidget('bootstrap.widgets.BootHero', array(
+	<?php $this->beginWidget('bootstrap.widgets.TbHeroUnit', array(
 		'heading'=>Yii::app()->name,
 	)); ?>
 		<p>
@@ -104,7 +104,7 @@ mixpanel.init("733930f08f73894be317b7fdbfd15229");</script><!-- end Mixpanel -->
 	<?php $this->endWidget(); ?>
 
 	<?php if (!empty($this->breadcrumbs)):?>
-		<?php $this->widget('bootstrap.widgets.BootBreadcrumbs', array(
+		<?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
 		)); ?>
 	<?php endif?>

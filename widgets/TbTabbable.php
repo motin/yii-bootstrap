@@ -7,13 +7,13 @@
  * @package bootstrap.widgets
  */
 
-Yii::import('bootstrap.widgets.BootMenu');
+Yii::import('bootstrap.widgets.TbMenu');
 
 /**
  * Bootstrap JavaScript tabs widget.
  * @since 0.9.8
  */
-class BootTabbable extends CWidget
+class TbTabbable extends CWidget
 {
 	// Tab placements.
 	const PLACEMENT_ABOVE = 'above';
@@ -26,7 +26,7 @@ class BootTabbable extends CWidget
 	 * Valid values are 'tabs' and 'pills'.
 	 * Please not that JavaScript pills are not fully supported in Bootstrap!
 	 */
-    public $type = BootMenu::TYPE_TABS;
+    public $type = TbMenu::TYPE_TABS;
 	/**
 	 * @var string the placement of the tabs.
 	 * Valid values are 'above', 'below', 'left' and 'right'.
@@ -79,7 +79,7 @@ class BootTabbable extends CWidget
 	    $items = $this->normalizeTabs($this->tabs, $content);
 
 		ob_start();
-		$this->controller->widget('bootstrap.widgets.BootMenu', array(
+		$this->controller->widget('bootstrap.widgets.TbMenu', array(
 			'type'=>$this->type,
 			'encodeLabel'=>$this->encodeLabel,
 			'items'=>$items,
