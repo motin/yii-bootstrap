@@ -16,7 +16,7 @@ Yii::app()->clientScript->registerScript('ConsolePolyfill', "
 ");
 ?>
 
-<section id="bootAlert">
+<section id="tbAlert">
 
 	<h2>Alerts</h2>
 
@@ -49,7 +49,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
-<section id="bootBreadcrumbs">
+<section id="tbBreadcrumbs">
 
 	<h2>Breadcrumbs</h2>
 
@@ -75,7 +75,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
-<section id="bootNavbar">
+<section id="tbNavbar">
 
 	<h2>Navbar</h2>
 
@@ -169,7 +169,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
-<section id="bootMenu">
+<section id="tbMenu">
 
 	<h2>Menus</h2>
 
@@ -271,7 +271,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
-<section id="bootTabbable">
+<section id="tbTabbable">
 
 	<h2>Tabbable</h2>
 
@@ -361,7 +361,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
-<section id="bootDetailView">
+<section id="tbDetailView">
 
 	<h2>Detail views</h2>
 
@@ -389,7 +389,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
-<section id="bootGridView">
+<section id="tbGridView">
 
 	<h2>Grid views</h2>
 
@@ -466,7 +466,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
-<section id="bootThumbnails">
+<section id="tbThumbnails">
 
 	<h2>Thumbnails</h2>
 
@@ -494,7 +494,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
-<section id="bootTooltip">
+<section id="tbTooltip">
 
 	<h2>Tooltips</h2>
 
@@ -528,7 +528,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
-<section id="bootPopover">
+<section id="tbPopover">
 
 	<h2>Popovers</h2>
 
@@ -552,7 +552,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
-<section id="bootModal">
+<section id="tbModal">
 
 	<h2>Modals</h2>
 
@@ -631,7 +631,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
-<section id="bootActiveForm">
+<section id="tbActiveForm">
 
 	<h2>Forms</h2>
 
@@ -646,7 +646,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	<?php echo $form->textFieldRow($model, 'textField', array('class'=>'span3')); ?>
 	<?php echo $form->passwordFieldRow($model, 'password', array('class'=>'span3')); ?>
 	<?php echo $form->checkboxRow($model, 'checkbox'); ?>
-	<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'icon'=>'ok', 'label'=>'Submit')); ?>
+	<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>'Login')); ?>
 
 	<?php $this->endWidget(); ?>
 
@@ -661,7 +661,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 <?php echo \$form->textFieldRow(\$model, 'textField', array('class'=>'span3')); ?>
 <?php echo \$form->passwordFieldRow(\$model, 'password', array('class'=>'span3')); ?>
 <?php echo \$form->checkboxRow(\$model, 'checkbox'); ?>
-<?php \$this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'icon'=>'ok', 'label'=>'Submit')); ?>
+<?php \$this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>'Login')); ?>
 
 <?php \$this->endWidget(); ?>"); ?>
 
@@ -674,8 +674,8 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		'htmlOptions'=>array('class'=>'well'),
 	)); ?>
 
-	<?php echo $form->textFieldRow($model, 'textField', array('class'=>'input-medium')); ?>
-	<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'icon'=>'search', 'label'=>'Search')); ?>
+	<?php echo $form->textFieldRow($model, 'textField', array('class'=>'input-medium', 'prepend'=>'<i class="icon-search"></i>')); ?>
+	<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>'Go')); ?>
 
 	<?php $this->endWidget(); ?>
 
@@ -688,8 +688,8 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	'htmlOptions'=>array('class'=>'well'),
 )); ?>
 
-<?php echo \$form->textFieldRow(\$model, 'textField', array('class'=>'input-medium')); ?>
-<?php \$this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'icon'=>'search', 'label'=>'Search')); ?>
+<?php echo \$form->textFieldRow(\$model, 'textField', array('class'=>'input-medium', 'prepend'=>'<i class=\"icon-search\"></i>')); ?>
+<?php \$this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>'Go')); ?>
 
 <?php \$this->endWidget(); ?>"); ?>
 
@@ -704,7 +704,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 	<?php echo $form->textFieldRow($model, 'textField', array('class'=>'input-small')); ?>
 	<?php echo $form->passwordFieldRow($model, 'password', array('class'=>'input-small')); ?>
-	<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'icon'=>'arrow-right', 'label'=>'Log in')); ?>
+	<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>'Log in')); ?>
 
 	<?php $this->endWidget(); ?>
 
@@ -719,7 +719,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 <?php echo \$form->textFieldRow(\$model, 'textField', array('class'=>'input-small')); ?>
 <?php echo \$form->passwordFieldRow(\$model, 'password', array('class'=>'input-small')); ?>
-<?php \$this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'icon'=>'arrow-right', 'label'=>'Log in')); ?>
+<?php \$this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'label'=>'Log in')); ?>
 
 <?php \$this->endWidget(); ?>"); ?>
 
@@ -815,7 +815,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
-<section id="bootButton">
+<section id="tbButton">
 
 	<h2>Buttons</h2>
 
@@ -1213,7 +1213,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
-<section id="bootHero">
+<section id="tbHero">
 
 	<h2>Hero unit</h2>
 
@@ -1249,7 +1249,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
-<section id="bootCarousel">
+<section id="tbCarousel">
 
 	<h2>Carousel</h2>
 
@@ -1279,7 +1279,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
-<section id="bootProgress">
+<section id="tbProgress">
 
 	<h2>Progress bars</h2>
 
@@ -1335,7 +1335,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
-<section id="bootTypeahead">
+<section id="tbTypeahead">
 
 	<h2>Typeahead</h2>
 
@@ -1369,7 +1369,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
-<section id="bootLabel">
+<section id="tbLabel">
 
 	<h2>Labels</h2>
 
@@ -1393,7 +1393,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
-<section id="bootBadge">
+<section id="tbBadge">
 
 	<h2>Badges</h2>
 
@@ -1434,25 +1434,25 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 		'scrollspy'=>array('spy'=>'.subnav', 'offset'=>50),
 		'items'=>array(
 			array('label'=>'WIDGETS'),
-			array('label'=>'Alert', 'url'=>'#bootAlert'),
-			array('label'=>'Breadcrumb', 'url'=>'#bootBreadcrumbs'),
-			array('label'=>'Navbar', 'url'=>'#bootNavbar'),
-			array('label'=>'Menu', 'url'=>'#bootMenu'),
-			array('label'=>'Tabbable', 'url'=>'#bootTabbable'),
-			array('label'=>'Detail view', 'url'=>'#bootDetailView'),
-			array('label'=>'Grid view', 'url'=>'#bootGridView'),
-			array('label'=>'Thumbnail', 'url'=>'#bootThumbnails'),
-			array('label'=>'Tooltip', 'url'=>'#bootTooltip'),
-			array('label'=>'Popover', 'url'=>'#bootPopover'),
-			array('label'=>'Modal', 'url'=>'#bootModal'),
-			array('label'=>'Forms', 'url'=>'#bootActiveForm'),
-			array('label'=>'Buttons', 'url'=>'#bootButton'),
-			array('label'=>'Hero', 'url'=>'#bootHero'),
-			array('label'=>'Carousel', 'url'=>'#bootCarousel'),
-			array('label'=>'Progress', 'url'=>'#bootProgress'),
-			array('label'=>'Typeahead', 'url'=>'#bootTypeahead'),
-			array('label'=>'Labels', 'url'=>'#bootLabel'),
-			array('label'=>'Badges', 'url'=>'#bootBadge'),
+			array('label'=>'Alert', 'url'=>'#tbAlert'),
+			array('label'=>'Breadcrumb', 'url'=>'#tbBreadcrumbs'),
+			array('label'=>'Navbar', 'url'=>'#tbNavbar'),
+			array('label'=>'Menu', 'url'=>'#tbMenu'),
+			array('label'=>'Tabbable', 'url'=>'#tbTabbable'),
+			array('label'=>'Detail view', 'url'=>'#tbDetailView'),
+			array('label'=>'Grid view', 'url'=>'#tbGridView'),
+			array('label'=>'Thumbnail', 'url'=>'#tbThumbnails'),
+			array('label'=>'Tooltip', 'url'=>'#tbTooltip'),
+			array('label'=>'Popover', 'url'=>'#tbPopover'),
+			array('label'=>'Modal', 'url'=>'#tbModal'),
+			array('label'=>'Forms', 'url'=>'#tbActiveForm'),
+			array('label'=>'Buttons', 'url'=>'#tbButton'),
+			array('label'=>'Hero', 'url'=>'#tbHero'),
+			array('label'=>'Carousel', 'url'=>'#tbCarousel'),
+			array('label'=>'Progress', 'url'=>'#tbProgress'),
+			array('label'=>'Typeahead', 'url'=>'#tbTypeahead'),
+			array('label'=>'Labels', 'url'=>'#tbLabel'),
+			array('label'=>'Badges', 'url'=>'#tbBadge'),
 		),
 	)); ?>
 

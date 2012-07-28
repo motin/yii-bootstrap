@@ -127,7 +127,7 @@ mixpanel.init("733930f08f73894be317b7fdbfd15229");</script><!-- end Mixpanel -->
 		</p>
 
 		<p class="copy">
-			&copy; Christoffer Niska 2011
+			&copy; Christoffer Niska <?php echo date('Y'); ?>
 		</p>
 
 	</footer>
