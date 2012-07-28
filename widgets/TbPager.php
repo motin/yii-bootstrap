@@ -42,28 +42,24 @@ class TbPager extends CLinkPager
 	public function init()
 	{
 		if ($this->nextPageLabel === null)
-			$this->nextPageLabel = Yii::t('bootstrap','Next').' &rarr;';
+			$this->nextPageLabel = '&rarr;';
 
 		if ($this->prevPageLabel === null)
-			$this->prevPageLabel = '&larr; '.Yii::t('bootstrap','Previous');
-
-		if ($this->firstPageLabel === null)
-			$this->firstPageLabel = Yii::t('bootstrap','First');
-
-		if ($this->lastPageLabel === null)
-			$this->lastPageLabel = Yii::t('bootstrap','Last');
+			$this->prevPageLabel = '&larr;';
 
 		$classes = array();
 
-		$validAlignments = array(self::ALIGNMENT_LEFT, self::ALIGNMENT_CENTER, self::ALIGNMENT_RIGHT);
-		if (in_array($this->alignment, $validAlignments))
+		if (in_array($this->alignment, array(self::ALIGNMENT_LEFT, self::ALIGNMENT_CENTER, self::ALIGNMENT_RIGHT)))
 			$classes[] = 'pagination-'.$this->alignment;
 
-		$classes = implode(' ', $classes);
-		if (isset($this->htmlOptions['class']))
-			$this->htmlOptions['class'] = ' '.$classes;
-		else
-			$this->htmlOptions['class'] = $classes;
+        if (!empty($classes))
+        {
+            $classes = implode(' ', $classes);
+            if (isset($this->htmlOptions['class']))
+                $this->htmlOptions['class'] = ' '.$classes;
+            else
+                $this->htmlOptions['class'] = $classes;
+        }
 
 		parent::init();
 	}
