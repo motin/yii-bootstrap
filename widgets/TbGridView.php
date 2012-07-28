@@ -73,9 +73,7 @@ class TbGridView extends CGridView
 			jQuery('{$tooltip}').tooltip();
 		}";
 
-		if (isset($this->afterAjaxUpdate))
-			$this->afterAjaxUpdate .= ' '.$afterAjaxUpdate;
-		else
+		if (!isset($this->afterAjaxUpdate))
 			$this->afterAjaxUpdate = $afterAjaxUpdate;
 	}
 
