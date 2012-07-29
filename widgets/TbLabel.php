@@ -45,10 +45,7 @@ class TbLabel extends CWidget
 	{
 		$classes = array('label');
 
-		$validTypes = array(self::TYPE_SUCCESS, self::TYPE_WARNING,
-				self::TYPE_IMPORTANT, self::TYPE_INFO, self::TYPE_INVERSE);
-
-		if (in_array($this->type, $validTypes))
+		if (in_array($this->type, array(self::TYPE_SUCCESS, self::TYPE_WARNING, self::TYPE_IMPORTANT, self::TYPE_INFO, self::TYPE_INVERSE)))
 			$classes[] = 'label-'.$this->type;
 
 		$classes = implode(' ', $classes);
