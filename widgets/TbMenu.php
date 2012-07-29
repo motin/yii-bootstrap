@@ -46,6 +46,15 @@ class TbMenu extends TbBaseMenu
         if ($this->type !== self::TYPE_LIST && $this->stacked)
             $classes[] = 'nav-stacked';
 
+        foreach ($this->items as $item)
+        {
+            if ($this->hasDropdown($item) && $this->isDropup($item))
+            {
+                $classes[] = 'dropup';
+                break;
+            }
+        }
+
         $classes = implode(' ', $classes);
         if (isset($this->htmlOptions['class']))
             $this->htmlOptions['class'] .= ' '.$classes;
@@ -62,6 +71,26 @@ class TbMenu extends TbBaseMenu
 
             Yii::app()->bootstrap->spyOn($this->scrollspy['subject'], $this->scrollspy['spy'], $this->scrollspy['offset']);
         }
+    }
+
+    /**
+     * Returns whether the given item has a dropdown.
+     * @param array $item the item configuration
+     * @return boolean the result
+     */
+    protected function hasDropdown($item)
+    {
+        return isset($item['items']) && !empty($item['items']);
+    }
+
+    /**
+     * Returns whether the given item is a dropup.
+     * @param array $item the item configuration
+     * @return boolean the result
+     */
+    protected function isDropup($item)
+    {
+        return isset($item['dropup']) && $item['dropup'] === true;
     }
 
     /**

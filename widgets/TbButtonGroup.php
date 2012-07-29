@@ -56,15 +56,24 @@ class TbButtonGroup extends CWidget
 	 */
 	public function init()
 	{
-		$classes = 'btn-group';
+		$classes = array('btn-group');
+
+        foreach ($this->buttons as $button)
+        {
+            if ($this->hasDropdown($button) && $this->isDropup($button))
+            {
+                $classes[] = 'dropup';
+                break;
+            }
+        }
+
+        $classes = implode(' ', $classes);
 		if (isset($this->htmlOptions['class']))
 			$this->htmlOptions['class'] .= ' '.$classes;
 		else
 			$this->htmlOptions['class'] = $classes;
 
-		$validToggles = array(self::TOGGLE_CHECKBOX, self::TOGGLE_RADIO);
-
-		if (isset($this->toggle) && in_array($this->toggle, $validToggles))
+		if (isset($this->toggle) && in_array($this->toggle, array(self::TOGGLE_CHECKBOX, self::TOGGLE_RADIO)))
 			$this->htmlOptions['data-toggle'] = 'buttons-'.$this->toggle;
 	}
 
@@ -97,4 +106,24 @@ class TbButtonGroup extends CWidget
 
 		echo '</div>';
 	}
+
+    /**
+     * Returns whether the given button has a dropdown.
+     * @param array $button the button configuration
+     * @return boolean the result
+     */
+    protected function hasDropdown($button)
+    {
+        return isset($button['items']) && !empty($button['items']);
+    }
+
+    /**
+     * Returns whether the given item is a dropup.
+     * @param array $button the button configuration
+     * @return boolean the result
+     */
+    protected function isDropup($button)
+    {
+        return isset($button['dropup']) && $button['dropup'] === true;
+    }
 }
