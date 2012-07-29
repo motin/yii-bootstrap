@@ -16,42 +16,434 @@ Yii::app()->clientScript->registerScript('ConsolePolyfill', "
 ");
 ?>
 
-<section id="tbAlert">
+<section id="tbButton">
 
-	<h2>Alerts</h2>
+    <h2>Buttons <small>bootstrap.widgets.TbButton</small></h2>
 
-	<?php
-	Yii::app()->user->setFlash('success', '<strong>Well done!</strong> You successfully read this important alert message.');
-	Yii::app()->user->setFlash('info', '<strong>Heads up!</strong> This alert needs your attention, but it\'s not super important.');
-	Yii::app()->user->setFlash('warning', '<strong>Warning!</strong> Best check yo self, you\'re not looking too good.');
-	Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few things up and try submitting again.');
-	?>
+    <div class="row">
+        <div class="span3">
+            <h3>Large</h3>
+            <p>
+                <?php $this->widget('bootstrap.widgets.TbButton', array(
+                'label'=>'Primary', 'type'=>'primary', 'size'=>'large',
+            )); ?>
 
-	<?php $this->widget('bootstrap.widgets.TbAlert', array(
-		'events'=>array(
-			'close'=>"js:function() { console.log('Alert close.'); }",
-			'closed'=>"js:function() { console.log('Alert closed.'); }",
+                <?php $this->widget('bootstrap.widgets.TbButton', array(
+                'label'=>'Action', 'size'=>'large',
+            )); ?>
+            </p>
+        </div>
+
+        <div class="span3">
+            <h3>Normal</h3>
+            <p>
+                <?php $this->widget('bootstrap.widgets.TbButton', array(
+                'label'=>'Primary', 'type'=>'primary',
+            )); ?>
+
+                <?php $this->widget('bootstrap.widgets.TbButton', array(
+                'label'=>'Action',
+            )); ?>
+            </p>
+        </div>
+
+        <div class="span3">
+            <h3>Small</h3>
+            <p>
+                <?php $this->widget('bootstrap.widgets.TbButton', array(
+                'label'=>'Primary', 'type'=>'primary', 'size'=>'small',
+            )); ?>
+
+                <?php $this->widget('bootstrap.widgets.TbButton', array(
+                'label'=>'Action', 'size'=>'small',
+            )); ?>
+            </p>
+        </div>
+
+        <div class="span3">
+            <h3>Mini</h3>
+            <p>
+                <?php $this->widget('bootstrap.widgets.TbButton', array(
+                'label'=>'Primary', 'type'=>'primary', 'size'=>'mini',
+            )); ?>
+
+                <?php $this->widget('bootstrap.widgets.TbButton', array(
+                'label'=>'Action', 'size'=>'mini',
+            )); ?>
+            </p>
+        </div>
+    </div>
+
+    <h4>Source code</h4>
+
+    <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbButton', array(
+	'label'=>'Primary',
+	'type'=>'primary', // '', 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
+	'size'=>'large', // '', 'large', 'small' or 'mini'
+)); ?>"); ?>
+
+    <h3>Dropdowns</h3>
+
+    <div class="btn-toolbar">
+        <?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
+            'buttons'=>array(
+                array('label'=>'Action', 'items'=>array(
+                    array('label'=>'Action', 'url'=>'#'),
+                    array('label'=>'Another action', 'url'=>'#'),
+                    array('label'=>'Something else', 'url'=>'#'),
+                    '---',
+                    array('label'=>'Separate link', 'url'=>'#'),
+                )),
+            ),
+        )); ?>
+        <?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
+            'type'=>'primary',
+            'buttons'=>array(
+                array('label'=>'Action', 'items'=>array(
+                    array('label'=>'Action', 'url'=>'#'),
+                    array('label'=>'Another action', 'url'=>'#'),
+                    array('label'=>'Something else', 'url'=>'#'),
+                    '---',
+                    array('label'=>'Separate link', 'url'=>'#'),
+                )),
+            ),
+        )); ?>
+        <?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
+            'type'=>'danger',
+            'buttons'=>array(
+                array('label'=>'Danger', 'items'=>array(
+                    array('label'=>'Action', 'url'=>'#'),
+                    array('label'=>'Another action', 'url'=>'#'),
+                    array('label'=>'Something else', 'url'=>'#'),
+                    '---',
+                    array('label'=>'Separate link', 'url'=>'#'),
+                )),
+            ),
+        )); ?>
+        <?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
+            'type'=>'success',
+            'buttons'=>array(
+                array('label'=>'Success', 'items'=>array(
+                    array('label'=>'Action', 'url'=>'#'),
+                    array('label'=>'Another action', 'url'=>'#'),
+                    array('label'=>'Something else', 'url'=>'#'),
+                    '---',
+                    array('label'=>'Separate link', 'url'=>'#'),
+                )),
+            ),
+        )); ?>
+        <?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
+            'type'=>'info',
+            'buttons'=>array(
+                array('label'=>'Info', 'items'=>array(
+                    array('label'=>'Action', 'url'=>'#'),
+                    array('label'=>'Another action', 'url'=>'#'),
+                    array('label'=>'Something else', 'url'=>'#'),
+                    '---',
+                    array('label'=>'Separate link', 'url'=>'#'),
+                )),
+            ),
+        )); ?>
+        <?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
+            'type'=>'inverse',
+            'buttons'=>array(
+                array('label'=>'Inverse', 'items'=>array(
+                    array('label'=>'Action', 'url'=>'#'),
+                    array('label'=>'Another action', 'url'=>'#'),
+                    array('label'=>'Something else', 'url'=>'#'),
+                    '---',
+                    array('label'=>'Separate link', 'url'=>'#'),
+                )),
+            ),
+        )); ?>
+    </div>
+
+    <h4>Source code</h4>
+
+    <?php echo $phpLighter->highlight("<div class=\"btn-toolbar\">
+	<?php \$this->widget('bootstrap.widgets.TbButtonGroup', array(
+		'type'=>'primary', // '', 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
+		'buttons'=>array(
+			array('label'=>'Action', 'items'=>array(
+				array('label'=>'Action', 'url'=>'#'),
+				array('label'=>'Another action', 'url'=>'#'),
+				array('label'=>'Something else', 'url'=>'#'),
+				'---',
+				array('label'=>'Separate link', 'url'=>'#'),
+			)),
 		),
 	)); ?>
+</div>"); ?>
 
-	<h4>Source code</h4>
+    <h3>Split dropdowns</h3>
 
-<?php echo $phpLighter->highlight("<?php
-Yii::app()->user->setFlash('success', '<strong>Well done!</strong> You successfully read this important alert message.');
-Yii::app()->user->setFlash('info', '<strong>Heads up!</strong> This alert needs your attention, but it\'s not super important.');
-Yii::app()->user->setFlash('warning', '<strong>Warning!</strong> Best check yo self, you\'re not looking too good.');
-Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few things up and try submitting again.');
-?>"); ?>
+    <div class="btn-toolbar">
+        <?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
+            'buttons'=>array(
+                array('label'=>'Action', 'url'=>'#'),
+                array('items'=>array(
+                    array('label'=>'Action', 'url'=>'#'),
+                    array('label'=>'Another action', 'url'=>'#'),
+                    array('label'=>'Something else', 'url'=>'#'),
+                    '---',
+                    array('label'=>'Separate link', 'url'=>'#'),
+                )),
+            ),
+        )); ?>
+        <?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
+            'type'=>'primary',
+            'buttons'=>array(
+                array('label'=>'Action', 'url'=>'#'),
+                array('items'=>array(
+                    array('label'=>'Action', 'url'=>'#'),
+                    array('label'=>'Another action', 'url'=>'#'),
+                    array('label'=>'Something else', 'url'=>'#'),
+                    '---',
+                    array('label'=>'Separate link', 'url'=>'#'),
+                )),
+            ),
+        )); ?>
+        <?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
+            'type'=>'danger',
+            'buttons'=>array(
+                array('label'=>'Danger', 'url'=>'#'),
+                array('items'=>array(
+                    array('label'=>'Action', 'url'=>'#'),
+                    array('label'=>'Another action', 'url'=>'#'),
+                    array('label'=>'Something else', 'url'=>'#'),
+                    '---',
+                    array('label'=>'Separate link', 'url'=>'#'),
+                )),
+            ),
+        )); ?>
+        <?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
+            'type'=>'success',
+            'buttons'=>array(
+                array('label'=>'Success', 'url'=>'#'),
+                array('items'=>array(
+                    array('label'=>'Action', 'url'=>'#'),
+                    array('label'=>'Another action', 'url'=>'#'),
+                    array('label'=>'Something else', 'url'=>'#'),
+                    '---',
+                    array('label'=>'Separate link', 'url'=>'#'),
+                )),
+            ),
+        )); ?>
+        <?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
+            'type'=>'info',
+            'buttons'=>array(
+                array('label'=>'Info', 'url'=>'#'),
+                array('items'=>array(
+                    array('label'=>'Action', 'url'=>'#'),
+                    array('label'=>'Another action', 'url'=>'#'),
+                    array('label'=>'Something else', 'url'=>'#'),
+                    '---',
+                    array('label'=>'Separate link', 'url'=>'#'),
+                )),
+            ),
+        )); ?>
+        <?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
+        'type'=>'inverse',
+        'buttons'=>array(
+            array('label'=>'Inverse', 'url'=>'#'),
+            array('items'=>array(
+                array('label'=>'Action', 'url'=>'#'),
+                array('label'=>'Another action', 'url'=>'#'),
+                array('label'=>'Something else', 'url'=>'#'),
+                '---',
+                array('label'=>'Separate link', 'url'=>'#'),
+            )),
+        ),
+    )); ?>
+    </div>
 
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbAlert'); ?>"); ?>
+    <h4>Source code</h4>
 
-	<a class="top" href="#top">Back to top &uarr;</a>
+    <?php echo $phpLighter->highlight("<div class=\"btn-toolbar\">
+	<?php \$this->widget('bootstrap.widgets.TbButtonGroup', array(
+	    'type'=>'primary', // '', 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
+		'buttons'=>array(
+			array('label'=>'Action', 'url'=>'#'),
+			array('items'=>array(
+				array('label'=>'Action', 'url'=>'#'),
+				array('label'=>'Another action', 'url'=>'#'),
+				array('label'=>'Something else', 'url'=>'#'),
+				'---',
+				array('label'=>'Separate link', 'url'=>'#'),
+			)),
+		),
+	)); ?>
+</div>"); ?>
+
+    <h3>Stateful</h3>
+
+    <p>
+        <?php $this->widget('bootstrap.widgets.TbButton', array(
+        'buttonType'=>'button',
+        'type'=>'primary',
+        'label'=>'Click me',
+        'loadingText'=>'loading...',
+        'htmlOptions'=>array('id'=>'buttonStateful'),
+    )); ?>
+    </p>
+
+    <?php Yii::app()->clientScript->registerScript('buttonStateful', "
+		$('#buttonStateful').click(function() {
+			var btn = $(this);
+			btn.button('loading'); // call the loading function
+			setTimeout(function() {
+				btn.button('reset'); // call the reset function
+			}, 3000);
+		});
+	"); ?>
+
+    <h4>Source code</h4>
+
+    <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbButton', array(
+	'buttonType'=>'button',
+	'type'=>'primary',
+	'label'=>'Click me',
+	'loadingText'=>'loading...',
+	'htmlOptions'=>array('id'=>'buttonStateful'),
+)); ?>"); ?>
+
+    <?php echo $jsLighter->highlight("$('#buttonStateful').click(function() {
+	var btn = $(this);
+	btn.button('loading'); // call the loading function
+	setTimeout(function() {
+		btn.button('reset'); // call the reset function
+	}, 3000);
+});"); ?>
+
+    <h3>Single state</h3>
+
+    <p>
+        <?php $this->widget('bootstrap.widgets.TbButton', array(
+        'buttonType'=>'button',
+        'type'=>'primary',
+        'label'=>'Toggle me',
+        'toggle'=>true,
+    )); ?>
+    </p>
+
+    <h4>Source code</h4>
+
+    <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbButton', array(
+	'buttonType'=>'button',
+	'type'=>'primary',
+	'label'=>'Toggle me',
+	'toggle'=>true,
+)); ?>"); ?>
+
+    <div class="row">
+
+        <div class="span3">
+
+            <h3>Checkbox</h3>
+
+            <?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
+            'type' => 'primary',
+            'toggle' => 'checkbox',
+            'buttons' => array(
+                array('label'=>'Left'),
+                array('label'=>'Middle'),
+                array('label'=>'Right'),
+            ),
+        )); ?>
+            <br />
+
+        </div>
+
+        <div class="span3">
+
+            <h3>Radio</h3>
+
+            <?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
+            'type' => 'primary',
+            'toggle' => 'radio',
+            'buttons' => array(
+                array('label'=>'Left'),
+                array('label'=>'Middle'),
+                array('label'=>'Right'),
+            ),
+        )); ?>
+            <br />
+
+        </div>
+
+    </div>
+
+    <h4>Source code</h4>
+
+    <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbButtonGroup', array(
+	'type' => 'primary',
+	'toggle' => 'radio', // 'checkbox' or 'radio'
+	'buttons' => array(
+		array('label'=>'Left'),
+		array('label'=>'Middle'),
+		array('label'=>'Right'),
+	),
+)); ?>"); ?>
+
+    <a class="top" href="#top">Back to top &uarr;</a>
+
+</section>
+
+<section id="tbButtonGroup">
+
+    <h2>Button groups <small>bootstrap.widgets.TbButtonGroup</small></h2>
+
+    <div class="btn-toolbar">
+        <?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
+        'buttons'=>array(
+            array('label'=>'Left', 'url'=>'#'),
+            array('label'=>'Middle', 'url'=>'#'),
+            array('label'=>'Right', 'url'=>'#'),
+        ),
+    )); ?>
+    </div>
+
+    <div class="btn-toolbar">
+        <?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
+        'buttons'=>array(
+            array('label'=>'1', 'url'=>'#'),
+            array('label'=>'2', 'url'=>'#'),
+            array('label'=>'3', 'url'=>'#'),
+            array('label'=>'4', 'url'=>'#'),
+        ),
+    )); ?>
+        <?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
+        'buttons'=>array(
+            array('label'=>'5', 'url'=>'#'),
+            array('label'=>'6', 'url'=>'#'),
+            array('label'=>'7', 'url'=>'#'),
+        ),
+    )); ?>
+        <?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
+        'buttons'=>array(
+            array('label'=>'8', 'url'=>'#'),
+        ),
+    )); ?>
+    </div>
+
+    <h4>Source code</h4>
+
+    <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbButtonGroup', array(
+	'buttons'=>array(
+		array('label'=>'1', 'url'=>'#'),
+		array('label'=>'2', 'url'=>'#'),
+		array('label'=>'3', 'url'=>'#'),
+		array('label'=>'4', 'url'=>'#'),
+	),
+)); ?>"); ?>
+
+    <a class="top" href="#top">Back to top &uarr;</a>
 
 </section>
 
 <section id="tbBreadcrumbs">
 
-	<h2>Breadcrumbs</h2>
+	<h2>Breadcrumbs <small>bootstrap.widgets.TbBreadcrumbs</small></h2>
 
 	<?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
 		'links'=>array(),
@@ -75,103 +467,9 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
-<section id="tbNavbar">
-
-	<h2>Navbar</h2>
-
-	<?php $this->widget('bootstrap.widgets.TbNavbar', array(
-		'fixed'=>false,
-		'brand'=>'Project name',
-		'brandUrl'=>'#',
-		'collapse'=>true, // requires bootstrap-responsive.css
-		'items'=>array(
-			array(
-				'class'=>'bootstrap.widgets.TbMenu',
-				'items'=>array(
-					array('label'=>'Home', 'url'=>'#', 'active'=>true),
-					array('label'=>'Link', 'url'=>'#'),
-					array('label'=>'Link', 'url'=>'#'),
-					array('label'=>'Link', 'url'=>'#'),
-					array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
-						array('label'=>'Action', 'url'=>'#'),
-						array('label'=>'Another action', 'url'=>'#'),
-						array('label'=>'Something else here', 'url'=>'#'),
-						'---',
-						array('label'=>'NAV HEADER'),
-						array('label'=>'Separated link', 'url'=>'#'),
-						array('label'=>'One more separated link', 'url'=>'#'),
-					)),
-				),
-			),
-			'<form class="navbar-search pull-left" action=""><input type="text" class="search-query span2" placeholder="Search"></form>',
-			array(
-				'class'=>'bootstrap.widgets.TbMenu',
-				'htmlOptions'=>array('class'=>'pull-right'),
-				'items'=>array(
-					array('label'=>'Link', 'url'=>'#'),
-					'---',
-					array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
-						array('label'=>'Action', 'url'=>'#'),
-						array('label'=>'Another action', 'url'=>'#'),
-						array('label'=>'Something else here', 'url'=>'#'),
-						'---',
-						array('label'=>'Separated link', 'url'=>'#'),
-					)),
-				),
-			),
-		),
-	)); ?>
-
-	<h4>Source code</h4>
-
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbNavbar', array(
-	'fixed'=>false,
-	'brand'=>'Project name',
-	'brandUrl'=>'#',
-	'collapse'=>true, // requires bootstrap-responsive.css
-	'items'=>array(
-		array(
-			'class'=>'bootstrap.widgets.TbMenu',
-			'items'=>array(
-				array('label'=>'Home', 'url'=>'#', 'active'=>true),
-				array('label'=>'Link', 'url'=>'#'),
-				array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
-					array('label'=>'Action', 'url'=>'#'),
-					array('label'=>'Another action', 'url'=>'#'),
-					array('label'=>'Something else here', 'url'=>'#'),
-					'---',
-					array('label'=>'NAV HEADER'),
-					array('label'=>'Separated link', 'url'=>'#'),
-					array('label'=>'One more separated link', 'url'=>'#'),
-				)),
-			),
-		),
-		'<form class=\"navbar-search pull-left\" action=\"\"><input type=\"text\" class=\"search-query span2\" placeholder=\"Search\"></form>',
-		array(
-			'class'=>'bootstrap.widgets.TbMenu',
-			'htmlOptions'=>array('class'=>'pull-right'),
-			'items'=>array(
-				array('label'=>'Link', 'url'=>'#'),
-				'---',
-				array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
-					array('label'=>'Action', 'url'=>'#'),
-					array('label'=>'Another action', 'url'=>'#'),
-					array('label'=>'Something else here', 'url'=>'#'),
-					'---',
-					array('label'=>'Separated link', 'url'=>'#'),
-				)),
-			),
-		),
-	),
-)); ?>"); ?>
-
-	<a class="top" href="#top">Back to top &uarr;</a>
-
-</section>
-
 <section id="tbMenu">
 
-	<h2>Menus</h2>
+	<h2>Menus <small>bootstrap.widgets.TbMenu</small></h2>
 
 	<h3>Basic tabs</h3>
 
@@ -271,99 +569,191 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
-<section id="tbTabbable">
+<section id="tbNavbar">
 
-	<h2>Tabbable</h2>
+    <h2>Navbar <small>bootstrap.widgets.TbNavbar</small></h2>
 
-	<?php $this->widget('bootstrap.widgets.TbTabbable', array(
-		'type'=>'tabs', // 'tabs' or 'pills'
-		'htmlOptions'=>array('class'=>'tabbable'),
-		'tabs'=>$tabs,
-		'events'=>array(
-			'show'=>"js:function() { console.log('Tabbable show.'); }",
-			'shown'=>"js:function() { console.log('Tabbable shown.'); }",
+    <?php $this->widget('bootstrap.widgets.TbNavbar', array(
+    'fixed'=>false,
+    'brand'=>'Project name',
+    'brandUrl'=>'#',
+    'collapse'=>true, // requires bootstrap-responsive.css
+    'items'=>array(
+        array(
+            'class'=>'bootstrap.widgets.TbMenu',
+            'items'=>array(
+                array('label'=>'Home', 'url'=>'#', 'active'=>true),
+                array('label'=>'Link', 'url'=>'#'),
+                array('label'=>'Link', 'url'=>'#'),
+                array('label'=>'Link', 'url'=>'#'),
+                array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
+                    array('label'=>'Action', 'url'=>'#'),
+                    array('label'=>'Another action', 'url'=>'#'),
+                    array('label'=>'Something else here', 'url'=>'#'),
+                    '---',
+                    array('label'=>'NAV HEADER'),
+                    array('label'=>'Separated link', 'url'=>'#'),
+                    array('label'=>'One more separated link', 'url'=>'#'),
+                )),
+            ),
+        ),
+        '<form class="navbar-search pull-left" action=""><input type="text" class="search-query span2" placeholder="Search"></form>',
+        array(
+            'class'=>'bootstrap.widgets.TbMenu',
+            'htmlOptions'=>array('class'=>'pull-right'),
+            'items'=>array(
+                array('label'=>'Link', 'url'=>'#'),
+                '---',
+                array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
+                    array('label'=>'Action', 'url'=>'#'),
+                    array('label'=>'Another action', 'url'=>'#'),
+                    array('label'=>'Something else here', 'url'=>'#'),
+                    '---',
+                    array('label'=>'Separated link', 'url'=>'#'),
+                )),
+            ),
+        ),
+    ),
+)); ?>
+
+    <h4>Source code</h4>
+
+    <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbNavbar', array(
+	'fixed'=>false,
+	'brand'=>'Project name',
+	'brandUrl'=>'#',
+	'collapse'=>true, // requires bootstrap-responsive.css
+	'items'=>array(
+		array(
+			'class'=>'bootstrap.widgets.TbMenu',
+			'items'=>array(
+				array('label'=>'Home', 'url'=>'#', 'active'=>true),
+				array('label'=>'Link', 'url'=>'#'),
+				array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
+					array('label'=>'Action', 'url'=>'#'),
+					array('label'=>'Another action', 'url'=>'#'),
+					array('label'=>'Something else here', 'url'=>'#'),
+					'---',
+					array('label'=>'NAV HEADER'),
+					array('label'=>'Separated link', 'url'=>'#'),
+					array('label'=>'One more separated link', 'url'=>'#'),
+				)),
+			),
 		),
-	)); ?>
-
-	<h4>Source code</h4>
-
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbTabbable', array(
-	'type'=>'tabs', // 'tabs' or 'pills'
-	'tabs'=>array(
-		array('label'=>'Home', 'content'=>'Raw denim you probably haven\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.', 'active'=>true),
-		array('label'=>'Profile', 'content'=>'Food truck fixie locavore, accusamus mcsweeney\'s marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.'),
-		array('label'=>'Dropdown', 'items'=>array(
-			array('label'=>'@fat', 'content'=>'Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney\'s organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven\'t heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.'),
-			array('label'=>'@mdo', 'content'=>'Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.'),
-		)),
+		'<form class=\"navbar-search pull-left\" action=\"\"><input type=\"text\" class=\"search-query span2\" placeholder=\"Search\"></form>',
+		array(
+			'class'=>'bootstrap.widgets.TbMenu',
+			'htmlOptions'=>array('class'=>'pull-right'),
+			'items'=>array(
+				array('label'=>'Link', 'url'=>'#'),
+				'---',
+				array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
+					array('label'=>'Action', 'url'=>'#'),
+					array('label'=>'Another action', 'url'=>'#'),
+					array('label'=>'Something else here', 'url'=>'#'),
+					'---',
+					array('label'=>'Separated link', 'url'=>'#'),
+				)),
+			),
+		),
 	),
 )); ?>"); ?>
 
-	<div class="alert alert-block alert-warning">
-		<strong>Note!</strong>
-		Because of a bug in the current version of Bootstrap tab-content fall below the tabs even when it shouldn't. This can be fixed by setting tab-content width to auto.
-	</div>
+    <h3>Sub navigation</h3>
 
-	<div class="row">
+    <?php $this->widget('bootstrap.widgets.TbNavbar', array(
+    'type'=>'subnav',
+    'fixed'=>false,
+    'brand'=>false,
+    'collapse'=>true, // requires bootstrap-responsive.css
+    'items'=>array(
+        array(
+            'class'=>'bootstrap.widgets.TbMenu',
+            'items'=>array(
+                array('label'=>'Home', 'url'=>'#', 'active'=>true),
+                array('label'=>'Link', 'url'=>'#'),
+                array('label'=>'Link', 'url'=>'#'),
+                array('label'=>'Link', 'url'=>'#'),
+                array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
+                    array('label'=>'Action', 'url'=>'#'),
+                    array('label'=>'Another action', 'url'=>'#'),
+                    array('label'=>'Something else here', 'url'=>'#'),
+                    '---',
+                    array('label'=>'NAV HEADER'),
+                    array('label'=>'Separated link', 'url'=>'#'),
+                    array('label'=>'One more separated link', 'url'=>'#'),
+                )),
+            ),
+        ),
+        array(
+            'class'=>'bootstrap.widgets.TbMenu',
+            'htmlOptions'=>array('class'=>'pull-right'),
+            'items'=>array(
+                array('label'=>'Link', 'url'=>'#'),
+                '---',
+                array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
+                    array('label'=>'Action', 'url'=>'#'),
+                    array('label'=>'Another action', 'url'=>'#'),
+                    array('label'=>'Something else here', 'url'=>'#'),
+                    '---',
+                    array('label'=>'Separated link', 'url'=>'#'),
+                )),
+            ),
+        ),
+    ),
+)); ?>
 
-		<div class="span6">
+    <h4>Source code</h4>
 
-			<h3>Tabs on the top</h3>
-
-			<?php $this->widget('bootstrap.widgets.TbTabbable', array(
-				'htmlOptions'=>array('class'=>'tabbable tabbable-placed'),
-				'tabs'=>$tabbable,
-			)); ?>
-
-			<h3>Tabs on the left</h3>
-
-			<?php $this->widget('bootstrap.widgets.TbTabbable', array(
-				'placement'=>'left',
-				'htmlOptions'=>array('class'=>'tabbable tabbable-placed'),
-				'tabs'=>$tabbable,
-			)); ?>
-
-		</div>
-
-		<div class="span6">
-
-			<h3>Tabs on the bottom</h3>
-
-			<?php $this->widget('bootstrap.widgets.TbTabbable', array(
-				'placement'=>'below',
-				'htmlOptions'=>array('class'=>'tabbable tabbable-placed'),
-				'tabs'=>$tabbable,
-			)); ?>
-
-			<h3>Tabs on the right</h3>
-
-			<?php $this->widget('bootstrap.widgets.TbTabbable', array(
-				'placement'=>'right',
-				'htmlOptions'=>array('class'=>'tabbable tabbable-placed'),
-				'tabs'=>$tabbable,
-			)); ?>
-
-		</div>
-
-	</div>
-
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbTabbable', array(
-	'type'=>'tabs',
-	'placement'=>'below', // 'above', 'right', 'below' or 'left'
-	'tabs'=>array(
-		array('label'=>'Section 1', 'content'=>'<p>I\'m in Section 1.</p>', 'active'=>true),
-		array('label'=>'Section 2', 'content'=>'<p>Howdy, I\'m in Section 2.</p>'),
-		array('label'=>'Section 3', 'content'=>'<p>What up girl, this is Section 3.</p>'),
-	),
+    <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbNavbar', array(
+	'type'=>'subnav',
+    'fixed'=>false,
+    'brand'=>false,
+    'collapse'=>true, // requires bootstrap-responsive.css
+    'items'=>array(
+        array(
+            'class'=>'bootstrap.widgets.TbMenu',
+            'items'=>array(
+                array('label'=>'Home', 'url'=>'#', 'active'=>true),
+                array('label'=>'Link', 'url'=>'#'),
+                array('label'=>'Link', 'url'=>'#'),
+                array('label'=>'Link', 'url'=>'#'),
+                array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
+                    array('label'=>'Action', 'url'=>'#'),
+                    array('label'=>'Another action', 'url'=>'#'),
+                    array('label'=>'Something else here', 'url'=>'#'),
+                    '---',
+                    array('label'=>'NAV HEADER'),
+                    array('label'=>'Separated link', 'url'=>'#'),
+                    array('label'=>'One more separated link', 'url'=>'#'),
+                )),
+            ),
+        ),
+        array(
+			'class'=>'bootstrap.widgets.TbMenu',
+			'htmlOptions'=>array('class'=>'pull-right'),
+			'items'=>array(
+				array('label'=>'Link', 'url'=>'#'),
+				'---',
+				array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
+					array('label'=>'Action', 'url'=>'#'),
+					array('label'=>'Another action', 'url'=>'#'),
+					array('label'=>'Something else here', 'url'=>'#'),
+					'---',
+					array('label'=>'Separated link', 'url'=>'#'),
+				)),
+			),
+		),
+    ),
 )); ?>"); ?>
 
-	<a class="top" href="#top">Back to top &uarr;</a>
+    <a class="top" href="#top">Back to top &uarr;</a>
 
 </section>
 
 <section id="tbDetailView">
 
-	<h2>Detail views</h2>
+	<h2>Detail views <small>bootstrap.widgets.TbDetailView</small></h2>
 
 	<?php $this->widget('bootstrap.widgets.TbDetailView', array(
 		'data'=>array('id'=>1, 'firstName'=>'Mark', 'lastName'=>'Otto', 'language'=>'CSS'),
@@ -391,7 +781,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 <section id="tbGridView">
 
-	<h2>Grid views</h2>
+	<h2>Grid views <small>bootstrap.widgets.TbGridView</small></h2>
 
 	<h3>Default</h3>
 
@@ -466,174 +856,9 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
-<section id="tbThumbnails">
-
-	<h2>Thumbnails</h2>
-
-	<?php $this->widget('bootstrap.widgets.TbThumbnails', array(
-		'dataProvider'=>$listDataProvider,
-		'template'=>"{items}\n{pager}",
-		'itemView'=>'_thumb',
-	)); ?>
-
-	<h4>Source code</h4>
-
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbThumbnails', array(
-	'dataProvider'=>\$listDataProvider,
-	'template'=>\"{items}\\n{pager}\",
-	'itemView'=>'_thumb',
-)); ?>"); ?>
-
-<?php echo $htmlLighter->highlight("<li class=\"span3\">
-	<a href=\"#\" class=\"thumbnail\" rel=\"tooltip\" data-title=\"Tooltip\">
-		<img src=\"http://placehold.it/280x180\" alt=\"\">
-	</a>
-</li>"); ?>
-
-	<a class="top" href="#top">Back to top &uarr;</a>
-
-</section>
-
-<section id="tbTooltip">
-
-	<h2>Tooltips</h2>
-
-	<p class="well">
-		Lorem ipsum dolor sit <a href="#" rel="tooltip" title="First tooltip">amet</a>,
-		consectetur adipiscing elit.
-		Fusce ut velit sem, id elementum elit. Quisque tincidunt magna in quam luctus a ultrices tellus luctus.
-		Pellentesque at tellus urna.
-		Ut congue, <a href="#" rel="tooltip" title="Another tooltip">nibh eu</a> interdum commodo,
-		ligula urna consequat tortor, at vehicula tellus est a orci.
-		Maecenas nec ligula sed ipsum posuere sollicitudin pretium ac sapien.
-		Sed odio dui, pretium eu pellentesque ac,
-		<a href="#" rel="tooltip" title="Yet another tooltip">tempor</a> sed sem.
-	</p>
-
-	<h4>Source code</h4>
-
-<?php echo $htmlLighter->highlight("<p class=\"well\">
-	Lorem ipsum dolor sit <a href=\"#\" rel=\"tooltip\" title=\"First tooltip\">amet</a>,
-	consectetur adipiscing elit.
-	Fusce ut velit sem, id elementum elit. Quisque tincidunt magna in quam luctus a ultrices tellus luctus.
-	Pellentesque at tellus urna.
-	Ut congue, <a href=\"#\" rel=\"tooltip\" title=\"Another tooltip\">nibh eu</a> interdum commodo,
-	ligula urna consequat tortor, at vehicula tellus est a orci.
-	Maecenas nec ligula sed ipsum posuere sollicitudin pretium ac sapien.
-	Sed odio dui, pretium eu pellentesque ac,
-	<a href=\"#\" rel=\"tooltip\" title=\"Yet another tooltip\">tempor</a> sed sem.
-</p>"); ?>
-
-	<a class="top" href="#top">Back to top &uarr;</a>
-
-</section>
-
-<section id="tbPopover">
-
-	<h2>Popovers</h2>
-
-	<div class="well">
-		<?php $this->widget('bootstrap.widgets.TbButton', array(
-			'label'=>'Hover me',
-			'type'=>'danger',
-			'htmlOptions'=>array('data-title'=>'Heading', 'data-content'=>'Content ...', 'rel'=>'popover'),
-		)); ?>
-	</div>
-
-	<h4>Source code</h4>
-
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbButton', array(
-	'label'=>'Hover me',
-	'type'=>'danger',
-	'htmlOptions'=>array('data-title'=>'Heading', 'data-content'=>'Content ...', 'rel'=>'popover'),
-)); ?>"); ?>
-
-	<a class="top" href="#top">Back to top &uarr;</a>
-
-</section>
-
-<section id="tbModal">
-
-	<h2>Modals</h2>
-
-	<?php $this->beginWidget('bootstrap.widgets.TbModal', array(
-		'id'=>'myModal',
-		'events'=>array(
-			'show'=>"js:function() { console.log('Modal show.'); }",
-			'shown'=>"js:function() { console.log('Modal shown.'); }",
-			'hide'=>"js:function() { console.log('Modal hide.'); }",
-			'hidden'=>"js:function() { console.log('Modal hidden.'); }",
-		),
-	)); ?>
-
-	<div class="modal-header">
-		<a class="close" data-dismiss="modal">&times;</a>
-		<h3>Modal header</h3>
-	</div>
-
-	<div class="modal-body">
-		<p>One fine body...</p>
-	</div>
-
-	<div class="modal-footer">
-		<?php $this->widget('bootstrap.widgets.TbButton', array('type'=>'primary', 'label'=>'Save changes', 'url'=>'#', 'htmlOptions'=>array('data-dismiss'=>'modal'))); ?>
-		<?php $this->widget('bootstrap.widgets.TbButton', array('label'=>'Close', 'url'=>'#', 'htmlOptions'=>array('data-dismiss'=>'modal'))); ?>
-	</div>
-
-	<?php $this->endWidget(); ?>
-
-	<div class="well">
-		<?php $this->widget('bootstrap.widgets.TbButton', array(
-			'label'=>'Click me',
-			'url'=>'#myModal',
-			'type'=>'primary',
-			'htmlOptions'=>array('data-toggle'=>'modal'),
-		)); ?>
-	</div>
-
-	<h4>Source code</h4>
-
-<?php echo $phpLighter->highlight("<?php \$this->beginWidget('bootstrap.widgets.TbModal', array('id'=>'myModal')); ?>
-
-<div class=\"modal-header\">
-	<a class=\"close\" data-dismiss=\"modal\">&times;</a>
-	<h3>Modal header</h3>
-</div>
-
-<div class=\"modal-body\">
-	<p>One fine body...</p>
-</div>
-
-<div class=\"modal-footer\">
-	<?php \$this->widget('bootstrap.widgets.TbButton', array(
-		'type'=>'primary',
-		'label'=>'Save changes',
-		'url'=>'#',
-		'htmlOptions'=>array('data-dismiss'=>'modal'),
-	)); ?>
-	<?php \$this->widget('bootstrap.widgets.TbButton', array(
-		'label'=>'Close',
-		'url'=>'#',
-		'htmlOptions'=>array('data-dismiss'=>'modal'),
-	)); ?>
-</div>
-
-<?php \$this->endWidget(); ?>"); ?>
-
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbButton', array(
-	'label'=>'Click me',
-	'url'=>'#myModal',
-	'type'=>'primary',
-	'htmlOptions'=>array('data-toggle'=>'modal'),
-)); ?>"); ?>
-
-	<a class="top" href="#top">Back to top &uarr;</a>
-
-</section>
-
 <section id="tbActiveForm">
 
-	<h2>Forms</h2>
+	<h2>Forms <small>bootstrap.widgets.TbActiveForm</small></h2>
 
 	<h3>Vertical</h3>
 
@@ -742,7 +967,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 				array('multiple'=>true)); ?>
 		<?php echo $form->fileFieldRow($model, 'fileField'); ?>
 		<?php echo $form->textAreaRow($model, 'textarea', array('class'=>'span8', 'rows'=>5)); ?>
-		<?php echo $form->uneditableRow($model, 'uneditable'); ?>
+		<?php echo $form->uneditableRow($model, 'uneditable', array('class'=>'input-large')); ?>
 		<?php echo $form->textFieldRow($model, 'disabled', array('disabled'=>true)); ?>
 		<?php echo $form->textFieldRow($model, 'prepend', array('prepend'=>'@')); ?>
 		<?php echo $form->textFieldRow($model, 'append', array('append'=>'.00')); ?>
@@ -811,8 +1036,6 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 <?php \$this->endWidget(); ?>"); ?>
 
-	<a class="top" href="#top">Back to top &uarr;</a>
-
     <h3>Tabular</h3>
 
     <?php /** @var TbActiveForm $form */
@@ -880,409 +1103,13 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </fieldset>"); ?>
 
-</section>
-
-<section id="tbButton">
-
-	<h2>Buttons</h2>
-
-	<div class="row">
-		<div class="span3">
-			<h3>Large</h3>
-			<p>
-				<?php $this->widget('bootstrap.widgets.TbButton', array(
-					'label'=>'Primary', 'type'=>'primary', 'size'=>'large',
-				)); ?>
-
-				<?php $this->widget('bootstrap.widgets.TbButton', array(
-					'label'=>'Action', 'size'=>'large',
-				)); ?>
-			</p>
-		</div>
-
-		<div class="span3">
-			<h3>Normal</h3>
-			<p>
-				<?php $this->widget('bootstrap.widgets.TbButton', array(
-					'label'=>'Primary', 'type'=>'primary',
-				)); ?>
-
-				<?php $this->widget('bootstrap.widgets.TbButton', array(
-					'label'=>'Action',
-				)); ?>
-			</p>
-		</div>
-
-		<div class="span3">
-			<h3>Small</h3>
-			<p>
-				<?php $this->widget('bootstrap.widgets.TbButton', array(
-					'label'=>'Primary', 'type'=>'primary', 'size'=>'small',
-				)); ?>
-
-				<?php $this->widget('bootstrap.widgets.TbButton', array(
-					'label'=>'Action', 'size'=>'small',
-				)); ?>
-			</p>
-		</div>
-
-		<div class="span3">
-			<h3>Mini</h3>
-			<p>
-				<?php $this->widget('bootstrap.widgets.TbButton', array(
-					'label'=>'Primary', 'type'=>'primary', 'size'=>'mini',
-				)); ?>
-
-				<?php $this->widget('bootstrap.widgets.TbButton', array(
-					'label'=>'Action', 'size'=>'mini',
-				)); ?>
-			</p>
-		</div>
-	</div>
-
-	<h4>Source code</h4>
-
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbButton', array(
-	'label'=>'Primary',
-	'type'=>'primary', // '', 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
-	'size'=>'large', // '', 'large', 'small' or 'mini'
-)); ?>"); ?>
-
-	<h3>Button groups</h3>
-
-	<div class="btn-toolbar">
-		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
-			'buttons'=>array(
-				array('label'=>'Left', 'url'=>'#'),
-				array('label'=>'Middle', 'url'=>'#'),
-				array('label'=>'Right', 'url'=>'#'),
-			),
-		)); ?>
-	</div>
-
-	<div class="btn-toolbar">
-		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
-			'buttons'=>array(
-				array('label'=>'1', 'url'=>'#'),
-				array('label'=>'2', 'url'=>'#'),
-				array('label'=>'3', 'url'=>'#'),
-				array('label'=>'4', 'url'=>'#'),
-			),
-		)); ?>
-		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
-			'buttons'=>array(
-				array('label'=>'5', 'url'=>'#'),
-				array('label'=>'6', 'url'=>'#'),
-				array('label'=>'7', 'url'=>'#'),
-			),
-		)); ?>
-		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
-			'buttons'=>array(
-				array('label'=>'8', 'url'=>'#'),
-			),
-		)); ?>
-	</div>
-
-	<h4>Source code</h4>
-
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbButtonGroup', array(
-	'buttons'=>array(
-		array('label'=>'1', 'url'=>'#'),
-		array('label'=>'2', 'url'=>'#'),
-		array('label'=>'3', 'url'=>'#'),
-		array('label'=>'4', 'url'=>'#'),
-	),
-)); ?>"); ?>
-
-	<h3>Dropdowns</h3>
-
-	<div class="btn-toolbar">
-		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
-			'buttons'=>array(
-				array('label'=>'Action', 'items'=>array(
-					array('label'=>'Action', 'url'=>'#'),
-					array('label'=>'Another action', 'url'=>'#'),
-					array('label'=>'Something else', 'url'=>'#'),
-					'---',
-					array('label'=>'Separate link', 'url'=>'#'),
-				)),
-			),
-		)); ?>
-		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
-			'type'=>'primary',
-			'buttons'=>array(
-				array('label'=>'Action', 'items'=>array(
-					array('label'=>'Action', 'url'=>'#'),
-					array('label'=>'Another action', 'url'=>'#'),
-					array('label'=>'Something else', 'url'=>'#'),
-					'---',
-					array('label'=>'Separate link', 'url'=>'#'),
-				)),
-			),
-		)); ?>
-		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
-			'type'=>'danger',
-			'buttons'=>array(
-				array('label'=>'Danger', 'items'=>array(
-					array('label'=>'Action', 'url'=>'#'),
-					array('label'=>'Another action', 'url'=>'#'),
-					array('label'=>'Something else', 'url'=>'#'),
-					'---',
-					array('label'=>'Separate link', 'url'=>'#'),
-				)),
-			),
-		)); ?>
-	</div>
-	<div class="btn-toolbar">
-		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
-			'type'=>'success',
-			'buttons'=>array(
-				array('label'=>'Success', 'items'=>array(
-					array('label'=>'Action', 'url'=>'#'),
-					array('label'=>'Another action', 'url'=>'#'),
-					array('label'=>'Something else', 'url'=>'#'),
-					'---',
-					array('label'=>'Separate link', 'url'=>'#'),
-				)),
-			),
-		)); ?>
-		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
-			'type'=>'info',
-			'buttons'=>array(
-				array('label'=>'Info', 'items'=>array(
-					array('label'=>'Action', 'url'=>'#'),
-					array('label'=>'Another action', 'url'=>'#'),
-					array('label'=>'Something else', 'url'=>'#'),
-					'---',
-					array('label'=>'Separate link', 'url'=>'#'),
-				)),
-			),
-		)); ?>
-	</div>
-
-	<h4>Source code</h4>
-
-<?php echo $phpLighter->highlight("<div class=\"btn-toolbar\">
-	<?php \$this->widget('bootstrap.widgets.TbButtonGroup', array(
-		'type'=>'primary', // '', 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
-		'buttons'=>array(
-			array('label'=>'Action', 'items'=>array(
-				array('label'=>'Action', 'url'=>'#'),
-				array('label'=>'Another action', 'url'=>'#'),
-				array('label'=>'Something else', 'url'=>'#'),
-				'---',
-				array('label'=>'Separate link', 'url'=>'#'),
-			)),
-		),
-	)); ?>
-</div>"); ?>
-
-	<h3>Split dropdowns</h3>
-
-	<div class="btn-toolbar">
-		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
-			'buttons'=>array(
-				array('label'=>'Action', 'url'=>'#'),
-				array('items'=>array(
-					array('label'=>'Action', 'url'=>'#'),
-					array('label'=>'Another action', 'url'=>'#'),
-					array('label'=>'Something else', 'url'=>'#'),
-					'---',
-					array('label'=>'Separate link', 'url'=>'#'),
-				)),
-			),
-		)); ?>
-		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
-			'type'=>'primary',
-			'buttons'=>array(
-				array('label'=>'Action', 'url'=>'#'),
-				array('items'=>array(
-					array('label'=>'Action', 'url'=>'#'),
-					array('label'=>'Another action', 'url'=>'#'),
-					array('label'=>'Something else', 'url'=>'#'),
-					'---',
-					array('label'=>'Separate link', 'url'=>'#'),
-				)),
-			),
-		)); ?>
-		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
-			'type'=>'danger',
-			'buttons'=>array(
-				array('label'=>'Danger', 'url'=>'#'),
-				array('items'=>array(
-					array('label'=>'Action', 'url'=>'#'),
-					array('label'=>'Another action', 'url'=>'#'),
-					array('label'=>'Something else', 'url'=>'#'),
-					'---',
-					array('label'=>'Separate link', 'url'=>'#'),
-				)),
-			),
-		)); ?>
-	</div>
-	<div class="btn-toolbar">
-		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
-			'type'=>'success',
-			'buttons'=>array(
-				array('label'=>'Success', 'url'=>'#'),
-				array('items'=>array(
-					array('label'=>'Action', 'url'=>'#'),
-					array('label'=>'Another action', 'url'=>'#'),
-					array('label'=>'Something else', 'url'=>'#'),
-					'---',
-					array('label'=>'Separate link', 'url'=>'#'),
-				)),
-			),
-		)); ?>
-		<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
-			'type'=>'info',
-			'buttons'=>array(
-				array('label'=>'Info', 'url'=>'#'),
-				array('items'=>array(
-					array('label'=>'Action', 'url'=>'#'),
-					array('label'=>'Another action', 'url'=>'#'),
-					array('label'=>'Something else', 'url'=>'#'),
-					'---',
-					array('label'=>'Separate link', 'url'=>'#'),
-				)),
-			),
-		)); ?>
-	</div>
-
-	<h4>Source code</h4>
-
-<?php echo $phpLighter->highlight("<div class=\"btn-toolbar\">
-	<?php \$this->widget('bootstrap.widgets.TbButtonGroup', array(
-	    'type'=>'primary', // '', 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
-		'buttons'=>array(
-			array('label'=>'Action', 'url'=>'#'),
-			array('items'=>array(
-				array('label'=>'Action', 'url'=>'#'),
-				array('label'=>'Another action', 'url'=>'#'),
-				array('label'=>'Something else', 'url'=>'#'),
-				'---',
-				array('label'=>'Separate link', 'url'=>'#'),
-			)),
-		),
-	)); ?>
-</div>"); ?>
-
-	<h3>Stateful</h3>
-
-	<p>
-		<?php $this->widget('bootstrap.widgets.TbButton', array(
-			'buttonType'=>'button',
-			'type'=>'primary',
-			'label'=>'Click me',
-			'loadingText'=>'loading...',
-			'htmlOptions'=>array('id'=>'buttonStateful'),
-		)); ?>
-	</p>
-
-	<?php Yii::app()->clientScript->registerScript('buttonStateful', "
-		$('#buttonStateful').click(function() {
-			var btn = $(this);
-			btn.button('loading'); // call the loading function
-			setTimeout(function() {
-				btn.button('reset'); // call the reset function
-			}, 3000);
-		});
-	"); ?>
-
-	<h4>Source code</h4>
-
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbButton', array(
-	'buttonType'=>'button',
-	'type'=>'primary',
-	'label'=>'Click me',
-	'loadingText'=>'loading...',
-	'htmlOptions'=>array('id'=>'buttonStateful'),
-)); ?>"); ?>
-
-<?php echo $jsLighter->highlight("$('#buttonStateful').click(function() {
-	var btn = $(this);
-	btn.button('loading'); // call the loading function
-	setTimeout(function() {
-		btn.button('reset'); // call the reset function
-	}, 3000);
-});"); ?>
-
-	<h3>Single state</h3>
-
-	<p>
-		<?php $this->widget('bootstrap.widgets.TbButton', array(
-			'buttonType'=>'button',
-			'type'=>'primary',
-			'label'=>'Toggle me',
-			'toggle'=>true,
-		)); ?>
-	</p>
-
-	<h4>Source code</h4>
-
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbButton', array(
-	'buttonType'=>'button',
-	'type'=>'primary',
-	'label'=>'Toggle me',
-	'toggle'=>true,
-)); ?>"); ?>
-
-	<div class="row">
-
-		<div class="span3">
-
-			<h3>Checkbox</h3>
-
-			<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
-				'type' => 'primary',
-				'toggle' => 'checkbox',
-				'buttons' => array(
-					array('label'=>'Left'),
-					array('label'=>'Middle'),
-					array('label'=>'Right'),
-				),
-			)); ?>
-			<br />
-
-		</div>
-
-		<div class="span3">
-
-			<h3>Radio</h3>
-
-			<?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
-				'type' => 'primary',
-				'toggle' => 'radio',
-				'buttons' => array(
-					array('label'=>'Left'),
-					array('label'=>'Middle'),
-					array('label'=>'Right'),
-				),
-			)); ?>
-			<br />
-
-		</div>
-
-	</div>
-
-	<h4>Source code</h4>
-
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbButtonGroup', array(
-	'type' => 'primary',
-	'toggle' => 'radio', // 'checkbox' or 'radio'
-	'buttons' => array(
-		array('label'=>'Left'),
-		array('label'=>'Middle'),
-		array('label'=>'Right'),
-	),
-)); ?>"); ?>
-
-	<a class="top" href="#top">Back to top &uarr;</a>
+    <a class="top" href="#top">Back to top &uarr;</a>
 
 </section>
 
 <section id="tbHero">
 
-	<h2>Hero unit</h2>
+	<h2>Hero unit <small>bootstrap.widgets.TbHeroUnit</small></h2>
 
 	<?php $this->beginWidget('bootstrap.widgets.TbHeroUnit', array(
 		'heading'=>'Hello, world!',
@@ -1316,33 +1143,196 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
+<section id="tbThumbnails">
+
+    <h2>Thumbnails <small>bootstrap.widgets.TbThumbnails</small></h2>
+
+    <?php $this->widget('bootstrap.widgets.TbThumbnails', array(
+    'dataProvider'=>$listDataProvider,
+    'template'=>"{items}\n{pager}",
+    'itemView'=>'_thumb',
+)); ?>
+
+    <h4>Source code</h4>
+
+    <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbThumbnails', array(
+	'dataProvider'=>\$listDataProvider,
+	'template'=>\"{items}\\n{pager}\",
+	'itemView'=>'_thumb',
+)); ?>"); ?>
+
+    <?php echo $htmlLighter->highlight("<li class=\"span3\">
+	<a href=\"#\" class=\"thumbnail\" rel=\"tooltip\" data-title=\"Tooltip\">
+		<img src=\"http://placehold.it/280x180\" alt=\"\">
+	</a>
+</li>"); ?>
+
+    <a class="top" href="#top">Back to top &uarr;</a>
+
+</section>
+
+<section id="tbAlert">
+
+    <h2>Alerts <small>bootstrap.widgets.TbAlert</small></h2>
+
+    <?php
+    Yii::app()->user->setFlash('success', '<strong>Well done!</strong> You successfully read this important alert message.');
+    Yii::app()->user->setFlash('info', '<strong>Heads up!</strong> This alert needs your attention, but it\'s not super important.');
+    Yii::app()->user->setFlash('warning', '<strong>Warning!</strong> Best check yo self, you\'re not looking too good.');
+    Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few things up and try submitting again.');
+    ?>
+
+    <?php $this->widget('bootstrap.widgets.TbAlert', array(
+    'events'=>array(
+        'close'=>"js:function() { console.log('Alert close.'); }",
+        'closed'=>"js:function() { console.log('Alert closed.'); }",
+    ),
+)); ?>
+
+    <h4>Source code</h4>
+
+    <?php echo $phpLighter->highlight("Yii::app()->user->setFlash('success', '<strong>Well done!</strong> You successfully read this important alert message.');
+Yii::app()->user->setFlash('info', '<strong>Heads up!</strong> This alert needs your attention, but it\'s not super important.');
+Yii::app()->user->setFlash('warning', '<strong>Warning!</strong> Best check yo self, you\'re not looking too good.');
+Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few things up and try submitting again.');"); ?>
+
+    <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbAlert'); ?>"); ?>
+
+    <a class="top" href="#top">Back to top &uarr;</a>
+
+</section>
+
+<section id="tbProgress">
+
+    <h2>Progress bars <small>bootstrap.widgets.TbProgress</small></h2>
+
+    <div class="row">
+
+        <div class="span4">
+
+            <h3>Basic</h3>
+
+            <?php $this->widget('bootstrap.widgets.TbProgress', array(
+            'percent'=>30,
+        )); ?>
+
+        </div>
+
+        <div class="span4">
+
+            <h3>Striped</h3>
+
+            <?php $this->widget('bootstrap.widgets.TbProgress', array(
+            'type'=>'info',
+            'percent'=>20,
+            'striped'=>true,
+        )); ?>
+
+        </div>
+
+        <div class="span4">
+
+            <h3>Animated</h3>
+
+            <?php $this->widget('bootstrap.widgets.TbProgress', array(
+            'type'=>'danger', // '', 'info', 'success' or 'danger'
+            'percent'=>40, // the progress
+            'striped'=>true,
+            'animated'=>true,
+        )); ?>
+
+        </div>
+
+    </div>
+
+    <h4>Source code</h4>
+
+    <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbProgress', array(
+	'type'=>'danger', // '', 'info', 'success' or 'danger'
+	'percent'=>40, // the progress
+	'striped'=>true,
+	'animated'=>true,
+)); ?>"); ?>
+
+    <a class="top" href="#top">Back to top &uarr;</a>
+
+</section>
+
+<section id="tbLabel">
+
+    <h2>Labels <small>bootstrap.widgets.TbLabel</small></h2>
+
+    <p>
+        <?php $this->widget('bootstrap.widgets.TbLabel', array('label'=>'Default')); ?>
+        <?php $this->widget('bootstrap.widgets.TbLabel', array('type'=>'success', 'label'=>'Success')); ?>
+        <?php $this->widget('bootstrap.widgets.TbLabel', array('type'=>'warning', 'label'=>'Warning')); ?>
+        <?php $this->widget('bootstrap.widgets.TbLabel', array('type'=>'important', 'label'=>'Important')); ?>
+        <?php $this->widget('bootstrap.widgets.TbLabel', array('type'=>'info', 'label'=>'Info')); ?>
+        <?php $this->widget('bootstrap.widgets.TbLabel', array('type'=>'inverse', 'label'=>'Inverse')); ?>
+    </p>
+
+    <h4>Source code</h4>
+
+    <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbLabel', array(
+	'type'=>'success', // '', 'success', 'warning', 'important', 'info' or 'inverse'
+	'label'=>'Success',
+)); ?>"); ?>
+
+    <a class="top" href="#top">Back to top &uarr;</a>
+
+</section>
+
+<section id="tbBadge">
+
+    <h2>Badges <small>bootstrap.widgets.TbBadge</small></h2>
+
+    <p>
+        <?php $this->widget('bootstrap.widgets.TbBadge', array('label'=>'1')); ?>
+        <?php $this->widget('bootstrap.widgets.TbBadge', array('type'=>'success', 'label'=>'2')); ?>
+        <?php $this->widget('bootstrap.widgets.TbBadge', array('type'=>'warning', 'label'=>'4')); ?>
+        <?php $this->widget('bootstrap.widgets.TbBadge', array('type'=>'important', 'label'=>'6')); ?>
+        <?php $this->widget('bootstrap.widgets.TbBadge', array('type'=>'info', 'label'=>'8')); ?>
+        <?php $this->widget('bootstrap.widgets.TbBadge', array('type'=>'inverse', 'label'=>'10')); ?>
+    </p>
+
+    <h4>Source code</h4>
+
+    <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbBadge', array(
+	'type'=>'success', // '', 'success', 'warning', 'important', 'info' or 'inverse'
+	'label'=>'2',
+)); ?>"); ?>
+
+    <a class="top" href="#top">Back to top &uarr;</a>
+
+</section>
+
 <section id="tbCarousel">
 
-	<h2>Carousel</h2>
+    <h2>Carousel <small>bootstrap.widgets.TbCarousel</small></h2>
 
     <div class="row">
 
         <div class="span8">
 
             <?php $this->widget('bootstrap.widgets.TbCarousel', array(
-                'items'=>array(
-                    array('image'=>'http://placehold.it/770x400&text=First+thumbnail', 'label'=>'First Thumbnail label', 'caption'=>'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.'),
-                    array('image'=>'http://placehold.it/770x400&text=Second+thumbnail', 'label'=>'Second Thumbnail label', 'caption'=>'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.'),
-                    array('image'=>'http://placehold.it/770x400&text=Third+thumbnail', 'label'=>'Third Thumbnail label', 'caption'=>'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.'),
-                ),
-                'events'=>array(
-                    'slide'=>"js:function() { console.log('Carousel slide.'); }",
-                    'slid'=>"js:function() { console.log('Carousel slid.'); }",
-                ),
-            )); ?>
+            'items'=>array(
+                array('image'=>'http://placehold.it/770x400&text=First+thumbnail', 'label'=>'First Thumbnail label', 'caption'=>'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.'),
+                array('image'=>'http://placehold.it/770x400&text=Second+thumbnail', 'label'=>'Second Thumbnail label', 'caption'=>'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.'),
+                array('image'=>'http://placehold.it/770x400&text=Third+thumbnail', 'label'=>'Third Thumbnail label', 'caption'=>'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.'),
+            ),
+            'events'=>array(
+                'slide'=>"js:function() { console.log('Carousel slide.'); }",
+                'slid'=>"js:function() { console.log('Carousel slid.'); }",
+            ),
+        )); ?>
 
         </div>
 
     </div>
 
-	<h4>Source code</h4>
+    <h4>Source code</h4>
 
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbCarousel', array(
+    <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbCarousel', array(
 	'items'=>array(
 		array('image'=>'http://placehold.it/770x400&text=First+thumbnail', 'label'=>'First Thumbnail label', 'caption'=>'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.'),
 		array('image'=>'http://placehold.it/770x400&text=Second+thumbnail', 'label'=>'Second Thumbnail label', 'caption'=>'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.'),
@@ -1350,69 +1340,240 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	),
 )); ?>"); ?>
 
-		<a class="top" href="#top">Back to top &uarr;</a>
+    <a class="top" href="#top">Back to top &uarr;</a>
 
 </section>
 
-<section id="tbProgress">
+<section id="tbModal">
 
-	<h2>Progress bars</h2>
+    <h2>Modals <small>bootstrap.widgets.TbModal</small></h2>
 
-	<div class="row">
+    <?php $this->beginWidget('bootstrap.widgets.TbModal', array(
+    'id'=>'myModal',
+    'events'=>array(
+        'show'=>"js:function() { console.log('Modal show.'); }",
+        'shown'=>"js:function() { console.log('Modal shown.'); }",
+        'hide'=>"js:function() { console.log('Modal hide.'); }",
+        'hidden'=>"js:function() { console.log('Modal hidden.'); }",
+    ),
+)); ?>
 
-		<div class="span4">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">&times;</a>
+        <h3>Modal header</h3>
+    </div>
 
-			<h3>Basic</h3>
+    <div class="modal-body">
+        <p>One fine body...</p>
+    </div>
 
-			<?php $this->widget('bootstrap.widgets.TbProgress', array(
-				'percent'=>30,
-			)); ?>
+    <div class="modal-footer">
+        <?php $this->widget('bootstrap.widgets.TbButton', array('type'=>'primary', 'label'=>'Save changes', 'url'=>'#', 'htmlOptions'=>array('data-dismiss'=>'modal'))); ?>
+        <?php $this->widget('bootstrap.widgets.TbButton', array('label'=>'Close', 'url'=>'#', 'htmlOptions'=>array('data-dismiss'=>'modal'))); ?>
+    </div>
 
-		</div>
+    <?php $this->endWidget(); ?>
 
-		<div class="span4">
+    <div class="well">
+        <?php $this->widget('bootstrap.widgets.TbButton', array(
+        'label'=>'Click me',
+        'url'=>'#myModal',
+        'type'=>'primary',
+        'htmlOptions'=>array('data-toggle'=>'modal'),
+    )); ?>
+    </div>
 
-			<h3>Striped</h3>
+    <h4>Source code</h4>
 
-			<?php $this->widget('bootstrap.widgets.TbProgress', array(
-				'type'=>'info',
-				'percent'=>20,
-				'striped'=>true,
-			)); ?>
+    <?php echo $phpLighter->highlight("<?php \$this->beginWidget('bootstrap.widgets.TbModal', array('id'=>'myModal')); ?>
 
-		</div>
+<div class=\"modal-header\">
+	<a class=\"close\" data-dismiss=\"modal\">&times;</a>
+	<h3>Modal header</h3>
+</div>
 
-		<div class="span4">
+<div class=\"modal-body\">
+	<p>One fine body...</p>
+</div>
 
-			<h3>Animated</h3>
+<div class=\"modal-footer\">
+	<?php \$this->widget('bootstrap.widgets.TbButton', array(
+		'type'=>'primary',
+		'label'=>'Save changes',
+		'url'=>'#',
+		'htmlOptions'=>array('data-dismiss'=>'modal'),
+	)); ?>
+	<?php \$this->widget('bootstrap.widgets.TbButton', array(
+		'label'=>'Close',
+		'url'=>'#',
+		'htmlOptions'=>array('data-dismiss'=>'modal'),
+	)); ?>
+</div>
 
-			<?php $this->widget('bootstrap.widgets.TbProgress', array(
-				'type'=>'danger', // '', 'info', 'success' or 'danger'
-				'percent'=>40, // the progress
-				'striped'=>true,
-				'animated'=>true,
-			)); ?>
+<?php \$this->endWidget(); ?>"); ?>
 
-		</div>
-
-	</div>
-
-	<h4>Source code</h4>
-
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbProgress', array(
-	'type'=>'danger', // '', 'info', 'success' or 'danger'
-	'percent'=>40, // the progress
-	'striped'=>true,
-	'animated'=>true,
+    <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbButton', array(
+	'label'=>'Click me',
+	'url'=>'#myModal',
+	'type'=>'primary',
+	'htmlOptions'=>array('data-toggle'=>'modal'),
 )); ?>"); ?>
 
-	<a class="top" href="#top">Back to top &uarr;</a>
+    <a class="top" href="#top">Back to top &uarr;</a>
+
+</section>
+
+<section id="tbPopover">
+
+    <h2>Popovers <small>bootstrap.widgets.TbPopover</small></h2>
+
+    <div class="well">
+        <?php $this->widget('bootstrap.widgets.TbButton', array(
+        'label'=>'Hover me',
+        'type'=>'danger',
+        'htmlOptions'=>array('data-title'=>'Heading', 'data-content'=>'Content ...', 'rel'=>'popover'),
+    )); ?>
+    </div>
+
+    <h4>Source code</h4>
+
+    <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbButton', array(
+	'label'=>'Hover me',
+	'type'=>'danger',
+	'htmlOptions'=>array('data-title'=>'Heading', 'data-content'=>'Content ...', 'rel'=>'popover'),
+)); ?>"); ?>
+
+    <a class="top" href="#top">Back to top &uarr;</a>
+
+</section>
+
+<section id="tbTabbable">
+
+    <h2>Tabbable <small>bootstrap.widgets.TbTabbable</small></h2>
+
+    <?php $this->widget('bootstrap.widgets.TbTabbable', array(
+    'type'=>'tabs', // 'tabs' or 'pills'
+    'htmlOptions'=>array('class'=>'tabbable'),
+    'tabs'=>$tabs,
+    'events'=>array(
+        'show'=>"js:function() { console.log('Tabbable show.'); }",
+        'shown'=>"js:function() { console.log('Tabbable shown.'); }",
+    ),
+)); ?>
+
+    <h4>Source code</h4>
+
+    <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbTabbable', array(
+	'type'=>'tabs', // 'tabs' or 'pills'
+	'tabs'=>array(
+		array('label'=>'Home', 'content'=>'Raw denim you probably haven\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.', 'active'=>true),
+		array('label'=>'Profile', 'content'=>'Food truck fixie locavore, accusamus mcsweeney\'s marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.'),
+		array('label'=>'Dropdown', 'items'=>array(
+			array('label'=>'@fat', 'content'=>'Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney\'s organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven\'t heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.'),
+			array('label'=>'@mdo', 'content'=>'Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral, mustache readymade thundercats keffiyeh craft beer marfa ethical. Wolf salvia freegan, sartorial keffiyeh echo park vegan.'),
+		)),
+	),
+)); ?>"); ?>
+
+    <div class="alert alert-block alert-warning">
+        <strong>Note!</strong>
+        Because of a bug in the current version of Bootstrap tab-content fall below the tabs even when it shouldn't. This can be fixed by setting tab-content width to auto.
+    </div>
+
+    <div class="row">
+
+        <div class="span6">
+
+            <h3>Tabs on the top</h3>
+
+            <?php $this->widget('bootstrap.widgets.TbTabbable', array(
+            'htmlOptions'=>array('class'=>'tabbable tabbable-placed'),
+            'tabs'=>$tabbable,
+        )); ?>
+
+            <h3>Tabs on the left</h3>
+
+            <?php $this->widget('bootstrap.widgets.TbTabbable', array(
+            'placement'=>'left',
+            'htmlOptions'=>array('class'=>'tabbable tabbable-placed'),
+            'tabs'=>$tabbable,
+        )); ?>
+
+        </div>
+
+        <div class="span6">
+
+            <h3>Tabs on the bottom</h3>
+
+            <?php $this->widget('bootstrap.widgets.TbTabbable', array(
+            'placement'=>'below',
+            'htmlOptions'=>array('class'=>'tabbable tabbable-placed'),
+            'tabs'=>$tabbable,
+        )); ?>
+
+            <h3>Tabs on the right</h3>
+
+            <?php $this->widget('bootstrap.widgets.TbTabbable', array(
+            'placement'=>'right',
+            'htmlOptions'=>array('class'=>'tabbable tabbable-placed'),
+            'tabs'=>$tabbable,
+        )); ?>
+
+        </div>
+
+    </div>
+
+    <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbTabbable', array(
+	'type'=>'tabs',
+	'placement'=>'below', // 'above', 'right', 'below' or 'left'
+	'tabs'=>array(
+		array('label'=>'Section 1', 'content'=>'<p>I\'m in Section 1.</p>', 'active'=>true),
+		array('label'=>'Section 2', 'content'=>'<p>Howdy, I\'m in Section 2.</p>'),
+		array('label'=>'Section 3', 'content'=>'<p>What up girl, this is Section 3.</p>'),
+	),
+)); ?>"); ?>
+
+    <a class="top" href="#top">Back to top &uarr;</a>
+
+</section>
+
+<section id="tbTooltip">
+
+    <h2>Tooltips <small>bootstrap.widgets.TbTooltip</small></h2>
+
+    <p class="well">
+        Lorem ipsum dolor sit <a href="#" rel="tooltip" title="First tooltip">amet</a>,
+        consectetur adipiscing elit.
+        Fusce ut velit sem, id elementum elit. Quisque tincidunt magna in quam luctus a ultrices tellus luctus.
+        Pellentesque at tellus urna.
+        Ut congue, <a href="#" rel="tooltip" title="Another tooltip">nibh eu</a> interdum commodo,
+        ligula urna consequat tortor, at vehicula tellus est a orci.
+        Maecenas nec ligula sed ipsum posuere sollicitudin pretium ac sapien.
+        Sed odio dui, pretium eu pellentesque ac,
+        <a href="#" rel="tooltip" title="Yet another tooltip">tempor</a> sed sem.
+    </p>
+
+    <h4>Source code</h4>
+
+    <?php echo $htmlLighter->highlight("<p class=\"well\">
+	Lorem ipsum dolor sit <a href=\"#\" rel=\"tooltip\" title=\"First tooltip\">amet</a>,
+	consectetur adipiscing elit.
+	Fusce ut velit sem, id elementum elit. Quisque tincidunt magna in quam luctus a ultrices tellus luctus.
+	Pellentesque at tellus urna.
+	Ut congue, <a href=\"#\" rel=\"tooltip\" title=\"Another tooltip\">nibh eu</a> interdum commodo,
+	ligula urna consequat tortor, at vehicula tellus est a orci.
+	Maecenas nec ligula sed ipsum posuere sollicitudin pretium ac sapien.
+	Sed odio dui, pretium eu pellentesque ac,
+	<a href=\"#\" rel=\"tooltip\" title=\"Yet another tooltip\">tempor</a> sed sem.
+</p>"); ?>
+
+    <a class="top" href="#top">Back to top &uarr;</a>
 
 </section>
 
 <section id="tbTypeahead">
 
-	<h2>Typeahead</h2>
+	<h2>Typeahead <small>bootstrap.widgets.TbTypeahead</small></h2>
 
 	<div class="well">
 
@@ -1446,54 +1607,6 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
-<section id="tbLabel">
-
-	<h2>Labels</h2>
-
-	<p>
-		<?php $this->widget('bootstrap.widgets.TbLabel', array('label'=>'Default')); ?>
-		<?php $this->widget('bootstrap.widgets.TbLabel', array('type'=>'success', 'label'=>'Success')); ?>
-		<?php $this->widget('bootstrap.widgets.TbLabel', array('type'=>'warning', 'label'=>'Warning')); ?>
-		<?php $this->widget('bootstrap.widgets.TbLabel', array('type'=>'important', 'label'=>'Important')); ?>
-		<?php $this->widget('bootstrap.widgets.TbLabel', array('type'=>'info', 'label'=>'Info')); ?>
-		<?php $this->widget('bootstrap.widgets.TbLabel', array('type'=>'inverse', 'label'=>'Inverse')); ?>
-	</p>
-
-	<h4>Source code</h4>
-
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbLabel', array(
-	'type'=>'success', // '', 'success', 'warning', 'important', 'info' or 'inverse'
-	'label'=>'Success',
-)); ?>"); ?>
-
-	<a class="top" href="#top">Back to top &uarr;</a>
-
-</section>
-
-<section id="tbBadge">
-
-	<h2>Badges</h2>
-
-	<p>
-		<?php $this->widget('bootstrap.widgets.TbBadge', array('label'=>'1')); ?>
-		<?php $this->widget('bootstrap.widgets.TbBadge', array('type'=>'success', 'label'=>'2')); ?>
-		<?php $this->widget('bootstrap.widgets.TbBadge', array('type'=>'warning', 'label'=>'4')); ?>
-		<?php $this->widget('bootstrap.widgets.TbBadge', array('type'=>'error', 'label'=>'6')); ?>
-		<?php $this->widget('bootstrap.widgets.TbBadge', array('type'=>'info', 'label'=>'8')); ?>
-		<?php $this->widget('bootstrap.widgets.TbBadge', array('type'=>'inverse', 'label'=>'10')); ?>
-	</p>
-
-	<h4>Source code</h4>
-
-<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbBadge', array(
-	'type'=>'success', // '', 'success', 'warning', 'error', 'info' or 'inverse'
-	'label'=>'2',
-)); ?>"); ?>
-
-	<a class="top" href="#top">Back to top &uarr;</a>
-
-</section>
-
 <section id="comments">
 
 	<h2>Comments</h2>
@@ -1504,33 +1617,45 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
-<div class="subnav well">
-
-	<?php $this->widget('TbMenu', array(
-		'type'=>'list',
-		'scrollspy'=>array('spy'=>'.subnav', 'offset'=>50),
-		'items'=>array(
-			array('label'=>'WIDGETS'),
-			array('label'=>'Alert', 'url'=>'#tbAlert'),
-			array('label'=>'Breadcrumb', 'url'=>'#tbBreadcrumbs'),
-			array('label'=>'Navbar', 'url'=>'#tbNavbar'),
-			array('label'=>'Menu', 'url'=>'#tbMenu'),
-			array('label'=>'Tabbable', 'url'=>'#tbTabbable'),
-			array('label'=>'Detail view', 'url'=>'#tbDetailView'),
-			array('label'=>'Grid view', 'url'=>'#tbGridView'),
-			array('label'=>'Thumbnail', 'url'=>'#tbThumbnails'),
-			array('label'=>'Tooltip', 'url'=>'#tbTooltip'),
-			array('label'=>'Popover', 'url'=>'#tbPopover'),
-			array('label'=>'Modal', 'url'=>'#tbModal'),
-			array('label'=>'Forms', 'url'=>'#tbActiveForm'),
-			array('label'=>'Buttons', 'url'=>'#tbButton'),
-			array('label'=>'Hero', 'url'=>'#tbHero'),
-			array('label'=>'Carousel', 'url'=>'#tbCarousel'),
-			array('label'=>'Progress', 'url'=>'#tbProgress'),
-			array('label'=>'Typeahead', 'url'=>'#tbTypeahead'),
-			array('label'=>'Labels', 'url'=>'#tbLabel'),
-			array('label'=>'Badges', 'url'=>'#tbBadge'),
-		),
-	)); ?>
-
-</div>
+<?php $this->widget('bootstrap.widgets.TbNavbar', array(
+    'type'=>'subnav',
+    'brand'=>false,
+    'fixed'=>'top',
+    'collapse'=>true,
+    'items'=>array(
+        array(
+            'class'=>'bootstrap.widgets.TbMenu',
+            'scrollspy'=>array('spy'=>'.navbar-subnav', 'offset'=>0),
+            'items'=>array(
+                array('label'=>'Buttons', 'items'=>array(
+                    array('label'=>'Basic buttons', 'url'=>'#tbButton'),
+                    array('label'=>'Buttons groups', 'url'=>'#tbButtonGroup'),
+                )),
+                array('label'=>'Navigation', 'items'=>array(
+                    array('label'=>'Breadcrumb', 'url'=>'#tbBreadcrumbs'),
+                    array('label'=>'Menu', 'url'=>'#tbMenu'),
+                    array('label'=>'Navbar', 'url'=>'#tbNavbar'),
+                )),
+                array('label'=>'Tables', 'items'=>array(
+                    array('label'=>'Detail view', 'url'=>'#tbDetailView'),
+                    array('label'=>'Grid view', 'url'=>'#tbGridView'),
+                )),
+                array('label'=>'Forms', 'url'=>'#tbActiveForm'),
+                array('label'=>'Hero unit', 'url'=>'#tbHero'),
+                array('label'=>'Thumbnails', 'url'=>'#tbThumbnails'),
+                array('label'=>'Alert', 'url'=>'#tbAlert'),
+                array('label'=>'Progress', 'url'=>'#tbProgress'),
+                array('label'=>'Labels', 'url'=>'#tbLabel'),
+                array('label'=>'Badges', 'url'=>'#tbBadge'),
+                array('label'=>'Javascript plugins', 'items'=>array(
+                    array('label'=>'Carousel', 'url'=>'#tbCarousel'),
+                    array('label'=>'Modal', 'url'=>'#tbModal'),
+                    array('label'=>'Popover', 'url'=>'#tbPopover'),
+                    array('label'=>'Tabbable', 'url'=>'#tbTabbable'),
+                    array('label'=>'Tooltip', 'url'=>'#tbTooltip'),
+                    array('label'=>'Typeahead', 'url'=>'#tbTypeahead'),
+                )),
+            ),
+        ),
+    ),
+)); ?>

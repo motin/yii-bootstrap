@@ -95,10 +95,11 @@ mixpanel.init("733930f08f73894be317b7fdbfd15229");</script><!-- end Mixpanel -->
 	)); ?>
 		<p>
 			Bringing together the <?php echo CHtml::link('Yii PHP framework', 'http://www.yiiframework.com'); ?> and
-			<?php echo CHtml::link('Bootstrap', 'http://twitter.github.com/bootstrap/'); ?> Twitter's new web development toolkit.
-			Now with support for Bootstrap 2!
+			<?php echo CHtml::link('Twitter Bootstrap', 'http://twitter.github.com/bootstrap/'); ?>.
+        </p>
+        <p>
 			<?php echo CHtml::link('Yii-Bootstrap', 'http://www.yiiframework.com/extension/bootstrap/'); ?>
-			is an extension for Yii that provides a wide range of server-side widgets that allow you to easily use Bootstrap with Yii.
+			is an extension for Yii that provides a wide range of widgets that allow developers to easily use Bootstrap with Yii.
 			All widgets have been developed following Yii's conventions and work seamlessly together with Bootstrap and its jQuery plugins.
 		</p>
 	<?php $this->endWidget(); ?>

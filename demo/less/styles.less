@@ -6,7 +6,7 @@
 // VARIABLES
 
 body {
-    padding-top: 60px;
+    padding-top: 100px;
 	padding-bottom: 60px;
 }
 
@@ -20,13 +20,18 @@ p {
 }
 
 .hero-unit {
+    margin-bottom: 0;
+
     h1 {
         margin-bottom: 0.4em;
     }
 
 	p {
-		margin-bottom: 0;
 		text-align: justify;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
 	}
 }
 
@@ -37,21 +42,8 @@ p {
 	}
 }
 
-.subnav {
-	font-size: 12px;
-	padding: 9px 0;
-	position: fixed;
-	right: 20px;
-	top: 60px;
-	width: 160px;
-	z-index: 1030;
-	.border-radius(4px);
-
-	.label {
-	    font-size: 0.8em;
-	    line-height: 16px;
-		vertical-align: top;
-	}
+.navbar-subnav-fixed .nav {
+    max-width: 1170px !important;
 }
 
 footer {
@@ -74,7 +66,7 @@ span.required {
 }
 
 section {
-	padding-top: 40px;
+	padding-top: 80px;
 
 	a.top {
 		display: block;
