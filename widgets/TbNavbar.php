@@ -13,10 +13,17 @@
  */
 class TbNavbar extends CWidget
 {
+    // Navbar types.
+    const TYPE_SUBNAV = 'subnav';
+
 	// Navbar fix locations.
 	const FIXED_TOP = 'top';
 	const FIXED_BOTTOM = 'bottom';
 
+    /**
+     * @var string the navbar type.
+     */
+    public $type;
 	/**
 	 * @var string the text for the brand.
 	 */
@@ -78,11 +85,18 @@ class TbNavbar extends CWidget
 
 		$classes = array('navbar');
 
+        if (isset($this->type) && in_array($this->type, array(self::TYPE_SUBNAV)))
+            $classes[] = 'navbar-'.$this->type;
+
 		if ($this->fixed !== false)
 		{
-			$validFixes = array(self::FIXED_TOP, self::FIXED_BOTTOM);
-			if (in_array($this->fixed, $validFixes))
+			if (in_array($this->fixed, array(self::FIXED_TOP, self::FIXED_BOTTOM)))
+            {
 				$classes[] = 'navbar-fixed-'.$this->fixed;
+
+                if ($this->type === self::TYPE_SUBNAV)
+                    $classes[] = 'navbar-subnav-fixed';
+            }
 		}
 
 		$classes = implode(' ', $classes);
@@ -102,9 +116,9 @@ class TbNavbar extends CWidget
 		echo CHtml::openTag('div', $this->htmlOptions);
 		echo '<div class="navbar-inner"><div class="'.$containerCssClass.'">';
 
-		if ($this->collapse)
-		{
-			echo '<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">';
+        if ($this->collapse)
+        {
+            echo '<a class="btn btn-navbar" data-toggle="collapse" data-target=".'.$this->getCollapseTarget().'">';
 			echo '<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>';
 			echo '</a>';
 		}
@@ -113,7 +127,7 @@ class TbNavbar extends CWidget
             echo CHtml::openTag('a', $this->brandOptions).$this->brand.'</a>';
 
 		if ($this->collapse)
-			echo '<div class="nav-collapse">';
+			echo '<div class="nav-collapse '.$this->getCollapseCssClass().'">';
 
 		foreach ($this->items as $item)
 		{
@@ -136,4 +150,22 @@ class TbNavbar extends CWidget
 
 		echo '</div></div></div>';
 	}
+
+    /**
+     * Returns the CSS class of the collapse target element.
+     * @return string the class name
+     */
+    protected function getCollapseTarget()
+    {
+        return $this->type === self::TYPE_DEFAULT ? 'nav-collapse' : 'subnav-collapse';
+    }
+
+    /**
+     * Returns the collapse CSS class name.
+     * @return string the class name
+     */
+    protected function getCollapseCssClass()
+    {
+        return $this->type === self::TYPE_DEFAULT ? 'nav-collapse' : 'nav-collapse subnav-collapse';
+    }
 }
