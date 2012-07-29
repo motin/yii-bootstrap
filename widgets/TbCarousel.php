@@ -21,6 +21,10 @@ class TbCarousel extends CWidget
 	 * @var string the next button content.
 	 */
 	public $next = '&rsaquo;';
+    /**
+     * @var boolean whether the carousel should slide items.
+     */
+    public $slide = true;
 	/**
 	 * @var boolean whether to display the previous and next links.
 	 */
@@ -50,7 +54,12 @@ class TbCarousel extends CWidget
 		if (!isset($this->htmlOptions['id']))
 			$this->htmlOptions['id'] = $this->getId();
 
-		$classes = 'carousel';
+        $classes = array('carousel');
+
+        if ($this->slide === true)
+            $classes[] = 'slide';
+
+		$classes = implode($classes, ' ');
 		if (isset($this->htmlOptions['class']))
 			$this->htmlOptions['class'] .= ' '.$classes;
 		else
@@ -63,7 +72,7 @@ class TbCarousel extends CWidget
 	 */
 	public function run()
 	{
-		$id = $this->id;
+		$id = $this->htmlOptions['id'];
 
 		echo CHtml::openTag('div', $this->htmlOptions);
 		echo '<div class="carousel-inner">';
