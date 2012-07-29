@@ -91,6 +91,8 @@ class Bootstrap extends CApplicationComponent
 
 		if ($this->enableJS)
 			$this->registerCoreScripts();
+
+        parent::init();
 	}
 
 	/**
