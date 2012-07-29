@@ -17,16 +17,15 @@ Yii::import('bootstrap.widgets.TbDataColumn');
 class TbGridView extends CGridView
 {
 	// Table types.
-	const TYPE_PLAIN = '';
 	const TYPE_STRIPED = 'striped';
 	const TYPE_BORDERED = 'bordered';
 	const TYPE_CONDENSED = 'condensed';
 
 	/**
 	 * @var string|array the table type.
-	 * Valid values are '', 'striped', 'bordered' and/or ' condensed'.
+	 * Valid values are 'striped', 'bordered' and/or ' condensed'.
 	 */
-	public $type = self::TYPE_PLAIN;
+	public $type;
 	/**
 	 * @var string the CSS class name for the pager container.
 	 * Defaults to 'pagination'.
@@ -52,16 +51,31 @@ class TbGridView extends CGridView
 
 		$classes = array('table');
 
-		if (is_string($this->type))
-			$this->type = explode(' ', $this->type);
+        if (isset($this->type))
+        {
+            if (is_string($this->type))
+                $this->type = explode(' ', $this->type);
 
-		$validTypes = array(self::TYPE_STRIPED, self::TYPE_BORDERED, self::TYPE_CONDENSED);
+            $validTypes = array(self::TYPE_STRIPED, self::TYPE_BORDERED, self::TYPE_CONDENSED);
 
-		foreach ($this->type as $type)
-			if (in_array($type, $validTypes))
-				$classes[] = 'table-'.$type;
+            if (!empty($this->type))
+            {
+                foreach ($this->type as $type)
+                {
+                    if (in_array($type, $validTypes))
+                        $classes[] = 'table-'.$type;
+                }
+            }
+        }
 
-		$this->itemsCssClass .= ' '.implode(' ', $classes);
+        if (!empty($classes))
+        {
+            $classes = implode(' ', $classes);
+            if (isset($this->itemsCssClass))
+                $this->itemsCssClass .= ' '.$classes;
+            else
+                $this->itemsCssClass = $classes;
+        }
 
 		$popover = Yii::app()->bootstrap->popoverSelector;
 		$tooltip = Yii::app()->bootstrap->tooltipSelector;

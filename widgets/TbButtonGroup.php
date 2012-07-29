@@ -28,7 +28,7 @@ class TbButtonGroup extends CWidget
 	 * @var string the button type.
 	 * @see BootButton::type
 	 */
-	public $type = TbButton::TYPE_NORMAL;
+	public $type;
 	/**
 	 * @var string the button size.
 	 * @see BootButton::size
@@ -67,13 +67,18 @@ class TbButtonGroup extends CWidget
             }
         }
 
-        $classes = implode(' ', $classes);
-		if (isset($this->htmlOptions['class']))
-			$this->htmlOptions['class'] .= ' '.$classes;
-		else
-			$this->htmlOptions['class'] = $classes;
+        if (!empty($classes))
+        {
+            $classes = implode(' ', $classes);
+            if (isset($this->htmlOptions['class']))
+                $this->htmlOptions['class'] .= ' '.$classes;
+            else
+                $this->htmlOptions['class'] = $classes;
+        }
 
-		if (isset($this->toggle) && in_array($this->toggle, array(self::TOGGLE_CHECKBOX, self::TOGGLE_RADIO)))
+        $validToggles = array(self::TOGGLE_CHECKBOX, self::TOGGLE_RADIO);
+
+        if (isset($this->toggle) && in_array($this->toggle, $validToggles))
 			$this->htmlOptions['data-toggle'] = 'buttons-'.$this->toggle;
 	}
 

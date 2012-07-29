@@ -99,11 +99,14 @@ class TbNavbar extends CWidget
             }
 		}
 
-		$classes = implode(' ', $classes);
-		if (isset($this->htmlOptions['class']))
-			$this->htmlOptions['class'] .= ' '.$classes;
-		else
-			$this->htmlOptions['class'] = $classes;
+        if (!empty($classes))
+        {
+            $classes = implode(' ', $classes);
+            if (isset($this->htmlOptions['class']))
+                $this->htmlOptions['class'] .= ' '.$classes;
+            else
+                $this->htmlOptions['class'] = $classes;
+        }
 	}
 
 	/**
@@ -157,7 +160,7 @@ class TbNavbar extends CWidget
      */
     protected function getCollapseTarget()
     {
-        return $this->type === self::TYPE_DEFAULT ? 'nav-collapse' : 'subnav-collapse';
+        return !isset($this->type) ? 'nav-collapse' : 'subnav-collapse';
     }
 
     /**
@@ -166,6 +169,6 @@ class TbNavbar extends CWidget
      */
     protected function getCollapseCssClass()
     {
-        return $this->type === self::TYPE_DEFAULT ? 'nav-collapse' : 'nav-collapse subnav-collapse';
+        return !isset($this->type) ? 'nav-collapse' : 'nav-collapse subnav-collapse';
     }
 }

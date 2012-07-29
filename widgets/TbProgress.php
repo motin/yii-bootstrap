@@ -14,7 +14,6 @@
 class TbProgress extends CWidget
 {
 	// Progress bar types.
-	const TYPE_DEFAULT = '';
 	const TYPE_INFO = 'info';
 	const TYPE_SUCCESS = 'success';
 	const TYPE_WARNING = 'warning';
@@ -22,9 +21,9 @@ class TbProgress extends CWidget
 
 	/**
 	 * @var string the bar type.
-	 * Valid values are '', 'info', 'success', and 'danger'.
+	 * Valid values are 'info', 'success', and 'danger'.
 	 */
-	public $type = self::TYPE_DEFAULT;
+	public $type;
 	/**
 	 * @var boolean whether the bar is striped.
 	 */
@@ -49,8 +48,9 @@ class TbProgress extends CWidget
 	{
 		$classes = array('progress');
 
-		$validTypes = array(self::TYPE_DEFAULT, self::TYPE_INFO, self::TYPE_SUCCESS, self::TYPE_WARNING, self::TYPE_DANGER);
-		if ($this->type !== self::TYPE_DEFAULT && in_array($this->type, $validTypes))
+		$validTypes = array(self::TYPE_INFO, self::TYPE_SUCCESS, self::TYPE_WARNING, self::TYPE_DANGER);
+
+		if (isset($this->type) && in_array($this->type, $validTypes))
 			$classes[] = 'progress-'.$this->type;
 
 		if ($this->striped)
@@ -59,11 +59,14 @@ class TbProgress extends CWidget
 		if ($this->animated)
 			$classes[] = 'active';
 
-		$classes = implode(' ', $classes);
-		if (isset($this->htmlOptions['class']))
-			$this->htmlOptions['class'] .= ' '.$classes;
-		else
-			$this->htmlOptions['class'] = $classes;
+        if (!empty($classes))
+        {
+            $classes = implode(' ', $classes);
+            if (isset($this->htmlOptions['class']))
+                $this->htmlOptions['class'] .= ' '.$classes;
+            else
+                $this->htmlOptions['class'] = $classes;
+        }
 
 		if ($this->percent < 0)
 			$this->percent = 0;

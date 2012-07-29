@@ -12,14 +12,13 @@ Yii::import('bootstrap.widgets.TbBaseMenu');
 class TbMenu extends TbBaseMenu
 {
     // Menu types.
-    const TYPE_UNSTYLED = '';
     const TYPE_TABS = 'tabs';
     const TYPE_PILLS = 'pills';
     const TYPE_LIST = 'list';
 
     /**
      * @var string the menu type.
-     * Valid values are '', 'tabs' and 'pills'. Defaults to ''.
+     * Valid values are 'tabs' and 'pills'. Defaults to ''.
      */
     public $type;
     /**
@@ -40,7 +39,9 @@ class TbMenu extends TbBaseMenu
 
         $classes = array('nav');
 
-        if (isset($this->type) && in_array($this->type, array(self::TYPE_TABS, self::TYPE_PILLS, self::TYPE_LIST)))
+        $validTypes = array(self::TYPE_TABS, self::TYPE_PILLS, self::TYPE_LIST);
+
+        if (isset($this->type) && in_array($this->type, $validTypes))
             $classes[] = 'nav-'.$this->type;
 
         if ($this->type !== self::TYPE_LIST && $this->stacked)
@@ -55,11 +56,14 @@ class TbMenu extends TbBaseMenu
             }
         }
 
-        $classes = implode(' ', $classes);
-        if (isset($this->htmlOptions['class']))
-            $this->htmlOptions['class'] .= ' '.$classes;
-        else
-            $this->htmlOptions['class'] = $classes;
+        if (!empty($classes))
+        {
+            $classes = implode(' ', $classes);
+            if (isset($this->htmlOptions['class']))
+                $this->htmlOptions['class'] .= ' '.$classes;
+            else
+                $this->htmlOptions['class'] = $classes;
+        }
 
         if (isset($this->scrollspy) && is_array($this->scrollspy) && isset($this->scrollspy['spy']))
         {

@@ -54,7 +54,7 @@ abstract class TbBaseMenu extends CMenu
                     if ($this->itemCssClass !== null)
                         $classes[] = $this->itemCssClass;
 
-                    if ($classes !== array())
+                    if (!empty($classes))
                     {
                         $classes = implode(' ', $classes);
                         if (!empty($options['class']))
@@ -162,11 +162,14 @@ abstract class TbBaseMenu extends CMenu
                 if (isset($item['items']))
                     $classes[] = 'dropdown';
 
-                $classes = implode($classes, ' ');
-                if (isset($item['itemOptions']['class']))
-                    $item['itemOptions']['class'] .= ' '.$classes;
-                else
-                    $item['itemOptions']['class'] = $classes;
+                if (!empty($classes))
+                {
+                    $classes = implode($classes, ' ');
+                    if (isset($item['itemOptions']['class']))
+                        $item['itemOptions']['class'] .= ' '.$classes;
+                    else
+                        $item['itemOptions']['class'] = $classes;
+                }
             }
 
             $items[$i] = $item;

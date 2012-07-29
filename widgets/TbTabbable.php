@@ -31,7 +31,7 @@ class TbTabbable extends CWidget
 	 * @var string the placement of the tabs.
 	 * Valid values are 'above', 'below', 'left' and 'right'.
 	 */
-	public $placement = self::PLACEMENT_ABOVE;
+	public $placement;
 	/**
 	 * @var array the tab configuration.
 	 */
@@ -57,11 +57,16 @@ class TbTabbable extends CWidget
 		if (!isset($this->htmlOptions['id']))
 			$this->htmlOptions['id'] = $this->getId();
 
-		$validPlacements = array(self::PLACEMENT_ABOVE, self::PLACEMENT_BELOW, self::PLACEMENT_LEFT, self::PLACEMENT_RIGHT);
+        $classes = array();
 
-		if (isset($this->placement) && in_array($this->placement, $validPlacements))
+        $validPlacements = array(self::PLACEMENT_ABOVE, self::PLACEMENT_BELOW, self::PLACEMENT_LEFT, self::PLACEMENT_RIGHT);
+
+        if (isset($this->placement) && in_array($this->placement, $validPlacements))
+            $classes[] = 'tabs-'.$this->placement;
+
+        if (!empty($classes))
 		{
-			$classes = 'tabs-'.$this->placement;
+			$classes = implode(' ', $classes);
 			if (isset($this->htmlOptions['class']))
 				$this->htmlOptions['class'] .= ' '.$classes;
 			else

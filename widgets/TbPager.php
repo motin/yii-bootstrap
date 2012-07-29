@@ -13,7 +13,6 @@
 class TbPager extends CLinkPager
 {
 	// Pager alignments.
-	const ALIGNMENT_LEFT = '';
 	const ALIGNMENT_CENTER = 'centered';
 	const ALIGNMENT_RIGHT = 'right';
 
@@ -21,7 +20,7 @@ class TbPager extends CLinkPager
 	 * @var string the pager alignment (default to '').
 	 * Valid values are 'left', 'centered' and 'right'.
 	 */
-	public $alignment = self::ALIGNMENT_LEFT;
+	public $alignment;
 	/**
 	 * @var string the text shown before page buttons (defaults to '').
 	 */
@@ -49,7 +48,9 @@ class TbPager extends CLinkPager
 
 		$classes = array();
 
-		if (in_array($this->alignment, array(self::ALIGNMENT_LEFT, self::ALIGNMENT_CENTER, self::ALIGNMENT_RIGHT)))
+        $validAlignments = array(self::ALIGNMENT_CENTER, self::ALIGNMENT_RIGHT);
+
+        if (in_array($this->alignment, $validAlignments))
 			$classes[] = 'pagination-'.$this->alignment;
 
         if (!empty($classes))

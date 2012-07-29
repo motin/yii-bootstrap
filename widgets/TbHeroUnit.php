@@ -32,11 +32,10 @@ class TbHeroUnit extends CWidget
 	 */
 	public function init()
 	{
-		$classes = 'hero-unit';
 		if (isset($this->htmlOptions['class']))
-			$this->htmlOptions['class'] .= ' '.$classes;
+			$this->htmlOptions['class'] .= ' hero-unit';
 		else
-			$this->htmlOptions['class'] = $classes;
+			$this->htmlOptions['class'] = 'hero-unit';
 
 		if ($this->encodeHeading)
 			$this->heading = CHtml::encode($this->heading);

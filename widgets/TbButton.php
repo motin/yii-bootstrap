@@ -24,7 +24,6 @@ class TbButton extends CWidget
 	const BUTTON_AJAXSUBMIT = 'ajaxSubmit';
 
 	// Button types.
-	const TYPE_NORMAL = '';
 	const TYPE_PRIMARY = 'primary';
 	const TYPE_INFO = 'info';
 	const TYPE_SUCCESS = 'success';
@@ -45,9 +44,9 @@ class TbButton extends CWidget
 	public $buttonType = self::BUTTON_LINK;
 	/**
 	 * @var string the button type.
-	 * Valid values are '', 'primary', 'info', 'success', 'warning', 'danger' and 'inverse'.
+	 * Valid values are 'primary', 'info', 'success', 'warning', 'danger' and 'inverse'.
 	 */
-	public $type = self::TYPE_NORMAL;
+	public $type;
 	/**
 	 * @var string the button size.
 	 * Valid values are '', 'small' and 'large'.
@@ -137,12 +136,14 @@ class TbButton extends CWidget
 			$this->htmlOptions['data-toggle'] = 'dropdown';
 		}
 
-		$classes = implode(' ', $classes);
-
-		if (isset($this->htmlOptions['class']))
-			$this->htmlOptions['class'] .= ' '.$classes;
-		else
-			$this->htmlOptions['class'] = $classes;
+        if (!empty($classes))
+        {
+            $classes = implode(' ', $classes);
+            if (isset($this->htmlOptions['class']))
+                $this->htmlOptions['class'] .= ' '.$classes;
+            else
+                $this->htmlOptions['class'] = $classes;
+        }
 
 		if (isset($this->icon))
 		{

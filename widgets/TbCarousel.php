@@ -59,12 +59,14 @@ class TbCarousel extends CWidget
         if ($this->slide === true)
             $classes[] = 'slide';
 
-		$classes = implode($classes, ' ');
-		if (isset($this->htmlOptions['class']))
-			$this->htmlOptions['class'] .= ' '.$classes;
-		else
-			$this->htmlOptions['class'] = $classes;
-
+        if (!empty($classes))
+        {
+            $classes = implode(' ', $classes);
+            if (isset($this->htmlOptions['class']))
+                $this->htmlOptions['class'] .= ' '.$classes;
+            else
+                $this->htmlOptions['class'] = $classes;
+        }
 	}
 
 	/**
