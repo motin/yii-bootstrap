@@ -762,8 +762,8 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	</fieldset>
 
 	<div class="form-actions">
-		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'icon'=>'ok white', 'label'=>'Submit')); ?>
-		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'reset', 'icon'=>'remove', 'label'=>'Reset')); ?>
+		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'label'=>'Submit')); ?>
+		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'reset', 'label'=>'Reset')); ?>
 	</div>
 
 	<?php $this->endWidget(); ?>
@@ -805,13 +805,80 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 </fieldset>
 
 <div class=\"form-actions\">
-	<?php \$this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'icon'=>'ok white', 'label'=>'Submit')); ?>
-	<?php \$this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'reset', 'icon'=>'remove', 'label'=>'Reset')); ?>
+	<?php \$this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'label'=>'Submit')); ?>
+	<?php \$this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'reset', 'label'=>'Reset')); ?>
 </div>
 
 <?php \$this->endWidget(); ?>"); ?>
 
 	<a class="top" href="#top">Back to top &uarr;</a>
+
+    <h3>Tabular</h3>
+
+    <?php /** @var TbActiveForm $form */
+    $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+        'id'=>'horizontalForm',
+        'type'=>'horizontal',
+    )); ?>
+
+    <?php $this->widget('bootstrap.widgets.TbTabbable', array(
+        'tabs'=>$this->getTabularFormTabs($form, $model),
+    )); ?>
+
+    <div class="form-actions">
+        <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'label'=>'Submit')); ?>
+        <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'reset', 'label'=>'Reset')); ?>
+    </div>
+
+    <?php $this->endWidget(); ?>
+
+    <h4>Source code</h4>
+
+<?php echo $phpLighter->highlight("<?php /** @var TbActiveForm \$form */
+\$form = \$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+    'id'=>'horizontalForm',
+    'type'=>'horizontal',
+)); ?>
+
+<?php \$this->widget('bootstrap.widgets.TbTabbable', array(
+    'tabs'=>\$this->getTabularFormTabs(\$form, \$model),
+)); ?>
+
+<div class=\"form-actions\">
+    <?php \$this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'label'=>'Submit')); ?>
+    <?php \$this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'reset', 'label'=>'Reset')); ?>
+</div>
+
+<?php \$this->endWidget(); ?>"); ?>
+
+<?php echo $phpLighter->highlight("public function getTabularFormTabs(\$form, \$model)
+{
+    \$tabs = array();
+    \$count = 0;
+    foreach (array('en'=>'English', 'fi'=>'Finnish', 'sv'=>'Swedish') as \$locale => \$language)
+    {
+        \$tabs[] = array(
+            'active'=>\$count++ === 0,
+            'label'=>\$language,
+            'content'=>\$this->renderPartial('_tabular', array('form'=>\$form, 'model'=>\$model, 'locale'=>\$locale, 'language'=>\$language), true),
+        );
+    }
+    return \$tabs;
+}"); ?>
+
+<?php echo $phpLighter->highlight("<fieldset>
+
+    <legend><?php echo CHtml::encode(\$language); ?> translation</legend>
+
+    <?php echo \$form->textFieldRow(\$model, \"[{\$locale}]textField\"); ?>
+    <?php echo \$form->textAreaRow(\$model, \"[{\$locale}]textarea\", array('class'=>'span8', 'rows'=>8)); ?>
+    <?php echo \$form->checkBoxListRow(\$model, \"[{\$locale}]checkboxes\", array(
+        'Option one is this and that—be sure to include why it\'s great',
+        'Option two can also be checked and included in form results',
+        'Option three can—yes, you guessed it—also be checked and included in form results',
+    ), array('hint'=>'<strong>Note:</strong> Labels surround all the options for much larger click areas.')); ?>
+
+</fieldset>"); ?>
 
 </section>
 

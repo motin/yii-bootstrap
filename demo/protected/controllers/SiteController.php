@@ -145,4 +145,26 @@ class SiteController extends Controller
 	        	$this->render('error', $error);
 	    }
 	}
+
+    public function getTabularFormTabs($form, $model)
+    {
+        $tabs = array();
+        $count = 0;
+
+        foreach (array('en'=>'English', 'fi'=>'Finnish', 'sv'=>'Swedish') as $locale => $language)
+        {
+            $tabs[] = array(
+                'active'=>$count++ === 0,
+                'label'=>$language,
+                'content'=>$this->renderPartial('_tabular', array(
+                    'form'=>$form,
+                    'model'=>$model,
+                    'locale'=>$locale,
+                    'language'=>$language,
+                ), true),
+            );
+        }
+
+        return $tabs;
+    }
 }
