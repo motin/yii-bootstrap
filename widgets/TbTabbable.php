@@ -161,7 +161,7 @@ class TbTabbable extends CWidget
 
 				$classes = implode(' ', $classes);
 				if (isset($paneOptions['class']))
-					$paneOptions['class'] .= $classes;
+					$paneOptions['class'] .= ' '.$classes;
 				else
 					$paneOptions['class'] = $classes;
 
