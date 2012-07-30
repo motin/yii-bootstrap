@@ -50,6 +50,10 @@ class TbButtonGroup extends CWidget
 	 * @var boolean indicates whether to enable button toggling.
 	 */
 	public $toggle;
+	/**
+	 * @var boolean indicates whether dropdowns should be dropups instead.
+	 */
+	public $dropup = false;
 
 	/**
 	 * Initializes the widget.
@@ -58,14 +62,8 @@ class TbButtonGroup extends CWidget
 	{
 		$classes = array('btn-group');
 
-        foreach ($this->buttons as $button)
-        {
-            if ($this->hasDropdown($button) && $this->isDropup($button))
-            {
-                $classes[] = 'dropup';
-                break;
-            }
-        }
+        if ($this->dropup === true)
+			$classes[] = 'dropup';
 
         if (!empty($classes))
         {
@@ -111,24 +109,4 @@ class TbButtonGroup extends CWidget
 
 		echo '</div>';
 	}
-
-    /**
-     * Returns whether the given button has a dropdown.
-     * @param array $button the button configuration
-     * @return boolean the result
-     */
-    protected function hasDropdown($button)
-    {
-        return isset($button['items']) && !empty($button['items']);
-    }
-
-    /**
-     * Returns whether the given item is a dropup.
-     * @param array $button the button configuration
-     * @return boolean the result
-     */
-    protected function isDropup($button)
-    {
-        return isset($button['dropup']) && $button['dropup'] === true;
-    }
 }

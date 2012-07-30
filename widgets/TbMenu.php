@@ -22,13 +22,17 @@ class TbMenu extends TbBaseMenu
      */
     public $type;
     /**
-     * @var boolean whether to stack navigation items.
+     * @var boolean indicates whether to stack navigation items.
      */
     public $stacked = false;
     /**
      * @var array the scroll-spy configuration.
      */
     public $scrollspy;
+	/**
+	 * @var boolean indicates whether dropdowns should be dropups instead.
+	 */
+	public $dropup = false;
 
     /**
      * Initializes the widget.
@@ -44,17 +48,11 @@ class TbMenu extends TbBaseMenu
         if (isset($this->type) && in_array($this->type, $validTypes))
             $classes[] = 'nav-'.$this->type;
 
-        if ($this->type !== self::TYPE_LIST && $this->stacked)
+        if ($this->stacked && $this->type !== self::TYPE_LIST)
             $classes[] = 'nav-stacked';
 
-        foreach ($this->items as $item)
-        {
-            if ($this->hasDropdown($item) && $this->isDropup($item))
-            {
-                $classes[] = 'dropup';
-                break;
-            }
-        }
+    	if ($this->dropup === true)
+			$classes[] = 'dropup';
 
         if (!empty($classes))
         {
@@ -75,26 +73,6 @@ class TbMenu extends TbBaseMenu
 
             Yii::app()->bootstrap->spyOn($this->scrollspy['subject'], $this->scrollspy['spy'], $this->scrollspy['offset']);
         }
-    }
-
-    /**
-     * Returns whether the given item has a dropdown.
-     * @param array $item the item configuration
-     * @return boolean the result
-     */
-    protected function hasDropdown($item)
-    {
-        return isset($item['items']) && !empty($item['items']);
-    }
-
-    /**
-     * Returns whether the given item is a dropup.
-     * @param array $item the item configuration
-     * @return boolean the result
-     */
-    protected function isDropup($item)
-    {
-        return isset($item['dropup']) && $item['dropup'] === true;
     }
 
     /**
