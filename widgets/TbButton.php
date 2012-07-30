@@ -1,6 +1,6 @@
 <?php
 /**
- * BootButton class file.
+ * TbButton class file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -10,6 +10,7 @@
 
 /**
  * Bootstrap button widget.
+ * @see http://twitter.github.com/bootstrap/base-css.html#buttons
  */
 class TbButton extends CWidget
 {
@@ -34,7 +35,6 @@ class TbButton extends CWidget
 	// Button sizes.
 	const SIZE_MINI = 'mini';
 	const SIZE_SMALL = 'small';
-	const SIZE_NORMAL = '';
 	const SIZE_LARGE = 'large';
 
 	/**
@@ -49,9 +49,9 @@ class TbButton extends CWidget
 	public $type;
 	/**
 	 * @var string the button size.
-	 * Valid values are '', 'small' and 'large'.
+	 * Valid values are 'small' and 'large'.
 	 */
-	public $size = self::SIZE_NORMAL;
+	public $size;
 	/**
 	 * @var string the button icon, e.g. 'ok' or 'remove white'.
 	 */
@@ -153,25 +153,14 @@ class TbButton extends CWidget
 			$this->label = '<i class="'.$this->icon.'"></i> '.$this->label;
 		}
 
-		$this->initHTML5Data();
-	}
+        if (isset($this->toggle))
+            $this->htmlOptions['data-toggle'] = 'button';
 
-	/**
-	 * Initializes the HTML5 data attributes used by the data-api.
-	 */
-	protected function initHTML5Data()
-	{
-		if (isset($this->toggle) || isset($this->loadingText) || isset($this->completeText))
-		{
-			if (isset($this->toggle))
-				$this->htmlOptions['data-toggle'] = 'button';
+        if (isset($this->loadingText))
+            $this->htmlOptions['data-loading-text'] = $this->loadingText;
 
-			if (isset($this->loadingText))
-				$this->htmlOptions['data-loading-text'] = $this->loadingText;
-
-			if (isset($this->completeText))
-				$this->htmlOptions['data-complete-text'] = $this->completeText;
-		}
+        if (isset($this->completeText))
+            $this->htmlOptions['data-complete-text'] = $this->completeText;
 	}
 
 	/**

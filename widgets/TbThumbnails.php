@@ -1,6 +1,6 @@
 <?php
 /**
- * BootThumbs class file.
+ * TbThumbnails class file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -11,6 +11,7 @@ Yii::import('bootstrap.widgets.TbListView');
 
 /**
  * Bootstrap thumbnails widget.
+ * @see http://twitter.github.com/bootstrap/components.html#thumbnails
  */
 class TbThumbnails extends TbListView
 {

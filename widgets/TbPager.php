@@ -1,6 +1,6 @@
 <?php
 /**
- * BootPager class file.
+ * TbPager class file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -8,7 +8,8 @@
  */
 
 /**
- * Bootstrap pager widget.
+ * Bootstrap pager.
+ * @see http://twitter.github.com/bootstrap/components.html#pagination
  */
 class TbPager extends CLinkPager
 {
@@ -17,12 +18,12 @@ class TbPager extends CLinkPager
 	const ALIGNMENT_RIGHT = 'right';
 
 	/**
-	 * @var string the pager alignment (default to '').
-	 * Valid values are 'left', 'centered' and 'right'.
+	 * @var string the pager alignment. Valid values are 'centered' and 'right'.
 	 */
 	public $alignment;
 	/**
-	 * @var string the text shown before page buttons (defaults to '').
+	 * @var string the text shown before page buttons.
+     * Defaults to an empty string, meaning that no header will be displayed.
 	 */
 	public $header = '';
 	/**

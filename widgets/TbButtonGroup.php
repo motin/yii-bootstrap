@@ -1,6 +1,6 @@
 <?php
 /**
- * BootButtonGroup class file.
+ * TbButtonGroup class file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -12,6 +12,7 @@ Yii::import('bootstrap.widgets.TbButton');
 
 /**
  * Bootstrap button group widget.
+ * @see http://twitter.github.com/bootstrap/components.html#buttonGroups
  */
 class TbButtonGroup extends CWidget
 {
@@ -33,7 +34,7 @@ class TbButtonGroup extends CWidget
 	 * @var string the button size.
 	 * @see BootButton::size
 	 */
-	public $size = TbButton::SIZE_NORMAL;
+	public $size;
 	/**
 	 * @var boolean indicates whether to encode the button labels.
 	 */
@@ -50,6 +51,10 @@ class TbButtonGroup extends CWidget
 	 * @var boolean indicates whether to enable button toggling.
 	 */
 	public $toggle;
+	/**
+	 * @var boolean indicates whether dropdowns should be dropups instead.
+	 */
+	public $dropup = false;
 
 	/**
 	 * Initializes the widget.
@@ -58,14 +63,8 @@ class TbButtonGroup extends CWidget
 	{
 		$classes = array('btn-group');
 
-        foreach ($this->buttons as $button)
-        {
-            if ($this->hasDropdown($button) && $this->isDropup($button))
-            {
-                $classes[] = 'dropup';
-                break;
-            }
-        }
+        if ($this->dropup === true)
+			$classes[] = 'dropup';
 
         if (!empty($classes))
         {
@@ -91,13 +90,13 @@ class TbButtonGroup extends CWidget
 
 		foreach ($this->buttons as $button)
 		{
-            if (isset($button['visible']) && !$button['visible'] === false)
+            if (isset($button['visible']) && $button['visible'] === false)
                 continue;
 
 			$this->controller->widget('bootstrap.widgets.TbButton', array(
 				'buttonType'=>isset($button['buttonType']) ? $button['buttonType'] : $this->buttonType,
 				'type'=>isset($button['type']) ? $button['type'] : $this->type,
-				'size'=>$this->size,
+				'size'=>$this->size, // all buttons in a group cannot vary in size
 				'icon'=>isset($button['icon']) ? $button['icon'] : null,
 				'label'=>isset($button['label']) ? $button['label'] : null,
 				'url'=>isset($button['url']) ? $button['url'] : null,
@@ -111,24 +110,4 @@ class TbButtonGroup extends CWidget
 
 		echo '</div>';
 	}
-
-    /**
-     * Returns whether the given button has a dropdown.
-     * @param array $button the button configuration
-     * @return boolean the result
-     */
-    protected function hasDropdown($button)
-    {
-        return isset($button['items']) && !empty($button['items']);
-    }
-
-    /**
-     * Returns whether the given item is a dropup.
-     * @param array $button the button configuration
-     * @return boolean the result
-     */
-    protected function isDropup($button)
-    {
-        return isset($button['dropup']) && $button['dropup'] === true;
-    }
 }

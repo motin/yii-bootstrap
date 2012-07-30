@@ -9,6 +9,10 @@
 
 Yii::import('bootstrap.widgets.TbBaseMenu');
 
+/**
+ * Bootstrap menu.
+ * @see http://twitter.github.com/bootstrap/components.html#navs
+ */
 class TbMenu extends TbBaseMenu
 {
     // Menu types.
@@ -18,17 +22,21 @@ class TbMenu extends TbBaseMenu
 
     /**
      * @var string the menu type.
-     * Valid values are 'tabs' and 'pills'. Defaults to ''.
+     * Valid values are 'tabs' and 'pills'.
      */
     public $type;
     /**
-     * @var boolean whether to stack navigation items.
+     * @var boolean indicates whether to stack navigation items.
      */
     public $stacked = false;
     /**
-     * @var array the scroll-spy configuration.
+     * @var string|array the scrollspy configuration.
      */
     public $scrollspy;
+	/**
+	 * @var boolean indicates whether dropdowns should be dropups instead.
+	 */
+	public $dropup = false;
 
     /**
      * Initializes the widget.
@@ -44,16 +52,16 @@ class TbMenu extends TbBaseMenu
         if (isset($this->type) && in_array($this->type, $validTypes))
             $classes[] = 'nav-'.$this->type;
 
-        if ($this->type !== self::TYPE_LIST && $this->stacked)
+        if ($this->stacked && $this->type !== self::TYPE_LIST)
             $classes[] = 'nav-stacked';
 
-        foreach ($this->items as $item)
+    	if ($this->dropup === true)
+			$classes[] = 'dropup';
+
+        if (isset($this->scrollspy))
         {
-            if ($this->hasDropdown($item) && $this->isDropup($item))
-            {
-                $classes[] = 'dropup';
-                break;
-            }
+            $scrollspy = is_string($this->scrollspy) ? array('target'=>$this->scrollspy) : $this->scrollspy;
+            $this->widget('bootstrap.widgets.TbScrollSpy', $scrollspy);
         }
 
         if (!empty($classes))
@@ -64,37 +72,6 @@ class TbMenu extends TbBaseMenu
             else
                 $this->htmlOptions['class'] = $classes;
         }
-
-        if (isset($this->scrollspy) && is_array($this->scrollspy) && isset($this->scrollspy['spy']))
-        {
-            if (!isset($this->scrollspy['subject']))
-                $this->scrollspy['subject'] = 'body';
-
-            if (!isset($this->scrollspy['offset']))
-                $this->scrollspy['offset'] = null;
-
-            Yii::app()->bootstrap->spyOn($this->scrollspy['subject'], $this->scrollspy['spy'], $this->scrollspy['offset']);
-        }
-    }
-
-    /**
-     * Returns whether the given item has a dropdown.
-     * @param array $item the item configuration
-     * @return boolean the result
-     */
-    protected function hasDropdown($item)
-    {
-        return isset($item['items']) && !empty($item['items']);
-    }
-
-    /**
-     * Returns whether the given item is a dropup.
-     * @param array $item the item configuration
-     * @return boolean the result
-     */
-    protected function isDropup($item)
-    {
-        return isset($item['dropup']) && $item['dropup'] === true;
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 /**
- * BootTypeahead class file.
+ * TbTypeahead class file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -9,12 +9,13 @@
  */
 
 /**
- * Bootstrap type-a-head widget.
+ * Bootstrap typeahead widget.
+ * @see http://twitter.github.com/bootstrap/javascript.html#typeahead
  */
 class TbTypeahead extends CInputWidget
 {
 	/**
-	 * @var array the options for the Bootstrap JavaScript plugin.
+	 * @var array the options for the Bootstrap Javascript plugin.
 	 */
 	public $options = array();
 
@@ -23,9 +24,6 @@ class TbTypeahead extends CInputWidget
 	 */
 	public function init()
 	{
-		if (!isset($this->htmlOptions['id']))
-			$this->htmlOptions['id'] = $this->getId();
-
 		$this->htmlOptions['type'] = 'text';
 		$this->htmlOptions['data-provide'] = 'typeahead';
 	}

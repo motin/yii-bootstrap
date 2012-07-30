@@ -1,6 +1,6 @@
 <?php
 /**
- * BootHero class file.
+ * TbHeroUnit class file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright  Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -9,8 +9,9 @@
  */
 
 /**
- * Modest bootstrap hero widget.
+ * Modest bootstrap hero unit widget.
  * Thanks to Christphe Boulain for suggesting content capturing.
+ * @see http://twitter.github.com/bootstrap/components.html#typography
  */
 class TbHeroUnit extends CWidget
 {
@@ -26,6 +27,11 @@ class TbHeroUnit extends CWidget
 	 * @var array the HTML attributes for the widget container.
 	 */
 	public $htmlOptions = array();
+    /**
+     * @var array the HTML attributes for the heading element.
+     * @since 1.0.0
+     */
+    public $headingOptions = array();
 
 	/**
 	 * Initializes the widget.
@@ -40,8 +46,10 @@ class TbHeroUnit extends CWidget
 		if ($this->encodeHeading)
 			$this->heading = CHtml::encode($this->heading);
 
-		ob_start();
-		ob_implicit_flush(false);
+        echo CHtml::openTag('div', $this->htmlOptions);
+
+        if (isset($this->heading))
+            echo CHtml::tag('h1', $this->headingOptions, $this->heading);
 	}
 
 	/**
@@ -49,13 +57,6 @@ class TbHeroUnit extends CWidget
 	 */
 	public function run()
 	{
-		$content = ob_get_clean();
-		echo CHtml::openTag('div', $this->htmlOptions);
-
-		if (isset($this->heading))
-			echo CHtml::tag('h1', array(), $this->heading);
-
-		echo $content;
 		echo '</div>';
 	}
 }

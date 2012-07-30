@@ -1,6 +1,6 @@
 <?php
 /**
- * BootProgress class file.
+ * TbProgress class file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -10,6 +10,7 @@
 
 /**
  * Bootstrap progress bar widget.
+ * @see http://twitter.github.com/bootstrap/components.html#progress
  */
 class TbProgress extends CWidget
 {
@@ -20,20 +21,19 @@ class TbProgress extends CWidget
 	const TYPE_DANGER = 'danger';
 
 	/**
-	 * @var string the bar type.
-	 * Valid values are 'info', 'success', and 'danger'.
+	 * @var string the bar type. Valid values are 'info', 'success', and 'danger'.
 	 */
 	public $type;
 	/**
-	 * @var boolean whether the bar is striped.
+	 * @var boolean indicates whether the bar is striped.
 	 */
 	public $striped = false;
 	/**
-	 * @var boolean whether the bar is animated.
+	 * @var boolean indicates whether the bar is animated.
 	 */
 	public $animated = false;
 	/**
-	 * @var integer the progress.
+	 * @var integer the amount of progress in percent.
 	 */
 	public $percent = 0;
 	/**
