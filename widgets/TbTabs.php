@@ -1,6 +1,6 @@
 <?php
 /**
- * BootTabbable class file.
+ * TbTabs class file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -10,10 +10,10 @@
 Yii::import('bootstrap.widgets.TbMenu');
 
 /**
- * Bootstrap JavaScript tabs widget.
- * @since 0.9.8
+ * Bootstrap Javascript tabs widget.
+ * @see http://twitter.github.com/bootstrap/javascript.html#tabs
  */
-class TbTabbable extends CWidget
+class TbTabs extends CWidget
 {
 	// Tab placements.
 	const PLACEMENT_ABOVE = 'above';
@@ -22,9 +22,9 @@ class TbTabbable extends CWidget
 	const PLACEMENT_RIGHT = 'right';
 
 	/**
-	 * @var string the type of tabs to display. Defaults to 'tabs'.
-	 * Valid values are 'tabs' and 'pills'.
-	 * Please not that JavaScript pills are not fully supported in Bootstrap!
+	 * @var string the type of tabs to display. Defaults to 'tabs'. Valid values are 'tabs' and 'pills'.
+	 * Please not that Javascript pills are not fully supported in Bootstrap yet!
+     * @see TbMenu::$type
 	 */
     public $type = TbMenu::TYPE_TABS;
 	/**
@@ -41,7 +41,7 @@ class TbTabbable extends CWidget
 	 */
 	public $encodeLabel = true;
 	/**
-	 * @var string[] the JavaScript event handlers.
+	 * @var string[] the Javascript event handlers.
 	 */
 	public $events = array();
 	/**
@@ -108,7 +108,7 @@ class TbTabbable extends CWidget
 	    foreach ($this->events as $name => $handler)
         {
             $handler = CJavaScript::encode($handler);
-            $cs->registerScript(__CLASS__.'#'.$id.'_'.$name, "jQuery('#{$id}').on('".$name."', {$handler});");
+            $cs->registerScript(__CLASS__.'#'.$id.'_'.$name, "jQuery('#{$id}').on('{$name}', {$handler});");
         }
     }
 
@@ -128,7 +128,7 @@ class TbTabbable extends CWidget
 	    {
 			$item = $tab;
 
-		    if (isset($item['visible']) && !$item['visible'])
+		    if (isset($item['visible']) && $item['visible'] === false)
                 continue;
 
 			if (!isset($item['itemOptions']))
