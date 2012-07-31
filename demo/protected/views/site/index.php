@@ -1377,9 +1377,11 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
     <div class="well">
         <?php $this->widget('bootstrap.widgets.TbButton', array(
         'label'=>'Click me',
-        'url'=>'#myModal',
         'type'=>'primary',
-        'htmlOptions'=>array('data-toggle'=>'modal'),
+        'htmlOptions'=>array(
+			'data-toggle'=>'modal',
+			'data-target'=>'#myModal',
+		),
     )); ?>
     </div>
 
@@ -1414,9 +1416,11 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
     <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbButton', array(
 	'label'=>'Click me',
-	'url'=>'#myModal',
 	'type'=>'primary',
-	'htmlOptions'=>array('data-toggle'=>'modal'),
+	'htmlOptions'=>array(
+		'data-toggle'=>'modal',
+		'data-target'=>'#myModal',
+	),
 )); ?>"); ?>
 
     <a class="top" href="#top">Back to top &uarr;</a>

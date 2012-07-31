@@ -13,9 +13,6 @@
  */
 class TbNavbar extends CWidget
 {
-    // Navbar types.
-    const TYPE_SUBNAV = 'subnav';
-
 	// Navbar fix locations.
 	const FIXED_TOP = 'top';
 	const FIXED_BOTTOM = 'bottom';
