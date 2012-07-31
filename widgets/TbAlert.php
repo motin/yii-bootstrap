@@ -1,6 +1,6 @@
 <?php
 /**
- * BootAlert class file.
+ * TbAlert class file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright  Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -9,6 +9,7 @@
 
 /**
  * Bootstrap alert widget.
+ * @see http://twitter.github.com/bootstrap/javascript.html#alerts
  */
 class TbAlert extends CWidget
 {
@@ -21,7 +22,7 @@ class TbAlert extends CWidget
 	 */
 	public $template = '<div class="alert alert-block alert-{key}{class}"><a class="close" data-dismiss="alert">&times;</a>{message}</div>';
 	/**
-	 * @var string[] the JavaScript event handlers.
+	 * @var string[] the Javascript event handlers.
 	 */
 	public $events = array();
 	/**
@@ -34,8 +35,6 @@ class TbAlert extends CWidget
 	 */
 	public function init()
 	{
-		parent::init();
-
 		if (!isset($this->htmlOptions['id']))
 			$this->htmlOptions['id'] = $this->getId();
 	}
@@ -45,7 +44,7 @@ class TbAlert extends CWidget
 	 */
 	public function run()
 	{
-		$id = $this->id;
+		$id = $this->htmlOptions['id'];
 
 		if (is_string($this->keys))
 			$this->keys = array($this->keys);
@@ -76,7 +75,7 @@ class TbAlert extends CWidget
 		foreach ($this->events as $name => $handler)
 		{
 			$handler = CJavaScript::encode($handler);
-			$cs->registerScript(__CLASS__.'#'.$id.'_'.$name, "jQuery('{$selector}').on('".$name."', {$handler});");
+			$cs->registerScript(__CLASS__.'#'.$id.'_'.$name, "jQuery('{$selector}').on('{$name}', {$handler});");
 		}
 	}
 }

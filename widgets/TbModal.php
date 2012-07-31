@@ -1,6 +1,6 @@
 <?php
 /**
- * BootModal class file.
+ * TbModal class file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -10,23 +10,24 @@
 
 /**
  * Bootstrap modal widget.
+ * @see http://twitter.github.com/bootstrap/javascript.html#modals
  */
 class TbModal extends CWidget
 {
 	/**
-	 * @var boolean indicates whether to automatically open the modal when initialized.
+	 * @var boolean indicates whether to automatically open the modal when initialized. Defaults to 'false'.
 	 */
 	public $autoOpen = false;
     /**
-     * @var boolean indicates whether the modal should use transitions.
+     * @var boolean indicates whether the modal should use transitions. Defaults to 'true'.
      */
     public $fade = true;
 	/**
-	 * @var array the options for the Bootstrap JavaScript plugin.
+	 * @var array the options for the Bootstrap Javascript plugin.
 	 */
 	public $options = array();
 	/**
-	 * @var string[] the JavaScript event handlers.
+	 * @var string[] the Javascript event handlers.
 	 */
 	public $events = array();
 	/**
@@ -42,7 +43,7 @@ class TbModal extends CWidget
 		if (!isset($this->htmlOptions['id']))
 			$this->htmlOptions['id'] = $this->getId();
 
-		if (!$this->autoOpen && !isset($this->options['show']))
+		if ($this->autoOpen === false && !isset($this->options['show']))
 			$this->options['show'] = false;
 
         $classes = array('modal');
@@ -59,7 +60,7 @@ class TbModal extends CWidget
                 $this->htmlOptions['class'] = $classes;
         }
 
-		echo CHtml::openTag('div', $this->htmlOptions).PHP_EOL;
+		echo CHtml::openTag('div', $this->htmlOptions);
 	}
 
 	/**
@@ -67,7 +68,7 @@ class TbModal extends CWidget
 	 */
 	public function run()
 	{
-		$id = $this->id;
+		$id = $this->htmlOptions['id'];
 
 		echo '</div>';
 
@@ -80,7 +81,7 @@ class TbModal extends CWidget
 		foreach ($this->events as $name => $handler)
 		{
 			$handler = CJavaScript::encode($handler);
-			$cs->registerScript(__CLASS__.'#'.$id.'_'.$name, "jQuery('#{$id}').on('".$name."', {$handler});");
+			$cs->registerScript(__CLASS__.'#'.$id.'_'.$name, "jQuery('#{$id}').on('{$name}', {$handler});");
 		}
 	}
 }

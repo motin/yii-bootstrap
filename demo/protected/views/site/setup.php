@@ -169,17 +169,23 @@ Yii::app()->bootstrap->registerTypeahead('.typeahead', array(
 
 </section>
 
-<div class="subnav well">
-
-	<?php $this->widget('bootstrap.widgets.TbMenu', array(
-		'type'=>'list',
-		'scrollspy'=>array('spy'=>'.subnav', 'offset'=>50),
-		'items'=>array(
-			array('label'=>'Setup', 'url'=>'#setup'),
-			array('label'=>'Configuration', 'url'=>'#config'),
-			array('label'=>'Using LESS', 'url'=>'#less'),
-			array('label'=>'Plugin API', 'url'=>'#api')
-		),
-	)); ?>
+<?php $this->widget('bootstrap.widgets.TbNavbar', array(
+    'fixed'=>'top',
+    'brand'=>false,
+    'collapse'=>true,
+    'subnav'=>true,
+    'items'=>array(
+        array(
+            'class'=>'bootstrap.widgets.TbMenu',
+            'scrollspy'=>'.navbar-subnav',
+            'items'=>array(
+                array('label'=>'Setup', 'url'=>'#setup'),
+                array('label'=>'Configuration', 'url'=>'#config'),
+                array('label'=>'Using LESS', 'url'=>'#less'),
+                array('label'=>'Plugin API', 'url'=>'#api')
+            ),
+        ),
+    ),
+)); ?>
 
 </div>

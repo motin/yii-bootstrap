@@ -282,25 +282,6 @@ class Bootstrap extends CApplicationComponent
 	}
 
 	/**
-	 * Sets the target element for the scrollspy.
-	 * @param string $selector the CSS selector
-	 * @param string $target the target CSS selector
-	 * @param string $offset the offset
-	 */
-	public function spyOn($selector, $target = null, $offset = null)
-	{
-		$script = "jQuery('{$selector}').attr('data-spy', 'scroll');";
-
-		if (isset($target))
-			$script .= "jQuery('{$selector}').attr('data-target', '{$target}');";
-
-		if (isset($offset))
-			$script .= "jQuery('{$selector}').attr('data-offset', '{$offset}');";
-
-		Yii::app()->clientScript->registerScript(__CLASS__.'.spyOn.'.$selector, $script, CClientScript::POS_BEGIN);
-	}
-
-	/**
 	 * Registers a Bootstrap JavaScript plugin.
 	 * @param string $name the name of the plugin
 	 * @param string $selector the CSS selector

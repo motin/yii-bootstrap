@@ -1,6 +1,6 @@
 <?php
 /**
- * BootBadge class file.
+ * TbBadge class file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright  Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -9,6 +9,7 @@
 
 /**
  * Bootstrap badge widget.
+ * @see http://twitter.github.com/bootstrap/components.html#badges
  */
 class TbBadge extends CWidget
 {
@@ -20,7 +21,7 @@ class TbBadge extends CWidget
 	const TYPE_INVERSE = 'inverse';
 
 	/**
-	 * @var string the badge type (defaults to '').
+	 * @var string the badge type.
 	 * Valid types are 'success', 'warning', 'important', 'info' and 'inverse'.
 	 */
 	public $type;

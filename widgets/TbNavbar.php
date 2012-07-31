@@ -1,6 +1,6 @@
 <?php
 /**
- * BootNavbar class file.
+ * TbNavbar class file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -20,10 +20,6 @@ class TbNavbar extends CWidget
 	const FIXED_TOP = 'top';
 	const FIXED_BOTTOM = 'bottom';
 
-    /**
-     * @var string the navbar type.
-     */
-    public $type;
 	/**
 	 * @var string the text for the brand.
 	 */
@@ -57,6 +53,11 @@ class TbNavbar extends CWidget
 	 * @var boolean whether to enable collapsing on narrow screens. Default to false.
 	 */
 	public $collapse = false;
+    /**
+     * @var string indicates whether this is a sub navigation.
+     * @since 1.0.0
+     */
+    public $subnav = false;
 	/**
 	 * @var array the HTML attributes for the widget container.
 	 */
@@ -85,8 +86,8 @@ class TbNavbar extends CWidget
 
 		$classes = array('navbar');
 
-        if (isset($this->type) && in_array($this->type, array(self::TYPE_SUBNAV)))
-            $classes[] = 'navbar-'.$this->type;
+        if (isset($this->subnav) && $this->subnav === true)
+            $classes[] = 'navbar-subnav';
 
 		if ($this->fixed !== false)
 		{
@@ -94,7 +95,7 @@ class TbNavbar extends CWidget
             {
 				$classes[] = 'navbar-fixed-'.$this->fixed;
 
-                if ($this->type === self::TYPE_SUBNAV)
+                if (isset($this->subnav) && $this->subnav === true)
                     $classes[] = 'navbar-subnav-fixed';
             }
 		}
@@ -130,7 +131,11 @@ class TbNavbar extends CWidget
             echo CHtml::openTag('a', $this->brandOptions).$this->brand.'</a>';
 
 		if ($this->collapse)
-			echo '<div class="nav-collapse '.$this->getCollapseCssClass().'">';
+        {
+            $this->controller->beginWidget('bootstrap.widgets.TbCollapse', array(
+                'htmlOptions'=>array('class'=>$this->getCollapseCssClass()),
+            ));
+        }
 
 		foreach ($this->items as $item)
 		{
@@ -149,7 +154,7 @@ class TbNavbar extends CWidget
 		}
 
 		if ($this->collapse)
-			echo '</div>';
+            $this->controller->endWidget();
 
 		echo '</div></div></div>';
 	}
@@ -160,7 +165,7 @@ class TbNavbar extends CWidget
      */
     protected function getCollapseTarget()
     {
-        return !isset($this->type) ? 'nav-collapse' : 'subnav-collapse';
+        return isset($this->subnav) && $this->subnav === true ? 'subnav-collapse' : 'nav-collapse';
     }
 
     /**
@@ -169,6 +174,6 @@ class TbNavbar extends CWidget
      */
     protected function getCollapseCssClass()
     {
-        return !isset($this->type) ? 'nav-collapse' : 'nav-collapse subnav-collapse';
+        return isset($this->subnav) && $this->subnav === true ? 'nav-collapse subnav-collapse' : 'nav-collapse';
     }
 }

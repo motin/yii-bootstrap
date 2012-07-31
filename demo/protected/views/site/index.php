@@ -662,10 +662,10 @@ Yii::app()->clientScript->registerScript('ConsolePolyfill', "
     <h3>Sub navigation</h3>
 
     <?php $this->widget('bootstrap.widgets.TbNavbar', array(
-    'type'=>'subnav',
     'fixed'=>false,
     'brand'=>false,
     'collapse'=>true, // requires bootstrap-responsive.css
+    'subnav'=>true,
     'items'=>array(
         array(
             'class'=>'bootstrap.widgets.TbMenu',
@@ -706,10 +706,10 @@ Yii::app()->clientScript->registerScript('ConsolePolyfill', "
     <h4>Source code</h4>
 
     <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbNavbar', array(
-	'type'=>'subnav',
     'fixed'=>false,
     'brand'=>false,
     'collapse'=>true, // requires bootstrap-responsive.css
+    'subnav'=>true,
     'items'=>array(
         array(
             'class'=>'bootstrap.widgets.TbMenu',
@@ -1044,7 +1044,7 @@ Yii::app()->clientScript->registerScript('ConsolePolyfill', "
         'type'=>'horizontal',
     )); ?>
 
-    <?php $this->widget('bootstrap.widgets.TbTabbable', array(
+    <?php $this->widget('bootstrap.widgets.TbTabs', array(
         'tabs'=>$this->getTabularFormTabs($form, $model),
     )); ?>
 
@@ -1063,7 +1063,7 @@ Yii::app()->clientScript->registerScript('ConsolePolyfill', "
     'type'=>'horizontal',
 )); ?>
 
-<?php \$this->widget('bootstrap.widgets.TbTabbable', array(
+<?php \$this->widget('bootstrap.widgets.TbTabs', array(
     'tabs'=>\$this->getTabularFormTabs(\$form, \$model),
 )); ?>
 
@@ -1447,23 +1447,23 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
-<section id="tbTabbable">
+<section id="tbTabs">
 
-    <h2>Tabbable <small>bootstrap.widgets.TbTabbable</small></h2>
+    <h2>Togglable tabs <small>bootstrap.widgets.TbTabs</small></h2>
 
-    <?php $this->widget('bootstrap.widgets.TbTabbable', array(
+    <?php $this->widget('bootstrap.widgets.TbTabs', array(
     'type'=>'tabs', // 'tabs' or 'pills'
-    'htmlOptions'=>array('class'=>'tabbable'),
+    'htmlOptions'=>array('class'=>'togglable-tabs'),
     'tabs'=>$tabs,
     'events'=>array(
-        'show'=>"js:function() { console.log('Tabbable show.'); }",
-        'shown'=>"js:function() { console.log('Tabbable shown.'); }",
+        'show'=>"js:function() { console.log('Tabs show.'); }",
+        'shown'=>"js:function() { console.log('Tabs shown.'); }",
     ),
 )); ?>
 
     <h4>Source code</h4>
 
-    <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbTabbable', array(
+    <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbTabs', array(
 	'type'=>'tabs', // 'tabs' or 'pills'
 	'tabs'=>array(
 		array('label'=>'Home', 'content'=>'Raw denim you probably haven\'t heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.', 'active'=>true),
@@ -1475,29 +1475,24 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 	),
 )); ?>"); ?>
 
-    <div class="alert alert-block alert-warning">
-        <strong>Note!</strong>
-        Because of a bug in the current version of Bootstrap tab-content fall below the tabs even when it shouldn't. This can be fixed by setting tab-content width to auto.
-    </div>
-
     <div class="row">
 
         <div class="span6">
 
             <h3>Tabs on the top</h3>
 
-            <?php $this->widget('bootstrap.widgets.TbTabbable', array(
-            'htmlOptions'=>array('class'=>'tabbable tabbable-placed'),
-            'tabs'=>$tabbable,
-        )); ?>
+            <?php $this->widget('bootstrap.widgets.TbTabs', array(
+                'htmlOptions'=>array('class'=>'togglable-tabs'),
+                'tabs'=>$tabbable,
+            )); ?>
 
             <h3>Tabs on the left</h3>
 
-            <?php $this->widget('bootstrap.widgets.TbTabbable', array(
-            'placement'=>'left',
-            'htmlOptions'=>array('class'=>'tabbable tabbable-placed'),
-            'tabs'=>$tabbable,
-        )); ?>
+            <?php $this->widget('bootstrap.widgets.TbTabs', array(
+                'placement'=>'left',
+                'htmlOptions'=>array('class'=>'togglable-tabs'),
+                'tabs'=>$tabbable,
+            )); ?>
 
         </div>
 
@@ -1505,25 +1500,25 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
             <h3>Tabs on the bottom</h3>
 
-            <?php $this->widget('bootstrap.widgets.TbTabbable', array(
-            'placement'=>'below',
-            'htmlOptions'=>array('class'=>'tabbable tabbable-placed'),
-            'tabs'=>$tabbable,
-        )); ?>
+            <?php $this->widget('bootstrap.widgets.TbTabs', array(
+                'placement'=>'below',
+                'htmlOptions'=>array('class'=>'togglable-tabs'),
+                'tabs'=>$tabbable,
+            )); ?>
 
             <h3>Tabs on the right</h3>
 
-            <?php $this->widget('bootstrap.widgets.TbTabbable', array(
-            'placement'=>'right',
-            'htmlOptions'=>array('class'=>'tabbable tabbable-placed'),
-            'tabs'=>$tabbable,
-        )); ?>
+            <?php $this->widget('bootstrap.widgets.TbTabs', array(
+                'placement'=>'right',
+                'htmlOptions'=>array('class'=>'togglable-tabs'),
+                'tabs'=>$tabbable,
+            )); ?>
 
         </div>
 
     </div>
 
-    <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbTabbable', array(
+    <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbTabs', array(
 	'type'=>'tabs',
 	'placement'=>'below', // 'above', 'right', 'below' or 'left'
 	'tabs'=>array(
@@ -1618,19 +1613,17 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 </section>
 
 <?php $this->widget('bootstrap.widgets.TbNavbar', array(
-    'type'=>'subnav',
-    'brand'=>false,
     'fixed'=>'top',
+    'brand'=>false,
     'collapse'=>true,
+    'subnav'=>true,
     'items'=>array(
         array(
             'class'=>'bootstrap.widgets.TbMenu',
-            'scrollspy'=>array('spy'=>'.navbar-subnav', 'offset'=>0),
+            'scrollspy'=>'.navbar-subnav',
             'items'=>array(
-                array('label'=>'Buttons', 'items'=>array(
-                    array('label'=>'Basic buttons', 'url'=>'#tbButton'),
-                    array('label'=>'Buttons groups', 'url'=>'#tbButtonGroup'),
-                )),
+                array('label'=>'Buttons', 'url'=>'#tbButton'),
+                array('label'=>'Buttons groups', 'url'=>'#tbButtonGroup'),
                 array('label'=>'Navigation', 'items'=>array(
                     array('label'=>'Breadcrumb', 'url'=>'#tbBreadcrumbs'),
                     array('label'=>'Menu', 'url'=>'#tbMenu'),
@@ -1651,7 +1644,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
                     array('label'=>'Carousel', 'url'=>'#tbCarousel'),
                     array('label'=>'Modal', 'url'=>'#tbModal'),
                     array('label'=>'Popover', 'url'=>'#tbPopover'),
-                    array('label'=>'Tabbable', 'url'=>'#tbTabbable'),
+                    array('label'=>'Tabs', 'url'=>'#tbTabs'),
                     array('label'=>'Tooltip', 'url'=>'#tbTooltip'),
                     array('label'=>'Typeahead', 'url'=>'#tbTypeahead'),
                 )),

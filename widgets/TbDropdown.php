@@ -9,6 +9,10 @@
 
 Yii::import('bootstrap.widgets.TbBaseMenu');
 
+/**
+ * Bootstrap dropdown menu.
+ * @see http://twitter.github.com/bootstrap/javascript.html#dropdowns
+ */
 class TbDropdown extends TbBaseMenu
 {
     /**
@@ -25,7 +29,7 @@ class TbDropdown extends TbBaseMenu
     }
 
     /**
-     * Returns the divider css class.
+     * Returns the divider CSS class.
      * @return string the class name
      */
     public function getDividerCssClass()

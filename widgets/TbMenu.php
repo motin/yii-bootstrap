@@ -9,6 +9,10 @@
 
 Yii::import('bootstrap.widgets.TbBaseMenu');
 
+/**
+ * Bootstrap menu.
+ * @see http://twitter.github.com/bootstrap/components.html#navs
+ */
 class TbMenu extends TbBaseMenu
 {
     // Menu types.
@@ -18,7 +22,7 @@ class TbMenu extends TbBaseMenu
 
     /**
      * @var string the menu type.
-     * Valid values are 'tabs' and 'pills'. Defaults to ''.
+     * Valid values are 'tabs' and 'pills'.
      */
     public $type;
     /**
@@ -26,7 +30,7 @@ class TbMenu extends TbBaseMenu
      */
     public $stacked = false;
     /**
-     * @var array the scroll-spy configuration.
+     * @var string|array the scrollspy configuration.
      */
     public $scrollspy;
 	/**
@@ -54,6 +58,12 @@ class TbMenu extends TbBaseMenu
     	if ($this->dropup === true)
 			$classes[] = 'dropup';
 
+        if (isset($this->scrollspy))
+        {
+            $scrollspy = is_string($this->scrollspy) ? array('target'=>$this->scrollspy) : $this->scrollspy;
+            $this->widget('bootstrap.widgets.TbScrollSpy', $scrollspy);
+        }
+
         if (!empty($classes))
         {
             $classes = implode(' ', $classes);
@@ -61,17 +71,6 @@ class TbMenu extends TbBaseMenu
                 $this->htmlOptions['class'] .= ' '.$classes;
             else
                 $this->htmlOptions['class'] = $classes;
-        }
-
-        if (isset($this->scrollspy) && is_array($this->scrollspy) && isset($this->scrollspy['spy']))
-        {
-            if (!isset($this->scrollspy['subject']))
-                $this->scrollspy['subject'] = 'body';
-
-            if (!isset($this->scrollspy['offset']))
-                $this->scrollspy['offset'] = null;
-
-            Yii::app()->bootstrap->spyOn($this->scrollspy['subject'], $this->scrollspy['spy'], $this->scrollspy['offset']);
         }
     }
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * BootGridView class file.
+ * TbGridView class file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -11,8 +11,7 @@ Yii::import('zii.widgets.grid.CGridView');
 Yii::import('bootstrap.widgets.TbDataColumn');
 
 /**
- * Bootstrap grid view widget.
- * Used for setting default HTML classes, disabling the default CSS and enable the bootstrap pager.
+ * Bootstrap Zii grid view.
  */
 class TbGridView extends CGridView
 {
@@ -27,8 +26,7 @@ class TbGridView extends CGridView
 	 */
 	public $type;
 	/**
-	 * @var string the CSS class name for the pager container.
-	 * Defaults to 'pagination'.
+	 * @var string the CSS class name for the pager container. Defaults to 'pagination'.
 	 */
 	public $pagerCssClass = 'pagination';
 	/**
@@ -118,6 +116,7 @@ class TbGridView extends CGridView
 
 		$column = new TbDataColumn($this);
 		$column->name = $matches[1];
+
 		if (isset($matches[3]) && $matches[3] !== '')
 			$column->type = $matches[3];
 

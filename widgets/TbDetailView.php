@@ -1,6 +1,6 @@
 <?php
 /**
- * BootDetailView class file.
+ * TbDetailView class file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -10,8 +10,7 @@
 Yii::import('zii.widgets.CDetailView');
 
 /**
- * Bootstrap detail view widget.
- * Used for setting default HTML classes and disabling the default CSS.
+ * Bootstrap Zii detail view.
  */
 class TbDetailView extends CDetailView
 {

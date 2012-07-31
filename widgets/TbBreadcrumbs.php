@@ -1,6 +1,6 @@
 <?php
 /**
- * BootCrumb class file.
+ * TbCrumb class file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -11,11 +11,12 @@ Yii::import('zii.widgets.CBreadcrumbs');
 
 /**
  * Bootstrap breadcrumb widget.
+ * @see http://twitter.github.com/bootstrap/components.html#breadcrumbs
  */
 class TbBreadcrumbs extends CBreadcrumbs
 {
 	/**
-	 * @var string the separator between links in the breadcrumbs (defaults to ' / ').
+	 * @var string the separator between links in the breadcrumbs. Defaults to '/'.
 	 */
 	public $separator = '/';
 
@@ -24,11 +25,10 @@ class TbBreadcrumbs extends CBreadcrumbs
 	 */
 	public function init()
 	{
-		$classes = 'breadcrumb';
 		if (isset($this->htmlOptions['class']))
-			$this->htmlOptions['class'] .= ' '.$classes;
+			$this->htmlOptions['class'] .= ' breadcrumb';
 		else
-			$this->htmlOptions['class'] = $classes;
+			$this->htmlOptions['class'] = 'breadcrumb';
 	}
 
 	/**
@@ -37,6 +37,7 @@ class TbBreadcrumbs extends CBreadcrumbs
 	 */
 	public function run()
 	{
+        // Hide empty breadcrumbs.
 		if (empty($this->links))
 			return;
 
@@ -61,9 +62,7 @@ class TbBreadcrumbs extends CBreadcrumbs
 				$links[] = $this->renderItem($this->encodeLabel ? CHtml::encode($url) : $url, true);
 		}
 
-		echo CHtml::openTag('ul', $this->htmlOptions);
-		echo implode('', $links);
-		echo '</ul>';
+		echo CHtml::tag('ul', $this->htmlOptions, implode('', $links));
 	}
 
 	/**

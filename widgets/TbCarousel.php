@@ -1,6 +1,6 @@
 <?php
 /**
- * BootCarousel class file.
+ * TbCarousel class file.
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -10,23 +10,24 @@
 
 /**
  * Bootstrap carousel widget.
+ * @see http://twitter.github.com/bootstrap/javascript.html#carousel
  */
 class TbCarousel extends CWidget
 {
 	/**
-	 * @var string the previous button content.
+	 * @var string the previous button label. Defaults to '&lsaquo;'.
 	 */
-	public $prev = '&lsaquo;';
+	public $prevLabel = '&lsaquo;';
 	/**
-	 * @var string the next button content.
+	 * @var string the next button label. Defaults to '&rsaquo;'.
 	 */
-	public $next = '&rsaquo;';
+	public $nextLabel = '&rsaquo;';
     /**
-     * @var boolean whether the carousel should slide items.
+     * @var boolean indicates whether the carousel should slide items.
      */
     public $slide = true;
 	/**
-	 * @var boolean whether to display the previous and next links.
+	 * @var boolean indicates whether to display the previous and next links.
 	 */
 	public $displayPrevAndNext = true;
 	/**
@@ -34,11 +35,11 @@ class TbCarousel extends CWidget
 	 */
 	public $items = array();
 	/**
-	 * @var array the options for the Bootstrap JavaScript plugin.
+	 * @var array the options for the Bootstrap Javascript plugin.
 	 */
 	public $options = array();
 	/**
-	 * @var string[] the JavaScript event handlers.
+	 * @var string[] the Javascript event handlers.
 	 */
 	public $events = array();
 	/**
@@ -83,8 +84,8 @@ class TbCarousel extends CWidget
 		if ($this->displayPrevAndNext)
 		{
 			echo '</div>';
-			echo '<a class="carousel-control left" href="#'.$id.'" data-slide="prev">'.$this->prev.'</a>';
-			echo '<a class="carousel-control right" href="#'.$id.'" data-slide="next">'.$this->next.'</a>';
+			echo '<a class="carousel-control left" href="#'.$id.'" data-slide="prev">'.$this->prevLabel.'</a>';
+			echo '<a class="carousel-control right" href="#'.$id.'" data-slide="next">'.$this->nextLabel.'</a>';
 			echo '</div>';
 		}
 
@@ -96,7 +97,7 @@ class TbCarousel extends CWidget
 		foreach ($this->events as $name => $handler)
 		{
 			$handler = CJavaScript::encode($handler);
-			$cs->registerScript(__CLASS__.'#'.$id.'_'.$name, "jQuery('#{$id}').on('".$name."', {$handler});");
+			$cs->registerScript(__CLASS__.'#'.$id.'_'.$name, "jQuery('#{$id}').on('{$name}', {$handler});");
 		}
 	}
 
@@ -111,6 +112,9 @@ class TbCarousel extends CWidget
 			if (!is_array($item))
 				continue;
 
+            if (isset($item['visible']) && $item['visible'] === false)
+                continue;
+
 			if (!isset($item['itemOptions']))
 				$item['itemOptions'] = array();
 
@@ -119,11 +123,14 @@ class TbCarousel extends CWidget
 			if ($i === 0)
 				$classes[] = 'active';
 
-			$classes = implode(' ', $classes);
-			if (isset($item['itemOptions']['class']))
-				$item['itemOptions']['class'] .= ' '.$classes;
-			else
-				$item['itemOptions']['class'] = $classes;
+            if (!empty($classes))
+            {
+                $classes = implode(' ', $classes);
+                if (isset($item['itemOptions']['class']))
+                    $item['itemOptions']['class'] .= ' '.$classes;
+                else
+                    $item['itemOptions']['class'] = $classes;
+            }
 
 			echo CHtml::openTag('div', $item['itemOptions']);
 
@@ -143,11 +150,10 @@ class TbCarousel extends CWidget
 				if (!isset($item['captionOptions']))
 					$item['captionOptions'] = array();
 
-				$classes = 'carousel-caption';
 				if (isset($item['captionOptions']['class']))
-					$item['captionOptions']['class'] .= ' '.$classes;
+					$item['captionOptions']['class'] .= ' carousel-caption';
 				else
-					$item['captionOptions']['class'] = $classes;
+					$item['captionOptions']['class'] = 'carousel-caption';
 
 				echo CHtml::openTag('div', $item['captionOptions']);
 
