@@ -227,7 +227,6 @@ body {
   padding-top:100px;
   padding-bottom:60px;
 }
-h1, h2, h3, h4, h5, h6 { margin-bottom:0.6em; }
 p {
   font-size:14px;
   margin-bottom:1.6em;
@@ -240,7 +239,7 @@ p {
   margin:6px 0 6px 10px;
   padding:6px 0;
 }
-.navbar-subnav-fixed .nav { max-width:1170px !important; }
+.subnav.navbar-fixed-top { top:40px; }
 footer .powered {
   color:#888888;
   margin-bottom:20px;
@@ -253,20 +252,18 @@ section a.top {
   display:block;
   text-align:right;
 }
-#bootNavbar .navbar-inner > .container { width:auto; }
-#bootMenu .menuCol { min-height:140px; }
-#bootTabbable .tabbable { margin-bottom:20px; }
-#bootTabbable .tabbable .tab-content { width:auto; }
-#bootTabbable .tabbable.tabbable-placed { width:340px; }
-#bootThumbnails .list-view { padding-top:30px; }
-#bootActiveForm .form-vertical .control-group > label { font-weight:bold; }
-#bootHero .hero-unit { width:650px; }
-#bootHero .hero-unit h1 { margin-bottom:0; }
-#bootHero .hero-unit p { margin-bottom:9px; }
-#bootHero .hero-unit p:last-child { margin-bottom:0; }
-#bootCarousel .carousel { width:770px; }
-#bootCarousel .carousel .carousel-caption p { margin-bottom:9px; }
-#bootTypeahead input { margin-bottom:0; }
+#tbNavbar .navbar-inner > .container { width:auto; }
+#tbMenu .menuCol { min-height:140px; }
+#tbTabs .togglable-tabs { margin-bottom:20px; }
+#tbThumbnails .list-view { padding-top:30px; }
+#tbActiveForm .form-vertical .control-group > label { font-weight:bold; }
+#tbHero .hero-unit { width:650px; }
+#tbHero .hero-unit h1 { margin-bottom:0; }
+#tbHero .hero-unit p { margin-bottom:9px; }
+#tbHero .hero-unit p:last-child { margin-bottom:0; }
+#tbCarousel .carousel { width:770px; }
+#tbCarousel .carousel .carousel-caption p { margin-bottom:9px; }
+#tbTypeahead input { margin-bottom:0; }
 .php-hl-main, .html-hl-main, .javascript-hl-main { margin-bottom:20px; }
 .php-hl-main pre, .html-hl-main pre, .javascript-hl-main pre {
   background:#fcfcfc;

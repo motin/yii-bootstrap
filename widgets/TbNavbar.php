@@ -13,10 +13,18 @@
  */
 class TbNavbar extends CWidget
 {
+	// Navbar types.
+	const TYPE_INVERSE = 'inverse';
+
 	// Navbar fix locations.
 	const FIXED_TOP = 'top';
 	const FIXED_BOTTOM = 'bottom';
 
+	/**
+	 * @var string the navbar type. Valid values are 'inverse'.
+	 * @since 1.0.0
+	 */
+	public $type;
 	/**
 	 * @var string the text for the brand.
 	 */
@@ -50,11 +58,6 @@ class TbNavbar extends CWidget
 	 * @var boolean whether to enable collapsing on narrow screens. Default to false.
 	 */
 	public $collapse = false;
-    /**
-     * @var string indicates whether this is a sub navigation.
-     * @since 1.0.0
-     */
-    public $subnav = false;
 	/**
 	 * @var array the HTML attributes for the widget container.
 	 */
@@ -83,19 +86,11 @@ class TbNavbar extends CWidget
 
 		$classes = array('navbar');
 
-        if (isset($this->subnav) && $this->subnav === true)
-            $classes[] = 'navbar-subnav';
+		if (isset($this->type) && in_array($this->type, array(self::TYPE_INVERSE)))
+			$classes[] = 'navbar-'.$this->type;
 
-		if ($this->fixed !== false)
-		{
-			if (in_array($this->fixed, array(self::FIXED_TOP, self::FIXED_BOTTOM)))
-            {
-				$classes[] = 'navbar-fixed-'.$this->fixed;
-
-                if (isset($this->subnav) && $this->subnav === true)
-                    $classes[] = 'navbar-subnav-fixed';
-            }
-		}
+		if ($this->fixed !== false && in_array($this->fixed, array(self::FIXED_TOP, self::FIXED_BOTTOM)))
+			$classes[] = 'navbar-fixed-'.$this->fixed;
 
         if (!empty($classes))
         {
@@ -119,7 +114,7 @@ class TbNavbar extends CWidget
 
         if ($this->collapse)
         {
-            echo '<a class="btn btn-navbar" data-toggle="collapse" data-target=".'.$this->getCollapseTarget().'">';
+            echo '<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">';
 			echo '<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>';
 			echo '</a>';
 		}
@@ -130,7 +125,8 @@ class TbNavbar extends CWidget
 		if ($this->collapse)
         {
             $this->controller->beginWidget('bootstrap.widgets.TbCollapse', array(
-                'htmlOptions'=>array('class'=>$this->getCollapseCssClass()),
+				'toggle'=>false, // navbars should be collapsed by default
+                'htmlOptions'=>array('class'=>'nav-collapse'),
             ));
         }
 
@@ -155,22 +151,4 @@ class TbNavbar extends CWidget
 
 		echo '</div></div></div>';
 	}
-
-    /**
-     * Returns the CSS class of the collapse target element.
-     * @return string the class name
-     */
-    protected function getCollapseTarget()
-    {
-        return isset($this->subnav) && $this->subnav === true ? 'subnav-collapse' : 'nav-collapse';
-    }
-
-    /**
-     * Returns the collapse CSS class name.
-     * @return string the class name
-     */
-    protected function getCollapseCssClass()
-    {
-        return isset($this->subnav) && $this->subnav === true ? 'nav-collapse subnav-collapse' : 'nav-collapse';
-    }
 }

@@ -8,13 +8,20 @@ $this->addMetaProperty('og:site_name', Yii::app()->name);
 $this->addMetaProperty('og:locale',Yii::app()->fb->locale);
 $this->addMetaProperty('fb:app_id', Yii::app()->fb->appID);
 
-Yii::app()->clientScript->registerScript('ConsolePolyfill', "
+Yii::app()->clientScript->registerScript('siteIndex', "
+	// Console \"polyfill\"
 	if (!console) {
 		console = {};
 		console.log = function() {};
 	}
+
+	// Prevent jumping to the top of the page when demo links are clicked.
+	jQuery('.site-index a').on('click', function(e) {
+		return false;
+	});
 ");
 ?>
+<div class="site-index">
 
 <section id="tbButton">
 
@@ -78,8 +85,8 @@ Yii::app()->clientScript->registerScript('ConsolePolyfill', "
 
     <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbButton', array(
 	'label'=>'Primary',
-	'type'=>'primary', // '', 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
-	'size'=>'large', // '', 'large', 'small' or 'mini'
+	'type'=>'primary', // null, 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
+	'size'=>'large', // null, 'large', 'small' or 'mini'
 )); ?>"); ?>
 
     <h3>Dropdowns</h3>
@@ -574,52 +581,96 @@ Yii::app()->clientScript->registerScript('ConsolePolyfill', "
     <h2>Navbar <small>bootstrap.widgets.TbNavbar</small></h2>
 
     <?php $this->widget('bootstrap.widgets.TbNavbar', array(
-    'fixed'=>false,
-    'brand'=>'Project name',
-    'brandUrl'=>'#',
-    'collapse'=>true, // requires bootstrap-responsive.css
-    'items'=>array(
-        array(
-            'class'=>'bootstrap.widgets.TbMenu',
-            'items'=>array(
-                array('label'=>'Home', 'url'=>'#', 'active'=>true),
-                array('label'=>'Link', 'url'=>'#'),
-                array('label'=>'Link', 'url'=>'#'),
-                array('label'=>'Link', 'url'=>'#'),
-                array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
-                    array('label'=>'Action', 'url'=>'#'),
-                    array('label'=>'Another action', 'url'=>'#'),
-                    array('label'=>'Something else here', 'url'=>'#'),
-                    '---',
-                    array('label'=>'NAV HEADER'),
-                    array('label'=>'Separated link', 'url'=>'#'),
-                    array('label'=>'One more separated link', 'url'=>'#'),
-                )),
-            ),
-        ),
-        '<form class="navbar-search pull-left" action=""><input type="text" class="search-query span2" placeholder="Search"></form>',
-        array(
-            'class'=>'bootstrap.widgets.TbMenu',
-            'htmlOptions'=>array('class'=>'pull-right'),
-            'items'=>array(
-                array('label'=>'Link', 'url'=>'#'),
-                '---',
-                array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
-                    array('label'=>'Action', 'url'=>'#'),
-                    array('label'=>'Another action', 'url'=>'#'),
-                    array('label'=>'Something else here', 'url'=>'#'),
-                    '---',
-                    array('label'=>'Separated link', 'url'=>'#'),
-                )),
-            ),
-        ),
-    ),
-)); ?>
+		'fixed'=>false,
+		'brand'=>'Default',
+		'brandUrl'=>'#',
+		'collapse'=>true, // requires bootstrap-responsive.css
+		'items'=>array(
+			array(
+				'class'=>'bootstrap.widgets.TbMenu',
+				'items'=>array(
+					array('label'=>'Home', 'url'=>'#', 'active'=>true),
+					array('label'=>'Link', 'url'=>'#'),
+					array('label'=>'Link', 'url'=>'#'),
+					array('label'=>'Link', 'url'=>'#'),
+					array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
+						array('label'=>'Action', 'url'=>'#'),
+						array('label'=>'Another action', 'url'=>'#'),
+						array('label'=>'Something else here', 'url'=>'#'),
+						'---',
+						array('label'=>'NAV HEADER'),
+						array('label'=>'Separated link', 'url'=>'#'),
+						array('label'=>'One more separated link', 'url'=>'#'),
+					)),
+				),
+			),
+			'<form class="navbar-search pull-left" action=""><input type="text" class="search-query span2" placeholder="Search"></form>',
+			array(
+				'class'=>'bootstrap.widgets.TbMenu',
+				'htmlOptions'=>array('class'=>'pull-right'),
+				'items'=>array(
+					array('label'=>'Link', 'url'=>'#'),
+					'---',
+					array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
+						array('label'=>'Action', 'url'=>'#'),
+						array('label'=>'Another action', 'url'=>'#'),
+						array('label'=>'Something else here', 'url'=>'#'),
+						'---',
+						array('label'=>'Separated link', 'url'=>'#'),
+					)),
+				),
+			),
+		),
+	)); ?>
+
+	<?php $this->widget('bootstrap.widgets.TbNavbar', array(
+		'type'=>'inverse', // null or 'inverse'
+		'fixed'=>false,
+		'brand'=>'Inverse',
+		'brandUrl'=>'#',
+		'collapse'=>true, // requires bootstrap-responsive.css
+		'items'=>array(
+			array(
+				'class'=>'bootstrap.widgets.TbMenu',
+				'items'=>array(
+					array('label'=>'Home', 'url'=>'#', 'active'=>true),
+					array('label'=>'Link', 'url'=>'#'),
+					array('label'=>'Link', 'url'=>'#'),
+					array('label'=>'Link', 'url'=>'#'),
+					array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
+						array('label'=>'Action', 'url'=>'#'),
+						array('label'=>'Another action', 'url'=>'#'),
+						array('label'=>'Something else here', 'url'=>'#'),
+						'---',
+						array('label'=>'NAV HEADER'),
+						array('label'=>'Separated link', 'url'=>'#'),
+						array('label'=>'One more separated link', 'url'=>'#'),
+					)),
+				),
+			),
+			'<form class="navbar-search pull-left" action=""><input type="text" class="search-query span2" placeholder="Search"></form>',
+			array(
+				'class'=>'bootstrap.widgets.TbMenu',
+				'htmlOptions'=>array('class'=>'pull-right'),
+				'items'=>array(
+					array('label'=>'Link', 'url'=>'#'),
+					'---',
+					array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
+						array('label'=>'Action', 'url'=>'#'),
+						array('label'=>'Another action', 'url'=>'#'),
+						array('label'=>'Something else here', 'url'=>'#'),
+						'---',
+						array('label'=>'Separated link', 'url'=>'#'),
+					)),
+				),
+			),
+		),
+	)); ?>
 
     <h4>Source code</h4>
 
     <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbNavbar', array(
-	'fixed'=>false,
+	'type'=>'inverse', // null or 'inverse'
 	'brand'=>'Project name',
 	'brandUrl'=>'#',
 	'collapse'=>true, // requires bootstrap-responsive.css
@@ -657,94 +708,6 @@ Yii::app()->clientScript->registerScript('ConsolePolyfill', "
 			),
 		),
 	),
-)); ?>"); ?>
-
-    <h3>Sub navigation</h3>
-
-    <?php $this->widget('bootstrap.widgets.TbNavbar', array(
-    'fixed'=>false,
-    'brand'=>false,
-    'collapse'=>true, // requires bootstrap-responsive.css
-    'subnav'=>true,
-    'items'=>array(
-        array(
-            'class'=>'bootstrap.widgets.TbMenu',
-            'items'=>array(
-                array('label'=>'Home', 'url'=>'#', 'active'=>true),
-                array('label'=>'Link', 'url'=>'#'),
-                array('label'=>'Link', 'url'=>'#'),
-                array('label'=>'Link', 'url'=>'#'),
-                array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
-                    array('label'=>'Action', 'url'=>'#'),
-                    array('label'=>'Another action', 'url'=>'#'),
-                    array('label'=>'Something else here', 'url'=>'#'),
-                    '---',
-                    array('label'=>'NAV HEADER'),
-                    array('label'=>'Separated link', 'url'=>'#'),
-                    array('label'=>'One more separated link', 'url'=>'#'),
-                )),
-            ),
-        ),
-        array(
-            'class'=>'bootstrap.widgets.TbMenu',
-            'htmlOptions'=>array('class'=>'pull-right'),
-            'items'=>array(
-                array('label'=>'Link', 'url'=>'#'),
-                '---',
-                array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
-                    array('label'=>'Action', 'url'=>'#'),
-                    array('label'=>'Another action', 'url'=>'#'),
-                    array('label'=>'Something else here', 'url'=>'#'),
-                    '---',
-                    array('label'=>'Separated link', 'url'=>'#'),
-                )),
-            ),
-        ),
-    ),
-)); ?>
-
-    <h4>Source code</h4>
-
-    <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbNavbar', array(
-    'fixed'=>false,
-    'brand'=>false,
-    'collapse'=>true, // requires bootstrap-responsive.css
-    'subnav'=>true,
-    'items'=>array(
-        array(
-            'class'=>'bootstrap.widgets.TbMenu',
-            'items'=>array(
-                array('label'=>'Home', 'url'=>'#', 'active'=>true),
-                array('label'=>'Link', 'url'=>'#'),
-                array('label'=>'Link', 'url'=>'#'),
-                array('label'=>'Link', 'url'=>'#'),
-                array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
-                    array('label'=>'Action', 'url'=>'#'),
-                    array('label'=>'Another action', 'url'=>'#'),
-                    array('label'=>'Something else here', 'url'=>'#'),
-                    '---',
-                    array('label'=>'NAV HEADER'),
-                    array('label'=>'Separated link', 'url'=>'#'),
-                    array('label'=>'One more separated link', 'url'=>'#'),
-                )),
-            ),
-        ),
-        array(
-			'class'=>'bootstrap.widgets.TbMenu',
-			'htmlOptions'=>array('class'=>'pull-right'),
-			'items'=>array(
-				array('label'=>'Link', 'url'=>'#'),
-				'---',
-				array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
-					array('label'=>'Action', 'url'=>'#'),
-					array('label'=>'Another action', 'url'=>'#'),
-					array('label'=>'Something else here', 'url'=>'#'),
-					'---',
-					array('label'=>'Separated link', 'url'=>'#'),
-				)),
-			),
-		),
-    ),
 )); ?>"); ?>
 
     <a class="top" href="#top">Back to top &uarr;</a>
@@ -1616,43 +1579,45 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
 
 </section>
 
+</div>
+
 <?php $this->widget('bootstrap.widgets.TbNavbar', array(
-    'fixed'=>'top',
-    'brand'=>false,
-    'collapse'=>true,
-    'subnav'=>true,
-    'items'=>array(
-        array(
-            'class'=>'bootstrap.widgets.TbMenu',
-            'scrollspy'=>'.navbar-subnav',
-            'items'=>array(
-                array('label'=>'Buttons', 'url'=>'#tbButton'),
-                array('label'=>'Buttons groups', 'url'=>'#tbButtonGroup'),
-                array('label'=>'Navigation', 'items'=>array(
-                    array('label'=>'Breadcrumb', 'url'=>'#tbBreadcrumbs'),
-                    array('label'=>'Menu', 'url'=>'#tbMenu'),
-                    array('label'=>'Navbar', 'url'=>'#tbNavbar'),
-                )),
-                array('label'=>'Tables', 'items'=>array(
-                    array('label'=>'Detail view', 'url'=>'#tbDetailView'),
-                    array('label'=>'Grid view', 'url'=>'#tbGridView'),
-                )),
-                array('label'=>'Forms', 'url'=>'#tbActiveForm'),
-                array('label'=>'Hero unit', 'url'=>'#tbHero'),
-                array('label'=>'Thumbnails', 'url'=>'#tbThumbnails'),
-                array('label'=>'Alert', 'url'=>'#tbAlert'),
-                array('label'=>'Progress', 'url'=>'#tbProgress'),
-                array('label'=>'Labels', 'url'=>'#tbLabel'),
-                array('label'=>'Badges', 'url'=>'#tbBadge'),
-                array('label'=>'Javascript plugins', 'items'=>array(
-                    array('label'=>'Carousel', 'url'=>'#tbCarousel'),
-                    array('label'=>'Modal', 'url'=>'#tbModal'),
-                    array('label'=>'Popover', 'url'=>'#tbPopover'),
-                    array('label'=>'Tabs', 'url'=>'#tbTabs'),
-                    array('label'=>'Tooltip', 'url'=>'#tbTooltip'),
-                    array('label'=>'Typeahead', 'url'=>'#tbTypeahead'),
-                )),
-            ),
-        ),
-    ),
+	'fixed'=>'top',
+	'brand'=>false,
+	'collapse'=>true,
+	'htmlOptions'=>array('class'=>'subnav'),
+	'items'=>array(
+		array(
+			'class'=>'bootstrap.widgets.TbMenu',
+			'scrollspy'=>'.navbar',
+			'items'=>array(
+				array('label'=>'Buttons', 'url'=>'#tbButton'),
+				array('label'=>'Buttons groups', 'url'=>'#tbButtonGroup'),
+				array('label'=>'Navigation', 'items'=>array(
+					array('label'=>'Breadcrumb', 'url'=>'#tbBreadcrumbs'),
+					array('label'=>'Menu', 'url'=>'#tbMenu'),
+					array('label'=>'Navbar', 'url'=>'#tbNavbar'),
+				)),
+				array('label'=>'Tables', 'items'=>array(
+					array('label'=>'Detail view', 'url'=>'#tbDetailView'),
+					array('label'=>'Grid view', 'url'=>'#tbGridView'),
+				)),
+				array('label'=>'Forms', 'url'=>'#tbActiveForm'),
+				array('label'=>'Hero unit', 'url'=>'#tbHero'),
+				array('label'=>'Thumbnails', 'url'=>'#tbThumbnails'),
+				array('label'=>'Alert', 'url'=>'#tbAlert'),
+				array('label'=>'Progress', 'url'=>'#tbProgress'),
+				array('label'=>'Labels', 'url'=>'#tbLabel'),
+				array('label'=>'Badges', 'url'=>'#tbBadge'),
+				array('label'=>'Javascript plugins', 'items'=>array(
+					array('label'=>'Carousel', 'url'=>'#tbCarousel'),
+					array('label'=>'Modal', 'url'=>'#tbModal'),
+					array('label'=>'Popover', 'url'=>'#tbPopover'),
+					array('label'=>'Tabs', 'url'=>'#tbTabs'),
+					array('label'=>'Tooltip', 'url'=>'#tbTooltip'),
+					array('label'=>'Typeahead', 'url'=>'#tbTypeahead'),
+				)),
+			),
+		),
+	),
 )); ?>

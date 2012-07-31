@@ -52,6 +52,7 @@ mixpanel.init("733930f08f73894be317b7fdbfd15229");</script><!-- end Mixpanel -->
 </script>
 
 <?php $this->widget('bootstrap.widgets.TbNavbar',array(
+	'type'=>'inverse',
 	'brand'=>CHtml::encode(Yii::app()->name),
 	'collapse'=>true,
 	'items'=>array(
