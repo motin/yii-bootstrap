@@ -9,23 +9,23 @@
 
 /**
  * Bootstrap application component.
- * Used for registering Bootstrap core functionality.
  */
 class Bootstrap extends CApplicationComponent
 {
 	// Bootstrap plugins.
 	const PLUGIN_ALERT = 'alert';
-	const PLUGIN_BUTTON = 'button';
-	const PLUGIN_CAROUSEL = 'carousel';
-	const PLUGIN_COLLAPSE = 'collapse';
-	const PLUGIN_DROPDOWN = 'dropdown';
-	const PLUGIN_MODAL = 'modal';
-	const PLUGIN_POPOVER = 'popover';
-	const PLUGIN_SCROLLSPY = 'scrollspy';
-	const PLUGIN_TAB = 'tab';
-	const PLUGIN_TOOLTIP = 'tooltip';
-	const PLUGIN_TRANSITION = 'transition';
-	const PLUGIN_TYPEAHEAD = 'typeahead';
+    const PLUGIN_BUTTON = 'button';
+    const PLUGIN_CAROUSEL = 'carousel';
+    const PLUGIN_COLLAPSE = 'collapse';
+    const PLUGIN_DROPDOWN = 'dropdown';
+    const PLUGIN_MODAL = 'modal';
+    const PLUGIN_POPOVER = 'popover';
+    const PLUGIN_SCROLLSPY = 'scrollspy';
+    const PLUGIN_TAB = 'tab';
+    const PLUGIN_TOOLTIP = 'tooltip';
+    const PLUGIN_TRANSITION = 'transition';
+    const PLUGIN_TYPEAHEAD = 'typeahead';
+    // todo: add the affix plugin in version 2.1.0
 
 	/**
 	 * @var boolean whether to register the Bootstrap core CSS (bootstrap.min.css).
@@ -80,16 +80,16 @@ class Bootstrap extends CApplicationComponent
 		if (Yii::app() instanceof CConsoleApplication)
 			return;
 
-		if ($this->coreCss)
-			$this->registerCss();
+		if ($this->coreCss !== false)
+			$this->registerCoreCss();
 
-		if ($this->responsiveCss)
+		if ($this->responsiveCss !== false)
 			$this->registerResponsiveCss();
 
-		if ($this->yiiCss)
+		if ($this->yiiCss !== false)
 			$this->registerYiiCss();
 
-		if ($this->enableJS)
+		if ($this->enableJS !== false)
 			$this->registerCoreScripts();
 
         parent::init();
@@ -98,7 +98,7 @@ class Bootstrap extends CApplicationComponent
 	/**
 	 * Registers the Bootstrap CSS.
 	 */
-	public function registerCss()
+	public function registerCoreCss()
 	{
 		Yii::app()->clientScript->registerCssFile($this->getAssetsUrl().'/css/bootstrap.css');
 	}
@@ -130,7 +130,7 @@ class Bootstrap extends CApplicationComponent
 	 */
 	public function registerCoreScripts()
 	{
-		$this->registerJS();
+		$this->registerJS(Yii::app()->clientScript->coreScriptPosition);
 		$this->registerTooltip();
 		$this->registerPopover();
 	}
@@ -145,7 +145,7 @@ class Bootstrap extends CApplicationComponent
 		/** @var CClientScript $cs */
 		$cs = Yii::app()->getClientScript();
 		$cs->registerCoreScript('jquery');
-		$cs->registerScriptFile($this->getAssetsUrl().'/js/bootstrap.min.js', $position);
+		$cs->registerScriptFile($this->getAssetsUrl().'/js/bootstrap.js', $position);
 	}
 
 	/**
@@ -331,7 +331,7 @@ class Bootstrap extends CApplicationComponent
 	}
 
     /**
-     * Returns the version number.
+     * Returns the extension version number.
      * @return string the version
      */
     public function getVersion()
