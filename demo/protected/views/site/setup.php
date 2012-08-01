@@ -35,7 +35,7 @@ $this->addMetaProperty('fb:app_id', Yii::app()->fb->appID);
     'gii'=>array(
         .....
         'generatorPaths'=>array(
-            'bootstrap.gii', // since 0.9.1
+            'bootstrap.gii',
         ),
     ),
 ),
@@ -70,43 +70,39 @@ $this->addMetaProperty('fb:app_id', Yii::app()->fb->appID);
 		If you haven't tried LESS yet now is the time, you won't be disappointed. LESS is a dynamic stylesheet language
 		that extends CSS with dynamic behavior such as variable, mixins, operations and functions. Bootstrap itself is
 		written in LESS and comes with a wide variety of useful mixins, operations and functions that you can use in your
-		own LESS.
+		own LESS files.
 	</p>
 
 	<p>
 		The easiest way to use LESS is to include <?php echo CHtml::link('the native JavaScript compiler', 'http://www.lesscss.org'); ?>.
 		Alternatively you can use my <?php echo CHtml::link('LESS extension', 'http://www.yiiframework.com/extension/less'); ?>
-		which uses <?php echo CHtml::link('Agar\'s PHP LESS compiler', 'https://github.com/agar/less.php'); ?>.
+		which uses <?php echo CHtml::link('Leafo\'s PHP LESS compiler', 'http://leafo.net/lessphp/'); ?>.
 		When you have set up the LESS compiler of your choice create a <strong>less</strong> folder under your webroot
 		and create a <strong>styles.less</strong> file with the following content:
 	</p>
 
 <?php echo $parser->safeTransform("~~~
 [css]
-/*
-	IMPORTS
-*/
+// Imports
+// -------
 
 // Import the Bootstrap mixins, operations and functions so that you can use them in this file.
 @import \"../protected/extensions/bootstrap/lib/bootstrap/less/mixins.less\";
 
-/*
-	VARIABLES
-*/
+// Variables
+// ---------
 
 // Your variables goes here ...
 
-/*
-	MIXINS
-*/
+// Mixins
+// ------
 
 // Your mixins goes here ...
 
-/*
-	RULES
-*/
+// Styles
+// ------
 
-// Your rules goes here ...
+// Your styles goes here ...
 ~~~"); ?>
 
 	<p>
@@ -154,7 +150,7 @@ Yii::app()->bootstrap->registerTypeahead('.typeahead', array(
 	<p>
 		That's it! The Typeahead is now bound to all elements with the class <strong>typehead</strong>.
 		There are similar methods for each plugin that can be used to register them from anywhere in your application.
-		All these methods take two arguments, the CSS selector and options for the jQuery plugin.
+		All these API methods take two arguments, the CSS selector and options for the jQuery plugin.
 	</p>
 
 </section>
@@ -173,11 +169,11 @@ Yii::app()->bootstrap->registerTypeahead('.typeahead', array(
     'fixed'=>'top',
     'brand'=>false,
     'collapse'=>true,
-    'subnav'=>true,
+	'htmlOptions'=>array('class'=>'subnav'),
     'items'=>array(
         array(
             'class'=>'bootstrap.widgets.TbMenu',
-            'scrollspy'=>'.navbar-subnav',
+            'scrollspy'=>'.navbar',
             'items'=>array(
                 array('label'=>'Setup', 'url'=>'#setup'),
                 array('label'=>'Configuration', 'url'=>'#config'),
