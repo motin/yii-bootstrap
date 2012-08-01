@@ -28,7 +28,7 @@ class TbDataColumn extends CDataColumn
 			if ($sort->resolveAttribute($this->name) !== false)
 				$label .= '<span class="caret"></span>';
 
-			echo $sort->link($this->name, $label);
+			echo $sort->link($this->name, $label, array('class'=>'sort-link'));
 		}
 		else
 		{
