@@ -86,12 +86,10 @@ class SiteController extends Controller
 		);
 
 		$rawData = array();
-		for ($i = 0; $i < 100; $i++)
+		for ($i = 0; $i < 8; $i++)
 			$rawData[] = array('id'=>$i + 1);
 
-		$listDataProvider = new CArrayDataProvider($rawData, array(
-			'pagination'=>array('pageSize'=>8),
-		));
+		$listDataProvider = new CArrayDataProvider($rawData);
 
 		$phpLighter = new CTextHighlighter();
 		$phpLighter->language = 'PHP';
