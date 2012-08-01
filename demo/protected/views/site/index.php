@@ -1146,11 +1146,11 @@ Yii::app()->clientScript->registerScript('siteIndex', "
     ?>
 
     <?php $this->widget('bootstrap.widgets.TbAlert', array(
-    'events'=>array(
-        'close'=>"js:function() { console.log('Alert close.'); }",
-        'closed'=>"js:function() { console.log('Alert closed.'); }",
-    ),
-)); ?>
+		'events'=>array(
+			'close'=>"js:function() { console.log('Alert close.'); }",
+			'closed'=>"js:function() { console.log('Alert closed.'); }",
+		),
+	)); ?>
 
     <h4>Source code</h4>
 
@@ -1159,7 +1159,14 @@ Yii::app()->user->setFlash('info', '<strong>Heads up!</strong> This alert needs 
 Yii::app()->user->setFlash('warning', '<strong>Warning!</strong> Best check yo self, you\'re not looking too good.');
 Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few things up and try submitting again.');"); ?>
 
-    <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbAlert'); ?>"); ?>
+	<?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbAlert', array(
+		'block'=>true, // display a larger alert block?
+		'fade'=>true, // use transitions?
+		'closeText'=>'&times;', // close link text - if set to false, no close link is displayed
+		'alerts'=>array( // configurations per alert type
+			'success'=>array('block'=>true, 'fade'=>true, 'closeText'=>'&times;'), // success, info, warning, error or danger
+		),
+	); ?>"); ?>
 
     <a class="top" href="#top">Back to top &uarr;</a>
 
@@ -1198,7 +1205,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
             <h3>Animated</h3>
 
             <?php $this->widget('bootstrap.widgets.TbProgress', array(
-            'type'=>'danger', // '', 'info', 'success' or 'danger'
+            'type'=>'danger', // 'info', 'success' or 'danger'
             'percent'=>40, // the progress
             'striped'=>true,
             'animated'=>true,
@@ -1211,7 +1218,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
     <h4>Source code</h4>
 
     <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbProgress', array(
-	'type'=>'danger', // '', 'info', 'success' or 'danger'
+	'type'=>'danger', // 'info', 'success' or 'danger'
 	'percent'=>40, // the progress
 	'striped'=>true,
 	'animated'=>true,
@@ -1237,7 +1244,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
     <h4>Source code</h4>
 
     <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbLabel', array(
-	'type'=>'success', // '', 'success', 'warning', 'important', 'info' or 'inverse'
+	'type'=>'success', // 'success', 'warning', 'important', 'info' or 'inverse'
 	'label'=>'Success',
 )); ?>"); ?>
 
@@ -1261,7 +1268,7 @@ Yii::app()->user->setFlash('error', '<strong>Oh snap!</strong> Change a few thin
     <h4>Source code</h4>
 
     <?php echo $phpLighter->highlight("<?php \$this->widget('bootstrap.widgets.TbBadge', array(
-	'type'=>'success', // '', 'success', 'warning', 'important', 'info' or 'inverse'
+	'type'=>'success', // 'success', 'warning', 'important', 'info' or 'inverse'
 	'label'=>'2',
 )); ?>"); ?>
 
