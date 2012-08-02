@@ -17,8 +17,17 @@ Yii::app()->clientScript->registerScript('siteIndex', "
 
 	// Prevent jumping to the top of the page when demo links are clicked.
 	jQuery('.site-index a').on('click', function(e) {
-		return false;
+	    var element = $(this),
+	        href = element.attr('href'),
+	        toggle = element.attr('data-toggle');
+
+	    if ((href && (href.length === 0 || href === '#')) && !toggle) {
+	            return false;
+	    }
 	});
+
+    // Prevent form submission.
+	jQuery('.site-index form').on('submit', false);
 ");
 ?>
 <div class="site-index">
@@ -32,12 +41,11 @@ Yii::app()->clientScript->registerScript('siteIndex', "
             <h3>Large</h3>
             <p>
                 <?php $this->widget('bootstrap.widgets.TbButton', array(
-                'label'=>'Primary', 'type'=>'primary', 'size'=>'large',
-            )); ?>
-
+                    'label'=>'Primary', 'type'=>'primary', 'size'=>'large',
+                )); ?>
                 <?php $this->widget('bootstrap.widgets.TbButton', array(
-                'label'=>'Action', 'size'=>'large',
-            )); ?>
+                    'label'=>'Action', 'size'=>'large',
+                )); ?>
             </p>
         </div>
 
@@ -45,12 +53,11 @@ Yii::app()->clientScript->registerScript('siteIndex', "
             <h3>Normal</h3>
             <p>
                 <?php $this->widget('bootstrap.widgets.TbButton', array(
-                'label'=>'Primary', 'type'=>'primary',
-            )); ?>
-
+                    'label'=>'Primary', 'type'=>'primary',
+                )); ?>
                 <?php $this->widget('bootstrap.widgets.TbButton', array(
-                'label'=>'Action',
-            )); ?>
+                    'label'=>'Action',
+                )); ?>
             </p>
         </div>
 
@@ -58,12 +65,11 @@ Yii::app()->clientScript->registerScript('siteIndex', "
             <h3>Small</h3>
             <p>
                 <?php $this->widget('bootstrap.widgets.TbButton', array(
-                'label'=>'Primary', 'type'=>'primary', 'size'=>'small',
-            )); ?>
-
+                    'label'=>'Primary', 'type'=>'primary', 'size'=>'small',
+                )); ?>
                 <?php $this->widget('bootstrap.widgets.TbButton', array(
-                'label'=>'Action', 'size'=>'small',
-            )); ?>
+                    'label'=>'Action', 'size'=>'small',
+                )); ?>
             </p>
         </div>
 
@@ -71,12 +77,11 @@ Yii::app()->clientScript->registerScript('siteIndex', "
             <h3>Mini</h3>
             <p>
                 <?php $this->widget('bootstrap.widgets.TbButton', array(
-                'label'=>'Primary', 'type'=>'primary', 'size'=>'mini',
-            )); ?>
-
+                    'label'=>'Primary', 'type'=>'primary', 'size'=>'mini',
+                )); ?>
                 <?php $this->widget('bootstrap.widgets.TbButton', array(
-                'label'=>'Action', 'size'=>'mini',
-            )); ?>
+                    'label'=>'Action', 'size'=>'mini',
+                )); ?>
             </p>
         </div>
     </div>
