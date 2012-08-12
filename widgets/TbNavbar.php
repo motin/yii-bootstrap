@@ -94,14 +94,14 @@ class TbNavbar extends CWidget
 		if ($this->fixed !== false && in_array($this->fixed, array(self::FIXED_TOP, self::FIXED_BOTTOM)))
 			$classes[] = 'navbar-fixed-'.$this->fixed;
 
-        if (!empty($classes))
-        {
-            $classes = implode(' ', $classes);
-            if (isset($this->htmlOptions['class']))
-                $this->htmlOptions['class'] .= ' '.$classes;
-            else
-                $this->htmlOptions['class'] = $classes;
-        }
+		if (!empty($classes))
+		{
+			$classes = implode(' ', $classes);
+			if (isset($this->htmlOptions['class']))
+				$this->htmlOptions['class'] .= ' '.$classes;
+			else
+				$this->htmlOptions['class'] = $classes;
+		}
 	}
 
 	/**
@@ -114,24 +114,24 @@ class TbNavbar extends CWidget
 
 		$collapseId = TbCollapse::getNextContainerId();
 
-        if ($this->collapse !== false)
-        {
-            echo '<a class="btn btn-navbar" data-toggle="collapse" data-target="#'.$collapseId.'">';
+		if ($this->collapse !== false)
+		{
+			echo '<a class="btn btn-navbar" data-toggle="collapse" data-target="#'.$collapseId.'">';
 			echo '<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>';
 			echo '</a>';
 		}
 
-        if ($this->brand !== false)
-            echo CHtml::openTag('a', $this->brandOptions).$this->brand.'</a>';
+		if ($this->brand !== false)
+			echo CHtml::openTag('a', $this->brandOptions).$this->brand.'</a>';
 
 		if ($this->collapse !== false)
-        {
-            $this->controller->beginWidget('bootstrap.widgets.TbCollapse', array(
+		{
+			$this->controller->beginWidget('bootstrap.widgets.TbCollapse', array(
 				'id'=>$collapseId,
 				'toggle'=>false, // navbars should be collapsed by default
-                'htmlOptions'=>array('class'=>'nav-collapse'),
-            ));
-        }
+				'htmlOptions'=>array('class'=>'nav-collapse'),
+			));
+		}
 
 		foreach ($this->items as $item)
 		{
@@ -150,7 +150,7 @@ class TbNavbar extends CWidget
 		}
 
 		if ($this->collapse !== false)
-            $this->controller->endWidget();
+			$this->controller->endWidget();
 
 		echo '</div></div></div>';
 	}

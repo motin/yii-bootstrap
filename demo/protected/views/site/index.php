@@ -104,7 +104,14 @@ Yii::app()->clientScript->registerScript('siteIndex', "
                     array('label'=>'Another action', 'url'=>'#'),
                     array('label'=>'Something else', 'url'=>'#'),
                     '---',
-                    array('label'=>'Separate link', 'url'=>'#'),
+                    array('label'=>'More options', 'items'=>array(
+                        array('label'=>'Second level link', 'url'=>'#'),
+                        array('label'=>'Second level link', 'url'=>'#'),
+                        array('label'=>'Second level link', 'url'=>'#'),
+                        array('label'=>'Second level link', 'items'=>array(
+                            array('label'=>'Third level link', 'url'=>'#'),
+                        )),
+                    )),
                 )),
             ),
         )); ?>
