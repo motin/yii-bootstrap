@@ -78,7 +78,7 @@ class SiteController extends Controller
 			array('name'=>'lastName', 'header'=>'Last name'),
 			array('name'=>'language', 'header'=>'Language'),
 			array(
-				'class'=>'bootstrap.widgets.BootButtonColumn',
+				'class'=>'bootstrap.widgets.TbButtonColumn',
 				'viewButtonUrl'=>null,
 				'updateButtonUrl'=>null,
 				'deleteButtonUrl'=>null,
@@ -86,12 +86,10 @@ class SiteController extends Controller
 		);
 
 		$rawData = array();
-		for ($i = 0; $i < 100; $i++)
+		for ($i = 0; $i < 8; $i++)
 			$rawData[] = array('id'=>$i + 1);
 
-		$listDataProvider = new CArrayDataProvider($rawData, array(
-			'pagination'=>array('pageSize'=>8),
-		));
+		$listDataProvider = new CArrayDataProvider($rawData);
 
 		$phpLighter = new CTextHighlighter();
 		$phpLighter->language = 'PHP';
@@ -145,4 +143,26 @@ class SiteController extends Controller
 	        	$this->render('error', $error);
 	    }
 	}
+
+    public function getTabularFormTabs($form, $model)
+    {
+        $tabs = array();
+        $count = 0;
+
+        foreach (array('en'=>'English', 'fi'=>'Finnish', 'sv'=>'Swedish') as $locale => $language)
+        {
+            $tabs[] = array(
+                'active'=>$count++ === 0,
+                'label'=>$language,
+                'content'=>$this->renderPartial('_tabular', array(
+                    'form'=>$form,
+                    'model'=>$model,
+                    'locale'=>$locale,
+                    'language'=>$language,
+                ), true),
+            );
+        }
+
+        return $tabs;
+    }
 }

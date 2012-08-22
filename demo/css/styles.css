@@ -2,6 +2,7 @@
 .clearfix:before, .clearfix:after {
   display:table;
   content:"";
+  line-height:0;
 }
 .clearfix:after { clear:both; }
 .hide-text {
@@ -14,10 +15,9 @@
 .input-block-level {
   display:block;
   width:100%;
-  min-height:28px;
+  min-height:30px;
   -webkit-box-sizing:border-box;
   -moz-box-sizing:border-box;
-  -ms-box-sizing:border-box;
   box-sizing:border-box;
 }
 .php-hl-default { color:Black; }
@@ -224,40 +224,22 @@ ol.php-hl-main pre {
 }
 .source .copycode_hover a { color:red; }
 body {
-  padding-top:60px;
+  padding-top:100px;
   padding-bottom:60px;
 }
-h1, h2, h3, h4, h5, h6 { margin-bottom:0.6em; }
 p {
   font-size:14px;
   margin-bottom:1.6em;
 }
+.hero-unit { margin-bottom:0; }
 .hero-unit h1 { margin-bottom:0.4em; }
-.hero-unit p {
-  margin-bottom:0;
-  text-align:justify;
-}
+.hero-unit p { text-align:justify; }
+.hero-unit p:last-child { margin-bottom:0; }
 .navbar .add-this {
   margin:6px 0 6px 10px;
   padding:6px 0;
 }
-.subnav {
-  font-size:12px;
-  padding:9px 0;
-  position:fixed;
-  right:20px;
-  top:60px;
-  width:160px;
-  z-index:1030;
-  -webkit-border-radius:4px;
-  -moz-border-radius:4px;
-  border-radius:4px;
-}
-.subnav .label {
-  font-size:0.8em;
-  line-height:16px;
-  vertical-align:top;
-}
+.subnav.navbar-fixed-top { top:40px; }
 footer .powered {
   color:#888888;
   margin-bottom:20px;
@@ -265,25 +247,23 @@ footer .powered {
 footer .copy { color:#666666; }
 span.required { color:#ff0000; }
 .popover h3.popover-title { margin-bottom:0; }
-section { padding-top:40px; }
+section { padding-top:80px; }
 section a.top {
   display:block;
   text-align:right;
 }
-#bootNavbar .navbar-inner > .container { width:auto; }
-#bootMenu .menuCol { min-height:140px; }
-#bootTabbable .tabbable { margin-bottom:20px; }
-#bootTabbable .tabbable .tab-content { width:auto; }
-#bootTabbable .tabbable.tabbable-placed { width:340px; }
-#bootThumbnails .list-view { padding-top:30px; }
-#bootActiveForm .form-vertical .control-group > label { font-weight:bold; }
-#bootHero .hero-unit { width:650px; }
-#bootHero .hero-unit h1 { margin-bottom:0; }
-#bootHero .hero-unit p { margin-bottom:9px; }
-#bootHero .hero-unit p:last-child { margin-bottom:0; }
-#bootCarousel .carousel { width:770px; }
-#bootCarousel .carousel .carousel-caption p { margin-bottom:9px; }
-#bootTypeahead input { margin-bottom:0; }
+#tbNavbar .navbar-inner > .container { width:auto; }
+#tbMenu .menuCol { min-height:140px; }
+#tbTabs .togglable-tabs { margin-bottom:20px; }
+#tbThumbnails .list-view { padding-top:30px; }
+#tbActiveForm .form-vertical .control-group > label { font-weight:bold; }
+#tbHero .hero-unit { width:650px; }
+#tbHero .hero-unit h1 { margin-bottom:0; }
+#tbHero .hero-unit p { margin-bottom:9px; }
+#tbHero .hero-unit p:last-child { margin-bottom:0; }
+#tbCarousel .carousel { width:770px; }
+#tbCarousel .carousel .carousel-caption p { margin-bottom:9px; }
+#tbTypeahead input { margin-bottom:0; }
 .php-hl-main, .html-hl-main, .javascript-hl-main { margin-bottom:20px; }
 .php-hl-main pre, .html-hl-main pre, .javascript-hl-main pre {
   background:#fcfcfc;

@@ -51,12 +51,13 @@ mixpanel.init("733930f08f73894be317b7fdbfd15229");</script><!-- end Mixpanel -->
 	}(document));
 </script>
 
-<?php $this->widget('bootstrap.widgets.BootNavbar',array(
+<?php $this->widget('bootstrap.widgets.TbNavbar',array(
+	'type'=>'inverse',
 	'brand'=>CHtml::encode(Yii::app()->name),
 	'collapse'=>true,
 	'items'=>array(
 		array(
-			'class'=>'bootstrap.widgets.BootMenu',
+			'class'=>'bootstrap.widgets.TbMenu',
 			'items'=>array(
 				array('label'=>'Demo', 'url'=>Yii::app()->homeUrl,
 						'active'=>Yii::app()->controller->id === 'site' && Yii::app()->controller->action->id === 'index'),
@@ -77,7 +78,7 @@ mixpanel.init("733930f08f73894be317b7fdbfd15229");</script><!-- end Mixpanel -->
 			<!-- AddThis Button END -->
 		</div>',
 		array(
-			'class'=>'bootstrap.widgets.BootMenu',
+			'class'=>'bootstrap.widgets.TbMenu',
 			'items'=>array(
 				array('label'=>'Bootstrap Docs', 'url'=>'http://twitter.github.com/bootstrap', 'linkOptions'=>array('target'=>'_blank')),
 				array('label'=>'Fork me on Bitbucket', 'url'=>'http://www.bitbucket.org/Crisu83/yii-bootstrap', 'linkOptions'=>array('target'=>'_blank')),
@@ -90,21 +91,22 @@ mixpanel.init("733930f08f73894be317b7fdbfd15229");</script><!-- end Mixpanel -->
 
 <div class="container">
 
-	<?php $this->beginWidget('bootstrap.widgets.BootHero', array(
+	<?php $this->beginWidget('bootstrap.widgets.TbHeroUnit', array(
 		'heading'=>Yii::app()->name,
 	)); ?>
 		<p>
 			Bringing together the <?php echo CHtml::link('Yii PHP framework', 'http://www.yiiframework.com'); ?> and
-			<?php echo CHtml::link('Bootstrap', 'http://twitter.github.com/bootstrap/'); ?> Twitter's new web development toolkit.
-			Now with support for Bootstrap 2!
+			<?php echo CHtml::link('Twitter Bootstrap', 'http://twitter.github.com/bootstrap/'); ?>.
+        </p>
+        <p>
 			<?php echo CHtml::link('Yii-Bootstrap', 'http://www.yiiframework.com/extension/bootstrap/'); ?>
-			is an extension for Yii that provides a wide range of server-side widgets that allow you to easily use Bootstrap with Yii.
+			is an extension for Yii that provides a wide range of widgets that allow developers to easily use Bootstrap with Yii.
 			All widgets have been developed following Yii's conventions and work seamlessly together with Bootstrap and its jQuery plugins.
 		</p>
 	<?php $this->endWidget(); ?>
 
 	<?php if (!empty($this->breadcrumbs)):?>
-		<?php $this->widget('bootstrap.widgets.BootBreadcrumbs', array(
+		<?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
 		)); ?>
 	<?php endif?>
@@ -127,7 +129,7 @@ mixpanel.init("733930f08f73894be317b7fdbfd15229");</script><!-- end Mixpanel -->
 		</p>
 
 		<p class="copy">
-			&copy; Christoffer Niska 2011
+			&copy; Christoffer Niska <?php echo date('Y'); ?>
 		</p>
 
 	</footer>
