@@ -35,7 +35,7 @@ class TbActiveForm extends CActiveForm
 	 */
 	public $input;
 	/**
-	 * @var boolean flag that indicates if the errors should be displayed as blocks.
+	 * @var boolean indicates whether to display errors as blocks.
 	 */
 	public $inlineErrors;
 

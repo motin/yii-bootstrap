@@ -15,7 +15,7 @@
 .input-block-level {
   display:block;
   width:100%;
-  min-height:28px;
+  min-height:30px;
   -webkit-box-sizing:border-box;
   -moz-box-sizing:border-box;
   box-sizing:border-box;
