@@ -4,114 +4,102 @@
  * @author Christoffer Niska <ChristofferNiska@gmail.com>
  * @copyright Copyright &copy; Christoffer Niska 2011-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
+ * @version 0.10.0
  */
 
-Yii::setPathOfAlias('Less', dirname(__FILE__).'/../lib/lessphp/lib/Less');
+require(dirname(__FILE__).'/../lib/lessphp/lessc.inc.php');
 
-/**
- * Less compiler application component.
- * Preload the component to enable auto compiling.
- */
 class LessCompiler extends CApplicationComponent
 {
 	/**
-	 * @var string the base path.
+	 * @var string base path.
 	 */
 	public $basePath;
 	/**
-	 * @var array the paths for the files to parse.
+	 * @var array paths to process.
 	 */
 	public $paths = array();
 	/**
-	 * @var boolean indicates whether to force compiling.
+	 * @var boolean indicates whether to always compile all files.
 	 */
 	public $forceCompile = false;
 	/**
-	 * @var boolean compiler debug mode.
+	 * @var lessc LESS compiler instance.
 	 */
-	public $debug = false;
-	/**
-	 * @var boolean whether to compress css or not.
-	 */
-	public $compress = false;
-
 	protected $_parser;
 
 	/**
 	 * Initializes the component.
+	 * @throws CException if the base path does not exist.
 	 */
 	public function init()
 	{
-		if ($this->basePath === null)
+		if (!isset($this->basePath))
 			$this->basePath = Yii::getPathOfAlias('webroot');
 
 		if (!file_exists($this->basePath))
-			throw new CException(__CLASS__.': Failed to initialize compiler. Base path does not exist.');
+			throw new CException(__CLASS__.': Failed to initialize compiler. Base path does not exist!');
 
-		$env = new \Less\Environment();
-		$env->setDebug($this->debug);
-		$env->setCompress($this->compress);
-		$this->_parser = new \Less\Parser($env);
+		if (!is_dir($this->basePath))
+			throw new CException(__CLASS__.': Failed to initialize compiler. Base path is not a directory!');
+
+		$this->_parser = new lessc();
 
 		if ($this->forceCompile || $this->hasChanges())
-			$this->compile();
+			$this->compileAll();
 	}
 
 	/**
-	 * Compiles the less files.
-	 * @throws CException if the source path does not exist
+	 * Compiles a LESS file to a CSS file.
+	 * @param string $from the path to the source LESS file.
+	 * @param string $to the path to the target CSS file.
+	 * @throws CException if the compilation fails or the source path does not exist.
 	 */
-	public function compile()
+	public function compile($from, $to)
+	{
+		if (file_exists($from))
+		{
+			try
+			{
+				$this->_parser->importDir = dirname($from); // Set the correct context.
+				file_put_contents($to, $this->_parser->parse(file_get_contents($from)));
+			}
+			catch (exception $e)
+			{
+				throw new CException(__CLASS__.': Failed to compile less file with message: '.$e->getMessage().'.');
+			}
+		}
+		else
+			throw new CException(__CLASS__.': Failed to compile less file. Source path does not exist!');
+	}
+
+	/**
+	 * Compiles all LESS files.
+	 */
+	protected function compileAll()
 	{
 		foreach ($this->paths as $lessPath => $cssPath)
 		{
-			$fromPath = $this->basePath.'/'.$lessPath;
-			$toPath = $this->basePath.'/'.$cssPath;
-
-			if (file_exists($fromPath))
-				file_put_contents($toPath, $this->parse($fromPath));
-			else
-				throw new CException(__CLASS__.': Failed to compile less file. Source path does not exist.');
-
-			$this->_parser->clearCss();
+			$from = $this->basePath.'/'.$lessPath;
+			$to = $this->basePath.'/'.$cssPath;
+			$this->compile($from, $to);
 		}
-	}
-
-	/**
-	 * Parses the less code to CSS.
-	 * @param string $filename the file path to the less file
-	 * @return string the CSS
-	 */
-	public function parse($filename)
-	{
-		try
-		{
-			$css = $this->_parser->parseFile($filename);
-		}
-		catch (\Less\Exception\ParserException $e)
-		{
-			throw new CException(__CLASS__.': Failed to parse less file. "'.$e->getMessage().'".');
-		}
-
-		return $css;
 	}
 
 	/**
 	 * Returns whether any of files configured to be compiled has changed.
-	 * @return boolean the result
+	 * @return boolean the result.
 	 */
 	protected function hasChanges()
 	{
 		$dirs = array();
 		foreach ($this->paths as $source => $destination)
 		{
-			$destination = realpath($destination);
 			$compiled = $this->getLastModified($destination);
-			if (!isset($lastCompiled) || $compiled < $lastCompiled )
+			if (!isset($lastCompiled) || $compiled < $lastCompiled)
 				$lastCompiled = $compiled;
 
-			$source = realpath($source);
-			if (!in_array($source, $dirs))
+			if (!in_array(dirname($source), $dirs))
 				$dirs[] = $source;
 		}
 
@@ -126,8 +114,8 @@ class LessCompiler extends CApplicationComponent
 
 	/**
 	 * Returns the last modified for a specific path.
-	 * @param string $path the path
-	 * @return integer the last modified (as a timestamp)
+	 * @param string $path the path.
+	 * @return integer the last modified (as a timestamp).
 	 */
 	protected function getLastModified($path)
 	{
@@ -144,23 +132,24 @@ class LessCompiler extends CApplicationComponent
 			{
 				$lastModified = null;
 
+				/** @var Directory $dir */
 				$dir = dir($path);
 				while ($entry = $dir->read())
 				{
 					if (strpos($entry, '.') === 0)
 						continue;
 
-					$entry = $path.'/'.$entry;
+					$path .= '/'.$entry;
 
-					if( is_dir($entry) )
-						$modified = $this->getLastModified($entry);
+					if (is_dir($path))
+						$modified = $this->getLastModified($path);
 					else
 					{
-						$stat = stat($entry);
+						$stat = stat($path);
 						$modified = $stat['mtime'];
 					}
 
-					if( isset($lastModified) || $modified > $lastModified )
+					if (isset($lastModified) || $modified > $lastModified)
 						$lastModified = $modified;
 				}
 

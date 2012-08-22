@@ -1,64 +1,64 @@
-less.php
-========
+# lessphp v0.3.4-2
+### <http://leafo.net/lessphp>
 
-The **dynamic** stylesheet language.
+`lessphp` is a compiler for LESS written in PHP. The documentation is great,
+so check it out: <http://leafo.net/lessphp/docs/>.
 
-<http://lesscss.org>
+Here's a quick tutorial:
 
-about
------
+### How to use in your PHP project
 
-This is a PHP port of the official JavaScript version of LESS <http://lesscss.org>.
+Copy `lessc.inc.php` to your include directory and include it into your project.
 
-Most of the code structure remains the same, which should allow for fairly easy updates in the future. That does
-mean this library requires PHP5.3 as it makes heavy use of namespaces, anonymous functions and the shorthand ternary
-operator - `?:` (to replicate the way Javascript will return the value of the first valid operand when using  `||`).
+There are a few ways to interface with the compiler. The easiest is to have it
+compile a LESS file when the page is requested. The static function 
+`lessc::ccompile`, checked compile, will compile the input LESS file only when it
+is newer than the output file.
 
-A couple of things have been omitted from this initial version:
+	try {
+		lessc::ccompile('input.less', 'output.css');
+	} catch (exception $ex) {
+		exit($ex->getMessage());
+	}
 
-- Evaluation of JavaScript expressions within back-ticks (for obvious reasons).
-- Definition of custom functions - will be added to the `\Less\Environment` class.
-- A tidy up of the API is needed.
+`lessc::ccompile` is not aware of imported files that change. Read [about
+`lessc::cexecute`](http://leafo.net/lessphp/docs/#compiling_automatically).
 
-use
----
+Note that all failures with lessc are reported through exceptions.
+If you need more control you can make your own instance of lessc.
 
-### The parser
+	$input = 'mystyle.less';
 
-```php
-<?php
+	$lc = new lessc($input);
 
-$parser = new \Less\Parser();
-$parser->getEnvironment()->setCompress(true);
+	try {
+		file_put_contents('mystyle.css', $lc->parse());
+	} catch (exception $ex) { ... }
 
-// parse css from a less source file or directly from a string
-$css = $parser
-            ->parseFile($path)
-            ->parse("@color: #4D926F; #header { color: @color; } h2 { color: @color; }")
-            ->getCss();
-```
+In addition to loading from file, you can also parse from a string like so:
 
-### The command line tool
+	$lc = new lessc();
+	$lesscode = 'body { ... }';
+	$out = $lc->parse($lesscode);
 
-The `bin/lessc` command line tool will accept an input (and optionally an output) file name to process.
+### How to use from the command line
 
-```bash
-$ ./bin/lessc input.less output.css
-```
+An additional script has been included to use the compiler from the command
+line. In the simplest invocation, you specify an input file and the compiled
+css is written to standard out:
 
-### In your website
+	$ plessc input.less > output.css
 
-The `bin/less.php` file can be moved to the directory containing your less source files. Including a links as follows
-will compile and cache the css.
+Using the -r flag, you can specify LESS code directly as an argument or, if 
+the argument is left off, from standard in:
 
-```html
-<link rel="stylesheet" type="text/css" href="/static/less/css.php?bootstrap.less" />
-```
+	$ plessc -r "my less code here"
 
-NB: You'll need to update this file to point to the `lib` directory, and also make sure the `./cache` directory is
-writable by the web server.
+Finally, by using the -w flag you can watch a specified input file and have it 
+compile as needed to the output file
 
-license
--------
+	$ plessc -w input-file output-file
 
-See `LICENSE` file.
+Errors from watch mode are written to standard out.
+
+

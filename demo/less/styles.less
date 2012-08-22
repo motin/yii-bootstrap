@@ -6,12 +6,8 @@
 // VARIABLES
 
 body {
-    padding-top: 60px;
+    padding-top: 100px;
 	padding-bottom: 60px;
-}
-
-h1, h2, h3, h4, h5, h6 {
-	margin-bottom: 0.6em;
 }
 
 p {
@@ -20,13 +16,18 @@ p {
 }
 
 .hero-unit {
+    margin-bottom: 0;
+
     h1 {
         margin-bottom: 0.4em;
     }
 
 	p {
-		margin-bottom: 0;
 		text-align: justify;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
 	}
 }
 
@@ -37,21 +38,8 @@ p {
 	}
 }
 
-.subnav {
-	font-size: 12px;
-	padding: 9px 0;
-	position: fixed;
-	right: 20px;
-	top: 60px;
-	width: 160px;
-	z-index: 1030;
-	.border-radius(4px);
-
-	.label {
-	    font-size: 0.8em;
-	    line-height: 16px;
-		vertical-align: top;
-	}
+.subnav.navbar-fixed-top {
+	top: 40px;
 }
 
 footer {
@@ -74,7 +62,7 @@ span.required {
 }
 
 section {
-	padding-top: 40px;
+	padding-top: 80px;
 
 	a.top {
 		display: block;
@@ -82,35 +70,27 @@ section {
 	}
 }
 
-#bootNavbar .navbar-inner > .container {
+#tbNavbar .navbar-inner > .container {
 	width: auto;
 }
 
-#bootMenu .menuCol {
+#tbMenu .menuCol {
 	min-height: 140px;
 }
 
-#bootTabbable .tabbable {
+#tbTabs .togglable-tabs {
 	margin-bottom: 20px;
-
-	.tab-content {
-		width: auto;
-	}
-
-	&.tabbable-placed {
-		width: 340px;
-	}
 }
 
-#bootThumbnails .list-view {
+#tbThumbnails .list-view {
 	padding-top: 30px;
 }
 
-#bootActiveForm .form-vertical .control-group > label {
+#tbActiveForm .form-vertical .control-group > label {
 	font-weight: bold;
 }
 
-#bootHero .hero-unit {
+#tbHero .hero-unit {
 	width: 650px;
 
 	h1 {
@@ -126,7 +106,7 @@ section {
 	}
 }
 
-#bootCarousel .carousel {
+#tbCarousel .carousel {
 	width: 770px;
 
 	.carousel-caption p {
@@ -134,7 +114,7 @@ section {
 	}
 }
 
-#bootTypeahead input {
+#tbTypeahead input {
 	margin-bottom: 0;
 }
 
